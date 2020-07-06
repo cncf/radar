@@ -1,0 +1,8 @@
+{
+  "radars": [
+    {
+      "id": "continuous-delivery",
+      "name": "Continuous Delivery"
+    }
+  ]
+}
