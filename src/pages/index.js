@@ -25,7 +25,7 @@ export default function Home({ radars }) {
 }
 
 export async function getStaticProps() {
-  const { radars } = loadData()
+  const { radars } = await loadData()
 
   return { props: { radars } }
 }

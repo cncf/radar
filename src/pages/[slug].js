@@ -1,6 +1,6 @@
 import loadData from '../loadData'
 import { Fragment, useState } from 'react'
-import OutboundLink from '../components/OutboungLink'
+import OutboundLink from '../components/OutboundLink'
 
 const Modal = ({ point, onClose }) => {
   if (!point) {
@@ -17,9 +17,10 @@ const Modal = ({ point, onClose }) => {
         </div>
         <div className="card-content">
           <div className="content">
-            {point.repo ?
-              <div>Repo: <OutboundLink href={`https://github.com/${point.repo}`} title={`github.com/${point.repo}`} /></div> :
-              null}
+            <div>Description: {point.description}</div>
+            {point.repo && <div>Repo: <OutboundLink href={`https://github.com/${point.repo}`} /></div>}
+            {point.twitter && <div>Twitter: <OutboundLink href={point.twitter} /></div>}
+            {point.homepage && <div>Homepage: <OutboundLink href={point.homepage} /></div>}
           </div>
         </div>
       </div>
@@ -83,6 +84,7 @@ const RadarCentralRing = ({ points, radius, title, color, onClickPoint }) => {
 
 const Radar = ({ name, points }) => {
   const length = Math.max(points.adopt.length, points.trial.length, points.assess.length)
+  // TODO: improve this
   const [selectedPoint, onSelectedPoint] = useState(false)
 
   const closeModal = _ => onSelectedPoint(null)
@@ -129,13 +131,13 @@ const Radar = ({ name, points }) => {
 }
 
 export async function getStaticProps ({ params }) {
-  const { radars } = loadData()
+  const { radars } = await loadData()
   const props = radars.find(radar => radar.id === params.slug)
   return { props } 
 }
 
 export async function getStaticPaths() {
-  const { radars } = loadData()
+  const { radars } = await loadData()
 
   return {
     paths: radars.map(radar => ({ params: { slug: radar.id } })),
