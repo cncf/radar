@@ -4,7 +4,7 @@ import loadData from '../loadData'
 
 export default function Home({ radars }) {
   return (
-    <div className="container">
+    <div>
       <Head>
         <title>Radar</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />

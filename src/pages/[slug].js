@@ -57,25 +57,28 @@ const RadarCentralRing = ({ points, radius, title, color }) => {
 const Radar = ({ name, points }) => {
   const length = Math.max(points.adopt.length, points.trial.length, points.assess.length)
 
-  return <div>
-    <h1 className="title">{name}</h1>
+  return <div className="columns">
+    <div className="column is-three-quarters">
+      <h1 className="title">{name}</h1>
 
-    <svg viewBox="0 0 2000 1000" xmlns="http://www.w3.org/2000/svg">
-      <RadarRing radius={1000} points={points.assess} title="Assess" color="#6CBFAF"/>
-      <RadarRing radius={666} points={points.trial} title="Trial" color="#235C6F"/>
-      <RadarCentralRing radius={333} points={points.adopt} title="Adopt" color="#041087" />
-    </svg>
+      <svg viewBox="0 0 2000 1000" xmlns="http://www.w3.org/2000/svg">
+        <RadarRing radius={1000} points={points.assess} title="Assess" color="#6CBFAF"/>
+        <RadarRing radius={666} points={points.trial} title="Trial" color="#235C6F"/>
+        <RadarCentralRing radius={333} points={points.adopt} title="Adopt" color="#041087"/>
+      </svg>
+    </div>
 
-    <table className="table">
-      <thead>
+    <div className="column is-three-quarters">
+      <table className="table">
+        <thead>
         <tr>
           <th><span className="tag adopt-bg">Adopt</span></th>
           <th><span className="tag trial-bg">Trial</span></th>
           <th><span className="tag assess-bg">Assess</span></th>
         </tr>
-      </thead>
+        </thead>
 
-      <tbody>
+        <tbody>
         {
           [...Array(length).keys()].map(i => {
             return <tr key={`tr-${i}`}>
@@ -88,8 +91,9 @@ const Radar = ({ name, points }) => {
             </tr>
           })
         }
-      </tbody>
-    </table>
+        </tbody>
+      </table>
+    </div>
   </div>
 }
 

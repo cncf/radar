@@ -14,3 +14,8 @@ table .tag {
 .assess-bg {
     background: #6CBFAF !important;
 }
+
+th, td {
+    text-align: center !important;
+    border: none !important;
+}
