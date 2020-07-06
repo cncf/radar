@@ -1,39 +1,66 @@
 import loadData from '../loadData'
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react'
+import OutboundLink from '../components/OutboungLink'
 
-const Point = ({ distance, angle, color, point }) => {
+const Modal = ({ point, onClose }) => {
+  if (!point) {
+    return null
+  }
+  return <div className="modal is-active">
+    <div className="modal-background" onClick={onClose}></div>
+    <div className="modal-content">
+      <div className="card">
+        <div className="card-header">
+          <div className="card-header-title">
+            {point.name}
+          </div>
+        </div>
+        <div className="card-content">
+          <div className="content">
+            {point.repo ?
+              <div>Repo: <OutboundLink href={`https://github.com/${point.repo}`} title={`github.com/${point.repo}`} /></div> :
+              null}
+          </div>
+        </div>
+      </div>
+    </div>
+    <button className="modal-close is-large" aria-label="close" onClick={onClose}></button>
+  </div>
+}
+
+const Point = ({ distance, angle, color, point, onClick }) => {
   const x = (-distance * Math.cos(angle) + 1000).toFixed(2)
   const y = (-distance * Math.sin(angle) + 1000).toFixed(2)
 
   return <Fragment>
-    <circle cx={x} cy={y} r="20" fill={color} />
-    <text x={x} y={+y + 40} dominantBaseline="middle" textAnchor="middle" fill={color} fontSize="20" fontWeight="bolder">
+    <circle cx={x} cy={y} r="20" fill={color} onClick={_ => onClick(point)}/>
+    <text x={x} y={+y + 40} fill={color} fontSize="20" onClick={_ => onClick(point)}>
       {point.name}
     </text>
   </Fragment>
 }
 
-const RadarRing = ({ points, radius, title, color }) => {
+const RadarRing = ({ points, radius, title, color, onClickPoint }) => {
   const innerRadius = (2 * radius - 333) / 2
   const count = Math.ceil(points.length / 2) + 1
   const angle = Math.PI / 2 / count
 
   return <Fragment>
     <path d={`M ${1002 - radius} 1000 A 1 1, 0, 1, 1, ${998 + radius} 1000`} stroke={color} strokeWidth="2" fill="none"/>
-    <text x="1000" y={1000 - innerRadius} dominantBaseline="middle" textAnchor="middle" fill={color} fontSize="35" fontWeight="bolder">
+    <text x="1000" y={1000 - innerRadius} fill={color} fontSize="35">
       {title}
     </text>
 
     {
       points.map((point, i) => {
         const pointAngle = angle * (i + (i >= (points.length / 2) ? 2 : 1))
-        return <Point point={point} distance={innerRadius} angle={pointAngle} color={color} key={point.name} />
+        return <Point point={point} distance={innerRadius} angle={pointAngle} color={color} key={point.name} onClick={onClickPoint} />
       })
     }
   </Fragment>
 }
 
-const RadarCentralRing = ({ points, radius, title, color }) => {
+const RadarCentralRing = ({ points, radius, title, color, onClickPoint }) => {
   const titleRadius = radius - 222
   const innerRadius = radius - 333 / 4
   const count = points.length
@@ -41,14 +68,14 @@ const RadarCentralRing = ({ points, radius, title, color }) => {
 
   return <Fragment>
     <path d={`M ${1002 - radius} 1000 A 1 1, 0, 1, 1, ${998 + radius} 1000`} stroke={color} strokeWidth="2" fill="none"/>
-    <text x="1000" y={1000 - titleRadius} dominantBaseline="middle" textAnchor="middle" fill={color} fontSize="35" fontWeight="bolder">
+    <text x="1000" y={1000 - titleRadius} fill={color} fontSize="35">
       {title}
     </text>
 
     {
       points.map((point, i) => {
         const pointAngle = angle * (i + 1)
-        return <Point point={point} distance={innerRadius} angle={pointAngle} color={color} key={point.name}/>
+        return <Point point={point} distance={innerRadius} angle={pointAngle} color={color} key={point.name} onClick={onClickPoint}/>
       })
     }
   </Fragment>
@@ -56,15 +83,19 @@ const RadarCentralRing = ({ points, radius, title, color }) => {
 
 const Radar = ({ name, points }) => {
   const length = Math.max(points.adopt.length, points.trial.length, points.assess.length)
+  const [selectedPoint, onSelectedPoint] = useState(false)
+
+  const closeModal = _ => onSelectedPoint(null)
 
   return <div className="columns">
     <div className="column is-three-quarters">
+      <Modal point={selectedPoint} onClose={closeModal}/>
       <h1 className="title">{name}</h1>
 
-      <svg viewBox="0 0 2000 1000" xmlns="http://www.w3.org/2000/svg">
-        <RadarRing radius={1000} points={points.assess} title="Assess" color="#6CBFAF"/>
-        <RadarRing radius={666} points={points.trial} title="Trial" color="#235C6F"/>
-        <RadarCentralRing radius={333} points={points.adopt} title="Adopt" color="#041087"/>
+      <svg viewBox="0 0 2000 1000" xmlns="http://www.w3.org/2000/svg" dominantBaseline="middle" textAnchor="middle" fontWeight="bolder">
+        <RadarRing radius={1000} points={points.assess} title="Assess" color="#6CBFAF" onClickPoint={onSelectedPoint}/>
+        <RadarRing radius={666} points={points.trial} title="Trial" color="#235C6F" onClickPoint={onSelectedPoint}/>
+        <RadarCentralRing radius={333} points={points.adopt} title="Adopt" color="#041087" onClickPoint={onSelectedPoint}/>
       </svg>
     </div>
 

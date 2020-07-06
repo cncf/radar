@@ -11,7 +11,7 @@
         },
         {
           "name": "Flux",
-          "repo": "fluxcf/flux",
+          "repo": "fluxcd/flux",
           "level": "adopt"
         },
         {
