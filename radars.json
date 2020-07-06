@@ -2,7 +2,79 @@
   "radars": [
     {
       "id": "continuous-delivery",
-      "name": "Continuous Delivery"
+      "name": "Continuous Delivery",
+      "points": [
+        {
+          "name": "Helm",
+          "repo": "helm/helm",
+          "level": "adopt"
+        },
+        {
+          "name": "Flux",
+          "repo": "fluxcf/flux",
+          "level": "adopt"
+        },
+        {
+          "name": "Circle CI",
+          "homepage": "https://circleci.com",
+          "level": "trial"
+        },
+        {
+          "name": "Kustomize",
+          "repo": "kubernetes-sigs/kustomize",
+          "level": "trial"
+        },
+        {
+          "name": "GitLab",
+          "repo": "gitlabhq/gitlabhq",
+          "level": "trial"
+        },
+        { 
+          "name": "Jenkins X",
+          "repo": "jenkins-x/jx",
+          "level": "assess"
+        },
+        {
+          "name": "Travis CI",
+          "repo": "travis-ci/travis-ci",
+          "level": "assess"
+        },
+        {
+          "name": "jsonnet",
+          "repo": "google/jsonnet",
+          "level": "assess"
+        },
+        {
+          "name": "Spinnaker",
+          "repo": "spinnaker/spinnaker",
+          "level": "assess"
+        },
+        {
+          "name": "GitHub Actions",
+          "homepage": "https://github.com/features/actions",
+          "level": "assess"
+        },
+        {
+          "name": "Argo CD",
+          "repo": "argoproj/argo-cd",
+          "level": "assess"
+        },
+        {
+          "name": "Jenkins",
+          "repo": "jenkins/jenkins",
+          "level": "assess"
+        },
+        {
+          "name": "Tekton CD",
+          "homepage": "https://tekton.dev/",
+          "level": "assess"
+        },
+        {
+          "name": "Team City",
+          "homepage": "https://www.jetbrains.com/teamcity",
+          "level": "assess"
+        }
+      ]
     }
   ]
 }

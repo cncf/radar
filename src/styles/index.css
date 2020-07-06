@@ -1,0 +1,16 @@
+table .tag {
+    color: white;
+    font-weight: bold;
+}
+
+.adopt-bg {
+    background: #041087 !important;
+}
+
+.trial-bg {
+    background: #235C6F !important;
+}
+
+.assess-bg {
+    background: #6CBFAF !important;
+}

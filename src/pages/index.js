@@ -7,6 +7,7 @@ export default function Home({ radars }) {
     <div className="container">
       <Head>
         <title>Radar</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -14,8 +15,8 @@ export default function Home({ radars }) {
         <h1 className="title">Radar Homepage</h1>
 
         { 
-          radars.map(radar => {
-            return <Link href="/[slug]" as={`/${radar.id}`}><a>{radar.name}</a></Link>
+          radars.map(({ id, name }) => {
+            return <Link href="/[slug]" as={`/${id}`} key={id}><a>{name}</a></Link>
           })
         }
       </main>
