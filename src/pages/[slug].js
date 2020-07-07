@@ -88,13 +88,14 @@ const Radar = ({ name, points }) => {
   const [selectedPoint, onSelectedPoint] = useState(false)
 
   const closeModal = _ => onSelectedPoint(null)
+  const fontFamily = "BlinkMacSystemFont, -apple-system, \"Segoe UI\", \"Roboto\", \"Oxygen\", \"Ubuntu\", \"Cantarell\", \"Fira Sans\", \"Droid Sans\", \"Helvetica Neue\", \"Helvetica\", \"Arial\", sans-serif"
 
   return <div className="columns">
     <div className="column is-three-quarters">
       <Modal point={selectedPoint} onClose={closeModal}/>
       <h1 className="title">{name}</h1>
 
-      <svg viewBox="0 0 2000 1000" xmlns="http://www.w3.org/2000/svg" dominantBaseline="middle" textAnchor="middle" fontWeight="bolder">
+      <svg viewBox="0 0 2000 1000" xmlns="http://www.w3.org/2000/svg" dominantBaseline="middle" textAnchor="middle" fontWeight="bolder" fontFamily={fontFamily}>
         <RadarRing radius={1000} points={points.assess} title="Assess" color="#6CBFAF" onClickPoint={onSelectedPoint}/>
         <RadarRing radius={666} points={points.trial} title="Trial" color="#235C6F" onClickPoint={onSelectedPoint}/>
         <RadarCentralRing radius={333} points={points.adopt} title="Adopt" color="#041087" onClickPoint={onSelectedPoint}/>
