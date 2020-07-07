@@ -1,7 +1,7 @@
-import { readFileSync, existsSync } from 'fs'
-import { join } from 'path'
+const { readFileSync, existsSync } = require('fs')
+const { join } = require('path')
 
-export default path => {
+module.exports = path => {
   const fullPath = join(process.cwd(), path)
   if (existsSync(fullPath)) {
     return JSON.parse(readFileSync(fullPath))

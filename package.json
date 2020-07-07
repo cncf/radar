@@ -2,10 +2,10 @@
   "name": "radar",
   "version": "0.1.0",
   "scripts": {
-    "dev": "babel-node --presets '@babel/preset-env' scripts/clearCache.js && next dev",
+    "dev": "babel-node scripts/clearCache.js && next dev",
     "build": "next build",
     "start": "next start",
-    "export": "next export"
+    "export": "next export && node scripts/exportSvgs.mjs"
   },
   "dependencies": {
     "bulma": "^0.9.0",
