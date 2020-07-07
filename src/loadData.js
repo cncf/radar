@@ -1,6 +1,6 @@
-import { readFileSync } from 'fs'
-import { join } from 'path'
 import stripUrl from './helpers/stripUrl'
+import loadJSON from './helpers/loadJSON'
+import fetchLandscapeData from './helpers/fetchLandscapeData'
 
 const projectMatches = ({ project, point }) => {
   if (point.repo) {
@@ -11,10 +11,8 @@ const projectMatches = ({ project, point }) => {
 }
 
 export default async () => {
-  const data = JSON.parse(readFileSync(join(process.cwd(), 'radars.json')))
-
-  // TODO: only fetch landscape data when radar changes...
-  const landscapeData = await (await fetch('https://landscape.cncf.io/data.json')).json()
+  const data = loadJSON('radars.json')
+  const landscapeData = await fetchLandscapeData()
 
   const radars = data.radars.map(radar => {
     const pointsWithData = radar.points.map(point => {

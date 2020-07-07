@@ -2,7 +2,7 @@
   "name": "radar",
   "version": "0.1.0",
   "scripts": {
-    "dev": "next dev",
+    "dev": "babel-node --presets '@babel/preset-env' scripts/clearCache.js && next dev",
     "build": "next build",
     "start": "next start",
     "export": "next export"
