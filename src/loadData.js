@@ -1,13 +1,6 @@
 import { readFileSync } from 'fs'
 import { join } from 'path'
-
-const stripUrl = url => {
-  if (!url) {
-    return null
-  }
-  return url.replace(/https?:\/\/(www\.)?/, '')
-    .replace(/\/$/, '')
-}
+import stripUrl from './helpers/stripUrl'
 
 const projectMatches = ({ project, point }) => {
   if (point.repo) {
