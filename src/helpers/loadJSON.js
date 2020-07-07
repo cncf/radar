@@ -1,5 +1,5 @@
-const { readFileSync, existsSync } = require('fs')
-const { join } = require('path')
+import { readFileSync, existsSync } from 'fs'
+import { join } from 'path'
 
 module.exports = path => {
   const fullPath = join(process.cwd(), path)

@@ -1,6 +1,6 @@
 import { readFileSync, writeFileSync } from 'fs'
 import { join } from 'path'
-import loadJSON from '../src/helpers/loadJSON.js'
+import loadJSON from '../src/helpers/loadJSON'
 
 const { radars } = loadJSON('radars.json')
 
