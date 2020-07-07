@@ -17,7 +17,7 @@ const Modal = ({ point, onClose }) => {
         </div>
         <div className="card-content">
           <div className="content">
-            <div>Description: {point.description}</div>
+            {point.description && <div>Description: {point.description}</div>}
             {point.repo && <div>Repo: <OutboundLink href={`https://github.com/${point.repo}`} /></div>}
             {point.twitter && <div>Twitter: <OutboundLink href={point.twitter} /></div>}
             {point.homepage && <div>Homepage: <OutboundLink href={point.homepage} /></div>}

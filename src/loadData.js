@@ -1,6 +1,22 @@
 import { readFileSync } from 'fs'
 import { join } from 'path'
 
+const stripUrl = url => {
+  if (!url) {
+    return null
+  }
+  return url.replace(/https?:\/\/(www\.)?/, '')
+    .replace(/\/$/, '')
+}
+
+const projectMatches = ({ project, point }) => {
+  if (point.repo) {
+    return project.repo_url === `https://github.com/${point.repo}`
+  }
+
+  return stripUrl(project.homepage_url) === stripUrl(point.homepage)
+}
+
 export default async () => {
   const data = JSON.parse(readFileSync(join(process.cwd(), 'radars.json')))
 
@@ -9,12 +25,12 @@ export default async () => {
 
   const radars = data.radars.map(radar => {
     const pointsWithData = radar.points.map(point => {
-      const extraData = landscapeData.find(project => project.repo_url === `https://github.com/${point.repo}`)
+      const extraData = landscapeData.find(project => projectMatches({ project, point }))
       if (!extraData) {
         return point
       }
       const { homepage_url, twitter, github_data } = extraData
-      const { description } = github_data
+      const description = extraData.description || (github_data && github_data.description)
 
       return { description, twitter, homepage: homepage_url, ...point  }
     })
