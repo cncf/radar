@@ -5,7 +5,7 @@
     "dev": "babel-node scripts/clearCache.js && next dev",
     "build": "next build",
     "start": "next start",
-    "export": "next export && babel-node scripts/exportSvgs.js"
+    "export": "next export && babel-node scripts/exportImages.js"
   },
   "dependencies": {
     "@babel/core": "^7.10.4",
@@ -13,6 +13,7 @@
     "bulma": "^0.9.0",
     "next": "9.4.4",
     "react": "16.13.1",
-    "react-dom": "16.13.1"
+    "react-dom": "16.13.1",
+    "sharp": "^0.25.4"
   }
 }

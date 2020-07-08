@@ -1,5 +1,6 @@
 import { readFileSync, writeFileSync } from 'fs'
 import { join } from 'path'
+import sharp from 'sharp'
 import loadData from '../src/loadData'
 
 loadData('radars.json').then(({ radars }) => {
@@ -9,5 +10,9 @@ loadData('radars.json').then(({ radars }) => {
 
     const outputPath = join(process.cwd(), 'out', `${radar.key}.svg`)
     writeFileSync(outputPath, svg)
+
+    sharp(outputPath)
+      .png({ compressionLevel: 3 })
+      .toFile(outputPath.replace(/\..*/, '.png'))
   })
 })
