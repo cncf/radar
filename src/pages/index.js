@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import { Fragment } from 'React'
+import { Fragment } from 'react'
 import loadData from '../loadData'
 
 export default function Home({ radars }) {
