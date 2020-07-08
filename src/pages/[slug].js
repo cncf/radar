@@ -138,7 +138,7 @@ const Radar = ({ name, points }) => {
 
 export async function getStaticProps ({ params }) {
   const { radars } = await loadData()
-  const props = radars.find(radar => radar.id === params.slug)
+  const props = radars.find(({ slug }) => slug === params.slug)
   return { props } 
 }
 
@@ -146,7 +146,7 @@ export async function getStaticPaths() {
   const { radars } = await loadData()
 
   return {
-    paths: radars.map(radar => ({ params: { slug: radar.id } })),
+    paths: radars.map(({ slug }) => ({ params: { slug } })),
     fallback: false
   };
 }

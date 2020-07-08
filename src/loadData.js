@@ -10,6 +10,11 @@ const projectMatches = ({ project, point }) => {
   return stripUrl(project.homepage_url) === stripUrl(point.homepage)
 }
 
+const formatDate = (date, format) => {
+  const dateTimeFormat = new Intl.DateTimeFormat('en', format)
+  return dateTimeFormat.format(date)
+}
+
 export default async () => {
   const data = loadJSON('radars.json')
   const landscapeData = await fetchLandscapeData()
@@ -32,7 +37,11 @@ export default async () => {
       assess: pointsWithData.filter(point => point.level === 'assess')
     }
 
-    return { ...radar, points }
+    const date = new Date(radar.date)
+    const slug = `${radar.id}-${radar.date.replace(/-\d+$/, '')}`
+    const name = `${radar.name} (${(formatDate(date, { month: 'long', year: 'numeric' }))})`
+
+    return { ...radar, slug, name, points }
   })
 
   return { radars }

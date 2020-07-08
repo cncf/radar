@@ -20,7 +20,7 @@ export default function Home({ radars }) {
     <section className="section main">
       <div className="container">
         <h2 className="title is-4">Published Radars:</h2>
-        { radars.map(({ id, name }) => <Link href="/[slug]" as={`/${id}`} key={id}><a>{name}</a></Link>) }
+        { radars.map(({ id, slug, name }) => <Link href="/[slug]" as={`/${slug}`} key={id}><a>{name}</a></Link>) }
       </div>
     </section>
 
