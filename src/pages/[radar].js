@@ -1,42 +1,16 @@
-import { Fragment, useState, createContext, useContext } from 'react'
+import { Fragment } from 'react'
 import loadData from '../loadData'
-import OutboundLink from '../components/OutboundLink'
-
-const ModalContext = createContext()
-
-const PointModal = ({ point, onClose }) => {
-  return point && <div className="modal is-active">
-    <div className="modal-background" onClick={onClose}></div>
-    <div className="modal-content">
-      <div className="card">
-        <div className="card-content">
-          <div className="content">
-            <h2 className="title is-4">{point.name}</h2>
-            {point.description && <div>Description: {point.description}</div>}
-            {point.repo && <div>Repo: <OutboundLink href={`https://github.com/${point.repo}`} /></div>}
-            {point.twitter && <div>Twitter: <OutboundLink href={point.twitter} /></div>}
-            {point.homepage && <div>Homepage: <OutboundLink href={point.homepage} /></div>}
-
-            <h5 className="mb-2 mt-5 title is-5">Votes</h5>
-            <div>Adopt: {point.votes.adopt || 0}</div>
-            <div>Trial: {point.votes.trial || 0}</div>
-            <div>Assess: {point.votes.assess || 0}</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <button className="modal-close is-large" aria-label="close" onClick={onClose}></button>
-  </div>
-}
+import { useRouter } from 'next/router'
 
 const Point = ({ distance, angle, color, point }) => {
   const x = (-distance * Math.cos(angle) + 1000).toFixed(2)
   const y = (-distance * Math.sin(angle) + 1000).toFixed(2)
-  const { onSelectedPoint } = useContext(ModalContext)
+  const router = useRouter()
+  const onClick = _ => router.push('/[...point]', `/${point.radarSlug}/${point.slug}`)
 
   return <Fragment>
-    <circle cx={x} cy={y} r="20" fill={color} onClick={_ => onSelectedPoint(point)}/>
-    <text x={x} y={+y + 40} fill={color} fontSize="20" onClick={_ => onSelectedPoint(point)}>
+    <circle cx={x} cy={y} r="20" fill={color} onClick={onClick}/>
+    <text x={x} y={+y + 40} fill={color} fontSize="20" onClick={onClick}>
       {point.name}
     </text>
   </Fragment>
@@ -85,55 +59,50 @@ const RadarCentralRing = ({ points, radius, title, color }) => {
 
 const Radar = ({ name, points }) => {
   const length = Math.max(points.adopt.length, points.trial.length, points.assess.length)
-  const [selectedPoint, onSelectedPoint] = useState(false)
-  const closeModal = _ => onSelectedPoint(null)
   const fontFamily = "BlinkMacSystemFont, -apple-system, \"Segoe UI\", \"Roboto\", \"Oxygen\", \"Ubuntu\", \"Cantarell\", \"Fira Sans\", \"Droid Sans\", \"Helvetica Neue\", \"Helvetica\", \"Arial\", sans-serif"
 
-  return <ModalContext.Provider value={{onSelectedPoint}}>
-    <section className="section">
-      <div className="container is-fluid">
-        <PointModal point={selectedPoint} onClose={closeModal}/>
-        <div className="columns">
-          <div className="column is-three-quarters">
-            <h1 className="title">{name} Radar</h1>
+  return <section className="section">
+    <div className="container is-fluid">
+      <div className="columns">
+        <div className="column is-three-quarters">
+          <h1 className="title">{name} Radar</h1>
 
-            <svg viewBox="0 0 2000 1000" xmlns="http://www.w3.org/2000/svg" dominantBaseline="middle" textAnchor="middle" fontWeight="bolder" fontFamily={fontFamily}>
-              <RadarRing radius={1000} points={points.assess} title="Assess" color="#6CBFAF" />
-              <RadarRing radius={666} points={points.trial} title="Trial" color="#235C6F" />
-              <RadarCentralRing radius={333} points={points.adopt} title="Adopt" color="#041087" />
-            </svg>
-          </div>
+          <svg viewBox="0 0 2000 1000" xmlns="http://www.w3.org/2000/svg" dominantBaseline="middle" textAnchor="middle" fontWeight="bolder" fontFamily={fontFamily}>
+            <RadarRing radius={1000} points={points.assess} title="Assess" color="#6CBFAF" />
+            <RadarRing radius={666} points={points.trial} title="Trial" color="#235C6F" />
+            <RadarCentralRing radius={333} points={points.adopt} title="Adopt" color="#041087" />
+          </svg>
+        </div>
 
-          <div className="column is-three-quarters">
-            <table className="table">
-              <thead>
-              <tr>
-                <th><span className="tag adopt-bg">Adopt</span></th>
-                <th><span className="tag trial-bg">Trial</span></th>
-                <th><span className="tag assess-bg">Assess</span></th>
-              </tr>
-              </thead>
+        <div className="column is-three-quarters">
+          <table className="table">
+            <thead>
+            <tr>
+              <th><span className="tag adopt-bg">Adopt</span></th>
+              <th><span className="tag trial-bg">Trial</span></th>
+              <th><span className="tag assess-bg">Assess</span></th>
+            </tr>
+            </thead>
 
-              <tbody>
-              {
-                [...Array(length).keys()].map(i => {
-                  return <tr key={`tr-${i}`}>
-                    {
-                      ['adopt', 'trial', 'assess'].map(level => {
-                        const point = points[level][i]
-                        return <td key={`td-${level}-${i}`}>{point && point.name}</td>
-                      })
-                    }
-                  </tr>
-                })
-              }
-              </tbody>
-            </table>
-          </div>
+            <tbody>
+            {
+              [...Array(length).keys()].map(i => {
+                return <tr key={`tr-${i}`}>
+                  {
+                    ['adopt', 'trial', 'assess'].map(level => {
+                      const point = points[level][i]
+                      return <td key={`td-${level}-${i}`}>{point && point.name}</td>
+                    })
+                  }
+                </tr>
+              })
+            }
+            </tbody>
+          </table>
         </div>
       </div>
-    </section>
-  </ModalContext.Provider>
+    </div>
+  </section>
 }
 
 export async function getStaticProps ({ params }) {
