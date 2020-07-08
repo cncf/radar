@@ -12,7 +12,8 @@ loadData('radars.json').then(({ radars }) => {
     writeFileSync(outputPath, svg)
 
     sharp(outputPath)
-      .png({ compressionLevel: 3 })
+      .png({ compressionLevel: 1 })
+      .flatten({ background: { r: 255, g: 255, b: 255 } })
       .toFile(outputPath.replace(/\..*/, '.png'))
   })
 })
