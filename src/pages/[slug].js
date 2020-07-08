@@ -5,24 +5,22 @@ import OutboundLink from '../components/OutboundLink'
 const ModalContext = createContext()
 
 const PointModal = ({ point, onClose }) => {
-  if (!point) {
-    return null
-  }
-  return <div className="modal is-active">
+  return point && <div className="modal is-active">
     <div className="modal-background" onClick={onClose}></div>
     <div className="modal-content">
       <div className="card">
-        <div className="card-header">
-          <div className="card-header-title">
-            {point.name}
-          </div>
-        </div>
         <div className="card-content">
           <div className="content">
+            <h2 className="title is-4">{point.name}</h2>
             {point.description && <div>Description: {point.description}</div>}
             {point.repo && <div>Repo: <OutboundLink href={`https://github.com/${point.repo}`} /></div>}
             {point.twitter && <div>Twitter: <OutboundLink href={point.twitter} /></div>}
             {point.homepage && <div>Homepage: <OutboundLink href={point.homepage} /></div>}
+
+            <h5 className="mb-2 mt-5 title is-5">Votes</h5>
+            <div>Adopt: {point.votes.adopt || 0}</div>
+            <div>Trial: {point.votes.trial || 0}</div>
+            <div>Assess: {point.votes.assess || 0}</div>
           </div>
         </div>
       </div>
