@@ -20,17 +20,17 @@ export default async () => {
   const landscapeData = await fetchLandscapeData()
 
   const radars = data.radars.map(radar => {
-    const radarSlug = `${radar.id}-${radar.date.replace(/-\d+$/, '')}`
+    const radarKey = `${radar.id}-${radar.date.replace(/-\d+$/, '')}`
     const pointsWithData = radar.points.map(point => {
-      const slug = point.name.toLowerCase().replace(/\W/g, '-')
+      const key = point.name.toLowerCase().replace(/\W/g, '-')
       const extraData = landscapeData.find(project => projectMatches({ project, point }))
       if (!extraData) {
-        return { ...point, slug, radarSlug }
+        return { ...point, key, radarKey }
       }
       const { homepage_url, twitter, github_data } = extraData
       const description = extraData.description || (github_data && github_data.description)
 
-      return { description, twitter, homepage: homepage_url, ...point, radarSlug, slug }
+      return { description, twitter, homepage: homepage_url, ...point, radarKey, key }
     })
 
     const points = {
@@ -42,7 +42,7 @@ export default async () => {
     const date = new Date(radar.date)
     const name = `${radar.name} (${(formatDate(date, { month: 'long', year: 'numeric' }))})`
 
-    return { ...radar, slug: radarSlug, name, points }
+    return { ...radar, key: radarKey, name, points }
   })
 
   return { radars }

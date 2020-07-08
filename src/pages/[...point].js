@@ -16,7 +16,7 @@ const Point = point => {
       <div>Trial: {point.votes.trial || 0}</div>
       <div>Assess: {point.votes.assess || 0}</div>
       <div className="mt-5">
-        <Link href="/[radar]" as={`/${point.radarSlug}`}><a>Back to Radar</a></Link>
+        <Link href="/[radar]" as={`/${point.radarKey}`}><a>Back to Radar</a></Link>
       </div>
     </div>
   </section>
@@ -24,9 +24,9 @@ const Point = point => {
 
 export async function getStaticProps ({ params }) {
   const { radars } = await loadData()
-  const [radarSlug, pointSlug] = params.point
-  const radar = radars.find(({ slug }) => slug === radarSlug)
-  const props = Object.values(radar.points).flat().find(({ slug }) => slug === pointSlug)
+  const [radarKey, pointKey] = params.point
+  const radar = radars.find(({ key }) => key === radarKey)
+  const props = Object.values(radar.points).flat().find(({ key }) => key === pointKey)
   return { props }
 }
 
@@ -34,9 +34,9 @@ export async function getStaticPaths() {
   const { radars } = await loadData()
 
   return {
-    paths: radars.flatMap(({ slug, points }) => {
+    paths: radars.flatMap(({ key, points }) => {
       // TODO: radar structure seems quite painful to deal with
-      return Object.values(points).flat().map(point => ({ params: { point: [slug, point.slug] }}))
+      return Object.values(points).flat().map(point => ({ params: { point: [key, point.key] }}))
     }),
     fallback: false
   };

@@ -6,7 +6,7 @@ const Point = ({ distance, angle, color, point }) => {
   const x = (-distance * Math.cos(angle) + 1000).toFixed(2)
   const y = (-distance * Math.sin(angle) + 1000).toFixed(2)
   const router = useRouter()
-  const onClick = _ => router.push('/[...point]', `/${point.radarSlug}/${point.slug}`)
+  const onClick = _ => router.push('/[...point]', `/${point.radarKey}/${point.key}`)
 
   return <Fragment>
     <circle cx={x} cy={y} r="20" fill={color} onClick={onClick}/>
@@ -107,7 +107,7 @@ const Radar = ({ name, points }) => {
 
 export async function getStaticProps ({ params }) {
   const { radars } = await loadData()
-  const props = radars.find(({ slug }) => slug === params.radar)
+  const props = radars.find(({ key }) => key === params.radar)
   return { props } 
 }
 
@@ -115,7 +115,7 @@ export async function getStaticPaths() {
   const { radars } = await loadData()
 
   return {
-    paths: radars.map(({ slug }) => ({ params: { radar: slug } })),
+    paths: radars.map(({ key }) => ({ params: { radar: key } })),
     fallback: false
   };
 }
