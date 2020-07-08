@@ -92,45 +92,49 @@ const Radar = ({ name, points }) => {
   const fontFamily = "BlinkMacSystemFont, -apple-system, \"Segoe UI\", \"Roboto\", \"Oxygen\", \"Ubuntu\", \"Cantarell\", \"Fira Sans\", \"Droid Sans\", \"Helvetica Neue\", \"Helvetica\", \"Arial\", sans-serif"
 
   return <ModalContext.Provider value={{onSelectedPoint}}>
-    <PointModal point={selectedPoint} onClose={closeModal}/>
-    <div className="columns">
-      <div className="column is-three-quarters">
-        <h1 className="title">{name}</h1>
+    <section className="section">
+      <div className="container is-fluid">
+        <PointModal point={selectedPoint} onClose={closeModal}/>
+        <div className="columns">
+          <div className="column is-three-quarters">
+            <h1 className="title">{name} Radar</h1>
 
-        <svg viewBox="0 0 2000 1000" xmlns="http://www.w3.org/2000/svg" dominantBaseline="middle" textAnchor="middle" fontWeight="bolder" fontFamily={fontFamily}>
-          <RadarRing radius={1000} points={points.assess} title="Assess" color="#6CBFAF" />
-          <RadarRing radius={666} points={points.trial} title="Trial" color="#235C6F" />
-          <RadarCentralRing radius={333} points={points.adopt} title="Adopt" color="#041087" />
-        </svg>
-      </div>
+            <svg viewBox="0 0 2000 1000" xmlns="http://www.w3.org/2000/svg" dominantBaseline="middle" textAnchor="middle" fontWeight="bolder" fontFamily={fontFamily}>
+              <RadarRing radius={1000} points={points.assess} title="Assess" color="#6CBFAF" />
+              <RadarRing radius={666} points={points.trial} title="Trial" color="#235C6F" />
+              <RadarCentralRing radius={333} points={points.adopt} title="Adopt" color="#041087" />
+            </svg>
+          </div>
 
-      <div className="column is-three-quarters">
-        <table className="table">
-          <thead>
-          <tr>
-            <th><span className="tag adopt-bg">Adopt</span></th>
-            <th><span className="tag trial-bg">Trial</span></th>
-            <th><span className="tag assess-bg">Assess</span></th>
-          </tr>
-          </thead>
-
-          <tbody>
-          {
-            [...Array(length).keys()].map(i => {
-              return <tr key={`tr-${i}`}>
-                {
-                  ['adopt', 'trial', 'assess'].map(level => {
-                    const point = points[level][i]
-                    return <td key={`td-${level}-${i}`}>{point && point.name}</td>
-                  })
-                }
+          <div className="column is-three-quarters">
+            <table className="table">
+              <thead>
+              <tr>
+                <th><span className="tag adopt-bg">Adopt</span></th>
+                <th><span className="tag trial-bg">Trial</span></th>
+                <th><span className="tag assess-bg">Assess</span></th>
               </tr>
-            })
-          }
-          </tbody>
-        </table>
+              </thead>
+
+              <tbody>
+              {
+                [...Array(length).keys()].map(i => {
+                  return <tr key={`tr-${i}`}>
+                    {
+                      ['adopt', 'trial', 'assess'].map(level => {
+                        const point = points[level][i]
+                        return <td key={`td-${level}-${i}`}>{point && point.name}</td>
+                      })
+                    }
+                  </tr>
+                })
+              }
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
   </ModalContext.Provider>
 }
 
