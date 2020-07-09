@@ -15,37 +15,45 @@ const formatDate = (date, format) => {
   return dateTimeFormat.format(date)
 }
 
+const makePoint = (attrs, landscapeAttrs) => {
+  const key = attrs.name.toLowerCase().replace(/\W/g, '-')
+  const { homepage_url, twitter, github_data } = landscapeAttrs || {}
+
+  if (!landscapeAttrs) {
+    return { ...attrs, key }
+  }
+
+  const description = (landscapeAttrs || {}).description || (github_data || {}).description
+  return { description, twitter, homepage: homepage_url, ...attrs, key }
+}
+
+const makeRadar = attrs => {
+  const key = `${attrs.id}-${attrs.date.replace(/-\d+$/, '')}`
+  const date = new Date(attrs.date)
+  const name = `${attrs.name} (${(formatDate(date, { month: 'long', year: 'numeric' }))})`
+
+  return { ...attrs, key, name }
+}
+
 export default async () => {
   const data = loadJSON('radars.json')
   const landscapeData = await fetchLandscapeData()
 
   const radars = data.radars
     .filter(radar => process.env.SHOW_DRAFTS ? true : !radar.draft)
-    .map(radar => {
-      const radarKey = `${radar.id}-${radar.date.replace(/-\d+$/, '')}`
-      const pointsWithData = radar.points.map(point => {
-        const key = point.name.toLowerCase().replace(/\W/g, '-')
-        const extraData = landscapeData.find(project => projectMatches({ project, point }))
-        if (!extraData) {
-          return { ...point, key, radarKey }
-        }
-        const { homepage_url, twitter, github_data } = extraData
-        const description = extraData.description || (github_data && github_data.description)
+    .map(radarAttrs => {
+      const radar = makeRadar(radarAttrs)
 
-        return { description, twitter, homepage: homepage_url, ...point, radarKey, key }
+      const points = radar.points.map(pointAttrs => {
+        const landscapeAttrs = landscapeData.find(project => projectMatches({ project, point: pointAttrs }))
+        const point = makePoint(pointAttrs, landscapeAttrs)
+        return { ...point, fullKey: `${radar.key}/${point.key}`, radarKey: radar.key }
       })
 
-      const points = {
-        adopt: pointsWithData.filter(point => point.level === 'adopt'),
-        trial: pointsWithData.filter(point => point.level === 'trial'),
-        assess: pointsWithData.filter(point => point.level === 'assess')
-      }
-
-      const date = new Date(radar.date)
-      const name = `${radar.name} (${(formatDate(date, { month: 'long', year: 'numeric' }))})`
-
-      return { ...radar, key: radarKey, name, points }
+      return { ...radar, points }
     })
 
-  return { radars }
+  const points = radars.flatMap(radar => radar.points)
+
+  return { radars, points }
 }

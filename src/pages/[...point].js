@@ -24,21 +24,17 @@ const Point = point => {
 }
 
 export async function getStaticProps ({ params }) {
-  const { radars } = await loadData()
-  const [radarKey, pointKey] = params.point
-  const radar = radars.find(({ key }) => key === radarKey)
-  const props = Object.values(radar.points).flat().find(({ key }) => key === pointKey)
+  const { points } = await loadData()
+  const fullKey = params.point.join('/')
+  const props = points.find(point => point.fullKey === fullKey)
   return { props }
 }
 
 export async function getStaticPaths() {
-  const { radars } = await loadData()
+  const { points } = await loadData()
 
   return {
-    paths: radars.flatMap(({ key, points }) => {
-      // TODO: radar structure seems quite painful to deal with
-      return Object.values(points).flat().map(point => ({ params: { point: [key, point.key] }}))
-    }),
+    paths: points.map(point => ({ params: { point: point.fullKey.split('/') }})),
     fallback: false
   };
 }

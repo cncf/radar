@@ -7,7 +7,7 @@ const Point = ({ distance, angle, color, point }) => {
   const x = (-distance * Math.cos(angle) + 1000).toFixed(2)
   const y = (-distance * Math.sin(angle) + 1000).toFixed(2)
   const router = useRouter()
-  const onClick = _ => router.push('/[...point]', `/${point.radarKey}/${point.key}`)
+  const onClick = _ => router.push('/[...point]', `/${point.fullKey}`)
   const attrs = { onClick, className: 'cursor-pointer' }
 
   return <Fragment>
@@ -104,8 +104,13 @@ const Radar = ({ name, points }) => {
 
 export async function getStaticProps ({ params }) {
   const { radars } = await loadData()
-  const props = radars.find(({ key }) => key === params.radar)
-  return { props } 
+  const radar = radars.find(({ key }) => key === params.radar)
+  const points = {
+    adopt: radar.points.filter(point => point.level === 'adopt'),
+    trial: radar.points.filter(point => point.level === 'trial'),
+    assess: radar.points.filter(point => point.level === 'assess')
+  }
+  return { props: { ...radar, points } }
 }
 
 export async function getStaticPaths() {
