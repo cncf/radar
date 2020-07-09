@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import Link from 'next/link'
 import { Fragment } from 'react'
 import loadData from '../loadData'
@@ -14,7 +13,10 @@ export default function Home({ radars }) {
     <section className="section main">
       <div className="container">
         <h2 className="title is-4">Published Radars:</h2>
-        { radars.map(({ id, key, name }) => <Link href="/[radar]" as={`/${key}`} key={id}><a>{name}</a></Link>) }
+        <ul>
+          { radars.map(({ key, name }) => <li key={key}><Link href="/[radar]" as={`/${key}`}><a>{name}</a></Link></li>) }
+        </ul>
+
       </div>
     </section>
 
