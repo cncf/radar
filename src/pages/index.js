@@ -5,12 +5,6 @@ import loadData from '../loadData'
 
 export default function Home({ radars }) {
   return <Fragment>
-    <Head>
-      <title>CNCF Radars</title>
-      <meta name="viewport" content="width=device-width, initial-scale=1"/>
-      <link rel="icon" href="/favicon.ico"/>
-    </Head>
-
     <section className="section main">
       <div className="container">
         <h1 className="title">CNCF Radars</h1>

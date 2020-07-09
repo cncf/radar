@@ -1,6 +1,7 @@
 import { Fragment } from 'react'
 import loadData from '../loadData'
 import { useRouter } from 'next/router'
+import withTitle from '../components/withTitle'
 
 const Point = ({ distance, angle, color, point }) => {
   const x = (-distance * Math.cos(angle) + 1000).toFixed(2)
@@ -120,4 +121,4 @@ export async function getStaticPaths() {
   };
 }
 
-export default Radar
+export default withTitle(Radar, props => props.name)

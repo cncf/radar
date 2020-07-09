@@ -1,6 +1,7 @@
 import loadData from '../loadData'
 import OutboundLink from '../components/OutboundLink'
-import Link from "next/link";
+import Link from 'next/link'
+import withTitle from '../components/withTitle'
 
 const Point = point => {
   return <section className="section">
@@ -42,4 +43,4 @@ export async function getStaticPaths() {
   };
 }
 
-export default Point
+export default withTitle(Point, props => props.name)
