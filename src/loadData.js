@@ -41,6 +41,7 @@ export default async () => {
 
   const radars = data.radars
     .filter(radar => process.env.SHOW_DRAFTS ? true : !radar.draft)
+    .sort((a, b) => -a.date.localeCompare(b.date))
     .map(radarAttrs => {
       const radar = makeRadar(radarAttrs)
 
