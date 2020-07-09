@@ -8,12 +8,11 @@ const Point = ({ distance, angle, color, point }) => {
   const y = (-distance * Math.sin(angle) + 1000).toFixed(2)
   const router = useRouter()
   const onClick = _ => router.push('/[...point]', `/${point.radarKey}/${point.key}`)
+  const attrs = { onClick, className: 'cursor-pointer' }
 
   return <Fragment>
-    <circle cx={x} cy={y} r="20" fill={color} onClick={onClick}/>
-    <text x={x} y={+y + 40} fill={color} fontSize="20" onClick={onClick}>
-      {point.name}
-    </text>
+    <circle cx={x} cy={y} r="20" fill={color} {...attrs} />
+    <text x={x} y={+y + 40} fill={color} fontSize="20" {...attrs}>{point.name}</text>
   </Fragment>
 }
 

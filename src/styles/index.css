@@ -19,3 +19,7 @@ th, td {
     text-align: center !important;
     border: none !important;
 }
+
+.cursor-pointer {
+    cursor: pointer;
+}
