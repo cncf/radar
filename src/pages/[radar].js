@@ -18,18 +18,15 @@ const Point = ({ distance, angle, color, point }) => {
 
 const RadarRing = ({ points, radius, title, color }) => {
   const innerRadius = (2 * radius - 333) / 2
-  const count = Math.ceil(points.length / 2) + 1
-  const angle = Math.PI / 2 / count
+  const angle = Math.PI / (2 * Math.ceil(points.length / 2) + 1)
 
   return <Fragment>
     <path d={`M ${1002 - radius} 1000 A 1 1, 0, 1, 1, ${998 + radius} 1000`} stroke={color} strokeWidth="2" fill="none"/>
-    <text x="1000" y={1000 - innerRadius} fill={color} fontSize="35">
-      {title}
-    </text>
+    <text x="1000" y={1000 - innerRadius} fill={color} fontSize="35">{title}</text>
 
     {
       points.map((point, i) => {
-        const pointAngle = angle * (i + (i >= (points.length / 2) ? 2 : 1))
+        const pointAngle = angle * (i + (i >= (points.length / 2) ? 2 : 1)) - angle / 2
         return <Point point={point} distance={innerRadius} angle={pointAngle} color={color} key={point.name} />
       })
     }
@@ -40,7 +37,7 @@ const RadarCentralRing = ({ points, radius, title, color }) => {
   const titleRadius = radius - 222
   const innerRadius = radius - 333 / 4
   const count = points.length
-  const angle = Math.PI / (count + 1)
+  const angle = Math.PI / count
 
   return <Fragment>
     <path d={`M ${1002 - radius} 1000 A 1 1, 0, 1, 1, ${998 + radius} 1000`} stroke={color} strokeWidth="2" fill="none"/>
@@ -50,7 +47,7 @@ const RadarCentralRing = ({ points, radius, title, color }) => {
 
     {
       points.map((point, i) => {
-        const pointAngle = angle * (i + 1)
+        const pointAngle = angle * (i + 1) - angle / 2
         return <Point point={point} distance={innerRadius} angle={pointAngle} color={color} key={point.name}/>
       })
     }
