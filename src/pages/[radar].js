@@ -2,17 +2,23 @@ import { Fragment } from 'react'
 import loadData from '../loadData'
 import { useRouter } from 'next/router'
 import withTitle from '../components/withTitle'
+import LevelTag from '../components/LevelTag'
 
 const Point = ({ distance, angle, color, point }) => {
   const x = (-distance * Math.cos(angle) + 1000).toFixed(2)
   const y = (-distance * Math.sin(angle) + 1000).toFixed(2)
   const router = useRouter()
   const onClick = _ => router.push('/[...point]', `/${point.fullKey}`)
-  const attrs = { onClick, className: 'cursor-pointer' }
 
   return <Fragment>
-    <circle cx={x} cy={y} r="20" fill={color} {...attrs} />
-    <text x={x} y={+y + 40} fill={color} fontSize="20" {...attrs}>{point.name}</text>
+    <style jsx>{`
+      circle, text {
+        cursor: pointer;
+      }
+    `}
+    </style>
+    <circle cx={x} cy={y} r="20" fill={color} onClick={onClick} />
+    <text x={x} y={+y + 40} fill={color} fontSize="20" onClick={onClick}>{point.name}</text>
   </Fragment>
 }
 
@@ -72,12 +78,18 @@ const Radar = ({ name, points }) => {
         </div>
 
         <div className="column is-three-quarters">
+          <style jsx>{`
+            th, td {
+              text-align: center !important;
+              border: none !important;
+            }
+          `}</style>
           <table className="table">
             <thead>
             <tr>
-              <th><span className="tag adopt-bg">Adopt</span></th>
-              <th><span className="tag trial-bg">Trial</span></th>
-              <th><span className="tag assess-bg">Assess</span></th>
+              <th><LevelTag level="adopt" /></th>
+              <th><LevelTag level="trial" /></th>
+              <th><LevelTag level="assess" /></th>
             </tr>
             </thead>
 

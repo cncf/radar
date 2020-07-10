@@ -22,6 +22,12 @@ export default function Home({ radars }) {
 
     <section className="section main">
       <div className="container">
+        <Link href="/overview"><a>Overview</a></Link>
+      </div>
+    </section>
+
+    <section className="section main">
+      <div className="container">
         <h2 className="title is-4">Definitions</h2>
         <h3 className="subtitle is-5 is-italic">TODO: Add definitions for Adopt, Trial, Assess</h3>
       </div>

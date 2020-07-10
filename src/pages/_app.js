@@ -1,5 +1,4 @@
 import "bulma/css/bulma.css"
-import "../styles/index.css"
 import { Fragment } from "react";
 import Head from "next/head";
 

@@ -1,6 +1,6 @@
+import Link from 'next/link'
 import loadData from '../loadData'
 import OutboundLink from '../components/OutboundLink'
-import Link from 'next/link'
 import withTitle from '../components/withTitle'
 
 const Point = point => {
