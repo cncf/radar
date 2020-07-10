@@ -11,21 +11,17 @@ export default ({ Component, pageProps }) => {
       <link rel="icon" href="/favicon.ico"/>
     </Head>
 
-    <div className="container is-fluid">
-      <nav className="navbar" role="navigation" aria-label="main navigation">
-        <div className="navbar-brand">
-          <Link href="/"><a className="navbar-item"><h1 className="title">CNCF Radars</h1></a></Link>
-        </div>
+    <nav className="navbar is-link" role="navigation" aria-label="main navigation">
+      <div className="navbar-brand">
+        <Link href="/"><a className="navbar-item"><h1 className="title has-text-white">CNCF Radars</h1></a></Link>
+      </div>
 
-        <div className="navbar-menu">
-          <div className="navbar-end">
-            <div className="navbar-item">
-              <Link href="/overview"><a>Overview</a></Link>
-            </div>
-          </div>
+      <div className="navbar-menu">
+        <div className="navbar-end">
+          <Link href="/overview"><a className="navbar-item">Overview</a></Link>
         </div>
-      </nav>
-    </div>
+      </div>
+    </nav>
 
     <Component {...pageProps} />
   </Fragment>

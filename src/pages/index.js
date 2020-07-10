@@ -6,12 +6,6 @@ export default function Home({ radars }) {
   return <Fragment>
     <section className="section main">
       <div className="container">
-        <h1 className="title">CNCF Radars</h1>
-      </div>
-    </section>
-
-    <section className="section main">
-      <div className="container">
         <h2 className="title is-4">Published Radars:</h2>
         <ul>
           { radars.map(({ key, name }) => <li key={key}><Link href="/[radar]" as={`/${key}`}><a>{name}</a></Link></li>) }
