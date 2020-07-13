@@ -46,4 +46,4 @@ export async function getStaticPaths() {
   };
 }
 
-export default withTitle(Point, props => props.name)
+export default withTitle(Point, ({ point }) => `${point.name} | ${point.radar.name}`)
