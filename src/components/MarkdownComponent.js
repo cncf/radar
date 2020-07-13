@@ -1,9 +1,9 @@
 import { Converter } from 'showdown'
 import sanitizeHtml from 'sanitize-html'
 
-export default ({ value }) => {
+export default ({ value, ...props }) => {
   const html = (new Converter({simpleLineBreaks: true})).makeHtml(value);
   const sanitizedHtml = sanitizeHtml(html)
 
-  return <div dangerouslySetInnerHTML={{ __html: sanitizedHtml }} />
+  return <div {...props} dangerouslySetInnerHTML={{ __html: sanitizedHtml }} />
 }

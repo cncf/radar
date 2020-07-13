@@ -61,12 +61,12 @@ const RadarCentralRing = ({ points, radius, title, color }) => {
   </Fragment>
 }
 
-const Radar = ({ name, themes, points }) => {
+const Radar = ({ name, themes, points, team }) => {
   const length = Math.max(points.adopt.length, points.trial.length, points.assess.length)
   const fontFamily = "BlinkMacSystemFont, -apple-system, \"Segoe UI\", \"Roboto\", \"Oxygen\", \"Ubuntu\", \"Cantarell\", \"Fira Sans\", \"Droid Sans\", \"Helvetica Neue\", \"Helvetica\", \"Arial\", sans-serif"
 
   return <Fragment>
-    <section class="section">
+    <section className="section">
       <div className="container">
         <h1 className="title">{name}</h1>
 
@@ -81,9 +81,32 @@ const Radar = ({ name, themes, points }) => {
     <section className="section">
       <div className="container">
         <h2 className="title">Themes</h2>
-        <div class="content">
+        <div className="content">
           <MarkdownComponent value={themes}/>
         </div>
+      </div>
+    </section>
+
+    <section className="section">
+      <div className="container">
+        <h2 className="title">Team</h2>
+
+        { team.map(member => {
+            return <div key={member.name}>
+              <div className="columns">
+                <div className="column is-1">
+                  <img src={member.photo} alt={member.name} className="is-rounded"/>
+                </div>
+
+                <div className="column is-11">
+                  <h5 className="title is-5 mb-0 ">{member.name}</h5>
+                  {member.twitter && <a href={`https://twitter.com/${member.twitter}`}>@{member.twitter}</a>}
+                  <MarkdownComponent value={member.bio} />
+                </div>
+              </div>
+            </div>
+          }
+        )}
       </div>
     </section>
 
