@@ -40,14 +40,12 @@ export default ({ groupedPoints }) => {
 }
 
 export const getStaticProps = async _ => {
-  const { radars, points } = await loadData()
-
-  const radarsMap = radars.reduce((acc, radar) => ({ ...acc, [radar.key]: radar }), {})
+  const { points } = await loadData()
 
   const groupedPoints = points.sort((a, b) => a.key.localeCompare(b.key))
     .reduce((acc, point) => {
       const points = acc[point.key] || []
-      return { ...acc, [point.key]: [...points, { ...point, radar: radarsMap[point.radarKey] }] }
+      return { ...acc, [point.key]: [...points, point] }
     }, {})
 
 

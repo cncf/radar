@@ -28,15 +28,13 @@ const Point = ({ point, radars }) => {
 }
 
 export async function getStaticProps ({ params }) {
-  const { radars, points } = await loadData()
+  const { points } = await loadData()
   const fullKey = params.point.join('/')
   const point = points.find(point => point.fullKey === fullKey)
-  const radarKeys = points.filter(({ key }) => key === point.key)
-    .map(({ radarKey }) => radarKey)
-  const pointRadars = radars.filter(radar => radarKeys.includes(radar.key))
-    .map(({ key, name, ..._ }) => ({ key, name }))
+  const radars = points.filter(({ key }) => key === point.key)
+    .map(({ radar }) => ({ key: radar.key, name: radar.name }))
 
-  return { props: { point, radars: pointRadars } }
+  return { props: { point, radars } }
 }
 
 export async function getStaticPaths() {

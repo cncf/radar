@@ -54,7 +54,9 @@ export default async () => {
       return { ...radar, points }
     })
 
-  const points = radars.flatMap(radar => radar.points)
+  const points = radars.flatMap(radar => {
+    return radar.points.map(point => ({ ...point, radar }))
+  })
 
   return { radars, points }
 }
