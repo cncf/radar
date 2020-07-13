@@ -1,5 +1,7 @@
+import path from 'path'
+import { readdirSync, readFileSync } from 'fs'
+import YAML from 'yaml'
 import stripUrl from './helpers/stripUrl'
-import loadJSON from './helpers/loadJSON'
 import fetchLandscapeData from './helpers/fetchLandscapeData'
 
 const projectMatches = ({ project, point }) => {
@@ -35,11 +37,17 @@ const makeRadar = attrs => {
   return { ...attrs, key, name }
 }
 
+const loadRadarData = _ => {
+  const expandPath = (...args) => path.join(process.cwd(), ...args)
+  return readdirSync(expandPath('radars'))
+    .map(path => YAML.parse(readFileSync(expandPath('radars', path), 'utf-8')))
+}
+
 export default async () => {
-  const data = loadJSON('radars.json')
+  const data = loadRadarData()
   const landscapeData = await fetchLandscapeData()
 
-  const radars = data.radars
+  const radars = data
     .filter(radar => process.env.SHOW_DRAFTS ? true : !radar.draft)
     .sort((a, b) => -a.date.localeCompare(b.date))
     .map(radarAttrs => {

@@ -1,0 +1,93 @@
+id: continuous-delivery
+name: Continuous Delivery
+date: 2020-06-08
+points:
+  - name: Helm
+    repo: helm/helm
+    level: adopt
+    votes:
+      adopt: 12
+      trial: 4
+  - name: Flux
+    repo: fluxcd/flux
+    level: adopt
+    votes:
+      adopt: 7
+      trial: 2
+      assess: 3
+  - name: Circle CI
+    homepage: https://circleci.com
+    level: trial
+    votes:
+      adopt: 5
+      assess: 1
+  - name: Kustomize
+    repo: kubernetes-sigs/kustomize
+    level: trial
+    votes:
+      adopt: 4
+      trial: 2
+      assess: 3
+  - name: GitLab
+    repo: gitlabhq/gitlabhq
+    level: trial
+    votes:
+      adopt: 5
+      trial: 3
+      assess: 3
+  - name: Jenkins X
+    repo: jenkins-x/jx
+    level: assess
+    votes:
+      trial: 1
+      assess: 3
+  - name: Travis CI
+    repo: travis-ci/travis-web
+    level: assess
+    votes:
+      adopt: 1
+      trial: 1
+      assess: 1
+  - name: jsonnet
+    repo: google/jsonnet
+    level: assess
+    votes:
+      adopt: 1
+      trial: 1
+      assess: 2
+  - name: Spinnaker
+    repo: spinnaker/spinnaker
+    level: assess
+    votes:
+      trial: 3
+      assess: 6
+  - name: GitHub Actions
+    homepage: https://github.com/features/actions
+    level: assess
+    votes:
+      adopt: 2
+      trial: 7
+      assess: 7
+  - name: Argo CD
+    repo: argoproj/argo
+    level: assess
+    votes:
+      adopt: 2
+      trial: 3
+      assess: 10
+  - name: Jenkins
+    repo: jenkinsci/jenkins
+    level: assess
+    votes:
+      adopt: 6
+      assess: 2
+  - name: Tekton CD
+    homepage: https://tekton.dev/
+    level: assess
+    votes:
+      assess: 2
+  - name: Team City
+    homepage: https://www.jetbrains.com/teamcity
+    level: assess
+    votes:
+      adopt: 1
