@@ -30,17 +30,20 @@ const makePoint = (attrs, landscapeAttrs) => {
 }
 
 const makeRadar = attrs => {
-  const key = `${attrs.id}-${attrs.date.replace(/-\d+$/, '')}`
-  const date = new Date(attrs.date)
-  const name = `${attrs.name} (${(formatDate(date, { month: 'long', year: 'numeric' }))})`
+  const date = new Date(attrs.key.match(/\d{4}-\d{2}/)[0])
+  const name = `${attrs.name}, ${(formatDate(date, { month: 'long', year: 'numeric' }))}`
 
-  return { ...attrs, key, name }
+  return { ...attrs, name }
 }
 
 const loadRadarData = _ => {
   const expandPath = (...args) => path.join(process.cwd(), ...args)
-  return readdirSync(expandPath('radars'))
-    .map(path => YAML.parse(readFileSync(expandPath('radars', path), 'utf-8')))
+  return readdirSync(expandPath('radars')).map(path => {
+    const fullPath = expandPath('radars', path)
+    const radar = YAML.parse(readFileSync(fullPath, 'utf-8'))
+    const key = path.replace(/\.yml/, '')
+    return { ...radar, key }
+  })
 }
 
 export default async () => {
@@ -49,7 +52,7 @@ export default async () => {
 
   const radars = data
     .filter(radar => process.env.SHOW_DRAFTS ? true : !radar.draft)
-    .sort((a, b) => -a.date.localeCompare(b.date))
+    .sort((a, b) => -a.key.localeCompare(b.key))
     .map(radarAttrs => {
       const radar = makeRadar(radarAttrs)
 

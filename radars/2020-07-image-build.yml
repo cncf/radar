@@ -1,7 +1,5 @@
-id: image-build
-draft: true
 name: Image Build
-date: 2020-07-02
+draft: true
 points:
   - name: Helm
     repo: helm/helm

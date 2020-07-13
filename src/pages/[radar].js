@@ -68,7 +68,7 @@ const Radar = ({ name, points }) => {
     <div className="container is-fluid">
       <div className="columns">
         <div className="column is-three-quarters">
-          <h1 className="title">{name} Radar</h1>
+          <h1 className="title">{name}</h1>
 
           <svg viewBox="0 0 2000 1000" xmlns="http://www.w3.org/2000/svg" dominantBaseline="middle" textAnchor="middle" fontWeight="bolder" fontFamily={fontFamily}>
             <RadarRing radius={1000} points={points.assess} title="Assess" color="#6CBFAF" />
