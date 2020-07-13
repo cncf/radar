@@ -65,56 +65,64 @@ const Radar = ({ name, themes, points }) => {
   const length = Math.max(points.adopt.length, points.trial.length, points.assess.length)
   const fontFamily = "BlinkMacSystemFont, -apple-system, \"Segoe UI\", \"Roboto\", \"Oxygen\", \"Ubuntu\", \"Cantarell\", \"Fira Sans\", \"Droid Sans\", \"Helvetica Neue\", \"Helvetica\", \"Arial\", sans-serif"
 
-  return <section className="section">
-    <div className="container is-fluid">
-      <div className="columns">
-        <div className="column is-three-quarters">
-          <h1 className="title">{name}</h1>
+  return <Fragment>
+    <section class="section">
+      <div className="container">
+        <h1 className="title">{name}</h1>
 
-          <svg viewBox="0 0 2000 1000" xmlns="http://www.w3.org/2000/svg" dominantBaseline="middle" textAnchor="middle" fontWeight="bolder" fontFamily={fontFamily}>
-            <RadarRing radius={1000} points={points.assess} title="Assess" color="#6CBFAF" />
-            <RadarRing radius={666} points={points.trial} title="Trial" color="#235C6F" />
-            <RadarCentralRing radius={333} points={points.adopt} title="Adopt" color="#041087" />
-          </svg>
+        <svg viewBox="0 0 2000 1000" xmlns="http://www.w3.org/2000/svg" dominantBaseline="middle" textAnchor="middle" fontWeight="bolder" fontFamily={fontFamily}>
+          <RadarRing radius={1000} points={points.assess} title="Assess" color="#6CBFAF" />
+          <RadarRing radius={666} points={points.trial} title="Trial" color="#235C6F" />
+          <RadarCentralRing radius={333} points={points.adopt} title="Adopt" color="#041087" />
+        </svg>
+      </div>
+    </section>
 
+    <section className="section">
+      <div className="container">
+        <h2 className="title">Themes</h2>
+        <div class="content">
           <MarkdownComponent value={themes}/>
         </div>
+      </div>
+    </section>
 
-        <div className="column is-three-quarters">
-          <style jsx>{`
+    <section className="section">
+      <div className="container">
+        <style jsx>{`
             th, td {
               text-align: center !important;
               border: none !important;
             }
           `}</style>
-          <table className="table">
-            <thead>
-            <tr>
-              <th><LevelTag level="adopt" /></th>
-              <th><LevelTag level="trial" /></th>
-              <th><LevelTag level="assess" /></th>
-            </tr>
-            </thead>
+        <h2 className="title">Data</h2>
+        <table className="table">
+          <thead>
+          <tr>
+            <th><LevelTag level="adopt"/></th>
+            <th><LevelTag level="trial"/></th>
+            <th><LevelTag level="assess"/></th>
+          </tr>
+          </thead>
 
-            <tbody>
-            {
-              [...Array(length).keys()].map(i => {
-                return <tr key={`tr-${i}`}>
-                  {
-                    ['adopt', 'trial', 'assess'].map(level => {
-                      const point = points[level][i]
-                      return <td key={`td-${level}-${i}`}>{point && point.name}</td>
-                    })
-                  }
-                </tr>
-              })
-            }
-            </tbody>
-          </table>
-        </div>
+          <tbody>
+          {
+            [...Array(length).keys()].map(i => {
+              return <tr key={`tr-${i}`}>
+                {
+                  ['adopt', 'trial', 'assess'].map(level => {
+                    const point = points[level][i]
+                    return <td key={`td-${level}-${i}`}>{point && point.name}</td>
+                  })
+                }
+              </tr>
+            })
+          }
+          </tbody>
+        </table>
       </div>
-    </div>
-  </section>
+    </section>
+  </Fragment>
 }
 
 export async function getStaticProps ({ params }) {
