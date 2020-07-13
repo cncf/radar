@@ -4,8 +4,9 @@ import LinkToPoint from '../components/LinkToPoint'
 import LinkToRadar from '../components/LinkToRadar'
 import LevelTag from '../components/LevelTag'
 import SearchContext from '../contexts/SearchContext'
+import withTitle from '../components/withTitle'
 
-export default ({ groupedPoints }) => {
+const Overview = ({ groupedPoints }) => {
   const searchQuery = useContext(SearchContext)
   const filteredPoints = groupedPoints.filter(points => {
     const firstPoint = points[0]
@@ -51,3 +52,5 @@ export const getStaticProps = async _ => {
 
   return { props: { groupedPoints: Object.values(groupedPoints) } }
 }
+
+export default withTitle(Overview, _ => 'Overview')
