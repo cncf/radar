@@ -15,7 +15,7 @@ const Search = ({ onSearch, value })  => {
               margin-top: 5px;
             }
           `}</style>
-    <input className="input" type="text" placeholder="Search" onChange={onChange} value={value} />
+    <input className="input" type="text" autoComplete="off" placeholder="Search" onChange={onChange} value={value} />
   </Fragment>
 }
 
