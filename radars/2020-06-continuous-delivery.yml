@@ -1,4 +1,8 @@
 name: Continuous Delivery
+themes: |
+  1. **Publicly available solutions are combined with in-house tools**: Many end users had tried up to 10 options and settled on adopting 2-4. Several large enterprise companies have built their own continuous delivery tools and open sourced components, including LunarWay’s release-manager, Box’s kube-applier, and stackset-controller from Zalando. The public cloud managed solutions on the CNCF landscape were not suggested by any of the end users, which may reflect the options available a few years ago.
+  2. **Helm is more than packaging applications**: While Helm has not positioned itself as a Continuous Delivery tool (it’s the Kubernetes package manager first), it’s widely used and adopted as a component in different CD scenarios.
+  3. **Jenkins is still broadly deployed, while cloud native-first options emerge.** Jenkins and its ecosystem tools (Jenkins X, Jenkins Blue Ocean) are widely evaluated and used. However, several end users stated Jenkins is primarily used for existing deployments, while new applications have migrated to other solutions. Hence end users who are choosing a new CD solution should assess Jenkins alongside tools that support modern concepts such as GitOps (for example, Flux).
 points:
   - name: Helm
     repo: helm/helm

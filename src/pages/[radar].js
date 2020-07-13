@@ -3,6 +3,7 @@ import loadData from '../loadData'
 import { useRouter } from 'next/router'
 import withTitle from '../components/withTitle'
 import LevelTag from '../components/LevelTag'
+import MarkdownComponent from '../components/MarkdownComponent'
 
 const Point = ({ distance, angle, color, point }) => {
   const x = (-distance * Math.cos(angle) + 1000).toFixed(2)
@@ -60,7 +61,7 @@ const RadarCentralRing = ({ points, radius, title, color }) => {
   </Fragment>
 }
 
-const Radar = ({ name, points }) => {
+const Radar = ({ name, themes, points }) => {
   const length = Math.max(points.adopt.length, points.trial.length, points.assess.length)
   const fontFamily = "BlinkMacSystemFont, -apple-system, \"Segoe UI\", \"Roboto\", \"Oxygen\", \"Ubuntu\", \"Cantarell\", \"Fira Sans\", \"Droid Sans\", \"Helvetica Neue\", \"Helvetica\", \"Arial\", sans-serif"
 
@@ -75,6 +76,8 @@ const Radar = ({ name, points }) => {
             <RadarRing radius={666} points={points.trial} title="Trial" color="#235C6F" />
             <RadarCentralRing radius={333} points={points.adopt} title="Adopt" color="#041087" />
           </svg>
+
+          <MarkdownComponent value={themes}/>
         </div>
 
         <div className="column is-three-quarters">
