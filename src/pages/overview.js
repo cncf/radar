@@ -1,17 +1,25 @@
-import Link from 'next/link'
+import { useContext } from 'react'
 import loadData from '../loadData'
 import LinkToPoint from '../components/LinkToPoint'
 import LinkToRadar from '../components/LinkToRadar'
-import LevelTag from "../components/LevelTag";
+import LevelTag from '../components/LevelTag'
+import SearchContext from '../contexts/SearchContext'
 
 export default ({ groupedPoints }) => {
+  const searchQuery = useContext(SearchContext)
+  const filteredPoints = groupedPoints.filter(points => {
+    const firstPoint = points[0]
+    const text = [firstPoint.name, firstPoint.description].join(' ').toLowerCase()
+    return !searchQuery || text.indexOf(searchQuery.toLowerCase()) > -1
+  })
+
   return <section className="section">
     <div className="container">
       <h1 className="title">Overview</h1>
 
       <table className="table is-fullwidth">
         <tbody>
-        { groupedPoints.map(points => {
+        { filteredPoints.map(points => {
           const firstPoint = points[0]
 
           return <tr key={firstPoint.key}>
