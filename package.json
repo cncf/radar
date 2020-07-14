@@ -4,7 +4,8 @@
   "scripts": {
     "dev": "babel-node scripts/clearCache.js && next dev",
     "build": "next build && next export && babel-node scripts/exportImages.js",
-    "start": "next start"
+    "start": "next start",
+    "prod": "python3 -m http.server --directory out 3000"
   },
   "dependencies": {
     "@babel/core": "^7.10.4",
