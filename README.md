@@ -20,6 +20,6 @@ This step is not required for development or adding radar data, this is run on N
 
 `yarn build`
 
-To see the generated build run (this command expects python 3 to be installed):
+To see the generated build run:
 
 `yarn prod`
