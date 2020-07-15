@@ -19,5 +19,8 @@
     "sharp": "^0.25.4",
     "showdown": "^1.9.1",
     "yaml": "^1.10.0"
+  },
+  "resolutions": {
+    "minimist": "^1.2.0"
   }
 }
