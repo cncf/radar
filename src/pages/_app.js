@@ -10,7 +10,7 @@ import { colors } from '../styles.config'
 const globalStyle = global`
   h2 {
     font-size: 2.75rem;
-    margin: 0 0 30px;
+    margin: 0 0 10px;
   }
   
   h3 {
@@ -23,6 +23,19 @@ const globalStyle = global`
   
   section:nth-child(odd) {
     background-color: #f0f5f7;
+  }
+  
+  body {
+    font-size: 1.125rem;
+    color: #202020;
+  }
+  
+  a {
+    color: ${colors.link};
+  }
+  
+  a:hover {
+    color: ${colors.pink};
   }
 `
 

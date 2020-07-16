@@ -18,13 +18,13 @@ export default function Home({ radars }) {
     </Section>
 
     <Section>
-      <h2 className="title is-4">Methodology</h2>
-      <h3 className="subtitle is-5 is-italic">TODO: Explain how it was built</h3>
+      <h2>Methodology</h2>
+      <h3>TODO: Explain how it was built</h3>
     </Section>
 
     <Section>
-      <h2 className="title is-4">FAQs</h2>
-      <h3 className="subtitle is-5 is-italic">TODO: Fill out FAQs</h3>
+      <h2>FAQs</h2>
+      <h3>TODO: Fill out FAQs</h3>
     </Section>
   </Fragment>
 }
