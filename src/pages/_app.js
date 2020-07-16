@@ -4,7 +4,7 @@ import { Fragment, useState } from 'react'
 import Head from 'next/head';
 import { global } from 'styled-jsx/css'
 import SearchContext from '../contexts/SearchContext'
-import Nav from '../components/Nav'
+import Header from '../components/Header'
 import { colors } from '../styles.config'
 
 const globalStyle = global`
@@ -51,7 +51,7 @@ export default ({ Component, pageProps }) => {
 
     <SearchContext.Provider value={{searchQuery, setSearchQuery}}>
       <style jsx global>{globalStyle}</style>
-      <Nav />
+      <Header />
       <Component {...pageProps} />
     </SearchContext.Provider>
   </Fragment>
