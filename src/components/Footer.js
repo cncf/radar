@@ -26,7 +26,7 @@ export default _ => {
 
       <p>
         CNCF is a leading global provider of services for digital transformation and digital business models.
-        CNCF relies exclusively on established Enterprise Open Source tech- nologies. This leads to innovative
+        CNCF relies exclusively on established Enterprise Open Source technologies. This leads to innovative
         solutions, digital products and portals in agile software projects, and helps build long-lasting, strategic
         partnerships with our customers.
       </p>
