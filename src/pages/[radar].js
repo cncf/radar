@@ -107,11 +107,15 @@ const Radar = ({ name, themes, points, team }) => {
 
     <Section>
       <style jsx>{`
-            th, td {
-              text-align: center !important;
-              border: none !important;
-            }
-          `}</style>
+        table {
+          background: transparent;
+        }
+
+        th, td {
+          text-align: center !important;
+          border: none !important;
+        }
+      `}</style>
       <h2>Data</h2>
       <table className="table">
         <thead>
