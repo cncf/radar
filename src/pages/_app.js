@@ -5,6 +5,7 @@ import Head from 'next/head';
 import { global } from 'styled-jsx/css'
 import SearchContext from '../contexts/SearchContext'
 import Header from '../components/Header'
+import Footer from '../components/Footer'
 import { colors } from '../styles.config'
 
 const globalStyle = global`
@@ -53,6 +54,7 @@ export default ({ Component, pageProps }) => {
       <style jsx global>{globalStyle}</style>
       <Header />
       <Component {...pageProps} />
+      <Footer />
     </SearchContext.Provider>
   </Fragment>
 }
