@@ -1,6 +1,7 @@
 import { Fragment } from 'react'
-import loadData from '../loadData'
 import { useRouter } from 'next/router'
+import { colors, fontFamily } from '../styles.config'
+import loadData from '../loadData'
 import withTitle from '../components/withTitle'
 import LevelTag from '../components/LevelTag'
 import MarkdownComponent from '../components/MarkdownComponent'
@@ -63,7 +64,6 @@ const RadarCentralRing = ({ points, radius, title, color }) => {
 
 const Radar = ({ name, themes, points, team }) => {
   const length = Math.max(points.adopt.length, points.trial.length, points.assess.length)
-  const fontFamily = "BlinkMacSystemFont, -apple-system, \"Segoe UI\", \"Roboto\", \"Oxygen\", \"Ubuntu\", \"Cantarell\", \"Fira Sans\", \"Droid Sans\", \"Helvetica Neue\", \"Helvetica\", \"Arial\", sans-serif"
 
   return <Fragment>
     <section className="section">
@@ -71,9 +71,9 @@ const Radar = ({ name, themes, points, team }) => {
         <h1 className="title">{name}</h1>
 
         <svg viewBox="0 0 2000 1000" xmlns="http://www.w3.org/2000/svg" dominantBaseline="middle" textAnchor="middle" fontWeight="bolder" fontFamily={fontFamily}>
-          <RadarRing radius={1000} points={points.assess} title="Assess" color="#6CBFAF" />
-          <RadarRing radius={666} points={points.trial} title="Trial" color="#235C6F" />
-          <RadarCentralRing radius={333} points={points.adopt} title="Adopt" color="#041087" />
+          <RadarRing radius={1000} points={points.assess} title="Assess" color={colors.assess} />
+          <RadarRing radius={666} points={points.trial} title="Trial" color={colors.trial} />
+          <RadarCentralRing radius={333} points={points.adopt} title="Adopt" color={colors.adopt} />
         </svg>
       </div>
     </section>
