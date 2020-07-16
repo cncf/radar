@@ -10,6 +10,7 @@
   "dependencies": {
     "@babel/core": "^7.10.4",
     "@babel/node": "^7.10.4",
+    "@fortawesome/fontawesome-free": "^5.14.0",
     "bulma": "^0.9.0",
     "next": "9.4.4",
     "node-static": "^0.7.11",

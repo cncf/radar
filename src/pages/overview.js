@@ -7,7 +7,7 @@ import SearchContext from '../contexts/SearchContext'
 import withTitle from '../components/withTitle'
 
 const Overview = ({ groupedPoints }) => {
-  const searchQuery = useContext(SearchContext)
+  const { searchQuery } = useContext(SearchContext)
   const filteredPoints = groupedPoints.filter(points => {
     const firstPoint = points[0]
     const text = [firstPoint.name, firstPoint.description].join(' ').toLowerCase()
