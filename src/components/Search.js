@@ -1,6 +1,7 @@
-import { useContext, useState } from 'react'
+import { useContext, useState, Fragment } from 'react'
 import { useRouter } from 'next/router'
 import SearchContext from '../contexts/SearchContext'
+import NavLink from './NavLink'
 
 const Search = _  => {
   const { searchQuery, setSearchQuery } = useContext(SearchContext)
@@ -17,23 +18,14 @@ const Search = _  => {
     setSearching(false)
   }
 
-  return <span className="navbar-item">
+  return <Fragment>
     <style jsx>{`
-      input {
-        margin-top: 5px;
-      }
-            
-      a, a:hover, a:focus, a:visited {
-        color: white;
-        background: #0F1433;
-      }
-      
-      a:hover {
-        color: #e00a6b;
-      }
-      
       .control {
         margin-top: -5px;
+      }
+      
+      input {
+        margin-top: 5px;
       }
       
       input::placeholder {
@@ -44,11 +36,12 @@ const Search = _  => {
       .control .icon {
         pointer-events: all;
         color: #DDDDDD !important;
+        cursor: pointer;
       }
       
       .control input {
         box-shadow: none;
-        background: #0F1433;
+        background: transparent;
         border: 0 ;
         border-bottom: 1px solid white;
         border-radius: 0;
@@ -57,16 +50,21 @@ const Search = _  => {
       }
     `}</style>
     { searching &&
+      <div className="navbar-item">
         <div className="control has-icons-right">
           <input className="input" type="text" autoComplete="off" placeholder="Search" onChange={onChange} value={searchQuery} />
           <span className="icon is-right" onClick={resetSearch}>
             <i className="fas fa-times"></i>
           </span>
         </div>
+      </div>
      }
 
-    { !searching && <a onClick={_ => setSearching(true)}><span className="icon"><i className="fas fa-search"></i></span> Search</a> }
-  </span>
+    { !searching && <NavLink onClick={_ => setSearching(true)}>
+      <span className="icon"><i className="fas fa-search"></i></span>
+      <span>Search</span>
+    </NavLink> }
+  </Fragment>
 }
 
 export default (Search)

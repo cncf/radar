@@ -1,26 +1,19 @@
-import Link from "next/link";
-import Search from "./Search";
-import { Fragment } from "react";
+import { Fragment } from 'react'
+import Link from 'next/link'
+import { colors } from '../styles.config'
+import Search from './Search'
+import NavLink from './NavLink'
 
 export default _ => {
   return <Fragment>
     <style jsx>{`
         nav {
-          background: #0F1433;
+          background: ${colors.darkPurple};
           padding-top: 10px;
           padding-bottom: 10px;
         }
         
-        a, a:hover, a:focus, a:visited {
-          color: white;
-          background: #0F1433;
-        }
-        
-        a:hover {
-          color: #e00a6b;
-        }
-        
-        nav a img {
+        nav img {
           max-height: initial;
         }
     `}</style>
@@ -28,20 +21,17 @@ export default _ => {
       <div className="container">
         <div className="navbar-brand">
           <Link href="/">
-            <a className="navbar-item">
-              <img src="/cncf-logo.svg" alt="CNCF" width="186" height="34"/>
-            </a>
+            <NavLink><img src="/cncf-logo.svg" alt="CNCF" width="186" height="34"/></NavLink>
           </Link>
         </div>
 
         <div className="navbar-menu">
           <div className="navbar-end">
             <Search />
-            <Link href="/overview"><a className="navbar-item">Technologies Overview</a></Link>
+            <Link href="/overview" passHref><NavLink>Technologies Overview</NavLink></Link>
           </div>
         </div>
       </div>
     </nav>
   </Fragment>
-
 }
