@@ -22,7 +22,7 @@ const globalStyle = global`
     color: ${colors.darkBlue};
   }
   
-  section:nth-child(odd) {
+  section:nth-child(even) {
     background-color: #f0f5f7;
   }
   
@@ -37,6 +37,18 @@ const globalStyle = global`
   
   a:hover {
     color: ${colors.pink};
+  }
+  
+  // Sticky footer
+  #__next {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+  
+  // Sticky footer
+  main {
+    flex: 1;
   }
 `
 
@@ -53,7 +65,9 @@ export default ({ Component, pageProps }) => {
     <SearchContext.Provider value={{searchQuery, setSearchQuery}}>
       <style jsx global>{globalStyle}</style>
       <Header />
-      <Component {...pageProps} />
+      <main>
+        <Component {...pageProps} />
+      </main>
       <Footer />
     </SearchContext.Provider>
   </Fragment>
