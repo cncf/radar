@@ -5,6 +5,7 @@ import loadData from '../loadData'
 import withTitle from '../components/withTitle'
 import LevelTag from '../components/LevelTag'
 import MarkdownComponent from '../components/MarkdownComponent'
+import Section from "../components/Section";
 
 const Point = ({ distance, angle, color, point }) => {
   const x = (-distance * Math.cos(angle) + 1000).toFixed(2)
@@ -66,85 +67,77 @@ const Radar = ({ name, themes, points, team }) => {
   const length = Math.max(points.adopt.length, points.trial.length, points.assess.length)
 
   return <Fragment>
-    <section className="section">
-      <div className="container">
-        <h1 className="title">{name}</h1>
+    <Section>
+      <h2>{name}</h2>
 
-        <svg viewBox="0 0 2000 1000" xmlns="http://www.w3.org/2000/svg" dominantBaseline="middle" textAnchor="middle" fontWeight="bolder" fontFamily={fontFamily}>
-          <RadarRing radius={1000} points={points.assess} title="Assess" color={colors.assess} />
-          <RadarRing radius={666} points={points.trial} title="Trial" color={colors.trial} />
-          <RadarCentralRing radius={333} points={points.adopt} title="Adopt" color={colors.adopt} />
-        </svg>
+      <svg viewBox="0 0 2000 1000" xmlns="http://www.w3.org/2000/svg" dominantBaseline="middle" textAnchor="middle" fontWeight="bolder" fontFamily={fontFamily}>
+        <RadarRing radius={1000} points={points.assess} title="Assess" color={colors.assess} />
+        <RadarRing radius={666} points={points.trial} title="Trial" color={colors.trial} />
+        <RadarCentralRing radius={333} points={points.adopt} title="Adopt" color={colors.adopt} />
+      </svg>
+    </Section>
+
+    <Section>
+      <h2>Themes</h2>
+      <div className="content">
+        <MarkdownComponent value={themes}/>
       </div>
-    </section>
+    </Section>
 
-    <section className="section">
-      <div className="container">
-        <h2 className="title">Themes</h2>
-        <div className="content">
-          <MarkdownComponent value={themes}/>
-        </div>
-      </div>
-    </section>
+    <Section>
+      <h2>Team</h2>
 
-    <section className="section">
-      <div className="container">
-        <h2 className="title">Team</h2>
+      { team.map(member => {
+          return <div key={member.name}>
+            <div className="columns">
+              <div className="column is-1">
+                <img src={member.photo} alt={member.name} className="is-rounded"/>
+              </div>
 
-        { team.map(member => {
-            return <div key={member.name}>
-              <div className="columns">
-                <div className="column is-1">
-                  <img src={member.photo} alt={member.name} className="is-rounded"/>
-                </div>
-
-                <div className="column is-11">
-                  <h5 className="title is-5 mb-0 ">{member.name}</h5>
-                  {member.twitter && <a href={`https://twitter.com/${member.twitter}`}>@{member.twitter}</a>}
-                  <MarkdownComponent value={member.bio} />
-                </div>
+              <div className="column is-11">
+                <h5 className="title is-5 mb-0 ">{member.name}</h5>
+                {member.twitter && <a href={`https://twitter.com/${member.twitter}`}>@{member.twitter}</a>}
+                <MarkdownComponent value={member.bio} />
               </div>
             </div>
-          }
-        )}
-      </div>
-    </section>
+          </div>
+        }
+      )}
+    </Section>
 
-    <section className="section">
-      <div className="container">
-        <style jsx>{`
+    <Section>
+      <style jsx>{`
             th, td {
               text-align: center !important;
               border: none !important;
             }
           `}</style>
-        <h2 className="title">Data</h2>
-        <table className="table">
-          <thead>
-          <tr>
-            <th><LevelTag level="adopt"/></th>
-            <th><LevelTag level="trial"/></th>
-            <th><LevelTag level="assess"/></th>
-          </tr>
-          </thead>
+      <h2>Data</h2>
+      <table className="table">
+        <thead>
+        <tr>
+          <th><LevelTag level="adopt"/></th>
+          <th><LevelTag level="trial"/></th>
+          <th><LevelTag level="assess"/></th>
+        </tr>
+        </thead>
 
-          <tbody>
-          {
-            [...Array(length).keys()].map(i => {
-              return <tr key={`tr-${i}`}>
-                {
-                  ['adopt', 'trial', 'assess'].map(level => {
-                    const point = points[level][i]
-                    return <td key={`td-${level}-${i}`}>{point && point.name}</td>
-                  })
-                }
-              </tr>
-            })
-          }
-          </tbody>
-        </table>
-      </div>
-    </section>
+        <tbody>
+        {
+          [...Array(length).keys()].map(i => {
+            return <tr key={`tr-${i}`}>
+              {
+                ['adopt', 'trial', 'assess'].map(level => {
+                  const point = points[level][i]
+                  return <td key={`td-${level}-${i}`}>{point && point.name}</td>
+                })
+              }
+            </tr>
+          })
+        }
+        </tbody>
+      </table>
+    </Section>
   </Fragment>
 }
 

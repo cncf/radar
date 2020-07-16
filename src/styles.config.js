@@ -1,6 +1,7 @@
 module.exports = {
   colors: {
     darkPurple: '#0F1433',
+    darkBlue: '#262961',
     pink: '#e00a6b',
     adopt: '#041087',
     trial: '#235C6F',

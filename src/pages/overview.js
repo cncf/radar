@@ -5,6 +5,7 @@ import LinkToRadar from '../components/LinkToRadar'
 import LevelTag from '../components/LevelTag'
 import SearchContext from '../contexts/SearchContext'
 import withTitle from '../components/withTitle'
+import Section from '../components/Section'
 
 const Overview = ({ groupedPoints }) => {
   const { searchQuery } = useContext(SearchContext)
@@ -14,30 +15,28 @@ const Overview = ({ groupedPoints }) => {
     return !searchQuery || text.indexOf(searchQuery.toLowerCase()) > -1
   })
 
-  return <section className="section">
-    <div className="container">
-      <h1 className="title">Overview</h1>
+  return <Section>
+    <h2>Overview</h2>
 
-      <table className="table is-fullwidth">
-        <tbody>
-        { filteredPoints.map(points => {
-          const firstPoint = points[0]
+    <table className="table is-fullwidth">
+      <tbody>
+      { filteredPoints.map(points => {
+        const firstPoint = points[0]
 
-          return <tr key={firstPoint.key}>
-            <td><LinkToPoint point={firstPoint} /></td>
+        return <tr key={firstPoint.key}>
+          <td><LinkToPoint point={firstPoint} /></td>
 
-            <td className="has-text-right">
-              <LinkToRadar radar={firstPoint.radar} />
-              <LevelTag level={firstPoint.level} style={{marginLeft: 10}} />
+          <td className="has-text-right">
+            <LinkToRadar radar={firstPoint.radar} />
+            <LevelTag level={firstPoint.level} style={{marginLeft: 10}} />
 
-              { points.length > 1 && <span className="tag is-warning" style={{marginLeft: 10}}>+{points.length - 1} More</span>}
-            </td>
-          </tr>
-        })}
-        </tbody>
-      </table>
-    </div>
-  </section>
+            { points.length > 1 && <span className="tag is-warning" style={{marginLeft: 10}}>+{points.length - 1} More</span>}
+          </td>
+        </tr>
+      })}
+      </tbody>
+    </table>
+  </Section>
 }
 
 export const getStaticProps = async _ => {
