@@ -30,7 +30,7 @@ const Overview = ({ groupedPoints }) => {
             <LinkToRadar radar={firstPoint.radar} />
             <LevelTag level={firstPoint.level} style={{marginLeft: 10}} />
 
-            { points.length > 1 && <span className="tag is-warning" style={{marginLeft: 10}}>+{points.length - 1} More</span>}
+            { points.length > 1 && <LevelTag level="warning" style={{marginLeft: 10, color: 'black'}} text={`+${points.length - 1} More`} /> }
           </td>
         </tr>
       })}

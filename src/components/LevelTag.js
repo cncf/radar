@@ -6,8 +6,11 @@ const levelMap = {
   trial: 'Trial'
 }
 
-export default ({ level, style }) => {
-  return <span className="tag" style={{ ...style, background: colors[level], color: 'white' }}>
-    {levelMap[level]}
+export default ({ level, style, text, className }) => {
+  return <span className={`tag ${className}`} style={{ background: colors[level], color: 'white', ...style }}>
+    <style jsx>{`
+      min-width: ${className === 'is-medium' ? '90px' : '70px'} 
+    `}</style>
+    {levelMap[level] || text}
   </span>
 }
