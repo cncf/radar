@@ -20,7 +20,7 @@ export default _ => {
     <div className="container">
       <div className="navbar-brand">
         <Link href="/">
-          <NavLink><img src="/cncf-logo.svg" alt="CNCF" width="186" height="34"/></NavLink>
+          <NavLink><img src="/logo-horizontal-white.svg" alt="CNCF End User Radar" width="190" /></NavLink>
         </Link>
       </div>
 
