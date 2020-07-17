@@ -10,15 +10,17 @@ import { colors } from '../styles.config'
 
 const globalStyle = global`
   h2 {
-    font-size: 2.75rem;
+    font-size: 2rem;
+    font-weight: 600;
     margin: 0 0 10px;
   }
-  
+
   h3 {
-    font-size: 1.7rem;
+    font-size: 1.6rem;
   }
   
   h2, h3 {
+    font-weight: bold;
     color: ${colors.darkBlue};
   }
   
