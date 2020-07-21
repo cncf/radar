@@ -7,7 +7,6 @@ export default forwardRef((props, ref) => {
         a, a:hover, a:focus, a:visited {
           color: white;
           background: ${colors.darkPurple};
-          outline: none;
         }
         
         a:hover {

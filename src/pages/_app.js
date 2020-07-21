@@ -52,6 +52,10 @@ const globalStyle = global`
   main {
     flex: 1;
   }
+        
+  a {
+    outline: none;
+  }
 `
 
 export default ({ Component, pageProps }) => {
