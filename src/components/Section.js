@@ -1,6 +1,6 @@
 export default props => {
-  return <section class="section">
-    <div class="container">
+  return <section className="section">
+    <div className="container">
       {props.children}
     </div>
   </section>
