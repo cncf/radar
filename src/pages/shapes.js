@@ -121,6 +121,38 @@ const QuarterRadarRing = ({ points, radius, title, color }) => {
   </Fragment>
 }
 
+const RadarRing135 = ({ points, radius, title, color }) => {
+  const smallRadius = radius - 333
+  const cutOff = (radius + smallRadius) / 2
+  const innerRadius = (radius + cutOff) / 2
+  const titleRadius = Math.max(20 + (cutOff + smallRadius) / 2, 120)
+
+  const x = -radius * Math.cos(Math.PI / 8)
+  const y = -radius * Math.sin(Math.PI / 8)
+
+  return <Fragment>
+    <path d={`M 0 0 L ${x} ${y} A ${radius} ${radius}, 0, 0, 1, ${-x} ${y} Z`} stroke={color} strokeWidth="2" fill="none"/>
+    <Title y={- titleRadius} color={color} text={title} />
+    <PointCollection points={points} distance={innerRadius} smallerDistance={titleRadius} minAngle={Math.PI / 8} color={color} />
+  </Fragment>
+}
+
+const RadarRing120 = ({ points, radius, title, color }) => {
+  const smallRadius = radius - 333
+  const cutOff = (radius + smallRadius) / 2
+  const innerRadius = (radius + cutOff) / 2
+  const titleRadius = Math.max(20 + (cutOff + smallRadius) / 2, 120)
+
+  const x = -radius * Math.cos(Math.PI / 6)
+  const y = -radius * Math.sin(Math.PI / 6)
+
+  return <Fragment>
+    <path d={`M 0 0 L ${x} ${y} A ${radius} ${radius}, 0, 0, 1, ${-x} ${y} Z`} stroke={color} strokeWidth="2" fill="none"/>
+    <Title y={- titleRadius} color={color} text={title} />
+    <PointCollection points={points} distance={innerRadius} smallerDistance={titleRadius} minAngle={Math.PI / 6} color={color} />
+  </Fragment>
+}
+
 const RadarCentralRing = ({ points, radius, title, color }) => {
   const titleRadius = radius - 222
   const innerRadius = radius - 333 / 4
@@ -165,6 +197,34 @@ const Radar = ({ name, themes, points, team }) => {
             <QuarterRadarRing radius={1000} points={points.assess} title="Assess" color={colors.assess} />
             <QuarterRadarRing radius={666} points={points.trial} title="Trial" color={colors.trial} />
             <QuarterRadarRing radius={333} points={points.adopt} title="Adopt" color={colors.adopt} />
+          </g>
+        </svg>
+      </ScaleContext.Provider>
+    </Section>
+
+    <Section>
+      <h2>135° Circle</h2>
+
+      <ScaleContext.Provider value={1 / 1.404}>
+        <svg viewBox="0 0 1850 1002" xmlns="http://www.w3.org/2000/svg" dominantBaseline="middle" textAnchor="middle" fontWeight="bolder" fontFamily={fontFamily}>
+          <g transform="translate(925 1001)">
+            <RadarRing135 radius={1000} points={points.assess} title="Assess" color={colors.assess} />
+            <RadarRing135 radius={666} points={points.trial} title="Trial" color={colors.trial} />
+            <RadarRing135 radius={333} points={points.adopt} title="Adopt" color={colors.adopt} />
+          </g>
+        </svg>
+      </ScaleContext.Provider>
+    </Section>
+
+    <Section>
+      <h2>120° Circle</h2>
+
+      <ScaleContext.Provider value={1 / 1.404}>
+        <svg viewBox="0 0 1732 1002" xmlns="http://www.w3.org/2000/svg" dominantBaseline="middle" textAnchor="middle" fontWeight="bolder" fontFamily={fontFamily}>
+          <g transform="translate(866 1001)">
+            <RadarRing120 radius={1000} points={points.assess} title="Assess" color={colors.assess} />
+            <RadarRing120 radius={666} points={points.trial} title="Trial" color={colors.trial} />
+            <RadarRing120 radius={333} points={points.adopt} title="Adopt" color={colors.adopt} />
           </g>
         </svg>
       </ScaleContext.Provider>
