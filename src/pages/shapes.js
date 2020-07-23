@@ -105,6 +105,24 @@ const RectangleRadarRing = ({ points, radius, title, color }) => {
   </Fragment>
 }
 
+const FullCircleRadarRing = ({ points, radius, title, color }) => {
+  const smallRadius = radius - 333
+  const innerRadius = (radius + smallRadius) / 2
+  const angle = 2 * Math.PI / (points.length + 1)
+
+  return <Fragment>
+    <path d={`M ${-radius} 0 A ${radius} ${radius}, 0, 0, 1, ${radius} 0 A ${radius} ${radius}, 0, 1, 1, ${-radius} 0`} stroke={color} strokeWidth="2" fill="none"/>
+    <Title y={- innerRadius} color={color} text={title} />
+
+    {
+      points.map((point, i) => {
+        const pointAngle = angle * i + Math.PI / 2 + angle
+        return <Point point={point} distance={innerRadius} angle={pointAngle} color={color} key={point.name}/>
+      })
+    }
+  </Fragment>
+}
+
 const QuarterRadarRing = ({ points, radius, title, color }) => {
   const smallRadius = radius - 333
   const cutOff = (radius + smallRadius) / 2
@@ -186,6 +204,20 @@ const Radar = ({ name, themes, points, team }) => {
           <RadarCentralRing radius={333} points={points.adopt} title="Adopt" color={colors.adopt} />
         </g>
       </svg>
+    </Section>
+
+    <Section>
+      <h2>Full Circle</h2>
+
+      <ScaleContext.Provider value={1}>
+        <svg viewBox="0 0 2002 2002" xmlns="http://www.w3.org/2000/svg" dominantBaseline="middle" textAnchor="middle" fontWeight="bolder" fontFamily={fontFamily}>
+          <g transform="translate(1001 1001)">
+            <FullCircleRadarRing radius={1000} points={points.assess} title="Assess" color={colors.assess} />
+            <FullCircleRadarRing radius={666} points={points.trial} title="Trial" color={colors.trial} />
+            <FullCircleRadarRing radius={333} points={points.adopt} title="Adopt" color={colors.adopt} />
+          </g>
+        </svg>
+      </ScaleContext.Provider>
     </Section>
 
     <Section>
