@@ -14,6 +14,7 @@ themes: |
   used for existing deployments, while new applications have migrated to other solutions. Hence end users who are
   choosing a new CD solution should assess Jenkins alongside tools that support modern concepts such as GitOps
   (for example, Flux).
+video: https://www.youtube.com/embed/0792Q3l6tK8
 team:
   - name: Cheryl Hung
     photo: https://www.cncf.io/wp-content/uploads/2020/06/image1.png

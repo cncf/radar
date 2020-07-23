@@ -63,10 +63,42 @@ const RadarCentralRing = ({ points, radius, title, color }) => {
   </Fragment>
 }
 
-const Radar = ({ name, themes, points, team }) => {
+const Radar = ({ name, themes, points, team, video }) => {
   const length = Math.max(points.adopt.length, points.trial.length, points.assess.length)
 
   return <Fragment>
+    <style jsx>{`
+      .video-container {
+        overflow: hidden;
+        position: relative;
+        width:100%;
+        max-width: 800px;
+        margin: auto;
+      }
+      
+      .video-container::after {
+        padding-top: 56.25%;
+        display: block;
+        content: '';
+      }
+      
+      .video-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      table {
+        background: transparent;
+      }
+
+      th, td {
+        text-align: center !important;
+        border: none !important;
+      }
+    `}</style>
     <Section>
       <h2>{name}</h2>
 
@@ -83,6 +115,14 @@ const Radar = ({ name, themes, points, team }) => {
         <MarkdownComponent value={themes}/>
       </div>
     </Section>
+
+    { video && <Section>
+      <h2>Webinar</h2>
+      <div className="content video-container">
+        <iframe src={video} frameBorder="0" allowFullScreen
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"/>
+      </div>
+    </Section>}
 
     <Section>
       <h2>Team</h2>
@@ -106,16 +146,6 @@ const Radar = ({ name, themes, points, team }) => {
     </Section>
 
     <Section>
-      <style jsx>{`
-        table {
-          background: transparent;
-        }
-
-        th, td {
-          text-align: center !important;
-          border: none !important;
-        }
-      `}</style>
       <h2>Data</h2>
       <table className="table">
         <thead>
