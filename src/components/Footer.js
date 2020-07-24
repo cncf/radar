@@ -21,7 +21,7 @@ export default _ => {
     `}</style>
     <div className="container">
       <div className="navbar-brand">
-        <a href="https://www.cncf.io" class="navbar-item"><img src="/cncf-logo.svg" alt="CNCF" width="186" height="34"/></a>
+        <a href="https://www.cncf.io" className="navbar-item"><img src="/cncf-logo.svg" alt="CNCF" width="186" height="34"/></a>
       </div>
 
       <p>
