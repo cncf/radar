@@ -1,5 +1,3 @@
-import 'bulma/css/bulma.css'
-import '@fortawesome/fontawesome-free/css/all.css'
 import { Fragment, useState } from 'react'
 import Head from 'next/head';
 import { global } from 'styled-jsx/css'
@@ -7,30 +5,11 @@ import SearchContext from '../contexts/SearchContext'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import { colors } from '../styles.config'
+import '../styles/style.scss'
 
 const globalStyle = global`
-  h2 {
-    font-size: 2rem;
-    font-weight: 600;
-    margin: 0 0 10px;
-  }
-
-  h3 {
-    font-size: 1.6rem;
-  }
-  
   h2, h3 {
-    font-weight: bold;
     color: ${colors.darkBlue};
-  }
-  
-  section:nth-child(even) {
-    background-color: #f0f5f7;
-  }
-  
-  body {
-    font-size: 1.125rem;
-    color: #202020;
   }
   
   a {
@@ -39,22 +18,6 @@ const globalStyle = global`
   
   a:hover {
     color: ${colors.pink};
-  }
-  
-  // Sticky footer
-  #__next {
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-  }
-  
-  // Sticky footer
-  main {
-    flex: 1;
-  }
-        
-  a {
-    outline: none;
   }
 `
 
