@@ -19,17 +19,33 @@ team:
   - name: Cheryl Hung
     photo: https://www.cncf.io/wp-content/uploads/2020/06/image1.png
     bio: |
-      Cheryl Hung is the Director of Ecosystem at CNCF. Her mission is to make end users successful and productive with
-      cloud native technologies such as Kubernetes and Prometheus.
+      Cheryl's mission is to make end users successful and productive with cloud native technologies
     twitter: oicheryl
+    title: Director of Ecosystem at CNCF
   - name: Chris Aniszczyk
     photo: https://www.aniszczyk.org/wp-content/uploads/2019/04/Headshots-Aniszczyk-280x300.jpg
     bio: |
-      I'm an open source executive and engineer by trade with a passion for building a better world through open
-      collaboration. I'm currently a Vice President at the Linux Foundation focused on developer relations and running
-      the Open Container Initiative (OCI) / Cloud Native Computing Foundation (CNCF). I’m also a Partner at Capital
-      Factory where I focus on mentoring, advising and investing in open source and infrastructure focused startups.
+      Chris brings more than 15 years experience as The Linux Foundation’s vice president of Developer Programs.
     twitter: cra
+    linkedin: caniszczyk
+    title: CTO at CNCF
+  - name: Dan Kohn
+    photo: https://avatars0.githubusercontent.com/u/3083270
+    bio: |
+      After leading CNCF for four years as its Executive Director, Dan continues to be involved leading key CNCF
+      programs while now also serving as the General Manager of LF Public Health.
+    twitter: dankohn1
+    linkedin: dankohn
+    github: dankohn
+    title: VP, Strategic Programs at CNCF
+  - name: Priyanka Sharma
+    photo: https://avatars1.githubusercontent.com/u/66081113?s=400&v=
+    bio: |
+      Priyanka is CNCF's General Manager
+    twitter: pritianka
+    company: CNCF
+    title: General Manager at CNCF
+    github: pritianka
 points:
   - name: Helm
     repo: helm/helm

@@ -6,6 +6,7 @@ import withTitle from '../components/withTitle'
 import LevelTag from '../components/LevelTag'
 import MarkdownComponent from '../components/MarkdownComponent'
 import Section from "../components/Section";
+import RadarTeam from "../components/RadarTeam";
 
 const { fontFamily } = typography
 
@@ -129,22 +130,7 @@ const Radar = ({ name, themes, points, team, video }) => {
     <Section>
       <h2>Team</h2>
 
-      { team.map(member => {
-          return <div key={member.name}>
-            <div className="columns">
-              <div className="column is-1">
-                <img src={member.photo} alt={member.name} className="is-rounded"/>
-              </div>
-
-              <div className="column is-11">
-                <h5 className="title is-5 mb-0 ">{member.name}</h5>
-                {member.twitter && <a href={`https://twitter.com/${member.twitter}`}>@{member.twitter}</a>}
-                <MarkdownComponent value={member.bio} />
-              </div>
-            </div>
-          </div>
-        }
-      )}
+      <RadarTeam team={team}/>
     </Section>
 
     <Section>

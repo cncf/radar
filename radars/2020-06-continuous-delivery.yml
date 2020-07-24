@@ -19,9 +19,10 @@ team:
   - name: Cheryl Hung
     photo: https://www.cncf.io/wp-content/uploads/2020/06/image1.png
     bio: |
-      Cheryl Hung is the Director of Ecosystem at CNCF. Her mission is to make end users successful and productive with
-      cloud native technologies such as Kubernetes and Prometheus.
+      Cheryl's mission is to make end users successful and productive with cloud native technologies
     twitter: oicheryl
+    linkedin: cheryljhung
+    title: Director of Ecosystem at CNCF
 points:
   - name: Helm
     repo: helm/helm
