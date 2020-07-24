@@ -12,16 +12,13 @@ export default function Home({ radars }) {
         padding-bottom: 20px;
       }
     `}</style>
-    <Section>
-      <h2>Published Radars</h2>
+    <Section title="Published Radars">
       <ul>
         { radars.map(({ key, name }) => <li key={key}><Link href="/[radar]" as={`/${key}`}><a>{name}</a></Link></li>) }
       </ul>
     </Section>
 
-    <Section>
-      <h2>Definitions</h2>
-
+    <Section title="Definitions">
       <table>
         <tr>
           <td><LevelTag level="adopt" className="is-medium" /></td>
@@ -41,13 +38,11 @@ export default function Home({ radars }) {
       </table>
     </Section>
 
-    <Section>
-      <h2>Methodology</h2>
+    <Section title="Methodology">
       <h3>TODO: Explain how it was built</h3>
     </Section>
 
-    <Section>
-      <h2>FAQs</h2>
+    <Section title="FAQs">
       <h3>TODO: Fill out FAQs</h3>
     </Section>
   </Fragment>

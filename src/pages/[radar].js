@@ -49,37 +49,30 @@ const RadarPage = ({ name, themes, points, team, video }) => {
       }
     `}</style>
 
-    <Section>
-      <h2>{name}</h2>
-
+    <Section title={name}>
       <div className="radar-wrapper">
         <Radar points={points} />
       </div>
     </Section>
 
-    <Section>
-      <h2>Themes</h2>
+    <Section title="Themes">
       <div className="content">
         <MarkdownComponent value={themes}/>
       </div>
     </Section>
 
-    { video && <Section>
-      <h2>Webinar</h2>
+    { video && <Section title="Webinar">
       <div className="content video-container">
         <iframe src={video} frameBorder="0" allowFullScreen
                 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"/>
       </div>
     </Section>}
 
-    <Section>
-      <h2>Team</h2>
-
+    <Section title="Team">
       <RadarTeam team={team}/>
     </Section>
 
-    <Section>
-      <h2>Data</h2>
+    <Section title="Data">
       <table className="table">
         <thead>
         <tr>
