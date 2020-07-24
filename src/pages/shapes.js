@@ -1,10 +1,11 @@
 import { Fragment, useContext } from 'react'
 import { useRouter } from 'next/router'
-import { colors, fontFamily } from '../styles.config'
+import { colors, typography } from '../styles.config'
 import loadData from '../loadData'
 import withTitle from '../components/withTitle'
 import Section from "../components/Section";
 
+const { fontFamily } = typography
 const ScaleContext = React.createContext(1);
 
 const Title = ({ color, text, y }) => {

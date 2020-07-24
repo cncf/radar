@@ -1,11 +1,13 @@
 import { Fragment } from 'react'
 import { useRouter } from 'next/router'
-import { colors, fontFamily } from '../styles.config'
+import { colors, typography } from '../styles.config'
 import loadData from '../loadData'
 import withTitle from '../components/withTitle'
 import LevelTag from '../components/LevelTag'
 import MarkdownComponent from '../components/MarkdownComponent'
 import Section from "../components/Section";
+
+const { fontFamily } = typography
 
 const Point = ({ distance, angle, color, point }) => {
   const x = (-distance * Math.cos(angle) + 1000).toFixed(2)

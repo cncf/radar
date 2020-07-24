@@ -1,3 +1,4 @@
+@use 'sass:map';
 @import '~bulma/css/bulma.css';
 @import '~@fortawesome/fontawesome-free/css/all.css';
 
@@ -5,6 +6,7 @@ h2 {
   font-size: 2rem;
   font-weight: 600;
   margin: 0 0 10px;
+  color: map.get($colors, "darkBlue");
 }
 
 h3 {
@@ -13,6 +15,14 @@ h3 {
 
 h2, h3 {
   font-weight: bold;
+}
+
+a {
+  color: map.get($colors, "link");
+
+  &:hover {
+    color: map.get($colors, "pink");
+  }
 }
 
 section:nth-child(even) {
