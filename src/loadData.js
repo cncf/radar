@@ -51,7 +51,7 @@ export default async () => {
   const landscapeData = await fetchLandscapeData()
 
   const radars = data
-    .filter(radar => process.env.SHOW_DRAFTS ? true : !radar.draft)
+    .filter(radar => process.env.DEVELOPMENT ? true : !radar.draft)
     .sort((a, b) => -a.key.localeCompare(b.key))
     .map(radarAttrs => {
       const radar = makeRadar(radarAttrs)
