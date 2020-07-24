@@ -1,15 +1,13 @@
 import { Fragment } from 'react'
 import loadData from '../loadData'
 import withTitle from '../components/withTitle'
-import LevelTag from '../components/LevelTag'
 import MarkdownComponent from '../components/MarkdownComponent'
 import Section from '../components/Section'
 import RadarTeam from '../components/RadarTeam'
-import Radar from '../components/radar'
+import Radar from '../components/Radar'
+import RadarData from '../components/RadarData'
 
 const RadarPage = ({ name, themes, points, team, video }) => {
-  const length = Math.max(points.adopt.length, points.trial.length, points.assess.length)
-
   return <Fragment>
     <style jsx>{`
       .video-container {
@@ -34,15 +32,6 @@ const RadarPage = ({ name, themes, points, team, video }) => {
         height: 100%;
       }
 
-      table {
-        background: transparent;
-      }
-
-      th, td {
-        text-align: center !important;
-        border: none !important;
-      }
-      
       .radar-wrapper {  
         max-width: 800px;
         margin: 0 auto;
@@ -73,30 +62,7 @@ const RadarPage = ({ name, themes, points, team, video }) => {
     </Section>
 
     <Section title="Data">
-      <table className="table">
-        <thead>
-        <tr>
-          <th><LevelTag level="adopt"/></th>
-          <th><LevelTag level="trial"/></th>
-          <th><LevelTag level="assess"/></th>
-        </tr>
-        </thead>
-
-        <tbody>
-        {
-          [...Array(length).keys()].map(i => {
-            return <tr key={`tr-${i}`}>
-              {
-                ['adopt', 'trial', 'assess'].map(level => {
-                  const point = points[level][i]
-                  return <td key={`td-${level}-${i}`}>{point && point.name}</td>
-                })
-              }
-            </tr>
-          })
-        }
-        </tbody>
-      </table>
+      <RadarData points={points}/>
     </Section>
   </Fragment>
 }
@@ -104,12 +70,7 @@ const RadarPage = ({ name, themes, points, team, video }) => {
 export async function getStaticProps ({ params }) {
   const { radars } = await loadData()
   const radar = radars.find(({ key }) => key === params.radar)
-  const points = {
-    adopt: radar.points.filter(point => point.level === 'adopt'),
-    trial: radar.points.filter(point => point.level === 'trial'),
-    assess: radar.points.filter(point => point.level === 'assess')
-  }
-  return { props: { ...radar, points } }
+  return { props: radar }
 }
 
 export async function getStaticPaths() {

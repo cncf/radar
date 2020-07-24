@@ -1,6 +1,7 @@
 import { Fragment } from 'react'
 import { useRouter } from 'next/router'
 import { colors, typography } from '../styles.config'
+import groupPoints from '../helpers/groupPoints'
 
 const { fontFamily } = typography
 
@@ -66,12 +67,14 @@ const Ring = ({ points, radius, title, color }) => {
 }
 
 export default ({ points }) => {
+  const groupedPoints = groupPoints(points)
+
   return <Fragment>
     <svg viewBox="0 0 1732 1002" xmlns="http://www.w3.org/2000/svg" dominantBaseline="middle" textAnchor="middle" fontWeight="bolder" fontFamily={fontFamily}>
       <g transform="translate(866 1001)">
-        <Ring radius={1000} points={points.assess} title="Assess" color={colors.assess} />
-        <Ring radius={666} points={points.trial} title="Trial" color={colors.trial} />
-        <Ring radius={333} points={points.adopt} title="Adopt" color={colors.adopt} />
+        <Ring radius={1000} points={groupedPoints.assess} title="Assess" color={colors.assess} />
+        <Ring radius={666} points={groupedPoints.trial} title="Trial" color={colors.trial} />
+        <Ring radius={333} points={groupedPoints.adopt} title="Adopt" color={colors.adopt} />
       </g>
     </svg>
   </Fragment>
