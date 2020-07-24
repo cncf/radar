@@ -8,7 +8,7 @@ import withTitle from '../components/withTitle'
 import Section from '../components/Section'
 
 const Overview = ({ groupedPoints }) => {
-  const { searchQuery } = useContext(SearchContext)
+  const { searchQuery, setSearchQuery } = useContext(SearchContext)
   const filteredPoints = groupedPoints.filter(points => {
     const firstPoint = points[0]
     const text = [firstPoint.name, firstPoint.description].join(' ').toLowerCase()
@@ -16,7 +16,27 @@ const Overview = ({ groupedPoints }) => {
   })
 
   return <Section>
+    <style jsx>{`
+      .no-results {
+        margin-top: 30px;
+        height: 200px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 24px;
+      }
+    `}
+    </style>
+
+    { searchQuery && <div className="notification is-info is-light">
+      Filtering by <strong>{searchQuery}</strong>. <a onClick={_ => setSearchQuery('')}>Clear</a> search.
+    </div>}
+
     <h2>Overview</h2>
+
+    { searchQuery && filteredPoints.length === 0 && <div className="notification is-light no-results">
+      No results found
+    </div>}
 
     <table className="table is-fullwidth">
       <tbody>
