@@ -43,42 +43,40 @@ export default ({ points }) => {
       }
     `}
     </style>
-    <table className="data" cellspacing="0" cellpadding="0" border="0">
+    <table className="data">
+      <thead>
+        <th className="vote">Level</th>
+        <th>Name</th>
+        <th colspan={1000} className="vote">Votes</th>
+      </thead>
 
+      <tbody>
+        {
+          ['adopt', 'trial', 'assess'].map(level => {
+            return groupedPoints[level].map((point, i) => {
+              return <tr key={`point-${level}-${point.key}`}>
+                { i === 0 && <td rowSpan={groupedPoints[level].length} style={{background: colors[level]}} className="vote">
+                  {level}
+                </td> }
+                <td className="name">{point.name}</td>
 
-    <thead>
-      <th className="vote">Level</th>
-      <th>Name</th>
-      <th colspan={1000} className="vote">Votes</th>
-    </thead>
+                {
+                  ['adopt', 'trial', 'assess', 'hold'].map(voteKey => {
+                    const votes = point.votes[voteKey]
 
-    <tbody>
-      {
-        ['adopt', 'trial', 'assess'].map(level => {
-          return groupedPoints[level].map((point, i) => {
-            return <tr key={`point-${level}-${point.key}`}>
-              { i === 0 && <td rowSpan={groupedPoints[level].length} style={{background: colors[level]}} className="vote">
-                {level}
-              </td> }
-              <td className="name">{point.name}</td>
-
-              {
-                ['adopt', 'trial', 'assess', 'hold'].map(voteKey => {
-                  const votes = point.votes[voteKey]
-
-                  return [...Array(votes || 0).keys()].map(i => {
-                    const key = `vote-${level}-${point.key}-${voteKey}-${i}`
-                    return <td key={key} style={{background: colors[voteKey]}} className="vote">
-                      {voteKey}
-                    </td>
+                    return [...Array(votes || 0).keys()].map(i => {
+                      const key = `vote-${level}-${point.key}-${voteKey}-${i}`
+                      return <td key={key} style={{background: colors[voteKey]}} className="vote">
+                        {voteKey}
+                      </td>
+                    })
                   })
-                })
-              }
-            </tr>
+                }
+              </tr>
+            })
           })
-        })
-      }
-    </tbody>
-  </table>
+        }
+      </tbody>
+    </table>
   </div>
 }
