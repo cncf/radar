@@ -1,8 +1,8 @@
 import path from 'path'
-import { readdirSync, readFileSync } from 'fs'
-import YAML from 'yaml'
+import { readdirSync } from 'fs'
 import stripUrl from './helpers/stripUrl'
 import fetchLandscapeData from './helpers/fetchLandscapeData'
+import loadYaml from './helpers/loadYaml'
 
 const projectMatches = ({ project, point }) => {
   if (point.repo) {
@@ -37,10 +37,8 @@ const makeRadar = attrs => {
 }
 
 const loadRadarData = _ => {
-  const expandPath = (...args) => path.join(process.cwd(), ...args)
-  return readdirSync(expandPath('content', 'radars')).map(path => {
-    const fullPath = expandPath('content', 'radars', path)
-    const radar = YAML.parse(readFileSync(fullPath, 'utf-8'))
+  return readdirSync(path.join(process.cwd(), 'content', 'radars')).map(path => {
+    const radar = loadYaml('radars', path)
     const key = path.replace(/\.yml/, '')
     return { ...radar, key }
   })
