@@ -38,8 +38,8 @@ const makeRadar = attrs => {
 
 const loadRadarData = _ => {
   const expandPath = (...args) => path.join(process.cwd(), ...args)
-  return readdirSync(expandPath('radars')).map(path => {
-    const fullPath = expandPath('radars', path)
+  return readdirSync(expandPath('content', 'radars')).map(path => {
+    const fullPath = expandPath('content', 'radars', path)
     const radar = YAML.parse(readFileSync(fullPath, 'utf-8'))
     const key = path.replace(/\.yml/, '')
     return { ...radar, key }

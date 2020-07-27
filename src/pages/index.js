@@ -3,9 +3,11 @@ import { Fragment } from 'react'
 import loadData from '../loadData'
 import Radar from '../components/Radar'
 import Section from '../components/Section'
-import LevelTag from "../components/LevelTag";
+import LevelTag from '../components/LevelTag'
+import loadYaml from '../helpers/loadYaml'
+import MarkdownComponent from "../components/MarkdownComponent";
 
-export default function Home({ radars, development }) {
+export default function Home({ radars, sections, development }) {
   return <Fragment>
     <style jsx>{`
       td {
@@ -60,18 +62,17 @@ export default function Home({ radars, development }) {
       </table>
     </Section>
 
-    <Section title="Methodology">
-      <h3>TODO: Explain how it was built</h3>
-    </Section>
-
-    <Section title="FAQs">
-      <h3>TODO: Fill out FAQs</h3>
-    </Section>
+    { sections.map(({ title, content }) => {
+      return <Section title={title} key={title}>
+        <MarkdownComponent value={content} />
+      </Section>
+    })}
   </Fragment>
 }
 
 export async function getStaticProps() {
   const { radars } = await loadData()
+  const sections = loadYaml('homepage.yml')
 
-  return { props: { radars, development: !!process.env.DEVELOPMENT } }
+  return { props: { radars, development: !!process.env.DEVELOPMENT, sections } }
 }
