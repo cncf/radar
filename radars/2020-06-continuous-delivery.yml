@@ -30,6 +30,7 @@ points:
     votes:
       adopt: 12
       trial: 4
+      hold: 3
   - name: Flux
     repo: fluxcd/flux
     level: adopt
@@ -43,6 +44,7 @@ points:
     votes:
       adopt: 5
       assess: 1
+      hold: 3
   - name: Kustomize
     repo: kubernetes-sigs/kustomize
     level: trial
@@ -57,12 +59,14 @@ points:
       adopt: 5
       trial: 3
       assess: 3
+      hold: 1
   - name: Jenkins X
     repo: jenkins-x/jx
     level: assess
     votes:
       trial: 1
       assess: 3
+      hold: 2
   - name: Travis CI
     repo: travis-ci/travis-web
     level: assess
@@ -70,6 +74,7 @@ points:
       adopt: 1
       trial: 1
       assess: 1
+      hold: 2
   - name: jsonnet
     repo: google/jsonnet
     level: assess
@@ -77,12 +82,14 @@ points:
       adopt: 1
       trial: 1
       assess: 2
+      hold: 2
   - name: Spinnaker
     repo: spinnaker/spinnaker
     level: assess
     votes:
       trial: 3
       assess: 6
+      hold: 4
   - name: GitHub Actions
     homepage: https://github.com/features/actions
     level: assess
@@ -103,6 +110,7 @@ points:
     votes:
       adopt: 6
       assess: 2
+      hold: 17
   - name: Tekton CD
     homepage: https://tekton.dev/
     level: assess
@@ -113,3 +121,4 @@ points:
     level: assess
     votes:
       adopt: 1
+      hold: 1

@@ -7,7 +7,8 @@ module.exports = {
     adopt: '#041087',
     trial: '#235C6F',
     assess: '#6CBFAF',
-    warning: '#ffdd57'
+    warning: '#ffdd57',
+    hold: '#ff6846'
   },
   typography: {
     fontFamily: ['BlinkMacSystemFont', '-apple-system', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
