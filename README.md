@@ -1,25 +1,25 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+These are the instructions for people who want to run Radar locally. For development instructions visit 
+[DEVELOPMENT.md](https://github.com/cncf/radar/blob/master/DEVELOPMENT.md) 
 
-## Installation
+## Requirements
 
-* Install `nvm`: https://github.com/nvm-sh/nvm
-* Clone this repo: `git clone git@github.com:cncf/radar.git`
-* `cd radar`
-* Install node version: `nvm install`
-* Install yarn: `npm install -g`
-* Install dependencies: `yarn install`
+Install [Docker](https://www.docker.com/) and Docker Compose. Docker Desktop for Mac already includes Compose.
+
+## Building image
+
+Run `bin/install`. This is only required the first time you clone this repo or when you pull.
 
 ## Running app locally
 
-* Launch app: `yarn dev`
-* Visit [localhost:3000](http://localhost:3000)
+Execute `bin/run dev` and visit [localhost:3000](http://localhost:3000)
 
 ## Generating a build
 
 This step is not required for development or adding radar data, this is run on Netlify.
 
-`yarn build`
+`bin/run build`
 
 To see the generated build run:
 
-`yarn prod`
+`bin/run prod`
+

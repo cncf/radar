@@ -5,7 +5,7 @@
     "dev": "babel-node scripts/clearCache.js && next dev",
     "build": "next build && next export && babel-node scripts/exportImages.js",
     "start": "next start",
-    "prod": "static out -p 3000"
+    "prod": "static out -p 3000 -a 0.0.0.0"
   },
   "dependencies": {
     "@babel/core": "^7.10.4",
