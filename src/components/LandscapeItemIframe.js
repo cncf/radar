@@ -13,7 +13,7 @@ export default _ => {
     }
   }, [selectedPoint])
 
-  return selectedPoint && <Fragment>
+  return selectedPoint ? <Fragment>
     <style jsx global>{`
       html, body {
         overflow-y: ${selectedPoint ? 'hidden' : 'auto'}
@@ -69,5 +69,5 @@ export default _ => {
     </div>}
     <iframe src={src} onLoad={_ => setIsLoading(false)} />
     <button className="modal-close is-large" aria-label="close" onClick={closeModal}></button>
-  </Fragment>
+  </Fragment> : null
 }
