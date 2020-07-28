@@ -44,21 +44,23 @@ export default function Home({ radars, sections, development }) {
 
     <Section title="Definitions">
       <table>
-        <tr>
-          <td><LevelTag level="adopt" className="is-medium" /></td>
-          <td>We can clearly recommend this technology. We have used it for long periods of time in many teams and it has proven to be stable and useful</td>
-        </tr>
+        <tbody>
+          <tr>
+            <td><LevelTag level="adopt" className="is-medium" /></td>
+            <td>We can clearly recommend this technology. We have used it for long periods of time in many teams and it has proven to be stable and useful</td>
+          </tr>
 
-        <tr>
-          <td><LevelTag level="trial" className="is-medium" /></td>
-          <td>We have used it with success and recommend to have a closer look at the technology in this ring</td>
-        </tr>
+          <tr>
+            <td><LevelTag level="trial" className="is-medium" /></td>
+            <td>We have used it with success and recommend to have a closer look at the technology in this ring</td>
+          </tr>
 
-        <tr>
-          <td><LevelTag level="assess" className="is-medium" /></td>
-          <td>We have tried it out and we find it promising. We recommend having a look at these items when you face a
-            specific need for the technology in your project.</td>
-        </tr>
+          <tr>
+            <td><LevelTag level="assess" className="is-medium" /></td>
+            <td>We have tried it out and we find it promising. We recommend having a look at these items when you face a
+              specific need for the technology in your project.</td>
+          </tr>
+        </tbody>
       </table>
     </Section>
 

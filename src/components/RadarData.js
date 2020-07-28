@@ -45,9 +45,11 @@ export default ({ points }) => {
     </style>
     <table className="data">
       <thead>
-        <th className="vote">Level</th>
-        <th>Name</th>
-        <th colspan={1000} className="vote">Votes</th>
+        <tr>
+          <th className="vote">Level</th>
+          <th>Name</th>
+          <th colSpan={1000} className="vote">Votes</th>
+        </tr>
       </thead>
 
       <tbody>
