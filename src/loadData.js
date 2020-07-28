@@ -19,14 +19,14 @@ const formatDate = (date, format) => {
 
 const makePoint = (attrs, landscapeAttrs) => {
   const key = attrs.name.toLowerCase().replace(/\W/g, '-')
-  const { homepage_url, twitter, github_data } = landscapeAttrs || {}
+  const { github_data } = landscapeAttrs || {}
 
   if (!landscapeAttrs) {
     return { ...attrs, key }
   }
 
   const description = (landscapeAttrs || {}).description || (github_data || {}).description
-  return { description, twitter, homepage: homepage_url, ...attrs, key }
+  return { description, landscapeId: landscapeAttrs.id, ...attrs, key }
 }
 
 const makeRadar = attrs => {
