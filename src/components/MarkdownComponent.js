@@ -5,7 +5,7 @@ import LevelTag from './LevelTag'
 
 const renderLevelTag = level => ReactDOMServer.renderToString(<dt><LevelTag level={level} className="is-medium" /></dt>)
 
-export default ({ value, className, ...props }) => {
+export default ({ value, ...props }) => {
   const html = new Converter({simpleLineBreaks: false}).makeHtml(value);
   const allowedTags = sanitizeHtml.defaults.allowedTags.concat(['dl', 'dt', 'dd'])
   const sanitizedHtml = sanitizeHtml(html, { allowedTags })
