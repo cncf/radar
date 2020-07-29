@@ -47,10 +47,14 @@ const Overview = ({ groupedPoints }) => {
           <td><LinkToPoint point={firstPoint} /></td>
 
           <td className="has-text-right">
-            <LinkToRadar radar={firstPoint.radar} />
-            <LevelTag level={firstPoint.level} style={{marginLeft: 10}} />
-
-            { points.length > 1 && <LevelTag level="warning" style={{marginLeft: 10, color: 'black'}} text={`+${points.length - 1} More`} /> }
+            {
+              points.map(({ level, radar }) => {
+                return <div key={radar.key}>
+                  <LinkToRadar radar={radar} />
+                  <LevelTag level={level} style={{marginLeft: 10}} />
+                </div>
+              })
+            }
           </td>
         </tr>
       })}

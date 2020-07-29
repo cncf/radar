@@ -1,7 +1,7 @@
-import Link from 'next/link'
+import { useContext } from 'react'
+import SelectedPointContext from '../contexts/SelectedPointContext'
 
 export default ({ point }) => {
-  return <Link href="/[...point]" as={`/${point.fullKey}`}>
-    <a>{ point.name }</a>
-  </Link>
+  const { setSelectedPoint } = useContext(SelectedPointContext)
+  return <a onClick={_ => setSelectedPoint(point.landscapeId)}>{point.name}</a>
 }
