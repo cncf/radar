@@ -1,3 +1,17 @@
+- title: Definitions
+  content: |
+    <dl>
+      <dt>Adopt</dt>
+      <dd>We can clearly recommend this technology. We have used it for long periods of time in many teams and it has
+          proven to be stable and useful</dd>
+
+      <dt>Trial</dt>
+      <dd>We have used it with success and recommend to have a closer look at the technology in this ring</dd>
+
+      <dt>Assess</dt>
+      <dd>We have tried it out and we find it promising. We recommend having a look at these items when you face a
+        specific need for the technology in your project.</dd>
+    </dl>
 - title: Methodology
   content: |
     ### TODO: Explain how it was built
