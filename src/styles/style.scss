@@ -2,8 +2,13 @@
 @import '~bulma/css/bulma.css';
 @import '~@fortawesome/fontawesome-free/css/all.css';
 
-h2 {
+h1 {
   font-size: 2rem;
+  margin: 0 0 10px;
+}
+
+h2 {
+  font-size: 1.8rem;
   font-weight: 600;
   margin: 0 0 10px;
 }
@@ -72,6 +77,10 @@ a {
 }
 
 ul {
-  margin-left: 2em;
+  margin-left: 1.5rem;
   list-style: disc outside;
+}
+
+ol {
+  margin-left: 1.5rem;
 }

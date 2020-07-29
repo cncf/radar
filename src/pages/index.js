@@ -17,7 +17,7 @@ export default function Home({ radars, sections, development }) {
     `}</style>
 
     <style jsx>{`
-       .thumbnails {
+      .thumbnails {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-evenly;

@@ -21,7 +21,8 @@ const Search = _  => {
   return <Fragment>
     <style jsx>{`
       .control {
-        margin-top: -5px;
+        margin: -5px auto 0;
+        max-width: 300px;
       }
       
       input {

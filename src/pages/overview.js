@@ -25,6 +25,11 @@ const Overview = ({ groupedPoints }) => {
         align-items: center;
         font-size: 24px;
       }
+      
+      td {
+        padding-left: 0.25rem;
+        padding-right: 0.25rem;
+      }
     `}
     </style>
 

@@ -4,7 +4,7 @@ import { colors } from '../styles.config'
 export default forwardRef((props, ref) => {
   return <Fragment>
     <style jsx>{`
-        a, a:hover, a:focus, a:visited {
+        a, a:hover, a:focus, a:visited, a:active {
           color: white;
           background: ${colors.darkPurple};
         }

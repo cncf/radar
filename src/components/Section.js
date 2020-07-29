@@ -5,6 +5,12 @@ export default ({ title, children }) => {
         text-align: center;
         margin-bottom: 1.5rem;
       }
+      
+      @media only screen and (max-width: 768px) {
+        .section {
+          padding: 1.5rem 1rem;
+        }
+      }
     `}</style>
     <div className="container">
       {title && <h2>{title}</h2>}
