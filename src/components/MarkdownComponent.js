@@ -13,5 +13,5 @@ export default ({ value, ...props }) => {
     .replace('<dt>Trial</dt>', renderLevelTag('trial'))
     .replace('<dt>Assess</dt>', renderLevelTag('assess'))
 
-  return <div {...props} dangerouslySetInnerHTML={{ __html: sanitizedHtml }} />
+  return <div {...props} dangerouslySetInnerHTML={{ __html: sanitizedHtml }} className="content" />
 }
