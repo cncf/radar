@@ -6,64 +6,68 @@ import Section from '../components/Section'
 import RadarTeam from '../components/RadarTeam'
 import Radar from '../components/Radar'
 import RadarData from '../components/RadarData'
+import VideoComponent from '../components/VideoComponent'
 
-const RadarPage = ({ name, themes, points, team, video }) => {
-  return <Fragment>
+const RadarSection = ({ name, points}) => {
+  return <Section title={name}>
     <style jsx>{`
-      .video-container {
-        overflow: hidden;
-        position: relative;
-        width:100%;
-        max-width: 800px;
-        margin: auto;
-      }
-      
-      .video-container::after {
-        padding-top: 56.25%;
-        display: block;
-        content: '';
-      }
-      
-      .video-container iframe {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-      }
-
       .radar-wrapper {  
         max-width: 800px;
         margin: 0 auto;
       }
     `}</style>
 
-    <Section title={name}>
-      <div className="radar-wrapper">
-        <Radar points={points} />
-      </div>
-    </Section>
+    <div className="radar-wrapper">
+      <Radar points={points} />
+    </div>
+  </Section>
+}
 
-    <Section title="Themes">
-      <div className="content">
-        <MarkdownComponent value={themes}/>
-      </div>
-    </Section>
+const WebinarSection = ({ video }) => {
+  return <Section title="Webinar">
+    <VideoComponent src={video} />
+  </Section>
+}
 
-    { video && <Section title="Webinar">
-      <div className="content video-container">
-        <iframe src={video} frameBorder="0" allowFullScreen
-                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"/>
-      </div>
-    </Section>}
+const TeamSection = ({ team }) => {
+  return <Section title="Team">
+    <RadarTeam team={team}/>
+  </Section>
+}
 
-    <Section title="Team">
-      <RadarTeam team={team}/>
-    </Section>
+const DataSection = ({ points }) => {
+  return <Section title="Data">
+    <RadarData points={points}/>
+  </Section>
+}
+const renderSection = ({ title, content }) => {
+  return <Section title={title} key={title}>
+    <MarkdownComponent value={content} />
+  </Section>
+}
 
-    <Section title="Data">
-      <RadarData points={points}/>
-    </Section>
+const RadarPage = ({ name, points, team, video, sections = [] }) => {
+  const defaultSections = [
+    <RadarSection name={name} points={points} key="radar" />,
+    video && <WebinarSection video={video} key="video" />,
+    <TeamSection team={team} key="team" />,
+    <DataSection points={points} key="data" />
+  ].filter(_ => _).map((section, i) => [i + 1, section])
+
+  const positionedSections = sections.filter(section => section.position)
+    .sort((a, b) => a.position - b.position)
+    .map(section => [section.position, renderSection(section)])
+
+  const additionalSections = sections.filter(section => !section.position)
+    .map(section => renderSection(section))
+
+  const sortedSections = [...positionedSections, ...defaultSections]
+    .sort((a, b) => a[0] - b[0])
+    .map(([_, section]) => section)
+
+  return <Fragment>
+    {sortedSections}
+    {additionalSections}
   </Fragment>
 }
 
