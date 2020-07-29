@@ -1,11 +1,9 @@
 import groupPoints from '../helpers/groupPoints'
 import { colors } from '../styles.config'
-import { useContext } from "react";
-import SelectedPointContext from '../contexts/SelectedPointContext'
+import LinkToPoint from './LinkToPoint'
 
 export default ({ points }) => {
   const groupedPoints = groupPoints(points)
-  const { setSelectedPoint } = useContext(SelectedPointContext)
 
   return <div className="wrapper">
     <style jsx>{`
@@ -63,7 +61,7 @@ export default ({ points }) => {
                 { i === 0 && <td rowSpan={groupedPoints[level].length} style={{background: colors[level]}} className="vote">
                   {level}
                 </td> }
-                <td className="name"><a onClick={_ => setSelectedPoint(point.landscapeId)}>{point.name}</a></td>
+                <td className="name"><LinkToPoint point={point} /></td>
                 {
                   ['adopt', 'trial', 'assess', 'hold'].map(voteKey => {
                     const votes = point.votes[voteKey]
