@@ -4,9 +4,9 @@ module.exports = {
     darkBlue: '#262961',
     link: '#21219b',
     pink: '#e00a6b',
-    adopt: '#041087',
-    trial: '#235C6F',
-    assess: '#6CBFAF',
+    adopt: '#0554C6',
+    trial: '#032291',
+    assess: '#020C42',
     warning: '#ffdd57',
     hold: '#ff6846'
   },

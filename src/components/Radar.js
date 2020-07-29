@@ -60,7 +60,7 @@ const Ring = ({ points, radius, title, color }) => {
   const y = -radius * Math.sin(Math.PI / 6)
 
   return <Fragment>
-    <path d={`M 0 0 L ${x} ${y} A ${radius} ${radius}, 0, 0, 1, ${-x} ${y} Z`} stroke={color} strokeWidth="2" fill="none"/>
+    <path d={`M 0 0 L ${x} ${y} A ${radius} ${radius}, 0, 0, 1, ${-x} ${y} Z`} stroke={color} strokeWidth="5" fill="none"/>
     <Title y={- titleRadius} color={color} text={title} />
     <PointCollection points={points} distance={innerRadius} smallerDistance={smallerRadius} minAngle={Math.PI / 6} color={color} />
   </Fragment>
@@ -70,8 +70,8 @@ export default ({ points }) => {
   const groupedPoints = groupPoints(points)
 
   return <Fragment>
-    <svg viewBox="0 0 1732 1002" xmlns="http://www.w3.org/2000/svg" dominantBaseline="middle" textAnchor="middle" fontWeight="bolder" fontFamily={fontFamily}>
-      <g transform="translate(866 1001)">
+    <svg viewBox="0 0 1740 1006" xmlns="http://www.w3.org/2000/svg" dominantBaseline="middle" textAnchor="middle" fontWeight="bolder" fontFamily={fontFamily}>
+      <g transform="translate(870 1003)">
         <Ring radius={1000} points={groupedPoints.assess} title="Assess" color={colors.assess} />
         <Ring radius={666} points={groupedPoints.trial} title="Trial" color={colors.trial} />
         <Ring radius={333} points={groupedPoints.adopt} title="Adopt" color={colors.adopt} />
