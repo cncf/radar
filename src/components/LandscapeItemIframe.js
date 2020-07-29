@@ -13,7 +13,11 @@ export default _ => {
     }
   }, [selectedPoint])
 
-  return selectedPoint ? <Fragment>
+  if (selectedPoint === "") {
+    return null;
+  }
+
+  return <Fragment>
     <style jsx global>{`
       html, body {
         overflow-y: ${selectedPoint ? 'hidden' : 'auto'}
@@ -21,7 +25,7 @@ export default _ => {
     `}
     </style>
     <style jsx>{`
-      iframe, .loading {
+      .modal-content {
         width: min(100vw - 40px, 1000px);
         height: min(100vh - 40px, 640px);
         position: fixed;
@@ -36,9 +40,9 @@ export default _ => {
         display: ${isLoading ? 'none' : 'block'};
       }
       
-      .loading {
+      .modal-content.center {
         background: white;
-        font-size: 40px;
+        font-size: 32px;
         z-index: 100;
         display: flex;
         align-content: center;
@@ -46,9 +50,8 @@ export default _ => {
         align-items: center;
       }
       
-      .loading i {
+      .modal-content i {
         margin-right: 10px;
-        font-size: 35px;
       }
     
       .modal-background {
@@ -63,11 +66,17 @@ export default _ => {
     `}</style>
 
     <div className="modal-background" onClick={closeModal}></div>
-    {isLoading && <div className="loading">
+    {isLoading && <div className="modal-content center">
       <i className="fas fa-spinner fa-spin"></i>
       <span>Loading</span>
     </div>}
-    <iframe src={src} onLoad={_ => setIsLoading(false)} />
+    {selectedPoint ?
+      <iframe className="modal-content" src={src} onLoad={_ => setIsLoading(false)} /> :
+      <div className="modal-content center">
+        <span>No associated data found</span>
+      </div>
+    }
+
     <button className="modal-close is-large" aria-label="close" onClick={closeModal}></button>
-  </Fragment> : null
+  </Fragment>
 }
