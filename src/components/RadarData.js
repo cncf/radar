@@ -2,7 +2,7 @@ import groupPoints from '../helpers/groupPoints'
 import { colors } from '../styles.config'
 import LinkToPoint from './LinkToPoint'
 
-export default ({ points }) => {
+export default function RadarData({ points }) {
   const groupedPoints = groupPoints(points)
 
   return <div className="wrapper">

@@ -5,7 +5,7 @@ import Search from './Search'
 import NavLink from './NavLink'
 import OutboundLink from './OutboundLink'
 
-export default _ => {
+export default function Header() {
   const [showMenu, setShowMenu] = useState(false)
 
   return <nav className="navbar" role="navigation" aria-label="main navigation">

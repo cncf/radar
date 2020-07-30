@@ -1,4 +1,4 @@
-export default ({ src }) => {
+export default function VideoComponent({ src }) {
   return <div className="video-container">
     <style jsx>{`
       .video-container {

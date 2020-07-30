@@ -23,7 +23,7 @@ const transformTags = {
   }
 }
 
-export default ({ value, ...props }) => {
+export default function MarkdownComponent({ value, ...props }) {
   const html = new Converter({simpleLineBreaks: false}).makeHtml(value);
   const sanitizedHtml = sanitizeHtml(html, { allowedTags, allowedAttributes, transformTags })
     .replace('<dt>Adopt</dt>', renderLevelTag('adopt'))

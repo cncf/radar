@@ -1,7 +1,7 @@
 import { useContext, useState, useEffect } from 'react'
 import SelectedPointContext from '../contexts/SelectedPointContext'
 
-export default _ => {
+export default function LandscapeItemIframe() {
   const { selectedPoint, setSelectedPoint } = useContext(SelectedPointContext)
   const [isLoading, setIsLoading] = useState(false)
   const closeModal = _ => setSelectedPoint("")

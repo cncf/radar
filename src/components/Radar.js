@@ -66,7 +66,7 @@ const Ring = ({ points, radius, title, color }) => {
   </>
 }
 
-export default ({ points }) => {
+export default function Radar({ points }) {
   const groupedPoints = groupPoints(points)
 
   return <svg viewBox="0 0 1740 1006" xmlns="http://www.w3.org/2000/svg" dominantBaseline="middle" textAnchor="middle" fontWeight="bolder" fontFamily={fontFamily}>

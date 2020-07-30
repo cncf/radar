@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import Radar from './Radar'
 
-export default ({ radars, embedThumbnails = false }) => {
+export default function ThumbnailsList({ radars, embedThumbnails = false }) {
   return <div className="thumbnails">
     <style jsx>{`
       .thumbnails {

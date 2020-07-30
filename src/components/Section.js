@@ -1,4 +1,4 @@
-export default ({ title, children }) => {
+export default function Section({ title, children }) {
   return <section className="section">
     <style jsx>{`
       h2 {

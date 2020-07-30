@@ -9,7 +9,7 @@ const { className, styles } = css.resolve`
   }
 `
 
-export default ({ team }) => {
+export default function RadarTeam({ team }) {
   return <div className="team">
     <style jsx>{`
       .team {

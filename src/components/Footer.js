@@ -1,6 +1,6 @@
 import { colors } from '../styles.config'
 
-export default _ => {
+export default function Footer() {
   return <nav className="navbar footer">
     <style jsx>{`
         nav {

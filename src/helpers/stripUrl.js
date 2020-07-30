@@ -1,4 +1,4 @@
-export default url => {
+export default function stripUrls(url) {
   if (!url) {
     return null
   }
