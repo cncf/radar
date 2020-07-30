@@ -44,12 +44,13 @@ const loadRadarData = _ => {
   })
 }
 
-export default async () => {
+export default async (filterFn) => {
   const data = loadRadarData()
   const landscapeData = await fetchLandscapeData()
 
   const radars = data
     .sort((a, b) => -a.key.localeCompare(b.key))
+    .filter(radar => filterFn ? filterFn(radar) : true)
     .map(radarAttrs => {
       const radar = makeRadar(radarAttrs)
 

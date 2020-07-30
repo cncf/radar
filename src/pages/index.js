@@ -28,8 +28,9 @@ export default function Home({ radars, sections, embedThumbnails }) {
 }
 
 export async function getStaticProps() {
-  const radars = (await loadData()).radars.filter(radar => !!process.env.DEVELOPMENT || !radar.draft)
+  const isDevelopment = !!process.env.DEVELOPMENT
+  const { radars } = await loadData(radar => isDevelopment || !radar.draft)
   const sections = loadYaml('homepage.yml')
 
-  return { props: { radars, sections, embedThumbnails: !!process.env.DEVELOPMENT } }
+  return { props: { radars, sections, embedThumbnails: isDevelopment } }
 }

@@ -69,7 +69,7 @@ const Overview = ({ groupedPoints }) => {
 }
 
 export const getStaticProps = async _ => {
-  const { points } = await loadData()
+  const { points } = await loadData(radar => !radar.draft)
 
   const groupedPoints = points.sort((a, b) => a.key.localeCompare(b.key))
     .reduce((acc, point) => {

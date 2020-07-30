@@ -3,7 +3,7 @@ import { join } from 'path'
 import sharp from 'sharp'
 import loadData from '../src/loadData'
 
-loadData('radars.json').then(({ radars }) => {
+loadData().then(({ radars }) => {
   radars.forEach(radar => {
     const inputPath = join(process.cwd(), 'out', `${radar.key}.html`)
     const svg = readFileSync(inputPath, 'utf-8').match(/<svg.*<\/svg>/)[0]
