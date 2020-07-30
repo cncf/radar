@@ -1,4 +1,3 @@
-import { Fragment } from 'react'
 import loadData from '../loadData'
 import withTitle from '../components/withTitle'
 import MarkdownComponent from '../components/MarkdownComponent'
@@ -65,10 +64,10 @@ const RadarPage = ({ name, points, team, video, sections = [] }) => {
     .sort((a, b) => a[0] - b[0])
     .map(([_, section]) => section)
 
-  return <Fragment>
+  return <>
     {sortedSections}
     {additionalSections}
-  </Fragment>
+  </>
 }
 
 export async function getStaticProps ({ params }) {

@@ -1,4 +1,4 @@
-import { Fragment, useContext, useState, useEffect } from 'react'
+import { useContext, useState, useEffect } from 'react'
 import SelectedPointContext from '../contexts/SelectedPointContext'
 
 export default _ => {
@@ -17,7 +17,7 @@ export default _ => {
     return null;
   }
 
-  return <Fragment>
+  return <>
     <style jsx global>{`
       html, body {
         overflow-y: ${selectedPoint ? 'hidden' : 'auto'}
@@ -79,5 +79,5 @@ export default _ => {
     }
 
     <button className="modal-close is-large" aria-label="close" onClick={closeModal}></button>
-  </Fragment>
+  </>
 }

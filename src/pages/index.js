@@ -1,4 +1,3 @@
-import { Fragment } from 'react'
 import loadData from '../loadData'
 import Section from '../components/Section'
 import loadYaml from '../helpers/loadYaml'
@@ -6,7 +5,7 @@ import MarkdownComponent from '../components/MarkdownComponent'
 import ThumbnailsList from '../components/ThumbnailsList'
 
 export default function Home({ radars, sections, embedThumbnails }) {
-  return <Fragment>
+  return <>
     <style jsx global>{`
       .homepage-section dl {
         display: grid;
@@ -24,7 +23,7 @@ export default function Home({ radars, sections, embedThumbnails }) {
         <MarkdownComponent value={content} className="homepage-section" />
       </Section>
     })}
-  </Fragment>
+  </>
 }
 
 export async function getStaticProps() {

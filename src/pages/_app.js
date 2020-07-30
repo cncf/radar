@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react'
+import { useState } from 'react'
 import Head from 'next/head';
 import SearchContext from '../contexts/SearchContext'
 import SelectedPointContext from '../contexts/SelectedPointContext'
@@ -11,7 +11,7 @@ export default ({ Component, pageProps }) => {
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedPoint, setSelectedPoint] = useState('')
 
-  return <Fragment>
+  return <>
     <Head>
       <title>CNCF Radars</title>
       <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -28,5 +28,5 @@ export default ({ Component, pageProps }) => {
         <Footer />
       </SelectedPointContext.Provider>
     </SearchContext.Provider>
-  </Fragment>
+  </>
 }

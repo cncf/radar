@@ -1,4 +1,4 @@
-import { useContext, useState, Fragment } from 'react'
+import { useContext, useState } from 'react'
 import { useRouter } from 'next/router'
 import SearchContext from '../contexts/SearchContext'
 import NavLink from './NavLink'
@@ -18,7 +18,7 @@ const Search = _  => {
     setSearching(false)
   }
 
-  return <Fragment>
+  return <>
     <style jsx>{`
       .control {
         margin: -5px auto 0;
@@ -65,7 +65,7 @@ const Search = _  => {
       <span className="icon"><i className="fas fa-search"></i></span>
       <span>Search</span>
     </NavLink> }
-  </Fragment>
+  </>
 }
 
-export default (Search)
+export default Search

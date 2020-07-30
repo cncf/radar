@@ -1,4 +1,4 @@
-import { Fragment, useState, useContext } from 'react'
+import { useContext } from 'react'
 import { colors, typography } from '../styles.config'
 import groupPoints from '../helpers/groupPoints'
 import SelectedPointContext from '../contexts/SelectedPointContext'
@@ -17,7 +17,7 @@ const Point = ({ distance, angle, color, point }) => {
   const { setSelectedPoint } = useContext(SelectedPointContext)
   const onClick = _ => setSelectedPoint(point.landscapeId)
 
-  return <Fragment>
+  return <>
     <style jsx>{`
       circle, text {
         cursor: pointer;
@@ -26,7 +26,7 @@ const Point = ({ distance, angle, color, point }) => {
     </style>
     <circle cx={x} cy={y} r={15} fill={color} onClick={onClick} />
     <text x={x} y={+y + 40} fill={color} fontSize={30} onClick={onClick}>{point.name}</text>
-  </Fragment>
+  </>
 }
 
 const PointCollection = ({ points, distance, smallerDistance, color, minAngle, maxAngle = null, additional = 0, smallMinAngle = 0 }) => {
@@ -36,11 +36,11 @@ const PointCollection = ({ points, distance, smallerDistance, color, minAngle, m
     const firstHalf = points.slice(0, Math.ceil(points.length / 2))
     const thirdQuarter = points.slice(Math.ceil(points.length / 2), Math.ceil(3 * points.length / 4))
     const fourthQuarter = points.slice(Math.ceil(3 * points.length / 4))
-    return <Fragment>
+    return <>
       <PointCollection points={firstHalf} distance={distance} minAngle={minAngle} color={color} />
       <PointCollection points={thirdQuarter} distance={smallerDistance} minAngle={smallMinAngle || minAngle} maxAngle={Math.PI / 2} color={color} additional={1} />
       <PointCollection points={fourthQuarter} distance={smallerDistance} minAngle={Math.PI / 2} maxAngle={Math.PI - (smallMinAngle || minAngle)} color={color} additional={1} />
-    </Fragment>
+    </>
   }
 
   return points.map((point, i) => {
@@ -59,23 +59,21 @@ const Ring = ({ points, radius, title, color }) => {
   const x = -radius * Math.cos(Math.PI / 6)
   const y = -radius * Math.sin(Math.PI / 6)
 
-  return <Fragment>
+  return <>
     <path d={`M 0 0 L ${x} ${y} A ${radius} ${radius}, 0, 0, 1, ${-x} ${y} Z`} stroke={color} strokeWidth="5" fill="none"/>
     <Title y={- titleRadius} color={color} text={title} />
     <PointCollection points={points} distance={innerRadius} smallerDistance={smallerRadius} minAngle={Math.PI / 6} color={color} />
-  </Fragment>
+  </>
 }
 
 export default ({ points }) => {
   const groupedPoints = groupPoints(points)
 
-  return <Fragment>
-    <svg viewBox="0 0 1740 1006" xmlns="http://www.w3.org/2000/svg" dominantBaseline="middle" textAnchor="middle" fontWeight="bolder" fontFamily={fontFamily}>
-      <g transform="translate(870 1003)">
-        <Ring radius={1000} points={groupedPoints.assess} title="Assess" color={colors.assess} />
-        <Ring radius={666} points={groupedPoints.trial} title="Trial" color={colors.trial} />
-        <Ring radius={333} points={groupedPoints.adopt} title="Adopt" color={colors.adopt} />
-      </g>
-    </svg>
-  </Fragment>
+  return <svg viewBox="0 0 1740 1006" xmlns="http://www.w3.org/2000/svg" dominantBaseline="middle" textAnchor="middle" fontWeight="bolder" fontFamily={fontFamily}>
+    <g transform="translate(870 1003)">
+      <Ring radius={1000} points={groupedPoints.assess} title="Assess" color={colors.assess} />
+      <Ring radius={666} points={groupedPoints.trial} title="Trial" color={colors.trial} />
+      <Ring radius={333} points={groupedPoints.adopt} title="Adopt" color={colors.adopt} />
+    </g>
+  </svg>
 }

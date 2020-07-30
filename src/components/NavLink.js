@@ -1,8 +1,8 @@
-import { Fragment, forwardRef } from 'react'
+import { forwardRef } from 'react'
 import { colors } from '../styles.config'
 
 export default forwardRef((props, ref) => {
-  return <Fragment>
+  return <>
     <style jsx>{`
         a, a:hover, a:focus, a:visited, a:active {
           color: white;
@@ -15,5 +15,5 @@ export default forwardRef((props, ref) => {
     `}
     </style>
     <a className="navbar-item" {...props} ref={ref}>{props.children}</a>
-  </Fragment>
+  </>
 })
