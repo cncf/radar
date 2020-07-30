@@ -5,7 +5,7 @@ export default _ => {
   const { selectedPoint, setSelectedPoint } = useContext(SelectedPointContext)
   const [isLoading, setIsLoading] = useState(false)
   const closeModal = _ => setSelectedPoint("")
-  const src = `https://deploy-preview-663--landscapeapp.netlify.app/cncf/only-modal=yes&selected=${selectedPoint}`
+  const src = `https://landscape.cncf.io/only-modal=yes&selected=${selectedPoint}`
 
   useEffect(_ => {
     if (selectedPoint) {
