@@ -34,6 +34,7 @@ export default _ => {
         transform: translate(-50%, -50%);
         z-index: 101;
         border-radius: 5px;
+        margin: 0;
       }
       
       iframe {
