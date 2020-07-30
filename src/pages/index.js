@@ -1,12 +1,11 @@
-import Link from 'next/link'
 import { Fragment } from 'react'
 import loadData from '../loadData'
-import Radar from '../components/Radar'
 import Section from '../components/Section'
 import loadYaml from '../helpers/loadYaml'
 import MarkdownComponent from '../components/MarkdownComponent'
+import ThumbnailsList from '../components/ThumbnailsList'
 
-export default function Home({ radars, sections, development }) {
+export default function Home({ radars, sections, embedThumbnails }) {
   return <Fragment>
     <style jsx global>{`
       .homepage-section dl {
@@ -16,34 +15,8 @@ export default function Home({ radars, sections, development }) {
       }
     `}</style>
 
-    <style jsx>{`
-      .thumbnails {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-evenly;
-        gap: 40px;
-      }
-      
-      .thumbnail {
-        width: 400px;
-        text-align: center;
-      }
-    `}
-    </style>
-
     <Section title="Published Radars">
-      <div className="thumbnails">
-        { radars.map(({ key, name, points }) => {
-          return <div key={key} className="thumbnail">
-            <Link href="/[radar]" as={`/${key}`}>
-              <a>
-                {development ? <Radar points={points} /> : <img src={`${key}.svg`} />}
-                <h5>{name}</h5>
-              </a>
-            </Link>
-          </div>
-        }) }
-      </div>
+      <ThumbnailsList radars={radars} embedThumbnails={embedThumbnails} />
     </Section>
 
     { sections.map(({ title, content }) => {
@@ -55,8 +28,8 @@ export default function Home({ radars, sections, development }) {
 }
 
 export async function getStaticProps() {
-  const { radars } = await loadData()
+  const radars = (await loadData()).radars.filter(radar => !!process.env.DEVELOPMENT || !radar.draft)
   const sections = loadYaml('homepage.yml')
 
-  return { props: { radars, development: !!process.env.DEVELOPMENT, sections } }
+  return { props: { radars, sections, embedThumbnails: !!process.env.DEVELOPMENT } }
 }
