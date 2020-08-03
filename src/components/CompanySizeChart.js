@@ -57,20 +57,9 @@ export default function CompanySizeChart({ companies }) {
 
   return <div className="chart">
     <style jsx>{`
-      .chart {
-        width: 50%;
-        margin-top: 2rem;
-        text-align: center;
-      }
-      
-      @media only screen and (max-width: 1024px) {
-        .chart {
-          width: 100%;
-        }
-      }
-      
       h2 {
         margin-bottom: 1rem;
+        text-align: center;
       }
     `}
     </style>

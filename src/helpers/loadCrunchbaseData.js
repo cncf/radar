@@ -14,14 +14,15 @@ const fetchCrunchbase = async crunchbaseId => {
   const url = `https://api.crunchbase.com/api/v4/entities/organizations/${crunchbaseId}`
   const params = {
     user_key: process.env.CRUNCHBASE_API_KEY,
-    field_ids: 'name,num_employees_enum'
+    field_ids: 'name,num_employees_enum,categories'
   }
   const response = await (await fetch(`${url}?${querystring.stringify(params)}`)).json()
-  const { name, num_employees_enum, identifier } = response.properties
+  const { name, num_employees_enum, identifier, categories } = response.properties
+  const industry = (categories && categories[0].value) || 'N/A'
   const imagePath = `logos/${crunchbaseId}.png`
   await downloadImage(identifier.image_id, imagePath)
 
-  return { name, employeesCount: num_employees_enum || 'N/A', imagePath }
+  return { name, industry, employeesCount: num_employees_enum || 'N/A', imagePath }
 }
 
 export default async function loadCrunchbaseData(radar) {

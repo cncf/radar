@@ -9,6 +9,7 @@ import CompanySizeChart from '../components/CompanySizeChart'
 import VideoComponent from '../components/VideoComponent'
 import Companies from '../components/Companies'
 import loadCrunchbaseData from '../helpers/loadCrunchbaseData'
+import IndustriesTable from '../components/IndustriesTable'
 
 const RadarSection = ({ name, points}) => {
   return <Section title={name}>
@@ -39,8 +40,22 @@ const TeamSection = ({ team }) => {
 
 const DataSection = ({ points, companies }) => {
   return <Section title="Data">
+    <style jsx>{`
+      .column {
+        margin-top: 2rem;
+      }
+    `}</style>
+
     <RadarData points={points}/>
-    {companies && <CompanySizeChart companies={companies} />}
+    {companies && <div className="columns is-desktop">
+      <div className="column is-half">
+        <CompanySizeChart companies={companies} />
+      </div>
+
+      <div className="column is-half">
+        <IndustriesTable companies={companies} />
+      </div>
+    </div>}
   </Section>
 }
 
