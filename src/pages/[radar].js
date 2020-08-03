@@ -48,11 +48,11 @@ const DataSection = ({ points, companies }) => {
 
     <RadarData points={points}/>
     {companies && <div className="columns is-desktop">
-      <div className="column is-half">
+      <div className="column is-half-desktop">
         <CompanySizeChart companies={companies} />
       </div>
 
-      <div className="column is-half">
+      <div className="column is-half-desktop">
         <IndustriesTable companies={companies} />
       </div>
     </div>}

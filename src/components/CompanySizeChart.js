@@ -2,6 +2,20 @@ import { createRef, useEffect } from 'react'
 import Chart from 'chart.js'
 import { colors } from '../styles.config'
 
+const range = (lower, upper) => {
+  const lowerInt = parseInt(lower) - 1
+  const lowerStr = lowerInt >= 1000 ? `${lowerInt.toString().replace(/000$/, 'K')}` : lowerInt
+
+  if (upper === 'max') {
+    return `${lowerStr}+`
+  }
+
+  const upperInt = parseInt(upper)
+  const upperStr = upperInt >= 1000 ? `${upperInt.toString().replace(/000$/, 'K')}` : upperInt
+
+  return `${lowerStr}-${upperStr}`
+}
+
 export default function CompanySizeChart({ companies }) {
   const counts = companies.reduce((acc, company) => {
     const key = company.employeesCount
@@ -17,11 +31,8 @@ export default function CompanySizeChart({ companies }) {
     if (sizeParts.length === 1) {
       return size
     }
-    if (upper === 'max') {
-      return `>${parseInt(lower - 1)}`
-    }
 
-    return `>${parseInt(lower - 1)} & ≤${parseInt(upper)}`
+    return range(lower, upper)
   })
   const ref = createRef()
 
