@@ -5,7 +5,10 @@ import Section from '../components/Section'
 import RadarTeam from '../components/RadarTeam'
 import Radar from '../components/Radar'
 import RadarData from '../components/RadarData'
+import CompanySizeChart from '../components/CompanySizeChart'
 import VideoComponent from '../components/VideoComponent'
+import Companies from '../components/Companies'
+import loadCrunchbaseData from '../helpers/loadCrunchbaseData'
 
 const RadarSection = ({ name, points}) => {
   return <Section title={name}>
@@ -34,23 +37,26 @@ const TeamSection = ({ team }) => {
   </Section>
 }
 
-const DataSection = ({ points }) => {
+const DataSection = ({ points, companies }) => {
   return <Section title="Data">
     <RadarData points={points}/>
+    {companies && <CompanySizeChart companies={companies} />}
   </Section>
 }
+
 const renderSection = ({ title, content }) => {
   return <Section title={title} key={title}>
     <MarkdownComponent value={content} />
   </Section>
 }
 
-const RadarPage = ({ name, points, team, video, sections = [] }) => {
+const RadarPage = ({ name, points, team, video, companies, sections = [] }) => {
   const defaultSections = [
     <RadarSection name={name} points={points} key="radar" />,
     video && <WebinarSection video={video} key="video" />,
     <TeamSection team={team} key="team" />,
-    <DataSection points={points} key="data" />
+    <DataSection points={points} companies={companies} key="data" />,
+    <Section title="Companies" key="companies"><Companies companies={companies} /></Section>
   ].filter(_ => _).map((section, i) => [i + 1, section])
 
   const positionedSections = sections.filter(section => section.position)
@@ -73,7 +79,8 @@ const RadarPage = ({ name, points, team, video, sections = [] }) => {
 export async function getStaticProps ({ params }) {
   const { radars } = await loadData()
   const radar = radars.find(({ key }) => key === params.radar)
-  return { props: radar }
+  const companies = await loadCrunchbaseData(radar)
+  return { props: { ...radar, companies } }
 }
 
 export async function getStaticPaths() {
