@@ -17,6 +17,7 @@ export default function Footer() {
           color: white;
           font-size: 0.8rem;
           padding: 10px;
+          margin: 0;
         } 
     `}</style>
     <div className="container">
