@@ -41,8 +41,12 @@ const TeamSection = ({ team }) => {
 const DataSection = ({ points, companies }) => {
   return <Section title="Data">
     <style jsx>{`
+      .columns {
+        margin-top: 0;
+      }
+      
       .column {
-        margin-top: 2rem;
+        margin-top: 1.25rem;
       }
     `}</style>
 
