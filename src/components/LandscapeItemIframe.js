@@ -4,20 +4,18 @@ import SelectedPointContext from '../contexts/SelectedPointContext'
 export default function LandscapeItemIframe() {
   const { selectedPoint, setSelectedPoint } = useContext(SelectedPointContext)
   const [isLoading, setIsLoading] = useState(false)
-  const closeModal = _ => setSelectedPoint("")
-  const src = `https://landscape.cncf.io/only-modal=yes&selected=${selectedPoint}`
+  const [visitedPoints, setVisitedPoints] = useState(new Set())
+  const closeModal = _ => setSelectedPoint('')
+  const isOpen = selectedPoint !== ''
 
   useEffect(_ => {
-    if (selectedPoint) {
+    if (selectedPoint && !visitedPoints.has(selectedPoint)) {
       setIsLoading(true)
+      setVisitedPoints(new Set([...visitedPoints, selectedPoint]))
     }
   }, [selectedPoint])
 
-  if (selectedPoint === "") {
-    return null;
-  }
-
-  return <>
+  return <div className={isOpen ? null : 'hidden'}>
     <style jsx global>{`
       html, body {
         overflow-y: ${selectedPoint ? 'hidden' : 'auto'}
@@ -25,6 +23,11 @@ export default function LandscapeItemIframe() {
     `}
     </style>
     <style jsx>{`
+      .hidden {
+        // Use opacity to hide modal, otherwise it's re-rendered.
+        opacity: 0;
+      }
+
       .modal-content {
         width: min(100vw - 40px, 1000px);
         height: min(100vh - 40px, 640px);
@@ -35,10 +38,6 @@ export default function LandscapeItemIframe() {
         z-index: 101;
         border-radius: 5px;
         margin: 0;
-      }
-      
-      iframe {
-        display: ${isLoading ? 'none' : 'block'};
       }
       
       .modal-content.center {
@@ -71,13 +70,17 @@ export default function LandscapeItemIframe() {
       <i className="fas fa-spinner fa-spin"></i>
       <span>Loading</span>
     </div>}
-    {selectedPoint ?
-      <iframe className="modal-content" src={src} onLoad={_ => setIsLoading(false)} /> :
-      <div className="modal-content center">
-        <span>No associated data found</span>
-      </div>
-    }
+    {!selectedPoint && <div className="modal-content center">
+      <span>No associated data found</span>
+    </div>}
+
+    { [...visitedPoints].map(point => {
+      // We only want to load each iframe once.
+      const src = `https://landscape.cncf.io/only-modal=yes&selected=${point}`
+      const className = point === selectedPoint && !isLoading ? null : 'hidden'
+      return <iframe className={`modal-content ${className}`} onLoad={_ => setIsLoading(false)} src={src} key={point} />
+    }) }
 
     <button className="modal-close is-large" aria-label="close" onClick={closeModal}></button>
-  </>
+  </div>
 }
