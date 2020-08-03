@@ -1,0 +1,129 @@
+crunchbase:
+  - name: Zalando
+    employeesCount: c_10001_max
+    imagePath: logos/zalando.png
+    id: zalando
+  - name: Spotify
+    employeesCount: c_01001_05000
+    imagePath: logos/spotify.png
+    id: spotify
+  - name: American Express
+    employeesCount: c_10001_max
+    imagePath: logos/americanexpress.png
+    id: americanexpress
+  - name: Apple
+    employeesCount: c_10001_max
+    imagePath: logos/apple.png
+    id: apple
+  - name: Indeed
+    employeesCount: c_05001_10000
+    imagePath: logos/indeed.png
+    id: indeed
+  - name: Thermo Fisher Scientific
+    employeesCount: c_10001_max
+    imagePath: logos/thermo-fisher-scientific.png
+    id: thermo-fisher-scientific
+  - name: Box
+    employeesCount: c_01001_05000
+    imagePath: logos/box.png
+    id: box
+  - name: KSAT
+    employeesCount: N/A
+    imagePath: logos/ksat-e80c.png
+    id: ksat-e80c
+  - name: Snow Software
+    employeesCount: c_00501_01000
+    imagePath: logos/snow-software.png
+    id: snow-software
+  - name: Entegral
+    employeesCount: N/A
+    imagePath: logos/entegral.png
+    id: entegral
+  - name: OpenTable
+    employeesCount: c_00501_01000
+    imagePath: logos/opentable.png
+    id: opentable
+  - name: Hobsons
+    employeesCount: c_00501_01000
+    imagePath: logos/hobsons.png
+    id: hobsons
+  - name: Lunar
+    employeesCount: c_00101_00250
+    imagePath: logos/lunar-bank.png
+    id: lunar-bank
+  - name: 1&1 Mail & Media Development & Technology
+    employeesCount: N/A
+    imagePath: logos/1-1-mail-media-development-technology-gmbh.png
+    id: 1-1-mail-media-development-technology-gmbh
+  - name: Ricardo
+    employeesCount: c_05001_10000
+    imagePath: logos/ricardo.png
+    id: ricardo
+  - name: Tradeshift
+    employeesCount: c_01001_05000
+    imagePath: logos/tradeshift.png
+    id: tradeshift
+  - name: New York Times Co
+    employeesCount: c_01001_05000
+    imagePath: logos/new-york-times-co.png
+    id: new-york-times-co
+  - name: N26
+    employeesCount: c_01001_05000
+    imagePath: logos/n26.png
+    id: n26
+  - name: MHI Vestas Offshore Wind
+    employeesCount: c_01001_05000
+    imagePath: logos/mhi-vestas-offshore-wind.png
+    id: mhi-vestas-offshore-wind
+  - name: EquityZen
+    employeesCount: c_00011_00050
+    imagePath: logos/equityzen-inc.png
+    id: equityzen-inc
+  - name: Under Armour
+    employeesCount: c_10001_max
+    imagePath: logos/under-armour.png
+    id: under-armour
+  - name: Intuit
+    employeesCount: c_05001_10000
+    imagePath: logos/intuit.png
+    id: intuit
+  - name: Nielsen
+    employeesCount: c_10001_max
+    imagePath: logos/nielsen.png
+    id: nielsen
+  - name: Zendesk
+    employeesCount: c_01001_05000
+    imagePath: logos/zendesk.png
+    id: zendesk
+  - name: EverQuote
+    employeesCount: c_00251_00500
+    imagePath: logos/everquote.png
+    id: everquote
+  - name: Ant Group
+    employeesCount: c_05001_10000
+    imagePath: logos/ant-financial.png
+    id: ant-financial
+  - name: JD.com
+    employeesCount: c_10001_max
+    imagePath: logos/jd-com.png
+    id: jd-com
+  - name: PayIt
+    employeesCount: c_00101_00250
+    imagePath: logos/payit.png
+    id: payit
+  - name: State Farm Insurance
+    employeesCount: c_05001_10000
+    imagePath: logos/state-farm-insurance.png
+    id: state-farm-insurance
+  - name: Dailymotion
+    employeesCount: c_00101_00250
+    imagePath: logos/dailymotion.png
+    id: dailymotion
+  - name: Meltwater
+    employeesCount: c_01001_05000
+    imagePath: logos/meltwater.png
+    id: meltwater
+  - name: trivago
+    employeesCount: c_01001_05000
+    imagePath: logos/trivago.png
+    id: trivago
