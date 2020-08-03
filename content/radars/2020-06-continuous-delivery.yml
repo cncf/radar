@@ -20,11 +20,11 @@ sections:
   - title: Important Links
     content: |
       CNCF Projects for Continuous Delivery:
-      * Argo is an open source container-native workflow engine for or- chestrating parallel jobs on Kubernetes. A CNCF
+      * Argo is an open source container-native workflow engine for orchestrating parallel jobs on Kubernetes. A CNCF
       incubating project, it is composed of [Argo CD](https://argoproj.github.io/argo-cd/),
       [Argo Workflows](https://argoproj.github.io/argo/), and [Argo Rollouts](https://argoproj.github.io/argo-rollouts/).
       * Flux is the open source GitOps operator for Kubernetes. It is a CNCF sandbox project.
-      * Helm is the open source package manager for Kubernetes. It re- cently graduated within CNCF.
+      * Helm is the open source package manager for Kubernetes. It recently graduated within CNCF.
 video: https://www.youtube.com/embed/0792Q3l6tK8
 team:
   - name: Cheryl Hung
