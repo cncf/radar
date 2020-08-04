@@ -38,7 +38,7 @@ export default function CompanySizeChart({ companies }) {
 
   useEffect(_ => {
     new Chart(ref.current, {
-      type: 'horizontalBar',
+      type: 'bar',
       data: {
         labels,
         datasets: [
