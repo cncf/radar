@@ -1,3 +1,5 @@
+import { sizes } from '../styles.config'
+
 export default function Companies({ companies }) {
   return <div className="wrapper">
     <style jsx>{`
@@ -11,6 +13,13 @@ export default function Companies({ companies }) {
         img {
           width: 100px;
           height: 100px;
+        }
+        
+        @media only screen and (max-width: ${sizes.mobile}px) {
+          img {
+            width: 80px;
+            height: 80px;
+          }
         }
       `}</style>
 
