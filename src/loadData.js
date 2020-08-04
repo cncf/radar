@@ -2,11 +2,11 @@ import path from 'path'
 import { readdirSync, writeFileSync } from 'fs'
 import stripUrl from './helpers/stripUrl'
 import fetchLandscapeData from './helpers/fetchLandscapeData'
+import fetchLogo from './helpers/fetchLogo'
 import loadYaml from './helpers/loadYaml'
 
 const downloadLogo = async (sourcePath, destinationPath) => {
-  const url = `https://landscape.cncf.io/${sourcePath}`
-  const content = await (await fetch(url)).text()
+  const content = await fetchLogo(sourcePath)
   const destination = path.join(process.cwd(), 'public', destinationPath)
   writeFileSync(destination, content)
 }
