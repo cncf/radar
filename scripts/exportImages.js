@@ -16,4 +16,8 @@ loadData().then(({ radars }) => {
       .flatten({ background: { r: 255, g: 255, b: 255 } })
       .toFile(outputPath.replace(/\..*/, '.png'))
   })
+}).catch(error => {
+  console.log('ERROR EXPORTING SVG!!!')
+  console.log('Exception ===>', error.message)
+  process.exit(1)
 })
