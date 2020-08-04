@@ -4,6 +4,7 @@ import { colors } from '../styles.config'
 import Search from './Search'
 import NavLink from './NavLink'
 import OutboundLink from './OutboundLink'
+import { sizes } from '../styles.config'
 
 export default function Header() {
   const [showMenu, setShowMenu] = useState(false)
@@ -29,7 +30,7 @@ export default function Header() {
         align-items: flex-start;
       }
       
-      @media only screen and (max-width: 1024px) {
+      @media only screen and (max-width: ${sizes.tablet}px) {
         .navbar-menu {
           text-align: center;
           margin: 10px 25px 0;
@@ -47,7 +48,7 @@ export default function Header() {
         margin: 0;
       }
       
-      @media only screen and (max-width: 768px) {
+      @media only screen and (max-width: ${sizes.mobile}px) {
         h1 {
           font-size: 1.5rem;
         }

@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import Radar from './Radar'
+import { sizes } from '../styles.config'
 
 export default function ThumbnailsList({ radars, embedThumbnails = false }) {
   return <div className="thumbnails">
@@ -15,6 +16,19 @@ export default function ThumbnailsList({ radars, embedThumbnails = false }) {
         width: 400px;
         text-align: center;
       }
+      
+      @media only screen and (max-width: ${sizes.tablet}px) {
+        .thumbnails {
+          gap: 10px;
+          flex-direction: column;
+          align-content: center;
+          margin-bottom: 0.5rem;
+        }
+
+        .preview {
+          display: none;
+        }
+      }
     `}
     </style>
 
@@ -22,7 +36,7 @@ export default function ThumbnailsList({ radars, embedThumbnails = false }) {
       return <div key={key} className="thumbnail">
         <Link href="/[radar]" as={`/${key}`}>
           <a>
-            {embedThumbnails ? <Radar points={points}/> : <img src={`${key}.svg`}/>}
+            <span className="preview">{embedThumbnails ? <Radar points={points}/> : <img src={`${key}.svg`}/>}</span>
             <h5>{name}</h5>
           </a>
         </Link>

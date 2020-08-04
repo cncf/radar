@@ -1,3 +1,5 @@
+import { sizes } from '../styles.config'
+
 export default function Section({ title, children }) {
   return <section className="section">
     <style jsx>{`
@@ -6,7 +8,11 @@ export default function Section({ title, children }) {
         margin-bottom: 1.5rem;
       }
       
-      @media only screen and (max-width: 768px) {
+      @media only screen and (max-width: ${sizes.mobile}px) {
+        h2 {
+          margin-bottom: 1rem;
+        }
+
         .section {
           padding: 1.5rem 1rem;
         }

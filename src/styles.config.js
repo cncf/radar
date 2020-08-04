@@ -17,5 +17,9 @@ module.exports = {
   typography: {
     fontFamily: ['BlinkMacSystemFont', '-apple-system', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
       'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif']
+  },
+  sizes: {
+    mobile: 768,
+    tablet: 1024
   }
 }
