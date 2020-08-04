@@ -8,7 +8,6 @@ import RadarData from '../components/RadarData'
 import CompanySizeChart from '../components/CompanySizeChart'
 import VideoComponent from '../components/VideoComponent'
 import Companies from '../components/Companies'
-import loadCrunchbaseData from '../helpers/loadCrunchbaseData'
 import IndustriesTable from '../components/IndustriesTable'
 
 const RadarSection = ({ name, points}) => {
@@ -98,8 +97,7 @@ const RadarPage = ({ name, points, team, video, companies, sections = [] }) => {
 export async function getStaticProps ({ params }) {
   const { radars } = await loadData()
   const radar = radars.find(({ key }) => key === params.radar)
-  const companies = await loadCrunchbaseData(radar)
-  return { props: { ...radar, companies } }
+  return { props: radar }
 }
 
 export async function getStaticPaths() {

@@ -1,8 +1,15 @@
 import path from 'path'
-import { readdirSync } from 'fs'
+import { readdirSync, writeFileSync } from 'fs'
 import stripUrl from './helpers/stripUrl'
 import fetchLandscapeData from './helpers/fetchLandscapeData'
 import loadYaml from './helpers/loadYaml'
+
+const downloadLogo = async (sourcePath, destinationPath) => {
+  const url = `https://landscape.cncf.io/${sourcePath}`
+  const content = await (await fetch(url)).text()
+  const destination = path.join(process.cwd(), 'public', destinationPath)
+  writeFileSync(destination, content)
+}
 
 const projectMatches = ({ project, point }) => {
   if (point.repo) {
@@ -47,11 +54,12 @@ const loadRadarData = _ => {
 export default async (filterFn) => {
   const data = loadRadarData()
   const landscapeData = await fetchLandscapeData()
+  const industries = loadYaml('industries.yml')
 
-  const radars = data
+  const radarPromises = data
     .sort((a, b) => -a.key.localeCompare(b.key))
     .filter(radar => filterFn ? filterFn(radar) : true)
-    .map(radarAttrs => {
+    .map(async radarAttrs => {
       const radar = makeRadar(radarAttrs)
 
       const points = radar.points.map(pointAttrs => {
@@ -60,8 +68,20 @@ export default async (filterFn) => {
         return { ...point, fullKey: `${radar.key}/${point.key}`, radarKey: radar.key }
       })
 
-      return { ...radar, points }
+      const companyPromises = (radar.companies || []).map(async landscapeId => {
+        const { id, flatName, href, crunchbaseData } = landscapeData.find(({ id }) => id === landscapeId) || {}
+        const employeesRange = [crunchbaseData.numEmployeesMin, crunchbaseData.numEmployeesMax]
+        const logoPath = `logos/${id}.svg`
+        const industry = industries[landscapeId]
+        await downloadLogo(href, logoPath)
+        return { key: id, name: flatName, employeesRange, logoPath, industry }
+      })
+
+      const companies = await Promise.all(companyPromises)
+      return { ...radar, points, companies }
     })
+
+  const radars = await Promise.all(radarPromises)
 
   const points = radars.flatMap(radar => {
     return radar.points.map(point => ({ ...point, radar }))

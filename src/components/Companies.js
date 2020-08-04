@@ -3,12 +3,17 @@ export default function Companies({ companies }) {
     <style jsx>{`
         .wrapper {
           display: flex;
-          gap: 10px;
+          gap: 20px;
           justify-content: center;
           flex-wrap: wrap;
         }
+        
+        img {
+          width: 100px;
+          height: 100px;
+        }
       `}</style>
 
-    { companies.map(company => <img src={`/${company.imagePath}`} alt={company.name} key={company.id} />) }
+    { companies.map(company => <img src={`/${company.logoPath}`} alt={company.name} key={company.key} />) }
   </div>
 }

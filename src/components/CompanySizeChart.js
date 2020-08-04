@@ -3,37 +3,35 @@ import Chart from 'chart.js'
 import { colors } from '../styles.config'
 
 const range = (lower, upper) => {
-  const lowerInt = parseInt(lower) - 1
-  const lowerStr = lowerInt >= 1000 ? `${lowerInt.toString().replace(/000$/, 'K')}` : lowerInt
-
-  if (upper === 'max') {
-    return `${lowerStr}+`
+  if (!lower && !upper) {
+    return
   }
 
-  const upperInt = parseInt(upper)
-  const upperStr = upperInt >= 1000 ? `${upperInt.toString().replace(/000$/, 'K')}` : upperInt
+  const lowerStr = lower >= 1000 ? `${lower.toString().replace(/000$/, 'K')}` : lower
+
+  if (upper >= 1000000) {
+    return `${lower}+`
+  }
+
+  const upperStr = upper >= 1000 ? `${upper.toString().replace(/000$/, 'K')}` : upper
 
   return `${lowerStr}-${upperStr}`
 }
 
 export default function CompanySizeChart({ companies }) {
   const counts = companies.reduce((acc, company) => {
-    const key = company.employeesCount
+    const key = range(...company.employeesRange)
     const count = (acc[key] || 0) + 1
     return { ...acc, [key]: count }
   }, {})
 
-  const sizes = Object.keys(counts).sort()
-  const labels = sizes.map(size => {
-    const sizeParts = size.split('_')
-    const [_, lower, upper] = sizeParts
+  const labels = companies.map(company => company.employeesRange)
+    .sort((a, b) => a[0] - b[0])
+    .reduce((acc, sizes) => {
+      const label = range(...sizes)
+      return label && acc.indexOf(label) === -1 ? [...acc, label] : acc;
+    }, [])
 
-    if (sizeParts.length === 1) {
-      return size
-    }
-
-    return range(lower, upper)
-  })
   const ref = createRef()
 
   useEffect(_ => {
@@ -43,14 +41,14 @@ export default function CompanySizeChart({ companies }) {
         labels,
         datasets: [
           {
-            data: sizes.map(size => counts[size]),
+            data: labels.map(label => counts[label]),
             backgroundColor: colors.darkBlue
           }
         ]
       },
       options: {
         scales: {
-          xAxes: [{
+          yAxes: [{
             ticks: {
               beginAtZero: true
             }
