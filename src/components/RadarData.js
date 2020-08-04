@@ -13,6 +13,7 @@ export default function RadarData({ points }) {
       
       table {
         border: 1px solid ${colors.darkPurple};
+        font-size: 0.95rem;
       }
 
       td, th {
@@ -27,7 +28,7 @@ export default function RadarData({ points }) {
       
       td.vote {
         text-align: center;
-        color: white;
+        color: black;
         text-transform: capitalize;
       }
       
@@ -35,12 +36,8 @@ export default function RadarData({ points }) {
         white-space: nowrap;
       }
       
-      tr:nth-child(odd) td.name {
+      tr td.name {
         background: white;
-      }
-      
-      tr:nth-child(even) td.name {
-        background: #f0f5f7;
       }
     `}
     </style>
@@ -58,7 +55,7 @@ export default function RadarData({ points }) {
           ['adopt', 'trial', 'assess'].map(level => {
             return groupedPoints[level].map((point, i) => {
               return <tr key={`point-${level}-${point.key}`}>
-                { i === 0 && <td rowSpan={groupedPoints[level].length} style={{background: colors[level]}} className="vote">
+                { i === 0 && <td rowSpan={groupedPoints[level].length} className={`has-text-weight-semibold vote ${level}-background`}>
                   {level}
                 </td> }
                 <td className="name"><LinkToPoint point={point} /></td>
@@ -68,7 +65,7 @@ export default function RadarData({ points }) {
 
                     return [...Array(votes || 0).keys()].map(i => {
                       const key = `vote-${level}-${point.key}-${voteKey}-${i}`
-                      return <td key={key} style={{background: colors[voteKey]}} className="vote">
+                      return <td key={key} className={`vote ${voteKey}-background`}>
                         {voteKey}
                       </td>
                     })

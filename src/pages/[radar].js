@@ -74,8 +74,8 @@ const RadarPage = ({ name, points, team, video, companies, sections = [] }) => {
     <RadarSection name={name} points={points} key="radar" />,
     video && <WebinarSection video={video} key="video" />,
     <TeamSection team={team} key="team" />,
-    <DataSection points={points} companies={companies} key="data" />,
-    <Section title="Companies" key="companies"><Companies companies={companies} /></Section>
+    <Section title="Companies" key="companies"><Companies companies={companies} /></Section>,
+    <DataSection points={points} companies={companies} key="data" />
   ].filter(_ => _).map((section, i) => [i + 1, section])
 
   const positionedSections = sections.filter(section => section.position)

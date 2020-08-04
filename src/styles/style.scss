@@ -84,3 +84,19 @@ ul {
 ol {
   margin-left: 1.5rem;
 }
+
+.adopt-background {
+  background-color: map.get($colors, 'adoptBg');
+}
+
+.trial-background {
+  background-color: map.get($colors, 'trialBg');
+}
+
+.assess-background {
+  background-color: map.get($colors, 'assessBg');
+}
+
+.hold-background {
+  background-color: map.get($colors, 'holdBg');
+}
