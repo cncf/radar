@@ -4,6 +4,8 @@ import stripUrl from './helpers/stripUrl'
 import loadYaml from './helpers/loadYaml'
 import fetchUrl from './helpers/fetchUrl'
 
+const industries = loadYaml('industries.yml')
+
 const fetchLandscapeData = async _ => JSON.parse(await fetchUrl('https://landscape.cncf.io/data.json'))
 
 const downloadLogo = async (sourcePath, name) => {
@@ -44,6 +46,15 @@ const buildRadar = attrs => {
   return { ...attrs, name }
 }
 
+const buildCompany = async attrs => {
+  const { id, flatName, href, crunchbaseData } = attrs
+  const employeesRange = [crunchbaseData.numEmployeesMin, crunchbaseData.numEmployeesMax]
+  const logo = `${id}.svg`
+  const industry = industries[id]
+  await downloadLogo(href, logo)
+  return { key: id, name: flatName, employeesRange, logo, industry }
+}
+
 const loadRadarData = _ => {
   return readdirSync(path.join(process.cwd(), 'content', 'radars')).map(path => {
     const radar = loadYaml('radars', path)
@@ -70,7 +81,6 @@ const deleteUnusedData = radars => {
 export default async (filterFn) => {
   const data = loadRadarData()
   const landscapeData = await fetchLandscapeData()
-  const industries = loadYaml('industries.yml')
 
   const radarPromises = data
     .sort((a, b) => -a.key.localeCompare(b.key))
@@ -85,12 +95,8 @@ export default async (filterFn) => {
       })
 
       const companyPromises = (radar.companies || []).map(async landscapeId => {
-        const { id, flatName, href, crunchbaseData } = landscapeData.find(({ id }) => id === landscapeId) || {}
-        const employeesRange = [crunchbaseData.numEmployeesMin, crunchbaseData.numEmployeesMax]
-        const logo = `${id}.svg`
-        const industry = industries[landscapeId]
-        await downloadLogo(href, logo)
-        return { key: id, name: flatName, employeesRange, logo, industry }
+        const landscapeAttrs = landscapeData.find(({ id }) => id === landscapeId) || {}
+        return await buildCompany(landscapeAttrs)
       })
 
       const companies = await Promise.all(companyPromises)
