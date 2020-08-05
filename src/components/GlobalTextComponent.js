@@ -5,7 +5,7 @@ import GlobalsContext from '../contexts/GlobalsContext';
 const GlobalTextComponent = ({ name, ...props }) => {
   const { texts } = useContext(GlobalsContext)
   const text = texts[name]
-  return text && <MarkdownComponent value={text} {...props} />
+  return text ? <MarkdownComponent value={text} {...props} /> : null
 }
 
 export default GlobalTextComponent

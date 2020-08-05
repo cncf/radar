@@ -1,6 +1,17 @@
+import css from 'styled-jsx/css'
 import { colors } from '../styles.config'
+import GlobalTextComponent from './GlobalTextComponent'
 
 export default function Footer() {
+  const { className, styles } = css.resolve`
+    * :global(p) {
+      color: white;
+      font-size: 0.8rem;
+      padding: 10px;
+      margin: 0;
+    } 
+  `
+
   return <nav className="navbar footer">
     <style jsx>{`
         nav {
@@ -12,25 +23,14 @@ export default function Footer() {
         img {
           max-height: initial;
         }
-        
-        p {
-          color: white;
-          font-size: 0.8rem;
-          padding: 10px;
-          margin: 0;
-        } 
     `}</style>
+    {styles}
     <div className="container">
       <div className="navbar-brand">
         <a href="https://www.cncf.io" className="navbar-item"><img src="/cncf-logo.svg" alt="CNCF" width="186" height="34"/></a>
       </div>
 
-      <p>
-        CNCF is a leading global provider of services for digital transformation and digital business models.
-        CNCF relies exclusively on established Enterprise Open Source technologies. This leads to innovative
-        solutions, digital products and portals in agile software projects, and helps build long-lasting, strategic
-        partnerships with our customers.
-      </p>
+      <GlobalTextComponent name="footer" className={className} />
     </div>
   </nav>
 }
