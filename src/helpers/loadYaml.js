@@ -1,8 +1,8 @@
-import { join } from 'path'
-import { readFileSync } from 'fs'
-import YAML from 'yaml'
+const { join } = require('path')
+const { readFileSync } = require('fs')
+const YAML = require('yaml')
 
-export default (...path) => {
+module.exports = (...path) => {
   const fullPath = join(process.cwd(), 'content', ...path)
   return YAML.parse(readFileSync(fullPath, 'utf-8'))
 }

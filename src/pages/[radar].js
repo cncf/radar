@@ -1,3 +1,4 @@
+import css from 'styled-jsx/css'
 import loadData from '../loadData'
 import withTitle from '../components/withTitle'
 import MarkdownComponent from '../components/MarkdownComponent'
@@ -9,6 +10,7 @@ import CompanySizeChart from '../components/CompanySizeChart'
 import VideoComponent from '../components/VideoComponent'
 import Companies from '../components/Companies'
 import IndustriesTable from '../components/IndustriesTable'
+import GlobalTextComponent from '../components/GlobalTextComponent'
 
 const RadarSection = ({ name, points}) => {
   return <Section title={name}>
@@ -34,6 +36,23 @@ const WebinarSection = ({ video }) => {
 const TeamSection = ({ team }) => {
   return <Section title="Team">
     <RadarTeam team={team}/>
+  </Section>
+}
+
+const CompaniesSection = ({ companies }) => {
+  const { className, styles } = css.resolve`
+    div {
+      text-align: center;
+      color: #666;
+      font-size: 1rem;
+      font-style: italic;
+    }  
+  `
+
+  return  <Section title="Companies">
+    {styles}
+    <Companies companies={companies} />
+    <GlobalTextComponent name="hidden_companies" className={className} />
   </Section>
 }
 
@@ -73,7 +92,7 @@ const RadarPage = ({ name, points, team, video, companies, sections = [] }) => {
     <RadarSection name={name} points={points} key="radar" />,
     video && <WebinarSection video={video} key="video" />,
     <TeamSection team={team} key="team" />,
-    <Section title="Companies" key="companies"><Companies companies={companies} /></Section>,
+    <CompaniesSection companies={companies} key="companies" />,
     <DataSection points={points} companies={companies} key="data" />
   ].filter(_ => _).map((section, i) => [i + 1, section])
 
