@@ -25,7 +25,7 @@ const formatDate = (date, format) => {
   return dateTimeFormat.format(date)
 }
 
-const makePoint = (attrs, landscapeAttrs) => {
+const buildPoint = (attrs, landscapeAttrs) => {
   const key = attrs.name.toLowerCase().replace(/\W/g, '-')
   const { github_data } = landscapeAttrs || {}
 
@@ -80,7 +80,7 @@ export default async (filterFn) => {
 
       const points = radar.points.map(pointAttrs => {
         const landscapeAttrs = landscapeData.find(project => projectMatches({ project, point: pointAttrs }))
-        const point = makePoint(pointAttrs, landscapeAttrs)
+        const point = buildPoint(pointAttrs, landscapeAttrs)
         return { ...point, fullKey: `${radar.key}/${point.key}`, radarKey: radar.key }
       })
 
