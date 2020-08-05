@@ -37,7 +37,7 @@ const buildPoint = (attrs, landscapeAttrs) => {
   return { description, landscapeId: landscapeAttrs.id, ...attrs, key }
 }
 
-const makeRadar = attrs => {
+const buildRadar = attrs => {
   const date = new Date(attrs.key.match(/\d{4}-\d{2}/)[0])
   const name = `${attrs.name}, ${(formatDate(date, { month: 'long', year: 'numeric' }))}`
 
@@ -76,7 +76,7 @@ export default async (filterFn) => {
     .sort((a, b) => -a.key.localeCompare(b.key))
     .filter(radar => filterFn ? filterFn(radar) : true)
     .map(async radarAttrs => {
-      const radar = makeRadar(radarAttrs)
+      const radar = buildRadar(radarAttrs)
 
       const points = radar.points.map(pointAttrs => {
         const landscapeAttrs = landscapeData.find(project => projectMatches({ project, point: pointAttrs }))
