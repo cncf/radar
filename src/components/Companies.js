@@ -23,6 +23,6 @@ export default function Companies({ companies }) {
         }
       `}</style>
 
-    { companies.map(company => <img src={`/${company.logoPath}`} alt={company.name} key={company.key} />) }
+    { companies.map(company => <img src={`/logos/${company.logo}`} alt={company.name} key={company.key} />) }
   </div>
 }

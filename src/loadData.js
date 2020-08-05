@@ -1,13 +1,13 @@
 import path from 'path'
-import { readdirSync, writeFileSync } from 'fs'
+import { readdirSync, writeFileSync, unlinkSync } from 'fs'
 import stripUrl from './helpers/stripUrl'
 import fetchLandscapeData from './helpers/fetchLandscapeData'
 import fetchLogo from './helpers/fetchLogo'
 import loadYaml from './helpers/loadYaml'
 
-const downloadLogo = async (sourcePath, destinationPath) => {
+const downloadLogo = async (sourcePath, name) => {
   const content = await fetchLogo(sourcePath)
-  const destination = path.join(process.cwd(), 'public', destinationPath)
+  const destination = path.join(process.cwd(), 'public', 'logos', name)
   writeFileSync(destination, content)
 }
 
@@ -51,6 +51,21 @@ const loadRadarData = _ => {
   })
 }
 
+const deleteUnusedData = radars => {
+  const logos = radars.flatMap(radar => {
+    return radar.companies.map(company => company.logo)
+  })
+
+  const logosDir = path.join(process.cwd(), 'public', 'logos')
+  const savedLogos = readdirSync(logosDir)
+
+  savedLogos.forEach(logo => {
+    if (logos.indexOf(logo) === -1) {
+      unlinkSync(path.join(logosDir, logo))
+    }
+  })
+}
+
 export default async (filterFn) => {
   const data = loadRadarData()
   const landscapeData = await fetchLandscapeData()
@@ -71,10 +86,10 @@ export default async (filterFn) => {
       const companyPromises = (radar.companies || []).map(async landscapeId => {
         const { id, flatName, href, crunchbaseData } = landscapeData.find(({ id }) => id === landscapeId) || {}
         const employeesRange = [crunchbaseData.numEmployeesMin, crunchbaseData.numEmployeesMax]
-        const logoPath = `logos/${id}.svg`
+        const logo = `${id}.svg`
         const industry = industries[landscapeId]
-        await downloadLogo(href, logoPath)
-        return { key: id, name: flatName, employeesRange, logoPath, industry }
+        await downloadLogo(href, logo)
+        return { key: id, name: flatName, employeesRange, logo, industry }
       })
 
       const companies = await Promise.all(companyPromises)
@@ -86,6 +101,8 @@ export default async (filterFn) => {
   const points = radars.flatMap(radar => {
     return radar.points.map(point => ({ ...point, radar }))
   })
+
+  deleteUnusedData(radars)
 
   return { radars, points }
 }
