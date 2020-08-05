@@ -1,4 +1,4 @@
-const groupedPoints = points => {
+const groupPoints = points => {
   return {
     adopt: points.filter(point => point.level === 'adopt'),
     trial: points.filter(point => point.level === 'trial'),
@@ -6,4 +6,4 @@ const groupedPoints = points => {
   }
 }
 
-export default groupedPoints
+export default groupPoints
