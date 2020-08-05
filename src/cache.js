@@ -7,7 +7,7 @@ const cachePath = join(tmpdir(), 'radar-cache')
 const get = key => {
   return new Promise(resolve => {
     cacache.get(cachePath, key)
-      .then(({ data, ...rest }) => resolve(data.toString()))
+      .then(({ data, ...rest }) => resolve(data))
       .catch(_ => resolve())
   })
 }

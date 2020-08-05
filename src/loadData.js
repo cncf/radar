@@ -1,8 +1,13 @@
 import path from 'path'
 import { readdirSync, writeFileSync, unlinkSync } from 'fs'
+import imageSize from 'image-size'
 import stripUrl from './helpers/stripUrl'
 import loadYaml from './helpers/loadYaml'
 import fetchUrl from './helpers/fetchUrl'
+
+const getExtension = buffer => {
+  return imageSize(buffer).type
+}
 
 const industries = loadYaml('industries.yml')
 
@@ -55,6 +60,16 @@ const buildCompany = async attrs => {
   return { key: id, name: flatName, employeesRange, logo, industry }
 }
 
+const buildMember = async (attrs) => {
+  const url = attrs.photo
+  const content = await fetchUrl(url)
+  const memberSlug = attrs.name.toLowerCase().replace(/\W/g, '-')
+  const photo = [memberSlug, getExtension(content)].join('.')
+  const destination = path.join(process.cwd(), 'public', 'photos', photo)
+  writeFileSync(destination, content)
+  return { ...attrs, photo }
+}
+
 const loadRadarData = _ => {
   return readdirSync(path.join(process.cwd(), 'content', 'radars')).map(path => {
     const radar = loadYaml('radars', path)
@@ -63,19 +78,29 @@ const loadRadarData = _ => {
   })
 }
 
+const deleteUnusedFiles = (directoryName, usedFiles) => {
+  const directory = path.join(process.cwd(), 'public', directoryName)
+  const storedFiles = readdirSync(directory)
+
+  storedFiles.forEach(file => {
+    if (usedFiles.indexOf(file) === -1) {
+      unlinkSync(path.join(directory, file))
+    }
+  })
+}
+
 const deleteUnusedData = radars => {
   const logos = radars.flatMap(radar => {
     return radar.companies.map(company => company.logo)
   })
 
-  const logosDir = path.join(process.cwd(), 'public', 'logos')
-  const savedLogos = readdirSync(logosDir)
+  deleteUnusedFiles('logos', logos)
 
-  savedLogos.forEach(logo => {
-    if (logos.indexOf(logo) === -1) {
-      unlinkSync(path.join(logosDir, logo))
-    }
+  const photos = radars.flatMap(radar => {
+    return radar.team.map(member => member.photo)
   })
+
+  deleteUnusedFiles('photos', photos)
 }
 
 export default async (filterFn) => {
@@ -99,8 +124,11 @@ export default async (filterFn) => {
         return await buildCompany(landscapeAttrs)
       })
 
+      const teamPromises = radar.team.map(async attrs => await buildMember(attrs))
+
       const companies = await Promise.all(companyPromises)
-      return { ...radar, points, companies }
+      const team = await Promise.all(teamPromises)
+      return { ...radar, points, companies, team }
     })
 
   const radars = await Promise.all(radarPromises)
