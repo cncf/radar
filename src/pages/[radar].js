@@ -49,7 +49,7 @@ const CompaniesSection = ({ companies }) => {
     }  
   `
 
-  return  <Section title="Companies">
+  return  <Section title="Participating End Users">
     {styles}
     <Companies companies={companies} />
     <GlobalTextComponent name="hidden_companies" className={className} />
@@ -57,7 +57,7 @@ const CompaniesSection = ({ companies }) => {
 }
 
 const DataSection = ({ points, companies }) => {
-  return <Section title="Data">
+  return <Section title="End User Recommendations">
     <style jsx>{`
       .columns {
         margin-top: 0;

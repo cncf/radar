@@ -17,7 +17,7 @@ sections:
       used for existing deployments, while new applications have migrated to other solutions. Hence end users who are
       choosing a new CD solution should assess Jenkins alongside tools that support modern concepts such as GitOps
       (for example, Flux).
-  - title: Important Links
+  - title: Related Content
     content: |
       CNCF Projects for Continuous Delivery:
       * Argo is an open source container-native workflow engine for orchestrating parallel jobs on Kubernetes. A CNCF
