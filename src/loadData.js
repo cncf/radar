@@ -109,7 +109,6 @@ export default async (filterFn) => {
 
   const radarPromises = data
     .sort((a, b) => -a.key.localeCompare(b.key))
-    .filter(radar => filterFn ? filterFn(radar) : true)
     .map(async radarAttrs => {
       const radar = buildRadar(radarAttrs)
 
@@ -131,13 +130,13 @@ export default async (filterFn) => {
       return { ...radar, points, companies, team }
     })
 
-  const radars = await Promise.all(radarPromises)
+  const radarsData = await Promise.all(radarPromises)
+  deleteUnusedData(radarsData)
 
+  const radars = radarsData.filter(radar => filterFn ? filterFn(radar) : true)
   const points = radars.flatMap(radar => {
     return radar.points.map(point => ({ ...point, radar }))
   })
-
-  deleteUnusedData(radars)
 
   return { radars, points }
 }
