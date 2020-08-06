@@ -11,18 +11,28 @@ import VideoComponent from '../components/VideoComponent'
 import Companies from '../components/Companies'
 import IndustriesTable from '../components/IndustriesTable'
 import GlobalTextComponent from '../components/GlobalTextComponent'
+import OutboundLink from "../components/OutboundLink";
 
-const RadarSection = ({ name, points}) => {
+const RadarSection = ({ name, points, radarKey }) => {
   return <Section title={name}>
     <style jsx>{`
       .radar-wrapper {  
         max-width: 800px;
         margin: 0 auto;
       }
+      
+      .download {
+        margin-top: 10px;
+        text-align: center;
+        font-size: 0.95rem;
+      }
     `}</style>
 
     <div className="radar-wrapper">
       <Radar points={points} />
+      <div className="download">
+        Download as <OutboundLink href={`/${radarKey}.svg`} title="svg" /> or <OutboundLink href={`/${radarKey}.png`} title="png" />
+      </div>
     </div>
   </Section>
 }
@@ -87,9 +97,10 @@ const renderSection = ({ title, content }) => {
   </Section>
 }
 
-const RadarPage = ({ name, points, team, video, companies, sections = [] }) => {
+const RadarPage = ({ radar }) => {
+  const { name, points, team, video, companies, key, sections = [] } = radar
   const defaultSections = [
-    <RadarSection name={name} points={points} key="radar" />,
+    <RadarSection name={name} points={points} radarKey={key} key="radar" />,
     video && <WebinarSection video={video} key="video" />,
     <TeamSection team={team} key="team" />,
     <CompaniesSection companies={companies} key="companies" />,
@@ -116,7 +127,7 @@ const RadarPage = ({ name, points, team, video, companies, sections = [] }) => {
 export async function getStaticProps ({ params }) {
   const { radars } = await loadData()
   const radar = radars.find(({ key }) => key === params.radar)
-  return { props: radar }
+  return { props: { radar } }
 }
 
 export async function getStaticPaths() {
@@ -128,4 +139,4 @@ export async function getStaticPaths() {
   };
 }
 
-export default withTitle(RadarPage, props => props.name)
+export default withTitle(RadarPage, props => props.radar.name)
