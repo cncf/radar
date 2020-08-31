@@ -30,6 +30,10 @@ const Overview = ({ groupedPoints }) => {
         padding-left: 0.25rem;
         padding-right: 0.25rem;
       }
+      
+      .radar:not(:first-child) {
+        margin-top: 10px;
+      }
     `}
     </style>
 
@@ -54,7 +58,7 @@ const Overview = ({ groupedPoints }) => {
           <td className="has-text-right">
             {
               points.map(({ level, radar }) => {
-                return <div key={radar.key}>
+                return <div key={radar.key} className="radar">
                   <LinkToRadar radar={radar} />
                   <LevelTag level={level} style={{marginLeft: 10}} />
                 </div>
