@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import { useContext, useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import SearchContext from '../contexts/SearchContext'
 import NavLink from './NavLink'
@@ -17,6 +17,13 @@ const Search = _  => {
     setSearchQuery('')
     setSearching(false)
   }
+
+  useEffect(_ => {
+    if (router.pathname === '/overview') {
+      router.events.on('beforeHistoryChange', resetSearch)
+      return _ => router.events.off('beforeHistoryChange', resetSearch)
+    }
+  }, [router.pathname])
 
   return <>
     <style jsx>{`
