@@ -59,15 +59,7 @@ const CompaniesSection = ({ companies }) => {
     }  
   `
 
-  return  <Section title="Participating End Users">
-    {styles}
-    <Companies companies={companies} />
-    <GlobalTextComponent name="hidden_companies" className={className} />
-  </Section>
-}
-
-const DataSection = ({ points, companies }) => {
-  return <Section title="End User Recommendations">
+  return  <Section title="Participating CNCF End User Community Members">
     <style jsx>{`
       .columns {
         margin-top: 0;
@@ -77,8 +69,10 @@ const DataSection = ({ points, companies }) => {
         margin-top: 1.25rem;
       }
     `}</style>
+    {styles}
+    <Companies companies={companies} />
+    <GlobalTextComponent name="hidden_companies" className={className} />
 
-    <RadarData points={points}/>
     {companies && <div className="columns is-desktop">
       <div className="column is-half-desktop">
         <CompanySizeChart companies={companies} />
@@ -88,6 +82,12 @@ const DataSection = ({ points, companies }) => {
         <IndustriesTable companies={companies} />
       </div>
     </div>}
+  </Section>
+}
+
+const DataSection = ({ points }) => {
+  return <Section title="CNCF End User Community Member Recommendations">
+    <RadarData points={points}/>
   </Section>
 }
 
