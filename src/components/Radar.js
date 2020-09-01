@@ -6,7 +6,7 @@ import SelectedPointContext from '../contexts/SelectedPointContext'
 const { fontFamily } = typography
 
 const Title = ({ color, text, y }) => {
-  return <text x="0" y={y} fill={color} fontSize={50}>
+  return <text x="0" y={y} fill={color} fontSize={45}>
     {text}
   </text>
 }
@@ -67,7 +67,7 @@ const Ring = ({ points, radius, title, color }) => {
 }
 
 const Header = props => {
-  return <text text-anchor="start" x="0" font-size="40" fill={colors.darkPurple} {...props}>
+  return <text text-anchor="start" x="0" font-size="50" fill={colors.darkPurple} {...props}>
     {props.children}
   </text>
 }
