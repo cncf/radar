@@ -66,11 +66,23 @@ const Ring = ({ points, radius, title, color }) => {
   </>
 }
 
-export default function Radar({ points }) {
+const Header = props => {
+  return <text text-anchor="start" x="0" font-size="40" fill={colors.darkPurple} {...props}>
+    {props.children}
+  </text>
+}
+
+export default function Radar({ points, name, showHeader = false }) {
   const groupedPoints = groupPoints(points)
 
-  return <svg viewBox="0 0 1740 1006" xmlns="http://www.w3.org/2000/svg" dominantBaseline="middle" textAnchor="middle" fontWeight="bolder" fontFamily={fontFamily}>
-    <g transform="translate(870 1003)">
+  const padding = showHeader ? 30 : 0
+  const width = 1740 + padding * 2
+  const height = 1006 + (showHeader ? 60 : 0) + padding * 2
+
+  return <svg viewBox={`0 0 ${width} ${height}`} xmlns="http://www.w3.org/2000/svg" dominantBaseline="middle" textAnchor="middle" fontWeight="bolder" fontFamily={fontFamily}>
+    { showHeader && <Header text-anchor="start" x={padding} y={padding + 30}>CNCF Technology Radar</Header> }
+    { showHeader && <Header text-anchor="end" x={width - padding} y={padding + 30}>{name}</Header> }
+    <g transform={`translate(${width / 2} ${height - padding - 3})`}>
       <Ring radius={1000} points={groupedPoints.assess} title="Assess" color={colors.assess} />
       <Ring radius={666} points={groupedPoints.trial} title="Trial" color={colors.trial} />
       <Ring radius={333} points={groupedPoints.adopt} title="Adopt" color={colors.adopt} />
