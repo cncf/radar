@@ -67,7 +67,7 @@ const Ring = ({ points, radius, title, color }) => {
 }
 
 const Header = props => {
-  return <text text-anchor="start" x="0" font-size="50" fill={colors.darkPurple} {...props}>
+  return <text text-anchor="start" x="0" fontSize="50" fill={colors.darkPurple} {...props}>
     {props.children}
   </text>
 }
