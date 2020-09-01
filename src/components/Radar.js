@@ -24,7 +24,7 @@ const Point = ({ distance, angle, color, point }) => {
       }
     `}
     </style>
-    <circle cx={x} cy={y} r={15} fill={color} onClick={onClick} />
+    <circle cx={x} cy={y} r={10} fill={color} onClick={onClick} />
     <text x={x} y={+y + 40} fill={color} fontSize={30} onClick={onClick}>{point.name}</text>
   </>
 }
@@ -52,7 +52,7 @@ const PointCollection = ({ points, distance, smallerDistance, color, minAngle, m
 const Ring = ({ points, radius, title, color }) => {
   const smallRadius = radius - 333
   const cutOff = (radius + smallRadius) / 2
-  const innerRadius = radius < 500 ? (3 * radius + cutOff) / 4 : (radius + cutOff) / 2
+  const innerRadius = (radius + cutOff) / 2
   const smallerRadius = (smallRadius + 2 * cutOff) / 3
   const titleRadius = (cutOff + smallRadius) / 2
 
@@ -61,7 +61,7 @@ const Ring = ({ points, radius, title, color }) => {
 
   return <>
     <path d={`M 0 0 L ${x} ${y} A ${radius} ${radius}, 0, 0, 1, ${-x} ${y} Z`} stroke={color} strokeWidth="5" fill="none"/>
-    <Title y={- titleRadius} color={color} text={title} />
+    <Title y={- titleRadius} color={color} text={title.toUpperCase()} />
     <PointCollection points={points} distance={innerRadius} smallerDistance={smallerRadius} minAngle={Math.PI / 6} color={color} />
   </>
 }
