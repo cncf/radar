@@ -11,7 +11,8 @@ import VideoComponent from '../components/VideoComponent'
 import Companies from '../components/Companies'
 import IndustriesTable from '../components/IndustriesTable'
 import GlobalTextComponent from '../components/GlobalTextComponent'
-import OutboundLink from "../components/OutboundLink";
+import OutboundLink from '../components/OutboundLink'
+import ThumbnailsList from '../components/ThumbnailsList'
 
 const RadarSection = ({ name, points, radarKey }) => {
   return <Section title={name}>
@@ -97,7 +98,13 @@ const renderSection = ({ title, content }) => {
   </Section>
 }
 
-const RadarPage = ({ radar }) => {
+const OtherRadarsSection = ({ radars }) => {
+  return <Section title="Other Radars">
+    <ThumbnailsList radars={radars} />
+  </Section>
+}
+
+const RadarPage = ({ radar, otherRadars }) => {
   const { name, points, team, video, companies, key, sections = [] } = radar
   const defaultSections = [
     <RadarSection name={name} points={points} radarKey={key} key="radar" />,
@@ -121,13 +128,16 @@ const RadarPage = ({ radar }) => {
   return <>
     {sortedSections}
     {additionalSections}
+    {otherRadars && <OtherRadarsSection radars={otherRadars} />}
   </>
 }
 
 export async function getStaticProps ({ params }) {
   const { radars } = await loadData()
-  const radar = radars.find(({ key }) => key === params.radar)
-  return { props: { radar } }
+  const radar = radars.find(({ key }) => !params || key === params.radar)
+  const otherRadars = radars.filter(r => r.key !== radar.key)
+    .map(({ key, name }) => ({ key, name }))
+  return { props: { radar, otherRadars } }
 }
 
 export async function getStaticPaths() {

@@ -82,6 +82,7 @@ export default function Header() {
       <div className={`navbar-menu ${showMenu && 'is-active'}`}>
         <div className="navbar-end">
           <Search />
+          <Link href="/how-it-works" passHref><NavLink>How It Works</NavLink></Link>
           <Link href="/overview" passHref><NavLink>Technologies Overview</NavLink></Link>
         </div>
       </div>
