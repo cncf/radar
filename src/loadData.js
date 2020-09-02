@@ -4,6 +4,7 @@ import imageSize from 'image-size'
 import stripUrl from './helpers/stripUrl'
 import loadYaml from './helpers/loadYaml'
 import fetchUrl from './helpers/fetchUrl'
+import RadarSchema from './schemas/RadarSchema'
 
 const getExtension = buffer => {
   return imageSize(buffer).type
@@ -73,6 +74,13 @@ const buildMember = async (attrs) => {
 const loadRadarData = _ => {
   return readdirSync(path.join(process.cwd(), 'content', 'radars')).map(path => {
     const radar = loadYaml('radars', path)
+
+    const { valid, errors } = RadarSchema.validate(radar)
+    if (!valid) {
+      console.error(`Invalid Radar File: ${path}`)
+      console.error(errors)
+      throw 'Execution interrupted'
+    }
     const key = path.replace(/\.yml/, '')
     return { ...radar, key }
   })
