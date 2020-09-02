@@ -104,7 +104,7 @@ const OtherRadarsSection = ({ radars }) => {
   </Section>
 }
 
-const RadarPage = ({ radar, otherRadars }) => {
+const RadarPage = ({ radar, otherRadars = [] }) => {
   const { name, points, team, video, companies, key, sections = [] } = radar
   const defaultSections = [
     <RadarSection name={name} points={points} radarKey={key} key="radar" />,
@@ -128,14 +128,14 @@ const RadarPage = ({ radar, otherRadars }) => {
   return <>
     {sortedSections}
     {additionalSections}
-    {otherRadars && <OtherRadarsSection radars={otherRadars} />}
+    {otherRadars.length > 0 && <OtherRadarsSection radars={otherRadars} />}
   </>
 }
 
 export async function getStaticProps ({ params }) {
   const { radars } = await loadData()
-  const radar = radars.find(({ key }) => !params || key === params.radar)
-  const otherRadars = radars.filter(r => r.key !== radar.key)
+  const radar = radars.find(({ key, draft }) => params ? key === params.radar : !draft)
+  const otherRadars = radars.filter(r => !r.draft && r.key !== radar.key)
     .map(({ key, name }) => ({ key, name }))
   return { props: { radar, otherRadars } }
 }
