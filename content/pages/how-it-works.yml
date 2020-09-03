@@ -16,7 +16,7 @@
         specific need for the technology in your project.</dd>
     </dl>
     
-  The popular format originated at [Thoughtworks](https://assets.thoughtworks.com/assets/technology-radar-vol-21-en.pdf) and has been adopted by dozens of companies including [Zalando](https://opensource.zalando.com/tech-radar/), [AOE](https://www.aoe.com/techradar/index.html), [Porsche](https://medium.com/porschedev/technology-radar-vol-2-4833fb31e2fd), Spotify, and Intuit.  
+    The popular format originated at [Thoughtworks](https://assets.thoughtworks.com/assets/technology-radar-vol-21-en.pdf) and has been adopted by dozens of companies including [Zalando](https://opensource.zalando.com/tech-radar/), [AOE](https://www.aoe.com/techradar/index.html), [Porsche](https://medium.com/porschedev/technology-radar-vol-2-4833fb31e2fd), Spotify, and Intuit.
 - title: Methodology
   content: |
     For each CNCF End User Technology Radar, 3-5 companies are randomly chosen from the CNCF End User Community and asked to form an editorial Radar Team. Once the Radar Team chooses a topic, the 140 companies in the CNCF End User Community are asked to describe what their companies recommend for a list of different technology solutions: Hold, Assess, Trial, or Adopt. They can also give more detailed comments. As the answers are submitted via a Google Spreadsheet, they are neither private nor anonymized within the group.
