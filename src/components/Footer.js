@@ -15,7 +15,7 @@ export default function Footer() {
   return <nav className="navbar footer">
     <style jsx>{`
         nav {
-          background: ${colors.darkPurple};
+          background: ${colors.blueBg};
           padding-top: 10px;
           padding-bottom: 10px;
         }

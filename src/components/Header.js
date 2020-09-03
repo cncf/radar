@@ -16,14 +16,14 @@ export default function Header() {
       }
     
       nav {
-        background: ${colors.darkPurple};
+        background: ${colors.blueBg};
         padding-top: 10px;
         padding-bottom: 10px;
         flex-direction: column;
       }
       
       .navbar-menu {
-        background: ${colors.darkPurple};
+        background: ${colors.blueBg};
       }
       
       .navbar-end {

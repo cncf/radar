@@ -28,7 +28,7 @@ h5 {
 
 h1, h2, h3, h4, h5 {
   font-weight: bold;
-  color: map.get($colors, "darkBlue");
+  color: map.get($colors, "blueTitle");
 }
 
 p {
@@ -36,22 +36,11 @@ p {
 }
 
 a {
-  color: map.get($colors, "link");
+  color: map.get($colors, "pink");
 
   &:hover {
     color: map.get($colors, "pink");
-  }
-}
-
-a {
-  h1, h2, h3, h4, h5 {
-    color: map.get($colors, "link");
-  }
-}
-
-a:hover {
-  h1, h2, h3, h4, h5 {
-    color: map.get($colors, "pink");
+    text-decoration: underline;
   }
 }
 

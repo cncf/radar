@@ -1,9 +1,8 @@
 module.exports = {
   colors: {
-    darkPurple: '#0F1433',
-    darkBlue: '#262961',
-    link: '#21219b',
-    pink: '#e00a6b',
+    blueBg: '#1c214a',
+    blueTitle: '#2c2960',
+    pink: '#de176c',
     adopt: '#0554C6',
     adoptBg: '#82BA6A',
     trial: '#032291',

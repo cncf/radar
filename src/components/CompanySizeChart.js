@@ -68,7 +68,7 @@ export default function CompanySizeChart({ companies }) {
       }
       
       .industries-chart :global(.ct-series-a .ct-bar) {
-        stroke: ${colors.darkBlue};
+        stroke: ${colors.blueTitle};
         stroke-width: 30px;
       }
       

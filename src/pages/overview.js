@@ -15,7 +15,7 @@ const Overview = ({ groupedPoints }) => {
     return !searchQuery || text.indexOf(searchQuery.toLowerCase()) > -1
   })
 
-  return <Section>
+  return <Section title="Technologies Overview">
     <style jsx>{`
       .no-results {
         margin-top: 30px;
@@ -31,6 +31,14 @@ const Overview = ({ groupedPoints }) => {
         padding-right: 0.25rem;
       }
       
+      .table td {
+        border-bottom: 2px solid #f0f5f7;
+      }
+      
+      .table tr:last-child td {
+        border: none;
+      }
+      
       .radar:not(:first-child) {
         margin-top: 10px;
       }
@@ -40,8 +48,6 @@ const Overview = ({ groupedPoints }) => {
     { searchQuery && <div className="notification is-info is-light">
       Filtering by <strong>{searchQuery}</strong>. <a onClick={_ => setSearchQuery('')}>Clear</a> search.
     </div>}
-
-    <h2>Overview</h2>
 
     { searchQuery && filteredPoints.length === 0 && <div className="notification is-light no-results">
       No results found
@@ -85,4 +91,4 @@ export const getStaticProps = async _ => {
   return { props: { groupedPoints: Object.values(groupedPoints) } }
 }
 
-export default withTitle(Overview, _ => 'Overview')
+export default withTitle(Overview, _ => 'Technologies Overview')

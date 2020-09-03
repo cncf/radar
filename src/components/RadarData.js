@@ -12,13 +12,13 @@ export default function RadarData({ points }) {
       }
       
       table {
-        border: 1px solid ${colors.darkPurple};
+        border: 1px solid ${colors.blueTitle};
         font-size: 0.95rem;
       }
 
       td, th {
         vertical-align: middle;
-        border: 1px solid ${colors.darkPurple};
+        border: 1px solid ${colors.blueTitle};
         padding: 5px 10px;
       }
       
