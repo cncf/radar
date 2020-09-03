@@ -61,6 +61,14 @@ const CompaniesSection = ({ companies }) => {
   `
 
   return  <Section title="Participating CNCF End User Community Members">
+    {styles}
+    <Companies companies={companies} />
+    <GlobalTextComponent name="hidden_companies" className={className} />
+  </Section>
+}
+
+const DataSection = ({ points, companies }) => {
+  return <Section title="CNCF End User Community Member Recommendations">
     <style jsx>{`
       .columns {
         margin-top: 0;
@@ -70,9 +78,8 @@ const CompaniesSection = ({ companies }) => {
         margin-top: 1.25rem;
       }
     `}</style>
-    {styles}
-    <Companies companies={companies} />
-    <GlobalTextComponent name="hidden_companies" className={className} />
+
+    <RadarData points={points}/>
 
     {companies && <div className="columns is-desktop">
       <div className="column is-half-desktop">
@@ -83,12 +90,6 @@ const CompaniesSection = ({ companies }) => {
         <IndustriesTable companies={companies} />
       </div>
     </div>}
-  </Section>
-}
-
-const DataSection = ({ points }) => {
-  return <Section title="CNCF End User Community Member Recommendations">
-    <RadarData points={points}/>
   </Section>
 }
 
@@ -108,9 +109,9 @@ const RadarPage = ({ radar, otherRadars = [] }) => {
   const { name, points, team, video, companies, key, sections = [] } = radar
   const defaultSections = [
     <RadarSection name={name} points={points} radarKey={key} key="radar" />,
+    <CompaniesSection companies={companies} key="companies" />,
     video && <WebinarSection video={video} key="video" />,
     <TeamSection team={team} key="team" />,
-    <CompaniesSection companies={companies} key="companies" />,
     <DataSection points={points} companies={companies} key="data" />
   ].filter(_ => _).map((section, i) => [i + 1, section])
 
