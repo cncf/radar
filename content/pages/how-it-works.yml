@@ -1,49 +1,41 @@
-- title: Definitions
-  content: |
-    <dl>
-      <dt>Adopt</dt>
-      <dd>We can clearly recommend this technology. We have used it for long periods of time in many teams and it has
-          proven to be stable and useful</dd>
-
-      <dt>Trial</dt>
-      <dd>We have used it with success and recommend to have a closer look at the technology in this ring</dd>
-
-      <dt>Assess</dt>
-      <dd>We have tried it out and we find it promising. We recommend having a look at these items when you face a
-        specific need for the technology in your project.</dd>
-    </dl>
-- title: Methodology
+- title: What is a Technology Radar?
   content: |
     A technology radar is an opinionated guide to a set of emerging technologies. The popular format originated at [Thoughtworks](https://assets.thoughtworks.com/assets/technology-radar-vol-21-en.pdf) and has been adopted by dozens of companies including [Zalando](https://opensource.zalando.com/tech-radar/), [AOE](https://www.aoe.com/techradar/index.html), [Porsche](https://medium.com/porschedev/technology-radar-vol-2-4833fb31e2fd), Spotify, and Intuit.
     
     The key idea is to place solutions at one of four levels, reflecting advice you would give to someone who is choosing a solution:
-    
-      - **Adopt**: We can clearly recommend this technology. We have used it for long periods of time in many teams, and it has proven to be stable and useful.
-      - **Trial**: We have used it with success and recommend you take a closer look at the technology.
-      - **Assess**: We have tried it out, and we find it promising. We recommend having a look at these items when you face a specific need for the technology in your project.
-      - **Hold**: This category is a bit special. Unlike the other categories, we recommend you hold on using something. That does not mean that these technologies are bad, and it often might be OK to use them in existing projects. But technologies are moved to this category if we think we shouldn’t use them because we see better options or alternatives now.
-      
-    The CNCF End User Technology Radar is inspired by the format but with a few differences:
-    
-      - Community-driven: The data is contributed by the CNCF End User Community and curated by community representatives.
-      - Focuses on future adoption, so there are only three rings: Assess, Trial, and Adopt.
-      - Instead of covering several hundred items, one radar will display 10-20 items on a specific use case. This removes the need to organize into quadrants.
-      - Instead of publishing annually, the cadence will be on a shorter time frame, targeting quarterly.
-      
-    For each CNCF End User Technology Radar, five companies are randomly chosen from the CNCF End User Community and asked to form a team of editors. Once the team chooses a topic, the 140 companies in the CNCF End User Community are asked to describe what their companies recommend for a list of different technology solutions: Hold, Assess, Trial, or Adopt. They can also give more detailed comments. As the answers are submitted via a Google Spreadsheet, they are neither private nor anonymized within the group.
-    
-    The responses are sorted in order to determine the final positions. Finally, the editors curate the responses and write themes to reflect what they see as broader patterns.
+    <dl>
+      <dt>Adopt</dt>
+      <dd>The CNCF End User Community can clearly recommend this technology. We have used it for long periods of time in many teams and it has
+          proven to be stable and useful</dd>
 
+      <dt>Trial</dt>
+      <dd>The CNCF End User Community has used it with success and recommend to have a closer look at the technology in this ring</dd>
+
+      <dt>Assess</dt>
+      <dd>The CNCF End User Community has tried it out and we find it promising. We recommend having a look at these items when you face a
+        specific need for the technology in your project.</dd>
+    </dl>
+- title: Methodology
+  content: |
+    For each CNCF End User Technology Radar, five companies are randomly chosen from the CNCF End User Community and asked to form an editorial Radar Team. Once the Radar Team chooses a topic, the 140 companies in the CNCF End User Community are asked to describe what their companies recommend for a list of different technology solutions: Hold, Assess, Trial, or Adopt. They can also give more detailed comments. As the answers are submitted via a Google Spreadsheet, they are neither private nor anonymized within the group.
+    
+    The Radar Team curate the responses, choose final outcomes, and describe any patterns or themes they see in the data or from their own experience.
 
 - title: FAQ
   content: |
-    ##### How are the topics and technologies chosen?
+    ##### What's the difference between the CNCF End User Technology Radar and other technology radars?
     
-    The Technology Radar team chooses the topic based on [suggestions from the community](https://github.com/cncf/enduser-public/issues/35) and their own interests and expertise. The team comes up with a list of technologies in the space, but End User Community members who respond to the survey can also add tools they are familiar with that are not already on the list.
-
+    Compared to the ThoughtWorks radar, the CNCF End User Technology Radar is community-driven and represents the experience across dozens of companies. Cloud native moves very fast, so instead of doing an annual radar covering all topics, the CNCF End User Technology Radar covers one topic per quarter.
+    
+    In terms of format, there is no Hold ring and no quadrants, which are primarily used for organizing dense radars.
+    
     ##### Why is there no “Hold” data in the CNCF End User Technology Radar?
 
     The Radar focuses on future adoption, so we have chosen not to include a Hold ring. 
+    
+    ##### How are the topics and technologies chosen?
+    
+    The Technology Radar team chooses the topic based on [suggestions from the community](https://github.com/cncf/enduser-public/issues/35) and their own interests and expertise. The team comes up with a list of technologies in the space, but End User Community members who respond to the survey can also add tools they are familiar with that are not already on the list.
 
     ##### Does the Tech Radar reflect the whole market?
     
