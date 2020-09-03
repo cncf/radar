@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import css from 'styled-jsx/css'
 import loadData from '../loadData'
 import withTitle from '../components/withTitle'
@@ -14,7 +15,37 @@ import GlobalTextComponent from '../components/GlobalTextComponent'
 import OutboundLink from '../components/OutboundLink'
 import ThumbnailsList from '../components/ThumbnailsList'
 
-const RadarSection = ({ name, points, radarKey }) => {
+const Columns = ({ children }) => {
+  return <div class="columns is-desktop is-4">
+    <style jsx>{`
+      .columns {
+        margin-top: 0;
+      }
+    `}</style>
+    {children}
+  </div>
+}
+
+const Column = ({ children }) => {
+  return <div className="column is-half-desktop">
+    <style jsx>{`
+      .column {
+        margin-top: 1.25rem;
+      }
+    `}</style>
+
+    {children}
+  </div>
+}
+
+const RadarSection = ({ name, points, radarKey, themes }) => {
+  const [collapsed, setCollapsed] = useState(true)
+  const toggleCollapsed = _ => setCollapsed(!collapsed)
+
+  const { className, styles } = css.resolve`
+    margin-top: 10px;
+  `
+
   return <Section title={name}>
     <style jsx>{`
       .radar-wrapper {  
@@ -27,14 +58,45 @@ const RadarSection = ({ name, points, radarKey }) => {
         text-align: center;
         font-size: 0.95rem;
       }
+      
+      .theme {
+        margin: 0 10px 30px;
+      }
+      
+      h4 {
+        color: #202020;
+      }
+      
+      .toggle {
+        text-align: center;
+      }
     `}</style>
 
-    <div className="radar-wrapper">
-      <Radar points={points} />
-      <div className="download">
-        Download as <OutboundLink href={`/${radarKey}.svg`} title="svg" /> or <OutboundLink href={`/${radarKey}.png`} title="png" />
-      </div>
-    </div>
+    {styles}
+
+    <Columns>
+      <Column>
+        <div className="radar-wrapper">
+          <Radar points={points} />
+          <div className="download">
+            Download as <OutboundLink href={`/${radarKey}.svg`} title="svg" /> or <OutboundLink href={`/${radarKey}.png`} title="png" />
+          </div>
+        </div>
+      </Column>
+
+      { themes.length > 0 && <Column>
+        {themes.map((theme, idx) => {
+          return <div className="theme">
+            <h4>{idx + 1}. {theme.headline}</h4>
+            {!collapsed && <MarkdownComponent className={className} value={theme.content} />}
+          </div>
+        })}
+
+        <div className="toggle">
+          <a onClick={toggleCollapsed}>Show { collapsed ? 'More' : 'Less' }</a>
+        </div>
+      </Column> }
+    </Columns>
   </Section>
 }
 
@@ -69,27 +131,17 @@ const CompaniesSection = ({ companies }) => {
 
 const DataSection = ({ points, companies }) => {
   return <Section title="CNCF End User Community Member Recommendations">
-    <style jsx>{`
-      .columns {
-        margin-top: 0;
-      }
-      
-      .column {
-        margin-top: 1.25rem;
-      }
-    `}</style>
-
     <RadarData points={points}/>
 
-    {companies && <div className="columns is-desktop">
-      <div className="column is-half-desktop">
+    {companies && <Columns>
+      <Column>
         <CompanySizeChart companies={companies} />
-      </div>
+      </Column>
 
-      <div className="column is-half-desktop">
+      <Column>
         <IndustriesTable companies={companies} />
-      </div>
-    </div>}
+      </Column>
+    </Columns>}
   </Section>
 }
 
@@ -106,9 +158,9 @@ const OtherRadarsSection = ({ radars }) => {
 }
 
 const RadarPage = ({ radar, otherRadars = [] }) => {
-  const { name, points, team, video, companies, key, sections = [] } = radar
+  const { name, points, team, video, companies, key, sections = [], themes } = radar
   const defaultSections = [
-    <RadarSection name={name} points={points} radarKey={key} key="radar" />,
+    <RadarSection name={name} points={points} radarKey={key} themes={themes} key="radar" />,
     <CompaniesSection companies={companies} key="companies" />,
     video && <WebinarSection video={video} key="video" />,
     <TeamSection team={team} key="team" />,

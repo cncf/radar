@@ -1,7 +1,7 @@
 import Ajv from 'ajv'
 import markdownToHtml from '../helpers/markdownToHtml'
 
-const ajv = new Ajv()
+const ajv = new Ajv({ useDefaults: true })
 
 ajv.addKeyword('markdown', {
   compile: _ => {
@@ -25,6 +25,14 @@ const schema = {
           content: { type: 'string', markdown: true }
         },
         required: ['title', 'content']
+      }
+    },
+    themes: {
+      type: 'array',
+      default: [],
+      items: {
+        headline: { type: 'string' },
+        content: { type: 'string' }
       }
     },
     video: { type: 'string', format: 'uri' },
