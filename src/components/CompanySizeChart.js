@@ -62,11 +62,6 @@ export default function CompanySizeChart({ companies }) {
 
   return <div className="chart">
     <style jsx>{`
-      h2 {
-        margin-bottom: 1rem;
-        text-align: center;
-      }
-      
       .industries-chart :global(.ct-series-a .ct-bar) {
         stroke: ${colors.blueTitle};
         stroke-width: 30px;
@@ -94,7 +89,6 @@ export default function CompanySizeChart({ companies }) {
       }
     `}
     </style>
-    <h2>Companies by size</h2>
     <div className="industries-chart ct-chart ct-octave" ref={ref} />
   </div>
 }

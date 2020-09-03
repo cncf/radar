@@ -17,11 +17,6 @@ const IndustriesTable = ({ companies }) => {
       .industries {
         text-align: center;
       }
-
-      h2 {
-        margin-bottom: 1rem;
-        text-align: center;
-      }
       
       .industries table {
         width: 100%;
@@ -38,8 +33,6 @@ const IndustriesTable = ({ companies }) => {
         text-align: right;
       }
     `}</style>
-
-    <h2>Industries</h2>
 
     <table className="table is-bordered is-striped">
       <tbody>

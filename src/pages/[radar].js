@@ -15,24 +15,32 @@ import GlobalTextComponent from '../components/GlobalTextComponent'
 import OutboundLink from '../components/OutboundLink'
 import ThumbnailsList from '../components/ThumbnailsList'
 
-const Columns = ({ children }) => {
-  return <div className="columns is-desktop is-4">
+const Columns = ({ children, className }) => {
+  return <div className={`columns is-desktop is-4 ${className}`}>
     <style jsx>{`
       .columns {
         margin-top: 0;
       }
     `}</style>
+
     {children}
   </div>
 }
 
-const Column = ({ children }) => {
+const Column = ({ children, title }) => {
   return <div className="column is-half-desktop">
     <style jsx>{`
+      h2 {
+        margin-bottom: 1rem;
+        text-align: center;
+      }
+
       .column {
         margin-top: 1.25rem;
       }
     `}</style>
+
+    {title && <h2>{title}</h2>}
 
     {children}
   </div>
@@ -100,15 +108,25 @@ const RadarSection = ({ name, points, radarKey, themes }) => {
   </Section>
 }
 
-const WebinarSection = ({ video }) => {
-  return <Section title="Webinar">
-    <VideoComponent src={video} />
-  </Section>
-}
+const WebinarAndTeamSection = ({ video, team }) => {
+  const { className, styles } = css.resolve`
+    .columns {
+      margin-top: -1.25rem; 
+    } 
+  `
 
-const TeamSection = ({ team }) => {
-  return <Section title="Team">
-    <RadarTeam team={team}/>
+  return <Section>
+    {styles}
+
+    <Columns className={className}>
+      <Column title="Webinar">
+        <VideoComponent src={video} />
+      </Column>
+
+      <Column title="Team">
+        <RadarTeam team={team}/>
+      </Column>
+    </Columns>
   </Section>
 }
 
@@ -134,11 +152,11 @@ const DataSection = ({ points, companies }) => {
     <RadarData points={points}/>
 
     {companies && <Columns>
-      <Column>
+      <Column title="Companies by size">
         <CompanySizeChart companies={companies} />
       </Column>
 
-      <Column>
+      <Column title="Industries">
         <IndustriesTable companies={companies} />
       </Column>
     </Columns>}
@@ -162,8 +180,7 @@ const RadarPage = ({ radar, otherRadars = [] }) => {
   const defaultSections = [
     <RadarSection name={name} points={points} radarKey={key} themes={themes} key="radar" />,
     <CompaniesSection companies={companies} key="companies" />,
-    video && <WebinarSection video={video} key="video" />,
-    <TeamSection team={team} key="team" />,
+    <WebinarAndTeamSection video={video} team={team} key="webinar-and-team" />,
     <DataSection points={points} companies={companies} key="data" />
   ].filter(_ => _).map((section, i) => [i + 1, section])
 

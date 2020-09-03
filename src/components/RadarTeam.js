@@ -20,7 +20,7 @@ export default function RadarTeam({ team }) {
       }
       
       .team-member {
-        width: 380px;
+        width: 300px;
         margin-bottom: 30px;
         text-align: center;
       }
