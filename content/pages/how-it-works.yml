@@ -27,41 +27,41 @@
   content: |
     ##### What is CNCF?
     
-    The [Cloud Native Computing Foundation](https://www.cncf.io/), part of the Linux Foundation and home of Kubernetes, Prometheus, Helm and many more.
+    The [Cloud Native Computing Foundation](https://www.cncf.io/) is part of the Linux Foundation and home of Kubernetes, Prometheus, Helm and many more.
     
     #### What is the CNCF End User Community?
     
-    The [CNCF End User Community](https://www.cncf.io/people/end-user-community/) is a group of top companies and startups that are early adopters of modern infrastructure and cloud native.
+    The [CNCF End User Community](https://www.cncf.io/people/end-user-community/) is a group of top companies and startups that are early adopters of modern infrastructure and cloud native technologies and practices.
     
     ##### Who is the CNCF End User Technology Radar for? 
     
     The CNCF End User Technology Radar is intended for a technical audience who want to understand what solutions end users use in cloud native, and which they recommend. You can use the CNCF End User Technology Radar to prioritize which technologies to evaluate in your environment.
     
-    The CNCF Technical Oversight Committee (TOC) also use it as extra information for projects who are interested in being part of CNCF.
+    The CNCF Technical Oversight Committee (TOC) also uses it as extra information to assess projects that are interested in being part of CNCF.
     
-    ##### Does this predict the future of cloud native?
+    ##### Does the Technology Radar predict the future of cloud native?
 
-    No, it is a report of how cloud native is used at one specific point in time.
+    The Radar is not mean to predict the future; it is a report of how cloud native is used at one specific point in time.
 
     ##### What's the difference between the CNCF End User Technology Radar and other technology radars?
     
     Compared to the ThoughtWorks radar, the CNCF End User Technology Radar is community-driven and represents the experience across dozens of companies.
     
-    To capture the fast changing pace of cloud native, so instead of surveying 100+ solutions annually, the CNCF End User Technology Radar covers ~20 solutions on one topic each quarter.
+    To capture the fast-changing pace of cloud native, the CNCF End User Technology Radar covers ~20 solutions on one topic each quarter, instead of surveying 100+ solutions annually.
     
-    The format is simplified to remove the Hold ring and quadrants, which are used for organization.
+    The format is also simplified to remove the Hold ring and quadrants, which are used for organization.
     
     ##### Why is there no “Hold” ring in the CNCF End User Technology Radar?
 
-    On a typical Tech Radar, the "Hold" ring is a recommendation to stop using a technology, which is reasonable within one organization but didn't seem appropriate to recommend as a community. It also simplifies the Radar so that the meaning of each ring is consistent.
+    On a typical Tech Radar, the "Hold" ring is a recommendation to stop using a technology. This recommendation may be reasonable within one organization, but didn't seem appropriate to use it as a community. Not including this ring also simplifies the Radar, so that the meaning of each ring is consistent.
     
     ##### Who chooses the topic of a Radar?
     
-    3-5 representatives are randomly chosen from the CNCF End User Community to form a Radar Team. The team chooses the topic based on [suggestions from the community](https://github.com/cncf/enduser-public/issues/35) and their own interests and expertise.
+    Three to five representatives are randomly chosen from the CNCF End User Community to form a Radar Team. The team chooses the topic based on [suggestions from the community](https://github.com/cncf/enduser-public/issues/35) and their own interests and expertise.
     
     #### How are the technologies chosen?
     
-    The Radar Team creates a list of candidate technologies, but End User Community members can also add additional technologies.
+    The Radar Team creates a list of candidate technologies, but End User Community members who respond to the survey can also add other technologies.
     
     ##### Is the Tech Radar always about tools, or will it also cover other things such as approaches? 
     
@@ -69,24 +69,24 @@
     
     ##### How do I get my project on the Technology Radar?
     
-    Vendors and project maintainers can tell your end users about the Technology Radar and encourage them to join the End User Community so they can participate.
+    In order to get a project represented on a Technology Radar, vendors and project maintainers can tell their end users about the Technology Radar and encourage them to join the End User Community so they can participate in the survey and share their experiences with the project.
     
     ##### How do I participate in the next Technology Radar?
     
-    [Join the End User Community](https://www.cncf.io/people/end-user-community/) to weigh in on the next Technology Radar.
+    If you'd like to weigh in on the next Technology Radar survey or lead a Radar Team, [join the End User Community](https://www.cncf.io/people/end-user-community/).
     
     ##### How do I join the next Radar Team?
     
-    Be a member of the [End User Community](https://www.cncf.io/people/end-user-community/), and either volunteer or be randomly selected. Email us at info@cncf.io if you'd like to volunteer.
+    If you'd like to help create a future Technology Radar, make sure you're a member of the [End User Community](https://www.cncf.io/people/end-user-community/), and either volunteer or be randomly selected. Email us at info@cncf.io if you'd like to volunteer.
 
     ##### Who drives the poll?
     
-    CNCF runs it, but it’s community-driven from the End User Community.
+    CNCF runs the End User Technology Radar program, but each Radar is community-driven, with Radar Teams selected randomly from the End User Community.
     
     ##### Can I create my own technology radar?
     
-    Feel free to fork [this repo](https://github.com/cncf/radar) and run your own.
+    Feel free to fork [this repo](https://github.com/cncf/radar) and run your own technology radar!
     
     ##### Whom do I contact with questions?
     
-    Email info@cncf.io.
+    If you have any other questions not answered here, please email us at info@cncf.io.
