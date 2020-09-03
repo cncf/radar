@@ -16,7 +16,7 @@ import OutboundLink from '../components/OutboundLink'
 import ThumbnailsList from '../components/ThumbnailsList'
 
 const Columns = ({ children }) => {
-  return <div class="columns is-desktop is-4">
+  return <div className="columns is-desktop is-4">
     <style jsx>{`
       .columns {
         margin-top: 0;
