@@ -1,8 +1,8 @@
 - title: What is a Technology Radar?
   content: |
-    A technology radar is an opinionated guide to a set of emerging technologies. The popular format originated at [Thoughtworks](https://assets.thoughtworks.com/assets/technology-radar-vol-21-en.pdf) and has been adopted by dozens of companies including [Zalando](https://opensource.zalando.com/tech-radar/), [AOE](https://www.aoe.com/techradar/index.html), [Porsche](https://medium.com/porschedev/technology-radar-vol-2-4833fb31e2fd), Spotify, and Intuit.
+    A technology radar is an opinionated guide to a set of emerging technologies. The CNCF End User Technology Radar is intended for a technical audience who want to understand what solutions end users use in cloud native, and which they recommend.
     
-    The key idea is to place solutions at one of four levels, reflecting advice you would give to someone who is choosing a solution:
+    The key idea is to place solutions at one of three levels:
     <dl>
       <dt>Adopt</dt>
       <dd>The CNCF End User Community can clearly recommend this technology. We have used it for long periods of time in many teams and it has
@@ -15,39 +15,53 @@
       <dd>The CNCF End User Community has tried it out and we find it promising. We recommend having a look at these items when you face a
         specific need for the technology in your project.</dd>
     </dl>
+    
+  The popular format originated at [Thoughtworks](https://assets.thoughtworks.com/assets/technology-radar-vol-21-en.pdf) and has been adopted by dozens of companies including [Zalando](https://opensource.zalando.com/tech-radar/), [AOE](https://www.aoe.com/techradar/index.html), [Porsche](https://medium.com/porschedev/technology-radar-vol-2-4833fb31e2fd), Spotify, and Intuit.  
 - title: Methodology
   content: |
-    For each CNCF End User Technology Radar, five companies are randomly chosen from the CNCF End User Community and asked to form an editorial Radar Team. Once the Radar Team chooses a topic, the 140 companies in the CNCF End User Community are asked to describe what their companies recommend for a list of different technology solutions: Hold, Assess, Trial, or Adopt. They can also give more detailed comments. As the answers are submitted via a Google Spreadsheet, they are neither private nor anonymized within the group.
+    For each CNCF End User Technology Radar, 3-5 companies are randomly chosen from the CNCF End User Community and asked to form an editorial Radar Team. Once the Radar Team chooses a topic, the 140 companies in the CNCF End User Community are asked to describe what their companies recommend for a list of different technology solutions: Hold, Assess, Trial, or Adopt. They can also give more detailed comments. As the answers are submitted via a Google Spreadsheet, they are neither private nor anonymized within the group.
     
     The Radar Team curate the responses, choose final outcomes, and describe any patterns or themes they see in the data or from their own experience.
 
 - title: FAQ
   content: |
+    ##### What is CNCF?
+    
+    The [Cloud Native Computing Foundation](https://www.cncf.io/), part of the Linux Foundation and home of Kubernetes, Prometheus, Helm and many more.
+    
+    #### What is the CNCF End User Community?
+    
+    The [CNCF End User Community](https://www.cncf.io/people/end-user-community/) is a group of top companies and startups that are early adopters of modern infrastructure and cloud native.
+    
+    ##### Who is the CNCF End User Technology Radar for? 
+    
+    The CNCF End User Technology Radar is intended for a technical audience who want to understand what solutions end users use in cloud native, and which they recommend. You can use the CNCF End User Technology Radar to prioritize which technologies to evaluate in your environment.
+    
+    The CNCF Technical Oversight Committee (TOC) also use it as extra information for projects who are interested in being part of CNCF.
+    
+    ##### Does this predict the future of cloud native?
+
+    No, it is a report of how cloud native is used at one specific point in time.
+
     ##### What's the difference between the CNCF End User Technology Radar and other technology radars?
     
-    Compared to the ThoughtWorks radar, the CNCF End User Technology Radar is community-driven and represents the experience across dozens of companies. Cloud native moves very fast, so instead of doing an annual radar covering all topics, the CNCF End User Technology Radar covers one topic per quarter.
+    Compared to the ThoughtWorks radar, the CNCF End User Technology Radar is community-driven and represents the experience across dozens of companies.
     
-    In terms of format, there is no Hold ring and no quadrants, which are primarily used for organizing dense radars.
+    To capture the fast changing pace of cloud native, so instead of surveying 100+ solutions annually, the CNCF End User Technology Radar covers ~20 solutions on one topic each quarter.
     
-    ##### Why is there no “Hold” data in the CNCF End User Technology Radar?
+    The format is simplified to remove the Hold ring and quadrants, which are used for organization.
+    
+    ##### Why is there no “Hold” ring in the CNCF End User Technology Radar?
 
-    The Radar focuses on future adoption, so we have chosen not to include a Hold ring. 
+    On a typical Tech Radar, the "Hold" ring is a recommendation to stop using a technology, which is reasonable within one organization but didn't seem appropriate to recommend as a community. It also simplifies the Radar so that the meaning of each ring is consistent.
     
-    ##### How are the topics and technologies chosen?
+    ##### Who chooses the topic of a Radar?
     
-    The Technology Radar team chooses the topic based on [suggestions from the community](https://github.com/cncf/enduser-public/issues/35) and their own interests and expertise. The team comes up with a list of technologies in the space, but End User Community members who respond to the survey can also add tools they are familiar with that are not already on the list.
-
-    ##### Does the Tech Radar reflect the whole market?
+    3-5 representatives are randomly chosen from the CNCF End User Community to form a Radar Team. The team chooses the topic based on [suggestions from the community](https://github.com/cncf/enduser-public/issues/35) and their own interests and expertise.
     
-    No, the End User Community is comprised of mostly early adopters looking at modern use cases.
+    #### How are the technologies chosen?
     
-    ##### Is this a prediction for the future? 
-    
-    No, it’s a look at what’s currently being used today.
-    
-    ##### What is going to happen with this information? 
-    
-    It’s advisory for the CNCF Technical Oversight Committee (TOC) and Special Interest Groups (SIGs) for when they decide which projects go in and out of CNCF.
+    The Radar Team creates a list of candidate technologies, but End User Community members can also add additional technologies.
     
     ##### Is the Tech Radar always about tools, or will it also cover other things such as approaches? 
     
@@ -55,7 +69,7 @@
     
     ##### How do I get my project on the Technology Radar?
     
-    Vendors and project maintainers can tell your end users to the Technology Radar and encourage them to join the End User Community so they can participate.
+    Vendors and project maintainers can tell your end users about the Technology Radar and encourage them to join the End User Community so they can participate.
     
     ##### How do I participate in the next Technology Radar?
     
@@ -76,5 +90,3 @@
     ##### Whom do I contact with questions?
     
     Email info@cncf.io.
-
-
