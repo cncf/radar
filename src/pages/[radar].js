@@ -207,7 +207,7 @@ export async function getStaticProps ({ params }) {
   const radar = radars.find(({ key, draft }) => params ? key === params.radar : !draft)
   const otherRadars = radars.filter(r => !r.draft && r.key !== radar.key)
     .map(({ key, name }) => ({ key, name }))
-  return { props: { radar, otherRadars } }
+  return { props: { radar, otherRadars, home: !params } }
 }
 
 export async function getStaticPaths() {
@@ -219,4 +219,4 @@ export async function getStaticPaths() {
   };
 }
 
-export default withTitle(RadarPage, props => props.radar.name)
+export default withTitle(RadarPage, props => props.home ? 'Home' : props.radar.name)
