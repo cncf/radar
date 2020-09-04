@@ -175,6 +175,22 @@ const OtherRadarsSection = ({ radars }) => {
   </Section>
 }
 
+const Banner = _ => {
+  return <div className="notification is-success">
+    <style jsx>{`
+      .notification {
+        margin: 0; 
+        border-radius: 0;
+        text-align: center;
+        font-size: 1.25rem;
+      }
+    `}</style>
+    Get your end users voice heard. <OutboundLink href="https://www.cncf.io/people/end-user-community/">
+      Vote On Tech Radar
+    </OutboundLink>
+  </div>
+}
+
 const RadarPage = ({ radar, otherRadars = [] }) => {
   const { name, points, team, video, companies, key, sections = [], themes } = radar
   const defaultSections = [
@@ -196,9 +212,11 @@ const RadarPage = ({ radar, otherRadars = [] }) => {
     .map(([_, section]) => section)
 
   return <>
+    <Banner />
     {sortedSections}
     {additionalSections}
     {otherRadars.length > 0 && <OtherRadarsSection radars={otherRadars} />}
+    <Banner />
   </>
 }
 
