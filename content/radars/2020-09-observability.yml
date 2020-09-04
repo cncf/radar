@@ -152,31 +152,35 @@ points:
       trial: 4
       assess: 2
 companies:
-  - ant-financial-member
-  - spotify-member
-  - apple-member
-  - indeed-member
-  - thermo-fisher-scientific-supporter
   - box-supporter
-  - ksat-supporter
-  - snow-software-supporter
-  - hobsons-supporter
-  - lunar-supporter
-  - gmx-supporter
-  - ricardo-ch-supporter
+  - pay-it-supporter
+  - zendesk-supporter
   - the-new-york-times-supporter
+  - skyTBD
+  - zalando-supporter
+  - babylon TBD
+  - snow-software-supporter
+  - opentable TBD
+  - onecause TBD
+  - 1&1 TBD
+  - meltwater-supporter
   - n26-supporter
-  - mhi-vestas-offshore-wind-supporter
+  - rstudio TBD
+  - squarespace TBD
+  - entegral TBD
   - equity-zen-supporter
   - under-armour-supporter
   - intuit-member
-  - nielsen-supporter
-  - zendesk-supporter
-  - ever-quote-supporter
-  - jd-com-member
-  - pay-it-supporter
-  - state-farm-supporter
+  - lunar-supporter
+  - mhi-vestas-offshore-wind-supporter
+  - ricardo-ch-supporter
+  - shopify TBD
+  - kongsberg TBD
   - dailymotion-supporter
-  - meltwater-supporter
-  - trivago-supporter
-  - zalando-supporter
+  - netmatch TBD
+  - spotify-member
+  - apple-member
+  - mastercard TBD
+  - indeed-member
+  - ticketmaster TBD
+  - groupon TBD
