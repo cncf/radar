@@ -44,6 +44,12 @@ a {
   }
 }
 
+a {
+  h1, h2, h3, h4, h5 {
+    color: map.get($colors, "pink");
+  }
+}
+
 section:nth-child(even) {
   background-color: #f0f5f7;
 }
