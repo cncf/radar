@@ -1,0 +1,182 @@
+name: Observability
+draft: true
+themes:
+  - headline: The most commonly adopted tools are open source.
+    content: |
+      The three tools that received the most “Adopt” votes (Prometheus, Grafana, Elastic) and the five tools that received the most total votes (Prometheus, Grafana, Elastic, Jaeger, OpenTelemetry) are all open source. 
+
+It was interesting to see that companies have adopted and maintained these open source systems and been able to scale them to large enough deployments with in-house investments. As it requires at least a small team to deploy, maintain, and scale these open source systems, companies seem to think this tradeoff is worth it compared to using SaaS providers. 
+
+At the same time, there doesn’t seem to be a clear delineation between companies running open source tooling and those adopting an observability SAAS platform in terms of size or engineering capabilities. Open standards such as OpenMetrics and OpenTelemetry are being adopted regardless of whether companies are using open source or SaaS solutions. Plus, some of the companies that ultimately adopted SaaS platforms did go through the process of evaluating and prototyping self-managed platforms before deciding against it. Perhaps the conclusion to draw is that a quick pace of new technologies require new observability techniques, which in turn require almost constant evaluation and adoption of new tools.
+  - headline: There’s no consolidation in the observability space.
+    content: |
+      Many companies are using multiple tools: Half of the companies are using 5 or more tools, and a third of them had experience with 10+ tools. 
+
+Observability inherently requires looking at the data from different views to try to answer questions. Different tools have strengths in different techniques and integrations, which may be the reason why end users end up with multiple tools. And once adopted, it may be difficult to switch from one set of tools to another or to even consolidate. For most end users, observability is not their core business, so the investment needed to switch tools is often an expense that’s not easily funded. This  may be a large reason why there are so many "Adopt" votes in this radar.
+Anecdotally, companies are constantly experimenting with and introducing new tools, looking for better ways to observe things. With the advent of cloud native technologies like Kubernetes, different tools are needed for monitoring. For example, Nagios was really popular five years ago, but not as relevant now for users who need to monitor Kubernetes workloads. 
+
+  - headline: Prometheus and Grafana are frequently used together.
+    content: |
+      Two-thirds of the respondents are using these two tools in conjunction. This comes as no surprise, but the high correlation is still interesting to note. Momentum behind both projects, coupled with little competition, could have helped them gain such a high rate of adoption. Plus, there are many tutorials and installers that make it easy to use them together. There’s minimal resistance to using them hand-in-hand.
+      
+video: https://www.youtube.com/embed/0792Q3l6tK8
+team:
+  - name: Jon Moter
+    photo: https://www.cncf.io/wp-content/uploads/2020/08/14233189_10101878603974740_6349536740498881867_n-1-1-500x500.jpg
+    bio: |
+      Cheryl's mission is to make end users successful and productive with cloud native technologies
+    twitter: jonmoter
+    linkedin: jonmoter
+    title: Senior Principal Engineer at Zendesk
+  - name: Kunal Parmar
+    photo: https://www.cncf.io/wp-content/uploads/2020/08/14233189_10101878603974740_6349536740498881867_n-1-1-500x500.jpg
+    bio: |
+      Cheryl's mission is to make end users successful and productive with cloud native technologies
+    linkedin: kunalparmar
+    title: Director, Software Development, Cloud Native at Box
+  - name: Marcin Suterski
+    photo: https://www.cncf.io/wp-content/uploads/2020/08/14233189_10101878603974740_6349536740498881867_n-1-1-500x500.jpg
+    bio: |
+      Cheryl's mission is to make end users successful - name: Cheryl Hung
+    linkedin: marcinsuterski
+    title: Lead Engineer at The New York Times
+  - name: Jason Tarasovic
+    photo: https://www.cncf.io/wp-content/uploads/2020/08/14233189_10101878603974740_6349536740498881867_n-1-1-500x500.jpg
+    bio: |
+      Cheryl's mission is to make end users successful and productive with cloud native technologies
+    twitter: J_Tarasovic
+    linkedin: jtarasovic
+    title: Principal Engineer at PayIt
+  
+points:
+  - name: Prometheus
+    repo: prometheus/prometheus
+    level: adopt
+    votes:
+      adopt: 25
+      trial: 1
+      assess: 2
+      hold: 2
+  - name: Grafana
+    repo: grafana/grafana
+    level: adopt
+    votes:
+      adopt: 21
+      trial: 2
+      assess: 1
+      hold: 2
+  - name: Elastic
+    repo: elastic/elasticsearch
+    level: adopt
+    votes:
+      adopt: 15
+      assess: 2
+      hold: 1
+  - name: Jaeger
+    repo: jaegertracing/jaeger
+    level: assess
+    votes:
+      adopt: 4
+      trial: 7
+      assess: 6
+      hold: 2
+  - name: OpenTelemetry
+    repo: open-telemetry
+    level: assess
+    votes:
+      adopt: 5
+      trial: 2
+      assess: 8
+  - name: Thanos
+    repo: thanos-io/thanos
+    level: assess
+    votes:
+      adopt: 3
+      trial: 4
+      assess: 7
+  - name: Datadog
+    homepage: https://www.datadoghq.com/
+    level: adopt
+    votes:
+      adopt: 11
+      trial: 1
+      hold: 1
+  - name: OpenMetrics
+    repo: OpenObservability/OpenMetrics
+    level: adopt
+    votes:
+      adopt: 10
+      assess: 2
+      hold: 1
+  - name: Splunk
+    homepage: https://www.splunk.com/
+    level: adopt
+    votes:
+      adopt: 9
+      trial: 1
+      assess: 3
+      hold: 1
+  - name: Lightstep
+    homepage: https://lightstep.com/
+    level: trial
+    votes:
+      adopt: 4
+      trial: 3
+      assess: 2
+  - name: Statsd
+    repo: statsd/statsd
+    level: adopt
+    votes:
+      adopt: 6
+      assess: 2
+  - name: Stackdriver
+    homepage: https://cloud.google.com/products/operations
+    level: assess
+    votes:
+      adopt: 2
+      trial: 2
+      hold: 3
+  - name: Cloudwatch
+    homepage: https://aws.amazon.com/cloudwatch/
+    level: adopt
+    votes:
+      adopt: 6
+      trial: 1
+      assess: 1
+      hold: 1
+  - name: Kiali
+    repo: kiali/kiali
+    level: trial
+    votes:
+      adopt: 2
+      trial: 4
+      assess: 2
+companies:
+  - ant-financial-member
+  - spotify-member
+  - apple-member
+  - indeed-member
+  - thermo-fisher-scientific-supporter
+  - box-supporter
+  - ksat-supporter
+  - snow-software-supporter
+  - hobsons-supporter
+  - lunar-supporter
+  - gmx-supporter
+  - ricardo-ch-supporter
+  - the-new-york-times-supporter
+  - n26-supporter
+  - mhi-vestas-offshore-wind-supporter
+  - equity-zen-supporter
+  - under-armour-supporter
+  - intuit-member
+  - nielsen-supporter
+  - zendesk-supporter
+  - ever-quote-supporter
+  - jd-com-member
+  - pay-it-supporter
+  - state-farm-supporter
+  - dailymotion-supporter
+  - meltwater-supporter
+  - trivago-supporter
+  - zalando-supporter
