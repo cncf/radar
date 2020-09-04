@@ -1,7 +1,6 @@
 import OutboundLink from "./OutboundLink";
 
 export default function Companies({ companies }) {
-  console.log(companies)
   return <div className="wrapper">
     <style jsx>{`
         .wrapper {
