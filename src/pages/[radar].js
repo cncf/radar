@@ -185,8 +185,8 @@ const Banner = _ => {
         font-size: 1.25rem;
       }
     `}</style>
-    Get your end users voice heard. <OutboundLink href="https://www.cncf.io/people/end-user-community/">
-      Vote On Tech Radar
+     <OutboundLink href="https://www.cncf.io/people/end-user-community/">
+      Join to the End User Community to vote on the next Tech Radar
     </OutboundLink>
   </div>
 }
