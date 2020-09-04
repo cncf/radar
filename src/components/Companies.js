@@ -1,28 +1,24 @@
-import { sizes } from '../styles.config'
+import OutboundLink from "./OutboundLink";
 
 export default function Companies({ companies }) {
+  console.log(companies)
   return <div className="wrapper">
     <style jsx>{`
         .wrapper {
           display: flex;
-          gap: 20px;
+          gap: 5px 15px;
           justify-content: center;
           flex-wrap: wrap;
         }
         
         img {
-          width: 100px;
-          height: 100px;
-        }
-        
-        @media only screen and (max-width: ${sizes.mobile}px) {
-          img {
-            width: 80px;
-            height: 80px;
-          }
+          width: 80px;
+          height: 80px;
         }
       `}</style>
 
-    { companies.map(company => <img src={`/logos/${company.logo}`} alt={company.name} key={company.key} />) }
+    { companies.map(company => <OutboundLink key={company.key} href={company.homepage}>
+      <img src={`/logos/${company.logo}`} alt={company.name} />
+    </OutboundLink>) }
   </div>
 }

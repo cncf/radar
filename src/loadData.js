@@ -53,12 +53,13 @@ const buildRadar = attrs => {
 }
 
 const buildCompany = async attrs => {
-  const { id, flatName, href, crunchbaseData } = attrs
+  const { id, flatName, href, crunchbaseData, homepage_url } = attrs
   const employeesRange = [crunchbaseData.numEmployeesMin, crunchbaseData.numEmployeesMax]
+  const homepage = homepage_url
   const logo = `${id}.svg`
   const industry = industries[id]
   await downloadLogo(href, logo)
-  return { key: id, name: flatName, employeesRange, logo, industry }
+  return { key: id, name: flatName, employeesRange, logo, industry, homepage }
 }
 
 const buildMember = async (attrs) => {
