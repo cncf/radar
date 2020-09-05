@@ -94,7 +94,7 @@ const RadarSection = ({ name, points, radarKey, themes }) => {
 
       { themes.length > 0 && <Column>
         {themes.map((theme, idx) => {
-          return <div className="theme">
+          return <div className="theme" key={idx}>
             <h4>{idx + 1}. {theme.headline}</h4>
             {!collapsed && <MarkdownComponent className={className} value={theme.content} />}
           </div>
