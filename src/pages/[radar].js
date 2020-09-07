@@ -46,13 +46,7 @@ const Column = ({ children, title }) => {
   </div>
 }
 
-const RadarSection = ({ name, points, radarKey, themes }) => {
-  const [collapsed, setCollapsed] = useState(true)
-  const toggleCollapsed = _ => setCollapsed(!collapsed)
-
-  const { className, styles } = css.resolve`
-    margin-top: 10px;
-  `
+const RadarSection = ({ name, points, radarKey }) => {
 
   return <Section title={name}>
     <style jsx>{`
@@ -67,44 +61,57 @@ const RadarSection = ({ name, points, radarKey, themes }) => {
         font-size: 0.95rem;
       }
       
+      h4 {
+        color: #202020;
+      }
+    `}</style>
+
+    <div className="radar-wrapper">
+      <Radar points={points} />
+      <div className="download">
+        Download as <OutboundLink href={`/${radarKey}.svg`} title="svg" /> or <OutboundLink href={`/${radarKey}.png`} title="png" />
+      </div>
+    </div>
+  </Section>
+}
+
+const ThemesSection = ({ themes }) => {
+  const [collapsed, setCollapsed] = useState(true)
+  const toggleCollapsed = _ => setCollapsed(!collapsed)
+
+  const { className, styles } = css.resolve`
+    margin-top: 10px;
+  `
+
+  return <Section title="Top Themes">
+    {styles}
+
+    <style jsx>{`
       .theme {
         margin: 0 10px 30px;
       }
       
-      h4 {
+      .theme h4 {
+        text-align: center;
         color: #202020;
       }
-      
+
       .toggle {
         text-align: center;
+        font-size: 0.95rem;
       }
     `}</style>
 
-    {styles}
+    {themes.map((theme, idx) => {
+      return <div className="theme" key={idx}>
+        <h4>{idx + 1}. {theme.headline}</h4>
+        {!collapsed && <MarkdownComponent className={className} value={theme.content}/>}
+      </div>
+    })}
 
-    <Columns>
-      <Column>
-        <div className="radar-wrapper">
-          <Radar points={points} />
-          <div className="download">
-            Download as <OutboundLink href={`/${radarKey}.svg`} title="svg" /> or <OutboundLink href={`/${radarKey}.png`} title="png" />
-          </div>
-        </div>
-      </Column>
-
-      { themes.length > 0 && <Column>
-        {themes.map((theme, idx) => {
-          return <div className="theme" key={idx}>
-            <h4>{idx + 1}. {theme.headline}</h4>
-            {!collapsed && <MarkdownComponent className={className} value={theme.content} />}
-          </div>
-        })}
-
-        <div className="toggle">
-          <a onClick={toggleCollapsed}>Show { collapsed ? 'More' : 'Less' }</a>
-        </div>
-      </Column> }
-    </Columns>
+    <div className="toggle">
+      <a onClick={toggleCollapsed}>Show {collapsed ? 'More' : 'Less'}</a>
+    </div>
   </Section>
 }
 
@@ -194,7 +201,8 @@ const Banner = _ => {
 const RadarPage = ({ radar, otherRadars = [] }) => {
   const { name, points, team, video, companies, key, sections = [], themes } = radar
   const defaultSections = [
-    <RadarSection name={name} points={points} radarKey={key} themes={themes} key="radar" />,
+    <RadarSection name={name} points={points} radarKey={key} key="radar" />,
+    <ThemesSection themes={themes} key="themes" />,
     <CompaniesSection companies={companies} key="companies" />,
     <WebinarAndTeamSection video={video} team={team} key="webinar-and-team" />,
     <DataSection points={points} companies={companies} key="data" />
