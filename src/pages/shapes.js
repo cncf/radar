@@ -115,6 +115,29 @@ const RectangleRadarRing = ({ points, radius, title, color }) => {
   </Fragment>
 }
 
+const PartialCircleRadarRing = ({ points, radius, title, color }) => {
+  const smallRadius = radius - 333
+  const centralRing = smallRadius <= 1
+  const innerRadius = centralRing ? (3 * radius + smallRadius) / 4 : (radius + smallRadius) / 2
+  const titleRadius = centralRing ? 0 : (3 * radius + smallRadius) / 4
+  const intersectionX = Math.sqrt(radius ** 2 - 333 ** 2)
+  const offset = Math.asin(intersectionX / radius)
+  const angle = 2 * (Math.PI - offset) / points.length
+
+  return <Fragment>
+    <path d={`M ${-intersectionX} 333 A ${radius} ${radius}, 0, 0, 1, 0 ${-radius} A ${radius} ${radius}, 0, 0, 1, ${intersectionX} 333 Z`} stroke={color} strokeWidth="2" fill="none"/>
+    <Title y={-titleRadius} color={color} text={title} />
+
+    {
+      points.map((point, i) => {
+        const pointAngle = angle * i - (Math.PI / 2 - offset) + angle / 2 + (centralRing ? angle / 2 : 0)
+        return <Point point={point} distance={innerRadius} angle={pointAngle} color={color} key={point.name}/>
+      })
+    }
+  </Fragment>
+}
+
+
 const FullCircleRadarRing = ({ points, radius, title, color }) => {
   const smallRadius = radius - 333
   const centralRing = smallRadius <= 1
@@ -131,22 +154,6 @@ const FullCircleRadarRing = ({ points, radius, title, color }) => {
         return <Point point={point} distance={innerRadius} angle={pointAngle} color={color} key={point.name}/>
       })
     }
-  </Fragment>
-}
-
-const QuarterRadarRing = ({ points, radius, title, color }) => {
-  const smallRadius = radius - 333
-  const cutOff = (radius + smallRadius) / 2
-  const innerRadius = (radius + cutOff) / 2
-  const titleRadius = Math.max(20 + (cutOff + smallRadius) / 2, 120)
-
-  const x = -radius * Math.cos(Math.PI / 4)
-  const y = -radius * Math.sin(Math.PI / 4)
-
-  return <Fragment>
-    <path d={`M 0 0 L ${x} ${y} A ${radius} ${radius}, 0, 0, 1, ${-x} ${y} Z`} stroke={color} strokeWidth="2" fill="none"/>
-    <Title y={- titleRadius} color={color} text={title} />
-    <PointCollection points={points} distance={innerRadius} smallerDistance={titleRadius} minAngle={Math.PI / 4} color={color} />
   </Fragment>
 }
 
@@ -298,6 +305,22 @@ const Radar = ({ radars }) => {
                   <RectangleRadarRing radius={1000} points={points.assess} title="Assess" color={colors.assess} />
                   <RectangleRadarRing radius={666} points={points.trial} title="Trial" color={colors.trial} />
                   <RectangleRadarRing radius={333} points={points.adopt} title="Adopt" color={colors.adopt} />
+                </g>
+              </svg>
+            </ScaleContext.Provider>
+          </div>
+        </div>
+
+        <div className="columns">
+          <div className="column">
+            <h2>Partial Circle</h2>
+
+            <ScaleContext.Provider value={1 / 1.3}>
+              <svg viewBox="0 0 2002 1335" xmlns="http://www.w3.org/2000/svg" dominantBaseline="middle" textAnchor="middle" fontWeight="bolder" fontFamily={fontFamily}>
+                <g transform="translate(1001 1001)">
+                  <PartialCircleRadarRing radius={1000} points={points.assess} title="Assess" color={colors.assess} />
+                  <PartialCircleRadarRing radius={666} points={points.trial} title="Trial" color={colors.trial} />
+                  <PartialCircleRadarRing radius={333} points={points.adopt} title="Adopt" color={colors.adopt} />
                 </g>
               </svg>
             </ScaleContext.Provider>
