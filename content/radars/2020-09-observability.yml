@@ -28,15 +28,15 @@ team:
     linkedin: jonmoter
     title: Senior Principal Engineer at Zendesk
   - name: Kunal Parmar
-    photo: https://media-exp1.licdn.com/dms/image/C4E03AQE3seiEwa4S2A/profile-displayphoto-shrink_400_400/0?e=1605139200&v=beta&t=bnEGQ6ZI9u8jipXYuku2X8gW_GatBS74rydlfGGmePM
+    photo: https://cloud.app.box.com/s/w2b9ealceuuoofzo5euhn8ddjacijek0
     bio: |
-      Director, Software Development, Cloud Native at Box
+      Kunal leads Box's cloud native team, driving the adoption of Kubernetes, Service Mesh, and Observability.
     linkedin: kunalparmar
-    title: Director, Software Development, Cloud Native at Box
+    title: Director of Software Development at Box
   - name: Marcin Suterski
     photo: https://miro.medium.com/fit/c/336/336/0*sOy35XMsi_VzR393.jpg
     bio: |
-      Lead Engineer at The New York Times
+      Marcin is part of the Delivery Engineering team, which provides tools, processes and education to engineering teams across the organization. His current focus is on Observability.
     linkedin: marcinsuterski
     title: Lead Engineer at The New York Times
   - name: Jason Tarasovic
