@@ -49,7 +49,7 @@ export default function RadarTeam({ team }) {
             <i className="fab fa-twitter"></i>
           </OutboundLink>}
 
-          {member.linkedin && <OutboundLink href={`https://linkedin.com/${member.linkedin}`} className={className}>
+          {member.linkedin && <OutboundLink href={`https://linkedin.com/in/${member.linkedin}`} className={className}>
             <i className="fab fa-linkedin"></i>
           </OutboundLink>}
 
