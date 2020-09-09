@@ -68,7 +68,7 @@ export default function Header() {
           </OutboundLink>
 
           <Link href="/">
-            <h1><NavLink className="no-margin">CNCF Technology Radars</NavLink></h1>
+            <h1><NavLink className="no-margin">CNCF End User Technology Radar</NavLink></h1>
           </Link>
         </div>
 
