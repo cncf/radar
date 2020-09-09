@@ -116,24 +116,17 @@ const ThemesSection = ({ themes }) => {
 }
 
 const WebinarAndTeamSection = ({ video, team }) => {
-  const { className, styles } = css.resolve`
-    .columns {
-      margin-top: -1.25rem; 
-    } 
-  `
+  return <Section title="Webinar">
+    <style jsx>{`
+      .team-section {
+        margin-top: 40px;
+      }
+    `}</style>
 
-  return <Section>
-    {styles}
-
-    <Columns className={className}>
-      <Column title="Webinar">
-        <VideoComponent src={video} />
-      </Column>
-
-      <Column title="Team">
-        <RadarTeam team={team}/>
-      </Column>
-    </Columns>
+    <VideoComponent src={video} />
+    <div className="team-section">
+      <RadarTeam team={team}/>
+    </div>
   </Section>
 }
 
