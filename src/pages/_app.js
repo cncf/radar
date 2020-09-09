@@ -6,6 +6,27 @@ import Header from '../components/Header'
 import Footer from '../components/Footer'
 import '../styles/style.scss'
 import LandscapeItemIframe from '../components/LandscapeItemIframe'
+import OutboundLink from '../components/OutboundLink'
+
+const Banner = _ => {
+  return <div className="banner">
+    <style jsx>{`
+      .banner {
+        background-color: #416fd9;
+        padding: 10px;
+        text-align: center;
+      }
+      
+      .banner :global(a) {
+        color: white;
+        text-decoration: underline;
+      }
+    `}</style>
+    <OutboundLink href="https://www.cncf.io/people/end-user-community/">
+      Join to the End User Community to vote on the next Tech Radar
+    </OutboundLink>
+  </div>
+}
 
 export default function App({ Component, pageProps }) {
   const [searchQuery, setSearchQuery] = useState('')
@@ -21,6 +42,7 @@ export default function App({ Component, pageProps }) {
     <SearchContext.Provider value={{searchQuery, setSearchQuery}}>
       <SelectedPointContext.Provider value={{selectedPoint, setSelectedPoint}}>
         <LandscapeItemIframe />
+        <Banner />
         <Header />
         <main>
           <Component {...pageProps} />

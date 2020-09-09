@@ -26,6 +26,7 @@ export default function LandscapeItemIframe() {
       .hidden {
         // Use opacity to hide modal, otherwise it's re-rendered.
         opacity: 0;
+        z-index: -10000;
       }
 
       .modal-content {
