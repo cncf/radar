@@ -83,7 +83,7 @@ export default function Header() {
         <div className="navbar-end">
           <Search />
           <Link href="/how-it-works" passHref><NavLink>How It Works</NavLink></Link>
-          <Link href="/overview" passHref><NavLink>Technologies Overview</NavLink></Link>
+          <Link href="/overview" passHref><NavLink>See All</NavLink></Link>
         </div>
       </div>
     </div>
