@@ -110,7 +110,7 @@ points:
       hold: 1
   - name: Splunk
     homepage: https://www.splunk.com/
-    level: adopt
+    level: trial
     votes:
       adopt: 9
       trial: 1
@@ -125,13 +125,13 @@ points:
       assess: 2
   - name: Statsd
     repo: statsd/statsd
-    level: adopt
+    level: trial
     votes:
       adopt: 6
       assess: 2
   - name: Cloudwatch
     homepage: https://aws.amazon.com/cloudwatch/
-    level: adopt
+    level: trial
     votes:
       adopt: 6
       trial: 1
