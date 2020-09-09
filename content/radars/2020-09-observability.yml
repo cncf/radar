@@ -1,5 +1,4 @@
 name: Observability
-draft: true
 themes:
   - headline: The most commonly adopted tools are open source.
     content: |
@@ -22,28 +21,28 @@ themes:
 video: https://www.youtube.com/embed/0792Q3l6tK8
 team:
   - name: Jon Moter
-    photo: https://www.cncf.io/wp-content/uploads/2020/08/14233189_10101878603974740_6349536740498881867_n-1-1-500x500.jpg
+    photo: https://media-exp1.licdn.com/dms/image/C4E03AQFTKuqDY0pAgQ/profile-displayphoto-shrink_800_800/0?e=1605139200&v=beta&t=Xc7d5pFfgmk6Sz0ECN0vowegzrlj8KFgOKw54UnRbHs
     bio: |
-      Cheryl's mission is to make end users successful and productive with cloud native technologies
+      Senior Principal Engineer at Zendesk
     twitter: jonmoter
     linkedin: jonmoter
     title: Senior Principal Engineer at Zendesk
   - name: Kunal Parmar
-    photo: https://www.cncf.io/wp-content/uploads/2020/08/14233189_10101878603974740_6349536740498881867_n-1-1-500x500.jpg
+    photo: https://media-exp1.licdn.com/dms/image/C4E03AQE3seiEwa4S2A/profile-displayphoto-shrink_400_400/0?e=1605139200&v=beta&t=bnEGQ6ZI9u8jipXYuku2X8gW_GatBS74rydlfGGmePM
     bio: |
-      Cheryl's mission is to make end users successful and productive with cloud native technologies
+      Director, Software Development, Cloud Native at Box
     linkedin: kunalparmar
     title: Director, Software Development, Cloud Native at Box
   - name: Marcin Suterski
-    photo: https://www.cncf.io/wp-content/uploads/2020/08/14233189_10101878603974740_6349536740498881867_n-1-1-500x500.jpg
+    photo: https://miro.medium.com/fit/c/336/336/0*sOy35XMsi_VzR393.jpg
     bio: |
-      Cheryl's mission is to make end users successful - name: Cheryl Hung
+      Lead Engineer at The New York Times
     linkedin: marcinsuterski
     title: Lead Engineer at The New York Times
   - name: Jason Tarasovic
-    photo: https://www.cncf.io/wp-content/uploads/2020/08/14233189_10101878603974740_6349536740498881867_n-1-1-500x500.jpg
+    photo: https://media-exp1.licdn.com/dms/image/C5603AQHbfD1J8xwmJA/profile-displayphoto-shrink_400_400/0?e=1605139200&v=beta&t=76SuCoPOkfiraifrNcX0SUkAkCyVRujiCi64ywXm5io
     bio: |
-      Cheryl's mission is to make end users successful and productive with cloud native technologies
+      Principal Engineer at PayIt
     twitter: J_Tarasovic
     linkedin: jtarasovic
     title: Principal Engineer at PayIt
