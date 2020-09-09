@@ -144,6 +144,13 @@ points:
       adopt: 2
       trial: 4
       assess: 2
+  - name: Sentry
+    homepage: https://sentry.io/welcome/
+    level: trial
+    votes: 
+      adopt: 7
+      trial: 2
+      assess: 2
 companies:
   - box-supporter
   - pay-it-supporter
