@@ -23,7 +23,7 @@ const Banner = _ => {
       }
     `}</style>
     <OutboundLink href="https://www.cncf.io/people/end-user-community/">
-      Join to the End User Community to vote on the next Tech Radar
+      Join the CNCF End User Community to vote on the next Tech Radar
     </OutboundLink>
   </div>
 }
