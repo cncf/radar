@@ -150,6 +150,10 @@ const CompaniesSection = ({ companies }) => {
 
 const DataSection = ({ points, companies }) => {
   return <Section title="CNCF End User Community Member Recommendations">
+    <p>
+      The CNCF End User Community was asked to describe what their companies recommend for different solutions:
+      Hold, Assess, Trial, or Adopt. This is a tally of how the participating companies rated each technology
+    </p>
     <RadarData points={points}/>
 
     {companies && <Columns>
