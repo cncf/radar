@@ -73,7 +73,7 @@ points:
       hold: 1
   - name: Jaeger
     repo: jaegertracing/jaeger
-    level: assess
+    level: trial
     votes:
       adopt: 4
       trial: 7
@@ -128,13 +128,6 @@ points:
     votes:
       adopt: 6
       assess: 2
-  - name: Stackdriver
-    homepage: https://cloud.google.com/products/operations
-    level: assess
-    votes:
-      adopt: 2
-      trial: 2
-      hold: 3
   - name: Cloudwatch
     homepage: https://aws.amazon.com/cloudwatch/
     level: adopt
