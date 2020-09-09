@@ -12,6 +12,7 @@ themes:
       Many companies are using multiple tools: Half of the companies are using 5 or more tools, and a third of them had experience with 10+ tools. 
 
       Observability inherently requires looking at the data from different views to try to answer questions. Different tools have strengths in different techniques and integrations, which may be the reason why end users end up with multiple tools. Once adopted, it may be difficult to switch from one set of tools to another or to even consolidate. For most end users, observability is not their core business, so the investment needed to switch tools is often not easily funded. This may be a large reason why there are so many "Adopt" votes in this radar.
+      
       Anecdotally, companies are constantly experimenting with and introducing new tools, looking for better ways to observe things. With the advent of cloud native technologies like Kubernetes, different tools are needed for monitoring. For example, Nagios was really popular five years ago, but not as relevant now for users who need to monitor Kubernetes workloads. 
 
   - headline: Prometheus and Grafana are frequently used together.
