@@ -120,6 +120,7 @@ const WebinarAndTeamSection = ({ video, team }) => {
     <style jsx>{`
       .team-section {
         margin-top: 40px;
+        margin-bottom: -40px;
       }
     `}</style>
 
