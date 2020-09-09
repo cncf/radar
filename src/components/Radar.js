@@ -79,7 +79,7 @@ export default function Radar({ points, name, showHeader = false }) {
   const width = 1740 + padding * 2
   const height = 1006 + (showHeader ? 60 : 0) + padding * 2
 
-  return <svg viewBox={`0 0 ${width} ${height}`} xmlns="http://www.w3.org/2000/svg" dominantBaseline="middle" textAnchor="middle" fontWeight="bolder" fontFamily={fontFamily}>
+  return <svg viewBox={`0 0 ${width} ${height}`} xmlns="http://www.w3.org/2000/svg" dominantBaseline="central" textAnchor="middle" fontWeight="bolder" fontFamily={fontFamily}>
     { showHeader && <Header text-anchor="start" x={padding} y={padding + 30}>CNCF Technology Radar</Header> }
     { showHeader && <Header text-anchor="end" x={width - padding} y={padding + 30}>{name}</Header> }
     <g transform={`translate(${width / 2} ${height - padding - 3})`}>
