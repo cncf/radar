@@ -5,14 +5,14 @@
     The key idea is to place solutions at one of three levels:
     <dl>
       <dt>Adopt</dt>
-      <dd>The CNCF End User Community can clearly recommend this technology. We have used it for long periods of time in many teams and it has
-          proven to be stable and useful</dd>
+      <dd>The CNCF End User Community can clearly recommend this technology. We have used it for long periods of time in many teams, and it has
+          proven to be stable and useful.</dd>
 
       <dt>Trial</dt>
-      <dd>The CNCF End User Community has used it with success and recommend to have a closer look at the technology in this ring</dd>
+      <dd>The CNCF End User Community has used it with success, and we recommend you have a closer look at the technology.</dd>
 
       <dt>Assess</dt>
-      <dd>The CNCF End User Community has tried it out and we find it promising. We recommend having a look at these items when you face a
+      <dd>The CNCF End User Community has tried it out, and we find it promising. We recommend having a look at these items when you face a
         specific need for the technology in your project.</dd>
     </dl>
     
