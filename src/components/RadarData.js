@@ -71,9 +71,7 @@ export default function RadarData({ points }) {
 
                     const key = `vote-${level}-${point.key}-${voteKey}`
                     const width = `${100 * votes / maxVotes}%`
-                    return <div key={key} className={`vote ${voteKey}-background`} style={{width}}>
-                      {votes}
-                    </div>
+                    return <div key={key} className={`vote ${voteKey}-background`} style={{width}} />
                   })
                 }
               </div>
