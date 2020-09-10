@@ -4,14 +4,14 @@ module.exports = {
     blueTitle: '#2c2960',
     pink: '#de176c',
     adopt: '#0554C6',
-    adoptBg: '#82BA6A',
+    adoptBg: '#83AF83',
     trial: '#032291',
-    trialBg: '#b7e1cd',
+    trialBg: '#B3D1BD',
     assess: '#020C42',
-    assessBg: '#fce8b2',
+    assessBg: '#FFECD1',
     warning: '#ffdd57',
     hold: '#ff6846',
-    holdBg: '#f4c7c3'
+    holdBg: '#EAE6E5'
   },
   typography: {
     fontFamily: ['BlinkMacSystemFont', '-apple-system', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
