@@ -13,16 +13,25 @@ export default function RadarData({ points }) {
       .data {
         display: grid;
         grid-template-columns: max-content max-content 1fr;
-        grid-gap: 5px 10px;
+        grid-gap: 0;
         font-size: 0.95rem;
+        border-top: 1px solid #dbdbdb;
+        border-left: 1px solid #dbdbdb;
+      }
+      
+      .header, .item {
+        border-bottom: 1px solid #dbdbdb;
+        border-right: 1px solid #dbdbdb;
+        padding: 4px;
       }
       
       .item-level {
-        padding: 0 5px;
+        padding: 0 4px;
         text-transform: capitalize;
         display: flex;
         align-items: center;
         justify-content: center;
+        height: 100%;
       }
       
       .header {
@@ -45,8 +54,10 @@ export default function RadarData({ points }) {
         ['adopt', 'trial', 'assess'].map(level => {
           return groupedPoints[level].map((point, i) => {
             return <Fragment key={`point-${level}-${point.key}`}>
-              { i === 0 && <div style={{gridRowEnd: `span ${groupedPoints[level].length}`}} className={`item ${level}-background item-level`}>
-                {level}
+              { i === 0 && <div style={{gridRowEnd: `span ${groupedPoints[level].length}`}} className={`item`}>
+                <div className={`item-level ${level}-background`}>
+                  {level}
+                </div>
               </div> }
               <div className="item"><LinkToPoint point={point} /></div>
               <div className="item">
