@@ -105,7 +105,7 @@ const ThemesSection = ({ themes }) => {
     margin-top: 10px;
   `
 
-  return <Section title="Top Themes">
+  return <Section title="Top Radar Themes">
     {styles}
 
     <style jsx>{`
@@ -138,7 +138,7 @@ const ThemesSection = ({ themes }) => {
 }
 
 const WebinarAndTeamSection = ({ video, team }) => {
-  return <Section title="Webinar">
+  return <Section title="Hear from the Radar Team">
     <style jsx>{`
       .team-section {
         margin-top: 40px;
@@ -163,7 +163,7 @@ const CompaniesSection = ({ companies }) => {
     }  
   `
 
-  return  <Section title="Participating CNCF End User Community Members">
+  return  <Section title="Contributions from CNCF End Users>
     {styles}
     <Companies companies={companies} />
     <GlobalTextComponent name="hidden_companies" className={className} />
@@ -171,19 +171,19 @@ const CompaniesSection = ({ companies }) => {
 }
 
 const DataSection = ({ points, companies }) => {
-  return <Section title="CNCF End User Community Member Recommendations">
+  return <Section title="More data from CNCF End Users">
     <p>
       The CNCF End User Community was asked to describe what their companies recommend for different solutions:
-      Hold, Assess, Trial, or Adopt. This is a tally of how the participating companies rated each technology
+      Adopt, Trial, Assess or Hold. This table shows how the End User companies rated each technology.
     </p>
     <RadarData points={points}/>
 
     {companies && <Columns>
-      <Column title="Companies by size">
+      <Column title="End User by number of employees">
         <CompanySizeChart companies={companies} />
       </Column>
 
-      <Column title="Industries">
+      <Column title="End User industries">
         <IndustriesTable companies={companies} />
       </Column>
     </Columns>}
@@ -197,7 +197,7 @@ const renderSection = ({ title, content }) => {
 }
 
 const OtherRadarsSection = ({ radars }) => {
-  return <Section title="Other Radars">
+  return <Section title="See other Radars">
     <ThumbnailsList radars={radars} />
   </Section>
 }
