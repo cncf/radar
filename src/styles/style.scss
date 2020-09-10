@@ -80,6 +80,18 @@ main {
   flex: 1;
 }
 
+@media only screen and (min-width: 1250px) {
+  nav .container {
+    max-width: 1200px;
+  }
+}
+
+@media only screen and (min-width: 1250px) {
+  main section .container {
+    max-width: 1050px;
+  }
+}
+
 a {
   outline: none;
 }
