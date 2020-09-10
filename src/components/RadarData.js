@@ -1,81 +1,75 @@
 import groupPoints from '../helpers/groupPoints'
-import { colors } from '../styles.config'
 import LinkToPoint from './LinkToPoint'
+import { Fragment } from "react";
 
 export default function RadarData({ points }) {
   const groupedPoints = groupPoints(points)
 
-  return <div className="wrapper">
+  const votes = points.map(point => Object.values(point.votes).reduce((sum, vote) => sum + vote))
+  const maxVotes = Math.max(...votes)
+
+  return <>
     <style jsx>{`
-      .wrapper {
-        overflow-x: auto;
-      }
-      
-      table {
-        border: 1px solid ${colors.blueTitle};
+      .data {
+        display: grid;
+        grid-template-columns: max-content max-content 1fr;
+        grid-gap: 5px 10px;
         font-size: 0.95rem;
       }
-
-      td, th {
-        vertical-align: middle;
-        border: 1px solid ${colors.blueTitle};
-        padding: 5px 10px;
-      }
       
-      th.vote {
-        text-align: center;
-      }
-      
-      td.vote {
-        text-align: center;
-        color: black;
+      .item-level {
+        padding: 0 5px;
         text-transform: capitalize;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
       
-      td.name {
-        white-space: nowrap;
+      .header {
+        font-weight: bold;
       }
       
-      tr td.name {
-        background: white;
+      .vote {
+        display: inline-block;
+        height: 100%;
+        text-align: center;
       }
     `}
     </style>
-    <table className="data">
-      <thead>
-        <tr>
-          <th className="vote">Level</th>
-          <th>Name</th>
-          <th colSpan={1000} className="vote">Votes</th>
-        </tr>
-      </thead>
+    <div className="data">
+      <div className="header item-level">Level</div>
+      <div className="header">Name</div>
+      <div className="header item-level">Votes</div>
 
-      <tbody>
-        {
-          ['adopt', 'trial', 'assess'].map(level => {
-            return groupedPoints[level].map((point, i) => {
-              return <tr key={`point-${level}-${point.key}`}>
-                { i === 0 && <td rowSpan={groupedPoints[level].length} className={`has-text-weight-semibold vote ${level}-background`}>
-                  {level}
-                </td> }
-                <td className="name"><LinkToPoint point={point} /></td>
+      {
+        ['adopt', 'trial', 'assess'].map(level => {
+          return groupedPoints[level].map((point, i) => {
+            return <Fragment key={`point-${level}-${point.key}`}>
+              { i === 0 && <div style={{gridRowEnd: `span ${groupedPoints[level].length}`}} className={`item ${level}-background item-level`}>
+                {level}
+              </div> }
+              <div className="item"><LinkToPoint point={point} /></div>
+              <div className="item">
                 {
                   ['adopt', 'trial', 'assess', 'hold'].map(voteKey => {
                     const votes = point.votes[voteKey]
 
-                    return [...Array(votes || 0).keys()].map(i => {
-                      const key = `vote-${level}-${point.key}-${voteKey}-${i}`
-                      return <td key={key} className={`vote ${voteKey}-background`}>
-                        {voteKey}
-                      </td>
-                    })
+                    if (!votes) {
+                      return null
+                    }
+
+                    const key = `vote-${level}-${point.key}-${voteKey}`
+                    const width = `${100 * votes / maxVotes}%`
+                    return <div key={key} className={`vote ${voteKey}-background`} style={{width}}>
+                      {votes}
+                    </div>
                   })
                 }
-              </tr>
-            })
+              </div>
+            </Fragment>
           })
-        }
-      </tbody>
-    </table>
-  </div>
+        })
+      }
+    </div>
+  </>
 }
