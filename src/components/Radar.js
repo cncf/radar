@@ -6,7 +6,7 @@ import SelectedPointContext from '../contexts/SelectedPointContext'
 const { fontFamily } = typography
 
 const Title = ({ color, text, y }) => {
-  return <text x="0" y={y} fill={color} fontSize={45}>
+  return <text x="0" y={y} fill={color} fontSize={50}>
     {text}
   </text>
 }
