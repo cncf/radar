@@ -13,7 +13,7 @@ const Title = ({ color, text, y }) => {
 
 const Point = ({ distance, angle, color, point }) => {
   const x = (-distance * Math.cos(angle)).toFixed(2)
-  const y = (-distance * Math.sin(angle)).toFixed(2)
+  const y = (-distance * Math.sin(angle)).toFixed(2) * (Math.abs(x) < 0.01 && distance <= 333 ? 1.1 : 1)
   const { setSelectedPoint } = useContext(SelectedPointContext)
   const onClick = _ => setSelectedPoint(point.landscapeId)
 
@@ -24,8 +24,7 @@ const Point = ({ distance, angle, color, point }) => {
       }
     `}
     </style>
-    <circle cx={x} cy={y} r={10} fill={color} onClick={onClick} />
-    <text x={x} y={+y + 40} fill={color} fontSize={30} onClick={onClick}>{point.name}</text>
+    <text x={x} y={+y} fill={color} fontSize={30} onClick={onClick}>{point.name}</text>
   </>
 }
 
