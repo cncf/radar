@@ -24,7 +24,7 @@ team:
   - name: Jon Moter
     photo: https://media-exp1.licdn.com/dms/image/C4E03AQFTKuqDY0pAgQ/profile-displayphoto-shrink_800_800/0?e=1605139200&v=beta&t=Xc7d5pFfgmk6Sz0ECN0vowegzrlj8KFgOKw54UnRbHs
     bio: |
-      Senior Principal Engineer at Zendesk
+      Jon works in the Foundation Engineering organization, which provides compute, storage, and cloud infrastructure to the rest of Zendesk engineering.
     twitter: jonmoter
     linkedin: jonmoter
     title: Senior Principal Engineer at Zendesk
@@ -43,7 +43,7 @@ team:
   - name: Jason Tarasovic
     photo: https://media-exp1.licdn.com/dms/image/C5603AQHbfD1J8xwmJA/profile-displayphoto-shrink_400_400/0?e=1605139200&v=beta&t=76SuCoPOkfiraifrNcX0SUkAkCyVRujiCi64ywXm5io
     bio: |
-      Principal Engineer at PayIt
+      Jason was the founding engineer for the Platform Engineering team, where he was responsible for building and running their cloud native platform.
     twitter: J_Tarasovic
     linkedin: jtarasovic
     title: Principal Engineer at PayIt
