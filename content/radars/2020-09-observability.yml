@@ -139,7 +139,7 @@ points:
       hold: 1
   - name: Kiali
     repo: kiali/kiali
-    level: trial
+    level: assess
     votes:
       adopt: 2
       trial: 4
