@@ -163,7 +163,7 @@ const CompaniesSection = ({ companies }) => {
     }  
   `
 
-  return  <Section title="Contributions from CNCF End Users>
+  return  <Section title="Contributions from CNCF End Users">
     {styles}
     <Companies companies={companies} />
     <GlobalTextComponent name="hidden_companies" className={className} />
