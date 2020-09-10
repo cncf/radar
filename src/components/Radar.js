@@ -24,7 +24,7 @@ const Point = ({ distance, angle, color, point }) => {
       }
     `}
     </style>
-    <text x={x} y={+y} fill={color} fontSize={30} onClick={onClick}>{point.name}</text>
+    <text x={x} y={+y} fill={color} dominantBaseline="hanging" fontSize={30} onClick={onClick}>{point.name}</text>
   </>
 }
 
