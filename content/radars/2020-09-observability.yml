@@ -31,13 +31,13 @@ team:
   - name: Kunal Parmar
     photo: https://www.cncf.io/wp-content/uploads/2020/09/Kunal_Parmar.jpg
     bio: |
-      Kunal leads Box's cloud native team, driving the adoption of Kubernetes, Service Mesh, and Observability.
+      Kunal leads Box's cloud native team, driving the adoption of Kubernetes, service mesh, and observability.
     linkedin: kunalparmar
     title: Director of Software Development at Box
   - name: Marcin Suterski
     photo: https://miro.medium.com/fit/c/336/336/0*sOy35XMsi_VzR393.jpg
     bio: |
-      Marcin is part of the Delivery Engineering team, which provides tools, processes and education to engineering teams across the organization. His current focus is on Observability.
+      Marcin is part of the Delivery Engineering team, which provides tools, processes and education to engineering teams across the organization. His current focus is on observability.
     linkedin: marcinsuterski
     title: Lead Engineer at The New York Times
   - name: Jason Tarasovic
