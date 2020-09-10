@@ -20,7 +20,7 @@ export default function RadarTeam({ team }) {
       }
       
       .team-member {
-        width: 300px;
+        width: 250px;
         margin-bottom: 30px;
         text-align: center;
       }
@@ -30,8 +30,12 @@ export default function RadarTeam({ team }) {
         width: 100px;
       }
       
+      .member-title {
+        font-size: 1rem;
+        font-weight: 600;
+      }
+      
       .member-bio { 
-        width: 300px;
         text-align: center;
         margin: 0 auto;
         font-size: 0.95rem;
@@ -44,7 +48,7 @@ export default function RadarTeam({ team }) {
         return <div key={member.name} className="team-member">
           <img src={`/photos/${member.photo}`} alt={member.name} className="member-photo" />
           <h5>{member.name}</h5>
-          <div>{member.title}</div>
+          <div className="member-title">{member.title}</div>
           {member.twitter && <OutboundLink href={`https://twitter.com/${member.twitter}`} className={className}>
             <i className="fab fa-twitter"></i>
           </OutboundLink>}
