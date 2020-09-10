@@ -50,16 +50,12 @@ a {
   }
 }
 
-section:nth-child(even) {
-  background-color: #f0f5f7;
-}
-
 body {
   font-size: 1.125rem;
   color: #202020;
 }
 
-section:nth-child(even) {
+section:nth-child-of-type(even) {
   background-color: #f0f5f7;
 }
 

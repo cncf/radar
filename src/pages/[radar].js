@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import css from 'styled-jsx/css'
+import Link from 'next/link'
 import loadData from '../loadData'
 import withTitle from '../components/withTitle'
 import MarkdownComponent from '../components/MarkdownComponent'
@@ -46,8 +47,29 @@ const Column = ({ children, title }) => {
   </div>
 }
 
-const RadarSection = ({ name, points, radarKey }) => {
+const Banner = _ => {
+  return <div>
+    <style jsx>{`
+      div {
+        background-color: #EEE;
+      }
+      
+      .inner {
+        margin: 0 auto;
+        max-width: 1050px;
+        text-align: center;
+        padding: 10px 15px;
+      }
+    `}</style>
 
+    <div className="inner">
+      The CNCF End User Technology Radar is a guide for evaluating  cloud native technologies, on behalf of the CNCF
+      End User Community. <Link href="/how-it-works"><a>Read how it was created</a></Link>
+    </div>
+  </div>
+}
+
+const RadarSection = ({ name, points, radarKey }) => {
   return <Section title={name}>
     <style jsx>{`
       .radar-wrapper {  
@@ -202,6 +224,7 @@ const RadarPage = ({ radar, otherRadars = [] }) => {
     .map(([_, section]) => section)
 
   return <>
+    <Banner />
     {sortedSections}
     {additionalSections}
     {otherRadars.length > 0 && <OtherRadarsSection radars={otherRadars} />}
