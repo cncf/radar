@@ -5,8 +5,8 @@ import SelectedPointContext from '../contexts/SelectedPointContext'
 
 const { fontFamily } = typography
 
-const Title = ({ color, text, y }) => {
-  return <text x="0" y={y} fill={color} fontSize={50}>
+const Title = ({ text, y }) => {
+  return <text x="0" y={y} fill="#202020" fontSize={50}>
     {text}
   </text>
 }
@@ -24,7 +24,7 @@ const Point = ({ distance, angle, color, point }) => {
       }
     `}
     </style>
-    <text x={x} y={+y} fill={color} dominantBaseline="hanging" fontSize={30} onClick={onClick}>{point.name}</text>
+    <text x={x} y={+y} fill="#202020" dominantBaseline="hanging" fontSize={30} onClick={onClick}>{point.name}</text>
   </>
 }
 
@@ -59,9 +59,9 @@ const Ring = ({ points, radius, title, color }) => {
   const y = -radius * Math.sin(Math.PI / 6)
 
   return <>
-    <path d={`M 0 0 L ${x} ${y} A ${radius} ${radius}, 0, 0, 1, ${-x} ${y} Z`} stroke={color} strokeWidth="5" fill="none"/>
-    <Title y={- titleRadius} color={color} text={title.toUpperCase()} />
-    <PointCollection points={points} distance={innerRadius} smallerDistance={smallerRadius} minAngle={Math.PI / 6} color={color} />
+    <path d={`M 0 0 L ${x} ${y} A ${radius} ${radius}, 0, 0, 1, ${-x} ${y} Z`} fill={color} strokeWidth="5" stroke="#202020" />
+    <Title y={- titleRadius} text={title.toUpperCase()} />
+    <PointCollection points={points} distance={innerRadius} smallerDistance={smallerRadius} minAngle={Math.PI / 6} />
   </>
 }
 
@@ -82,9 +82,9 @@ export default function Radar({ points, name, showHeader = false }) {
     { showHeader && <Header text-anchor="start" x={padding} y={padding + 30}>CNCF Technology Radar</Header> }
     { showHeader && <Header text-anchor="end" x={width - padding} y={padding + 30}>{name}</Header> }
     <g transform={`translate(${width / 2} ${height - padding - 3})`}>
-      <Ring radius={1000} points={groupedPoints.assess} title="Assess" color={colors.assess} />
-      <Ring radius={666} points={groupedPoints.trial} title="Trial" color={colors.trial} />
-      <Ring radius={333} points={groupedPoints.adopt} title="Adopt" color={colors.adopt} />
+      <Ring radius={1000} points={groupedPoints.assess} title="Assess" color={colors.assessBg} />
+      <Ring radius={666} points={groupedPoints.trial} title="Trial" color={colors.trialBg} />
+      <Ring radius={333} points={groupedPoints.adopt} title="Adopt" color={colors.adoptBg} />
     </g>
   </svg>
 }
