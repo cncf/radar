@@ -57,7 +57,7 @@ const Ring = ({ points, radius, minRadius, title, color }) => {
 }
 
 const Header = props => {
-  return <text text-anchor="start" x="0" fontSize="50" fill={colors.blueTitle} {...props}>
+  return <text text-anchor="start" x="0" fontSize="50" dominantBaseline="hanging" fill={colors.blueTitle} {...props}>
     {props.children}
   </text>
 }
@@ -70,8 +70,8 @@ export default function Radar({ points, name, showHeader = false }) {
   const height = 1006 + (showHeader ? 60 : 0) + padding * 2
 
   return <svg viewBox={`0 0 ${width} ${height}`} xmlns="http://www.w3.org/2000/svg" dominantBaseline="central" textAnchor="middle" fontWeight="bolder" fontFamily={fontFamily}>
-    { showHeader && <Header text-anchor="start" x={padding} y={padding + 30}>CNCF Technology Radar</Header> }
-    { showHeader && <Header text-anchor="end" x={width - padding} y={padding + 30}>{name}</Header> }
+    { showHeader && <Header text-anchor="start" x={padding} y={padding}>CNCF Technology Radar</Header> }
+    { showHeader && <Header text-anchor="end" x={width - padding} y={padding}>{name}</Header> }
     <g transform={`translate(${width / 2} ${height - padding - 3})`}>
       <Ring radius={1000} minRadius={750} points={groupedPoints.assess} title="Assess" color={colors.assessBg} />
       <Ring radius={750} minRadius={500} points={groupedPoints.trial} title="Trial" color={colors.trialBg} />
