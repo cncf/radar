@@ -146,7 +146,7 @@ const WebinarAndTeamSection = ({ video, team }) => {
       }
     `}</style>
 
-    <VideoComponent src={video} />
+    {video && <VideoComponent src={video} />}
     <div className="team-section">
       <RadarTeam team={team}/>
     </div>
