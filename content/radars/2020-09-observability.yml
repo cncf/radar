@@ -18,7 +18,7 @@ themes:
   - headline: Prometheus and Grafana are frequently used together.
     content: |
       Two-thirds of the respondents are using these two tools in conjunction. This comes as no surprise, but the high correlation is still interesting to note. Momentum behind both projects, coupled with little competition, could have helped them gain such a high rate of adoption. Plus, there are many tutorials and installers that make it easy to use them together. There’s minimal resistance to using them hand-in-hand.
-      
+video: https://www.youtube.com/embed/I44EepyZGNo      
 team:
   - name: Jon Moter
     photo: https://media-exp1.licdn.com/dms/image/C4E03AQFTKuqDY0pAgQ/profile-displayphoto-shrink_800_800/0?e=1605139200&v=beta&t=Xc7d5pFfgmk6Sz0ECN0vowegzrlj8KFgOKw54UnRbHs
