@@ -138,7 +138,7 @@ const ThemesSection = ({ themes }) => {
 }
 
 const WebinarAndTeamSection = ({ video, team }) => {
-  return <Section title="Hear from the Radar Team">
+  return <Section title="The Radar Team">
     <style jsx>{`
       .team-section {
         margin-top: 40px;
@@ -163,7 +163,7 @@ const CompaniesSection = ({ companies }) => {
     }  
   `
 
-  return  <Section title="Contributions from CNCF End Users">
+  return  <Section title="The End User companies">
     {styles}
     <Companies companies={companies} />
     <GlobalTextComponent name="hidden_companies" className={className} />
@@ -171,7 +171,7 @@ const CompaniesSection = ({ companies }) => {
 }
 
 const DataSection = ({ points, companies }) => {
-  return <Section title="More data from CNCF End Users">
+  return <Section title="The data">
     <p>
       The CNCF End User Community was asked to describe what their companies recommend for different solutions:
       Adopt, Trial, Assess or Hold. This table shows how the End User companies rated each technology.
@@ -179,7 +179,7 @@ const DataSection = ({ points, companies }) => {
     <RadarData points={points}/>
 
     {companies && <Columns>
-      <Column title="End User by number of employees">
+      <Column title="Companies by number of employees">
         <CompanySizeChart companies={companies} />
       </Column>
 
@@ -197,7 +197,7 @@ const renderSection = ({ title, content }) => {
 }
 
 const OtherRadarsSection = ({ radars }) => {
-  return <Section title="See other Radars">
+  return <Section title="Other Radars">
     <ThumbnailsList radars={radars} />
   </Section>
 }
