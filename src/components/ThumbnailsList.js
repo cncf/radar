@@ -23,6 +23,11 @@ export default function ThumbnailsList({ radars, embedThumbnails = false }) {
           flex-direction: column;
           align-content: center;
           margin-bottom: 0.5rem;
+          display: block
+        }
+        
+        .thumbnail {
+          width: 100%;
         }
 
         .preview {
