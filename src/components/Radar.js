@@ -13,7 +13,7 @@ const Title = ({ text, y }) => {
 
 const Point = ({ distance, angle, point }) => {
   const x = (-distance * Math.cos(angle)).toFixed(2)
-  const y = (-distance * Math.sin(angle)).toFixed(2) * (Math.abs(x) < 0.01 && distance <= 333 ? 1.1 : 1)
+  const y = (-distance * Math.sin(angle)).toFixed(2) * (Math.abs(x) < 0.01 && distance <= 500 ? 1.1 : 1)
   const { setSelectedPoint } = useContext(SelectedPointContext)
   const onClick = _ => setSelectedPoint(point.landscapeId)
 
@@ -29,21 +29,21 @@ const Point = ({ distance, angle, point }) => {
 }
 
 const PointCollection = ({ points, distance, minAngle }) => {
-  const angle = (Math.PI - 2 * minAngle) / (points.length + 1)
+  const angle = (Math.PI - 2 * minAngle) / (points.length)
 
   const sortedPoints = points.sort((a, b) => a.name.length - b.name.length)
-  const leftPoints = sortedPoints.filter((_, i) => i % 2 === 1).reverse()
-  const rightPoints = sortedPoints.filter((_, i) => i % 2 === 0)
+  const leftPoints = sortedPoints.filter((_, i) => i % 2 === 1)
+  const rightPoints = sortedPoints.filter((_, i) => i % 2 === 0).reverse()
   const displayPoints = leftPoints.concat(rightPoints)
 
   return displayPoints.map((point, i) => {
-    const pointAngle = angle * (i + 1) + minAngle
+    const pointAngle = angle * (i + 0.5) + minAngle
     return <Point point={point} distance={distance} angle={pointAngle} key={point.name}/>
   })
 }
 
 const Ring = ({ points, radius, minRadius, title, color }) => {
-  const innerRadius = (2 * radius + minRadius) / 3
+  const innerRadius = radius <= 500 ? (3 * radius + minRadius) / 4 : (2 * radius + minRadius) / 3
   const smallerRadius = (radius + 3 * minRadius) / 4
 
   const x = -radius * Math.cos(Math.PI / 6)
@@ -73,9 +73,9 @@ export default function Radar({ points, name, showHeader = false }) {
     { showHeader && <Header text-anchor="start" x={padding} y={padding + 30}>CNCF Technology Radar</Header> }
     { showHeader && <Header text-anchor="end" x={width - padding} y={padding + 30}>{name}</Header> }
     <g transform={`translate(${width / 2} ${height - padding - 3})`}>
-      <Ring radius={1000} minRadius={700} points={groupedPoints.assess} title="Assess" color={colors.assessBg} />
-      <Ring radius={700} minRadius={400} points={groupedPoints.trial} title="Trial" color={colors.trialBg} />
-      <Ring radius={400} minRadius={0} points={groupedPoints.adopt} title="Adopt" color={colors.adoptBg} />
+      <Ring radius={1000} minRadius={750} points={groupedPoints.assess} title="Assess" color={colors.assessBg} />
+      <Ring radius={750} minRadius={500} points={groupedPoints.trial} title="Trial" color={colors.trialBg} />
+      <Ring radius={500} minRadius={0} points={groupedPoints.adopt} title="Adopt" color={colors.adoptBg} />
     </g>
   </svg>
 }
