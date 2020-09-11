@@ -179,12 +179,12 @@ const DataSection = ({ points, companies }) => {
     <RadarData points={points}/>
 
     {companies && <Columns>
-      <Column title="Companies by number of employees">
-        <CompanySizeChart companies={companies} />
+      <Column title="The industries">
+        <IndustriesTable companies={companies} />
       </Column>
 
-      <Column title="End User industries">
-        <IndustriesTable companies={companies} />
+      <Column title="The company sizes">
+        <CompanySizeChart companies={companies} />
       </Column>
     </Columns>}
   </Section>
