@@ -19,7 +19,7 @@ export default function ThumbnailsList({ radars, embedThumbnails = false }) {
       
       @media only screen and (max-width: ${sizes.tablet}px) {
         .thumbnails {
-          gap: 10px;
+          gap: 0;
           flex-direction: column;
           align-content: center;
           margin-bottom: 0.5rem;
@@ -28,6 +28,7 @@ export default function ThumbnailsList({ radars, embedThumbnails = false }) {
         
         .thumbnail {
           width: 100%;
+          padding-bottom: 10px;
         }
 
         .preview {
