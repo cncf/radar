@@ -11,7 +11,7 @@ const Title = ({ text, y }) => {
   </text>
 }
 
-const Point = ({ distance, angle, color, point }) => {
+const Point = ({ distance, angle, point }) => {
   const x = (-distance * Math.cos(angle)).toFixed(2)
   const y = (-distance * Math.sin(angle)).toFixed(2) * (Math.abs(x) < 0.01 && distance <= 333 ? 1.1 : 1)
   const { setSelectedPoint } = useContext(SelectedPointContext)
@@ -24,44 +24,35 @@ const Point = ({ distance, angle, color, point }) => {
       }
     `}
     </style>
-    <text x={x} y={+y} fill="#202020" dominantBaseline="hanging" fontSize={30} onClick={onClick}>{point.name}</text>
+    <text x={x} y={+y} fill="#202020" fontSize={30} onClick={onClick}>{point.name}</text>
   </>
 }
 
-const PointCollection = ({ points, distance, smallerDistance, color, minAngle, maxAngle = null, additional = 0, smallMinAngle = 0 }) => {
-  const angle = ((maxAngle || Math.PI - minAngle) - minAngle) / (points.length + 1)
+const PointCollection = ({ points, distance, minAngle }) => {
+  const angle = (Math.PI - 2 * minAngle) / (points.length + 1)
 
-  if (points.length >= 8) {
-    const firstHalf = points.slice(0, Math.ceil(points.length / 2))
-    const thirdQuarter = points.slice(Math.ceil(points.length / 2), Math.ceil(3 * points.length / 4))
-    const fourthQuarter = points.slice(Math.ceil(3 * points.length / 4))
-    return <>
-      <PointCollection points={firstHalf} distance={distance} minAngle={minAngle} color={color} />
-      <PointCollection points={thirdQuarter} distance={smallerDistance} minAngle={smallMinAngle || minAngle} maxAngle={Math.PI / 2} color={color} additional={1} />
-      <PointCollection points={fourthQuarter} distance={smallerDistance} minAngle={Math.PI / 2} maxAngle={Math.PI - (smallMinAngle || minAngle)} color={color} additional={1} />
-    </>
-  }
+  const sortedPoints = points.sort((a, b) => a.name.length - b.name.length)
+  const leftPoints = sortedPoints.filter((_, i) => i % 2 === 1).reverse()
+  const rightPoints = sortedPoints.filter((_, i) => i % 2 === 0)
+  const displayPoints = leftPoints.concat(rightPoints)
 
-  return points.map((point, i) => {
+  return displayPoints.map((point, i) => {
     const pointAngle = angle * (i + 1) + minAngle
-    return <Point point={point} distance={distance} angle={pointAngle} color={color} key={point.name}/>
+    return <Point point={point} distance={distance} angle={pointAngle} key={point.name}/>
   })
 }
 
-const Ring = ({ points, radius, title, color }) => {
-  const smallRadius = radius - 333
-  const cutOff = (radius + smallRadius) / 2
-  const innerRadius = (radius + cutOff) / 2
-  const smallerRadius = (smallRadius + 2 * cutOff) / 3
-  const titleRadius = (cutOff + smallRadius) / 2
+const Ring = ({ points, radius, minRadius, title, color }) => {
+  const innerRadius = (2 * radius + minRadius) / 3
+  const smallerRadius = (radius + 3 * minRadius) / 4
 
   const x = -radius * Math.cos(Math.PI / 6)
   const y = -radius * Math.sin(Math.PI / 6)
 
   return <>
     <path d={`M 0 0 L ${x} ${y} A ${radius} ${radius}, 0, 0, 1, ${-x} ${y} Z`} fill={color} strokeWidth="5" stroke="#202020" />
-    <Title y={- titleRadius} text={title.toUpperCase()} />
-    <PointCollection points={points} distance={innerRadius} smallerDistance={smallerRadius} minAngle={Math.PI / 6} />
+    <Title y={-smallerRadius} text={title.toUpperCase()} />
+    <PointCollection points={points} distance={innerRadius} minAngle={Math.PI / 6} />
   </>
 }
 
@@ -82,9 +73,9 @@ export default function Radar({ points, name, showHeader = false }) {
     { showHeader && <Header text-anchor="start" x={padding} y={padding + 30}>CNCF Technology Radar</Header> }
     { showHeader && <Header text-anchor="end" x={width - padding} y={padding + 30}>{name}</Header> }
     <g transform={`translate(${width / 2} ${height - padding - 3})`}>
-      <Ring radius={1000} points={groupedPoints.assess} title="Assess" color={colors.assessBg} />
-      <Ring radius={666} points={groupedPoints.trial} title="Trial" color={colors.trialBg} />
-      <Ring radius={333} points={groupedPoints.adopt} title="Adopt" color={colors.adoptBg} />
+      <Ring radius={1000} minRadius={700} points={groupedPoints.assess} title="Assess" color={colors.assessBg} />
+      <Ring radius={700} minRadius={400} points={groupedPoints.trial} title="Trial" color={colors.trialBg} />
+      <Ring radius={400} minRadius={0} points={groupedPoints.adopt} title="Adopt" color={colors.adoptBg} />
     </g>
   </svg>
 }
