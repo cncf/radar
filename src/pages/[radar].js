@@ -183,7 +183,7 @@ const DataSection = ({ points, companies }) => {
         <IndustriesTable companies={companies} />
       </Column>
 
-      <Column title="The company sizes">
+      <Column title="Total number of employees">
         <CompanySizeChart companies={companies} />
       </Column>
     </Columns>}
