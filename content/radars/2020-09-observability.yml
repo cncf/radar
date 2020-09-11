@@ -80,7 +80,7 @@ points:
       assess: 6
       hold: 2
   - name: OpenTelemetry
-    repo: open-telemetry
+    repo: open-telemetry/opentelemetry-specification
     level: assess
     votes:
       adopt: 5
