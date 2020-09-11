@@ -64,7 +64,7 @@ const Banner = _ => {
 
     <div className="inner">
       The CNCF End User Technology Radar is a guide for evaluating  cloud native technologies, on behalf of the CNCF
-      End User Community. <Link href="/how-it-works"><a>Read how it was created</a></Link>
+      End User Community. <Link href="/how-it-works"><a>Read more</a></Link>
     </div>
   </div>
 }
