@@ -105,7 +105,7 @@ const ThemesSection = ({ themes }) => {
     margin-top: 10px;
   `
 
-  return <Section title="Top Radar Themes">
+  return <Section title="The Themes">
     {styles}
 
     <style jsx>{`
