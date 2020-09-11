@@ -55,8 +55,13 @@ body {
   color: #202020;
 }
 
-section:nth-of-type(even) {
+section:nth-of-type(even),
+section.blue-background {
   background-color: #f0f5f7;
+}
+
+section.white-background {
+  background-color: white;
 }
 
 body {

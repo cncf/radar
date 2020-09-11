@@ -6,8 +6,9 @@ import LevelTag from '../components/LevelTag'
 import SearchContext from '../contexts/SearchContext'
 import withTitle from '../components/withTitle'
 import Section from '../components/Section'
+import ThumbnailsList from '../components/ThumbnailsList'
 
-const Overview = ({ groupedPoints }) => {
+const Overview = ({ groupedPoints, radars }) => {
   const { searchQuery, setSearchQuery } = useContext(SearchContext)
   const filteredPoints = groupedPoints.filter(points => {
     const firstPoint = points[0]
@@ -15,7 +16,7 @@ const Overview = ({ groupedPoints }) => {
     return !searchQuery || text.indexOf(searchQuery.toLowerCase()) > -1
   })
 
-  return <Section title="Technologies Overview">
+  return <>
     <style jsx>{`
       .no-results {
         margin-top: 30px;
@@ -42,53 +43,59 @@ const Overview = ({ groupedPoints }) => {
       .radar:not(:first-child) {
         margin-top: 10px;
       }
-    `}
-    </style>
+    `}</style>
 
-    { searchQuery && <div className="notification is-info is-light">
-      Filtering by <strong>{searchQuery}</strong>. <a onClick={_ => setSearchQuery('')}>Clear</a> search.
-    </div>}
+    <Section title="All Radars" background="blue">
+      <ThumbnailsList radars={radars} />
+    </Section>
 
-    { searchQuery && filteredPoints.length === 0 && <div className="notification is-light no-results">
-      No results found
-    </div>}
+    <Section title="Technologies Overview" background="white">
+      { searchQuery && <div className="notification is-info is-light">
+        Filtering by <strong>{searchQuery}</strong>. <a onClick={_ => setSearchQuery('')}>Clear</a> search.
+      </div>}
 
-    <table className="table is-fullwidth">
-      <tbody>
-      { filteredPoints.map(points => {
-        const firstPoint = points[0]
+      { searchQuery && filteredPoints.length === 0 && <div className="notification is-light no-results">
+        No results found
+      </div>}
 
-        return <tr key={firstPoint.key}>
-          <td><LinkToPoint point={firstPoint} /></td>
+      <table className="table is-fullwidth">
+        <tbody>
+        { filteredPoints.map(points => {
+          const firstPoint = points[0]
 
-          <td className="has-text-right">
-            {
-              points.map(({ level, radar }) => {
-                return <div key={radar.key} className="radar">
-                  <LinkToRadar radar={radar} />
-                  <LevelTag level={level} style={{marginLeft: 10}} />
-                </div>
-              })
-            }
-          </td>
-        </tr>
-      })}
-      </tbody>
-    </table>
-  </Section>
+          return <tr key={firstPoint.key}>
+            <td><LinkToPoint point={firstPoint} /></td>
+
+            <td className="has-text-right">
+              {
+                points.map(({ level, radar }) => {
+                  return <div key={radar.key} className="radar">
+                    <LinkToRadar radar={radar} />
+                    <LevelTag level={level} style={{marginLeft: 10}} />
+                  </div>
+                })
+              }
+            </td>
+          </tr>
+        })}
+        </tbody>
+      </table>
+    </Section>
+  </>
 }
 
 export const getStaticProps = async _ => {
-  const { points } = await loadData(radar => !radar.draft)
+  const data = await loadData(radar => !radar.draft)
 
-  const groupedPoints = points.sort((a, b) => a.key.localeCompare(b.key))
+  const groupedPoints = data.points.sort((a, b) => a.key.localeCompare(b.key))
     .reduce((acc, point) => {
       const points = acc[point.key] || []
       return { ...acc, [point.key]: [...points, point] }
     }, {})
 
+  const radars = data.radars.map(({ name, key }) => ({ name, key }))
 
-  return { props: { groupedPoints: Object.values(groupedPoints) } }
+  return { props: { groupedPoints: Object.values(groupedPoints), radars } }
 }
 
 export default withTitle(Overview, _ => 'Technologies Overview')

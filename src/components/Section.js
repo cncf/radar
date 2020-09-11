@@ -1,7 +1,8 @@
 import { sizes } from '../styles.config'
 
-export default function Section({ title, children }) {
-  return <section className="section">
+export default function Section({ title, children, background }) {
+  const backgroundClass = background ? `${background}-background` : null
+  return <section className={`section ${backgroundClass}`} >
     <style jsx>{`
       h2 {
         text-align: center;
