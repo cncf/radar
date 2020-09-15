@@ -1,3 +1,7 @@
+# CNCF RADAR
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/13db5650-29ee-47bd-92b3-b96025c85009/deploy-status)](https://app.netlify.com/sites/cncf-radar/deploys)
+
 These are the instructions for people who want to run Radar locally. For development instructions visit 
 [DEVELOPMENT.md](https://github.com/cncf/radar/blob/master/DEVELOPMENT.md) 
 
