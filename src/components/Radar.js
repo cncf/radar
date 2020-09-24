@@ -11,9 +11,7 @@ const Title = ({ text, y }) => {
   </text>
 }
 
-const Point = ({ distance, angle, point }) => {
-  const x = (-distance * Math.cos(angle)).toFixed(2)
-  const y = (-distance * Math.sin(angle)).toFixed(2)
+const Point = ({ x, y, point }) => {
   const { setSelectedPoint } = useContext(SelectedPointContext)
   const onClick = _ => setSelectedPoint(point.landscapeId)
 
@@ -29,29 +27,33 @@ const Point = ({ distance, angle, point }) => {
 }
 
 const PointCollection = ({ points, distance, minAngle }) => {
-  const angle = (Math.PI - 2 * minAngle) / (points.length)
-
+  const minHeight = distance * Math.sin(minAngle)
   const sortedPoints = points.sort((a, b) => a.name.length - b.name.length)
   const leftPoints = sortedPoints.filter((_, i) => i % 2 === 1)
   const rightPoints = sortedPoints.filter((_, i) => i % 2 === 0).reverse()
   const displayPoints = leftPoints.concat(rightPoints)
 
   return displayPoints.map((point, i) => {
-    const pointAngle = angle * (i + 0.5) + minAngle
-    return <Point point={point} distance={distance} angle={pointAngle} key={point.name}/>
+    const y2 = (1 - Math.abs(points.length - 2 * i - 1) / (points.length + 1)) * (distance - minHeight) + minHeight
+    const x2 = 2 * (distance - y2) * (i < Math.floor(points.length / 2) ? -1 : 1)
+    const x3 = Math.sqrt(distance ** 2 - y2 ** 2) * (i < Math.floor(points.length / 2) ? -1 : 1)
+    const x = (x2 + x3) / 2
+    const y = y2
+
+    return <Point point={point} x={x} y={-y} key={point.name}/>
   })
 }
 
 const Ring = ({ points, radius, minRadius, title, color }) => {
-  const innerRadius = radius <= 500 ? (3 * radius + minRadius) / 4 : (2 * radius + minRadius) / 3
-  const smallerRadius = (radius + 3 * minRadius) / 4
+  const innerRadius = radius - (radius <= 500 ? 100 : 75)
+  const titleY = minRadius + (radius <= 500 ? 120 : 60)
 
   const x = -radius * Math.cos(Math.PI / 6)
   const y = -radius * Math.sin(Math.PI / 6)
 
   return <>
     <path d={`M 0 0 L ${x} ${y} A ${radius} ${radius}, 0, 0, 1, ${-x} ${y} Z`} fill={color} strokeWidth="5" stroke="#202020" />
-    <Title y={-smallerRadius} text={title.toUpperCase()} />
+    <Title y={-titleY} text={title.toUpperCase()} />
     <PointCollection points={points} distance={innerRadius} minAngle={Math.PI / 6} />
   </>
 }
