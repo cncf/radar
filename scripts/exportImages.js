@@ -4,8 +4,13 @@ import sharp from 'sharp'
 import loadData from '../src/loadData'
 import puppeteer from'puppeteer'
 
+// Ideally we would use Sharp to take screenshots, but there's a bug on one of Sharp's dependencies that
+// causes texts on SVGs to not be vertically aligned correctly.
+// See: https://github.com/lovell/sharp/issues/1996
+// And: https://gitlab.gnome.org/GNOME/librsvg/-/issues/414
+
 const takeScreenshot = async (target, destination) => {
-  const browser = await puppeteer.launch()
+  const browser = await puppeteer.launch({ args: ['--no-sandbox'] })
   const page = await browser.newPage()
   await page.goto(`file://${target}`)
   const element = await page.$('svg')
