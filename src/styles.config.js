@@ -14,7 +14,7 @@ module.exports = {
     holdBg: '#EAE6E5'
   },
   typography: {
-    fontFamily: ['BlinkMacSystemFont', '-apple-system', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
+    fontFamily: ['Inter', 'BlinkMacSystemFont', '-apple-system', 'Segoe UI', 'Roboto', 'Ubuntu', 'Cantarell',
       'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif']
   },
   sizes: {
