@@ -22,7 +22,7 @@ const injectSvg = svg => `
 `
 
 const takeScreenshot = async (svg, destination) => {
-  const browser = await puppeteer.launch({ args: ['--no-sandbox'] })
+  const browser = await puppeteer.launch({ args: ['--no-sandbox'], defaultViewport: {width: 1200, height: 675} })
   const page = await browser.newPage()
   const htmlBase64 = Buffer.from(injectSvg(svg)).toString('base64')
   await page.goto(`data:text/html;base64,${htmlBase64}`)
