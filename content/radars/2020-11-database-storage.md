@@ -17,7 +17,7 @@ themes:
       
 team:
   - name: Jackie Fong
-    photo: https://media-exp1.licdn.com/dms/image/C4E03AQFTKuqDY0pAgQ/profile-displayphoto-shrink_800_800/0?e=1605139200&v=beta&t=Xc7d5pFfgmk6Sz0ECN0vowegzrlj8KFgOKw54UnRbHs
+    photo: https://www.cncf.io/wp-content/uploads/2020/10/jackie.jpg
     bio: |
       Jackie is an Engineering Leader in the Platform organization at Ticketmaster responsible for Container Orchestration, CI/CD, Observability, and Developer Experience. At the beginning of 2020, Jackie started a Service Mesh End User Group at CNCF and serves as a co-chair.
         title: Engineering Leader at Ticketmaster
