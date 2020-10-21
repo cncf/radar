@@ -21,7 +21,7 @@ team:
     photo: https://www.cncf.io/wp-content/uploads/2020/10/jackie.jpg
     bio: |
       Jackie is an Engineering Leader in the Platform organization at Ticketmaster responsible for Container Orchestration, CI/CD, Observability, and Developer Experience. At the beginning of 2020, Jackie started a Service Mesh End User Group at CNCF and serves as a co-chair.
-        title: Engineering Leader at Ticketmaster
+    title: Engineering Leader at Ticketmaster
   - name: Smaïne Kahlouch
     photo: https://www.cncf.io/wp-content/uploads/2020/08/smaine_square-1.jpg
     bio: |
