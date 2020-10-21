@@ -1,4 +1,5 @@
 name: Database Storage
+draft: true
 themes:
   - headline: Companies are cautious with their data and slow to adopt newer technologies.
     content: |
