@@ -45,7 +45,7 @@ points:
       trial: 0
       assess: 0
       hold: 1
-  - name: ElasticSearch
+  - name: Elasticsearch
     repo: elastic/elasticsearch
     level: adopt
     votes:
