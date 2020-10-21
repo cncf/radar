@@ -29,7 +29,7 @@ He is the organizer of the Cloud Native Computing Foundation meetup in Paris and
     twitter: _smana_
     title: DevOps Team Leader at Dailymotion
   - name: Mya Pitzeruse
-    photo: https://mjpitz.com/statics/img/mjpitz.jpeg
+    photo: https://www.cncf.io/wp-content/uploads/2020/10/mjpitz.jpeg
     bio: |
       Mya was the Principal Engineer for the Service Platforms Group at Indeed, where she designed and guided the development of their cloud native platform across compute, storage, and observability.
     twitter: myajpitz
