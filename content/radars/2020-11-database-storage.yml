@@ -149,7 +149,7 @@ points:
       trial: 1
       assess: 0
       hold: 0
-  - name: Cockroach DB
+  - name: CockroachDB
     repo: cockroachdb/cockroach
     level: assess
     votes: 
