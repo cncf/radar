@@ -79,7 +79,7 @@ points:
       hold: 6
   - name: Apache Kafka
     homepage: https://kafka.apache.org/
-    level: trial
+    level: adopt
     votes:
       adopt: 15
       trial: 1
