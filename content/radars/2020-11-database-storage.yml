@@ -3,19 +3,27 @@ themes:
   - headline: Companies are cautious with their data and slow to adopt newer technologies.
     content: |
       The newer technologies, like CockroachDB, TiDB, and Vitess, have not been widely studied by many of the companies that responded. CockroachDB and Vitess ended up in “Assess.” 
+
       A few different factors drive organizations to take caution with their data, but the main reason is that it is difficult to manage. There is a lot of overhead involved when moving massive amounts – sometimes terabytes or petabytes – of data from one data storage technology to another. The benefits have to outweigh the costs for a move to make sense. Even when transitioning from legacy solutions to the cloud, some companies consider integrating the tools they already have in place.
+
       Another factor may be that it is harder to hire developers with expertise in these newer technologies. All of the projects in “Assess” (CockroachDB, MariaDB, and Vitess) are API-compatible with the technologies in “Adopt,” so organizations can integrate elements without having to transition to a new tool.
+      
       Interestingly, etcd did not make it onto the radar. etcd usage is mostly driven by Kubernetes, as it’s the only supported backend. Companies rarely use etcd as a standalone choice for hosting their data, which means companies transitioning from legacy infrastructures are less likely to have experience with it.
   - headline: Choosing a managed database service depends heavily on use cases.
     content: |
       We were surprised to see low adoption of cloud-managed services. This led us to realize that the use of managed database services can vary widely depending on the use case – where the application is deployed, the amount of data being stored, if a cloud provider is already being used. If a company has a large amount of data, for instance, there can be significant cost overhead to using a managed database solution.
+      
       The use of cloud-managed databases is likely impacted by whether or not a company is already using a particular cloud provider. For instance, if a company exclusively uses AWS for its other cloud services, chances are they will also be using related AWS database technologies. If they host on premises, they most likely won’t host just their databases in the cloud. 
+      
       In other instances, decisions may be driven by data security and protection. Companies working with more sensitive data are more likely to host databases in-house and may even be required to.
+      
       While we did ask about RDS, it didn’t end up in the final radar. We removed it as its usage was vague, and it was not clear what particular technology is being used.  - headline: Keep an open mind!
   - headline: Keep an open mind! 
     content: |
       We found that database storage is still an evolving space. Some projects have been around for quite a long time, which has likely driven up their adoption rate, especially considering usage in large companies. Many of these legacy technologies have a good reputation, given they are stable and proven to work. 
+      
       New cloud native projects are emerging, and many of these are better suited for new use cases. There are several new technologies with specialized use cases that did not make it into the radar; we did not see any graph databases, long-term storage for metrics, or serverless databases.
+      
       Ultimately, you have to choose the right technology for you, your team, and your organization. Does it make more sense to use a technology you can drop in and replace vs. burdening engineers with forcing something to fit? Is there a thriving community behind the open source project you are considering? Do your research and go with what makes sense, but don’t be afraid to try something new!
       
 team:
