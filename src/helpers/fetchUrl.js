@@ -4,7 +4,11 @@ export default async url => {
   let data = await cache.get(url)
 
   if (!data) {
-    data = await (await fetch(url)).buffer()
+    const response = await fetch(url)
+    if (response.status !== 200) {
+      throw new Error(`Could not fetch URL ${url}. Response status: ${response.status}`)
+    }
+    data = await response.buffer()
     await cache.set(url, data)
   }
 
