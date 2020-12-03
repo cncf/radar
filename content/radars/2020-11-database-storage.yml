@@ -52,8 +52,6 @@ points:
     level: adopt
     votes:
       adopt: 26
-      trial: 0
-      assess: 0
       hold: 1
   - name: Elasticsearch
     repo: elastic/elasticsearch
@@ -61,30 +59,24 @@ points:
     votes:
       adopt: 24
       trial: 2
-      assess: 0
-      hold: 0
   - name: PostgreSQL
     homepage: https://www.postgresql.org/
     level: adopt
     votes:
       adopt: 21
       trial: 1
-      assess: 0
       hold: 1
   - name: MySQL
     homepage: https://www.mysql.com/
     level: adopt
     votes:
       adopt: 15
-      trial: 0
-      assess: 0
       hold: 5
   - name: MongoDB
     homepage: https://www.mongodb.com/
     level: trial
     votes:
       adopt: 9
-      trial: 0
       assess: 2
       hold: 6
   - name: Kafka
@@ -100,8 +92,6 @@ points:
     level: adopt
     votes:
       adopt: 13
-      trial: 0
-      assess: 0
       hold: 2
   - name: Cassandra
     homepage: https://cassandra.apache.org/
@@ -116,16 +106,13 @@ points:
     level: trial
     votes:
       adopt: 9
-      trial: 0
       assess: 3
-      hold: 0
   - name: Consul
     repo: hashicorp/consul
     level: trial
     votes:
       adopt: 7
       trial: 1
-      assess: 0
       hold: 2
   - name: BigQuery
     homepage: https://cloud.google.com/bigquery/
@@ -134,21 +121,18 @@ points:
       adopt: 4
       trial: 1
       assess: 2
-      hold: 0
   - name: MariaDB
     homepage: https://mariadb.org/
     level: assess
     votes:
       adopt: 3
       trial: 1
-      assess: 0
       hold: 2
   - name: CloudSQL
     homepage: https://cloud.google.com/sql
     level: trial
     votes:
       adopt: 4
-      trial: 0
       assess: 1
       hold: 1
   - name: AWS DynamoDB
@@ -157,21 +141,15 @@ points:
     votes: 
       adopt: 5
       trial: 1
-      assess: 0
-      hold: 0
   - name: CockroachDB
     repo: cockroachdb/cockroach
     level: assess
     votes: 
-      adopt: 0
-      trial: 0
       assess: 5
-      hold: 0
   - name: Vitess
     homepage: https://vitess.io/
     level: assess
     votes: 
-      adopt: 0
       trial: 1
       assess: 3
       hold: 1
