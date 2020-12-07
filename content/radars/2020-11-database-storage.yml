@@ -25,7 +25,7 @@ themes:
       New cloud native projects are emerging, and many of these are better suited for new use cases. There are several new technologies with specialized use cases that did not make it into the radar; we did not see any graph databases, long-term storage for metrics, or serverless databases.
       
       Ultimately, you have to choose the right technology for you, your team, and your organization. Does it make more sense to use a technology you can drop in and replace vs. burdening engineers with forcing something to fit? Is there a thriving community behind the open source project you are considering? Do your research and go with what makes sense, but don’t be afraid to try something new!
-      
+video: https://www.youtube.com/embed/Ypq9P-9WBQI      
 team:
   - name: Jackie Fong
     photo: https://www.cncf.io/wp-content/uploads/2020/10/jackie.jpg
