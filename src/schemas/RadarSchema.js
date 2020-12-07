@@ -12,6 +12,8 @@ ajv.addKeyword('markdown', {
   }
 })
 
+// https://github.com/sideway/joi
+
 const schema = {
   properties: {
     name: { type: 'string' },
@@ -31,8 +33,12 @@ const schema = {
       type: 'array',
       default: [],
       items: {
-        headline: { type: 'string' },
-        content: { type: 'string' }
+        type: 'object',
+        properties: {
+          headline: { type: 'string' },
+          content: { type: 'string' }
+        },
+        required: ['headline', 'content']
       }
     },
     video: { type: 'string', format: 'uri' },
@@ -47,7 +53,8 @@ const schema = {
           twitter: { type: 'string' },
           linkedin: { type: 'string' },
           title: { type: 'string' }
-        }
+        },
+        required: ['name', 'photo', 'bio', 'title']
       }
     },
     points: {
@@ -56,18 +63,24 @@ const schema = {
         type: 'object',
         properties: {
           name: { type: 'string' },
+          homepage: { type: 'string', format: 'uri' },
           repo: { type: 'string' },
-          level: { type: 'string' },
+          level: { type: 'string', enum: ['adopt', 'trial', 'assess', 'hold'] },
           votes: {
             type: 'object',
             properties: {
-              adopt: { type: 'integer' },
-              trial: { type: 'integer' },
-              assess: { type: 'integer' },
-              hold: { type: 'integer' }
+              adopt: { type: 'integer', minimum: 1 },
+              trial: { type: 'integer', minimum: 1 },
+              assess: { type: 'integer', minimum: 1 },
+              hold: { type: 'integer', minimum: 1 }
             }
-          }
-        }
+          },
+        },
+        required: ['name', 'level', 'votes'],
+        oneOf: [
+          { required: ['homepage'] },
+          { required: ['repo'] }
+        ]
       }
     },
     companies: {
@@ -76,7 +89,8 @@ const schema = {
         type: 'string'
       }
     }
-  }
+  },
+  required: ['name', 'themes', 'team', 'points', 'companies']
 }
 
 const _validate = ajv.compile(schema)
