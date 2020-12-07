@@ -1,103 +1,89 @@
-import Ajv from 'ajv'
+const Joi = require('joi')
+// TODO: use markdown to html in attributes that contain markdown.
 import markdownToHtml from '../helpers/markdownToHtml'
 
-const ajv = new Ajv({ useDefaults: true })
-
-ajv.addKeyword('markdown', {
-  compile: _ => {
-    return (data, path, parent, key) => {
-      parent[key] = markdownToHtml(data)
-      return true
-    }
-  }
+const sectionSchema = Joi.object({
+  title: Joi.string()
+    .required(),
+  position: Joi.number()
+    .integer()
+    .min(1),
+  content: Joi.string()
+    .required()
 })
 
-// https://github.com/sideway/joi
+const themeSchema = Joi.object({
+  headline: Joi.string()
+    .required(),
+  content: Joi.string()
+    .required()
+})
 
-const schema = {
-  properties: {
-    name: { type: 'string' },
-    sections: {
-      type: 'array',
-      items: {
-        type: 'object',
-        properties: {
-          title: { type: 'string' },
-          position: { type: 'integer' },
-          content: { type: 'string', markdown: true }
-        },
-        required: ['title', 'content']
-      }
-    },
-    themes: {
-      type: 'array',
-      default: [],
-      items: {
-        type: 'object',
-        properties: {
-          headline: { type: 'string' },
-          content: { type: 'string' }
-        },
-        required: ['headline', 'content']
-      }
-    },
-    video: { type: 'string', format: 'uri' },
-    team: {
-      type: 'array',
-      items: {
-        type: 'object',
-        properties: {
-          name: { type: 'string' },
-          photo: { type: 'string', format: 'uri' },
-          bio: { type: 'string', markdown: true },
-          twitter: { type: 'string' },
-          linkedin: { type: 'string' },
-          title: { type: 'string' }
-        },
-        required: ['name', 'photo', 'bio', 'title']
-      }
-    },
-    points: {
-      type: 'array',
-      items: {
-        type: 'object',
-        properties: {
-          name: { type: 'string' },
-          homepage: { type: 'string', format: 'uri' },
-          repo: { type: 'string' },
-          level: { type: 'string', enum: ['adopt', 'trial', 'assess', 'hold'] },
-          votes: {
-            type: 'object',
-            properties: {
-              adopt: { type: 'integer', minimum: 1 },
-              trial: { type: 'integer', minimum: 1 },
-              assess: { type: 'integer', minimum: 1 },
-              hold: { type: 'integer', minimum: 1 }
-            }
-          },
-        },
-        required: ['name', 'level', 'votes'],
-        oneOf: [
-          { required: ['homepage'] },
-          { required: ['repo'] }
-        ]
-      }
-    },
-    companies: {
-      type: 'array',
-      items: {
-        type: 'string'
-      }
-    }
-  },
-  required: ['name', 'themes', 'team', 'points', 'companies']
-}
+const teamSchema = Joi.object({
+  name: Joi.string()
+    .required(),
+  photo: Joi.string()
+    .uri()
+    .required(),
+  bio: Joi.string()
+    .required(),
+  title: Joi.string()
+    .required(),
+  twitter: Joi.string(),
+  linkedin: Joi.string(),
+})
 
-const _validate = ajv.compile(schema)
+const votesSchema = Joi.object({
+  adopt: Joi.number()
+    .integer()
+    .min(1),
+  trial: Joi.number()
+    .integer()
+    .min(1),
+  assess: Joi.number()
+    .integer()
+    .min(1),
+  hold: Joi.number()
+    .integer()
+    .min(1),
+})
+
+const pointSchema = Joi.object({
+  name: Joi.string()
+    .required(),
+  homepage: Joi.string()
+    .uri(),
+  repo: Joi.string(),
+  level: Joi.string()
+    .valid('adopt', 'trial', 'assess', 'hold')
+    .required(),
+  votes: votesSchema
+    .required()
+}).or('homepage', 'repo')
+
+const schema = Joi.object({
+  name: Joi.string()
+    .required(),
+  sections: Joi.array()
+    .items(sectionSchema),
+  themes: Joi.array()
+    .items(themeSchema)
+    .required(),
+  video: Joi.string()
+    .uri(),
+  team: Joi.array()
+    .items(teamSchema)
+    .required(),
+  points: Joi.array()
+    .items(pointSchema)
+    .required(),
+  companies: Joi.array()
+    .items(Joi.string())
+})
+
 const validate = data => {
-  const valid = _validate(data)
-  const errors = _validate.errors
-  return { valid, errors }
+  const { error } = schema.validate(data, { abortEarly: false })
+  return { valid: !error, errors: error }
 }
 
 export default { validate }

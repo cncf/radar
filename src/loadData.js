@@ -79,7 +79,7 @@ const loadRadarData = _ => {
     const { valid, errors } = RadarSchema.validate(radar)
     if (!valid) {
       console.error(`Invalid Radar File: ${path}`)
-      console.error(errors)
+      console.error(errors.details)
       throw 'Execution interrupted'
     }
     const key = path.replace(/\.yml/, '')
