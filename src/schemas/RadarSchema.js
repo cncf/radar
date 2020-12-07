@@ -1,89 +1,95 @@
-import Ajv from 'ajv'
+const Joi = require('joi')
+// TODO: use markdown to html in attributes that contain markdown.
 import markdownToHtml from '../helpers/markdownToHtml'
 
-const ajv = new Ajv({ useDefaults: true })
-
-ajv.addKeyword('markdown', {
-  compile: _ => {
-    return (data, path, parent, key) => {
-      parent[key] = markdownToHtml(data)
-      return true
-    }
-  }
+const sectionSchema = Joi.object({
+  title: Joi.string()
+    .required(),
+  position: Joi.number()
+    .integer()
+    .min(1),
+  content: Joi.string()
+    .required()
 })
 
-const schema = {
-  properties: {
-    name: { type: 'string' },
-    sections: {
-      type: 'array',
-      items: {
-        type: 'object',
-        properties: {
-          title: { type: 'string' },
-          position: { type: 'integer' },
-          content: { type: 'string', markdown: true }
-        },
-        required: ['title', 'content']
-      }
-    },
-    themes: {
-      type: 'array',
-      default: [],
-      items: {
-        headline: { type: 'string' },
-        content: { type: 'string' }
-      }
-    },
-    video: { type: 'string', format: 'uri' },
-    team: {
-      type: 'array',
-      items: {
-        type: 'object',
-        properties: {
-          name: { type: 'string' },
-          photo: { type: 'string', format: 'uri' },
-          bio: { type: 'string', markdown: true },
-          twitter: { type: 'string' },
-          linkedin: { type: 'string' },
-          title: { type: 'string' }
-        }
-      }
-    },
-    points: {
-      type: 'array',
-      items: {
-        type: 'object',
-        properties: {
-          name: { type: 'string' },
-          repo: { type: 'string' },
-          level: { type: 'string' },
-          votes: {
-            type: 'object',
-            properties: {
-              adopt: { type: 'integer' },
-              trial: { type: 'integer' },
-              assess: { type: 'integer' },
-              hold: { type: 'integer' }
-            }
-          }
-        }
-      }
-    },
-    companies: {
-      type: 'array',
-      items: {
-        type: 'string'
-      }
-    }
-  }
-}
+const themeSchema = Joi.object({
+  headline: Joi.string()
+    .required(),
+  content: Joi.string()
+    .required()
+})
 
-const _validate = ajv.compile(schema)
+const teamSchema = Joi.object({
+  name: Joi.string()
+    .required(),
+  photo: Joi.string()
+    .uri()
+    .required(),
+  bio: Joi.string()
+    .required(),
+  title: Joi.string()
+    .required(),
+  twitter: Joi.string(),
+  linkedin: Joi.string(),
+})
+
+const votesSchema = Joi.object({
+  adopt: Joi.number()
+    .integer()
+    .min(1),
+  trial: Joi.number()
+    .integer()
+    .min(1),
+  assess: Joi.number()
+    .integer()
+    .min(1),
+  hold: Joi.number()
+    .integer()
+    .min(1),
+})
+
+const pointSchema = Joi.object({
+  name: Joi.string()
+    .required(),
+  homepage: Joi.string()
+    .uri(),
+  repo: Joi.string(),
+  level: Joi.string()
+    .valid('adopt', 'trial', 'assess', 'hold')
+    .required(),
+  votes: votesSchema
+    .required()
+}).or('homepage', 'repo')
+
+const schema = Joi.object({
+  name: Joi.string()
+    .required(),
+  sections: Joi.array()
+    .items(sectionSchema),
+  themes: Joi.array()
+    .items(themeSchema)
+    .required(),
+  video: Joi.string()
+    .uri(),
+  team: Joi.array()
+    .items(teamSchema)
+    .required(),
+  points: Joi.array()
+    .items(pointSchema)
+    .required(),
+  companies: Joi.array()
+    .items(Joi.string())
+})
+
 const validate = data => {
-  const valid = _validate(data)
-  const errors = _validate.errors
-  return { valid, errors }
+  const { error } = schema.validate(data, { abortEarly: false, errors: { label: false } })
+  const errors = error && error.details.map(({ path, message }) => {
+    const label = path.map(part => Number.isInteger(part) ? `[${part + 1}]` : part)
+      .join('.')
+      .replace('.[', '[')
+    return { label, message }
+  })
+  return { valid: !error, errors }
 }
 
 export default { validate }

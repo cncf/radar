@@ -5,6 +5,7 @@ import stripUrl from './helpers/stripUrl'
 import loadYaml from './helpers/loadYaml'
 import fetchUrl from './helpers/fetchUrl'
 import RadarSchema from './schemas/RadarSchema'
+import Logger from './helpers/logger'
 
 const getExtension = buffer => {
   return imageSize(buffer).type
@@ -78,12 +79,11 @@ const loadRadarData = _ => {
 
     const { valid, errors } = RadarSchema.validate(radar)
     if (!valid) {
-      console.error(`Invalid Radar File: ${path}`)
-      console.error(errors)
-      throw 'Execution interrupted'
+      const messages = errors.map(({ message, label }) => `  * ${label}: ${message}`)
+      Logger.error(`Invalid Radar File: ${path}`, ...messages, '')
     }
     const key = path.replace(/\.yml/, '')
-    return { ...radar, key }
+    return { ...radar, key, valid }
   })
 }
 
@@ -113,8 +113,12 @@ const deleteUnusedData = radars => {
 }
 
 export default async (filterFn) => {
-  const data = loadRadarData()
   const landscapeData = await fetchLandscapeData()
+  const data = loadRadarData()
+
+  if (data.find(radar => !radar.valid)) {
+    throw 'One or more radars are invalid. Processing stopped'
+  }
 
   const radarPromises = data
     .sort((a, b) => -a.key.localeCompare(b.key))
