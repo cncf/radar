@@ -49,7 +49,7 @@ team:
 points:
   - name: Redis
     homepage: https://redis.io/
-    level: adopt
+    level: lol
     votes:
       adopt: 26
       hold: 1

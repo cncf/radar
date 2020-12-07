@@ -1,4 +1,3 @@
-name: Continuous Delivery
 themes:
   - headline: Publicly available solutions are combined with in-house tools
     content: |
@@ -25,7 +24,6 @@ team:
       Cheryl's mission is to make end users successful and productive with cloud native technologies
     twitter: oicheryl
     linkedin: cheryljhung
-    title: Director of Ecosystem at CNCF
 points:
   - name: Helm
     repo: helm/helm

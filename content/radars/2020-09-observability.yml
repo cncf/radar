@@ -116,7 +116,6 @@ points:
       assess: 3
       hold: 1
   - name: Lightstep
-    homepage: https://lightstep.com/
     level: trial
     votes:
       adopt: 4
