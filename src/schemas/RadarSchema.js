@@ -82,7 +82,7 @@ const schema = Joi.object({
 })
 
 const validate = data => {
-  const { error } = schema.validate(data, { abortEarly: false, errors: { label: false } })
+  const { error } = schema.validate(data, { abortEarly: false, prettyErrors: true, errors: { label: false } })
   const errors = error ? error.details : []
   return { errors }
 }
