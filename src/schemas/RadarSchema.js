@@ -1,6 +1,10 @@
 const Joi = require('joi')
+const loadYaml = require('../helpers/loadYaml')
+
 // TODO: use markdown to html in attributes that contain markdown.
 import markdownToHtml from '../helpers/markdownToHtml'
+
+const industries = loadYaml('industries.yml')
 
 const sectionSchema = Joi.object({
   title: Joi.string()
@@ -61,6 +65,15 @@ const pointSchema = Joi.object({
     .required()
 }).or('homepage', 'repo')
 
+const companySchema = Joi.string()
+  .custom((value, helpers) => {
+    if (!industries[value]) {
+      return helpers.message(`${value} does not have required industry in industries.yml`);
+    }
+
+    return value
+  })
+
 const schema = Joi.object({
   name: Joi.string()
     .required(),
@@ -78,7 +91,7 @@ const schema = Joi.object({
     .items(pointSchema)
     .required(),
   companies: Joi.array()
-    .items(Joi.string())
+    .items(companySchema)
 })
 
 const validate = data => {
