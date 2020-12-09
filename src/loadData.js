@@ -6,6 +6,8 @@ import loadYaml from './helpers/loadYaml'
 import fetchUrl from './helpers/fetchUrl'
 import RadarSchema from './schemas/RadarSchema'
 import Logger from './helpers/logger'
+import getYamlLineNumbers from './helpers/getYamlLineNumbers'
+import pathToString from './helpers/pathToString'
 
 const getExtension = buffer => {
   return imageSize(buffer).type
@@ -77,13 +79,17 @@ const loadRadarData = _ => {
   return readdirSync(path.join(process.cwd(), 'content', 'radars')).map(path => {
     const radar = loadYaml('radars', path)
 
-    const { valid, errors } = RadarSchema.validate(radar)
-    if (!valid) {
-      const messages = errors.map(({ message, label }) => `  * ${label}: ${message}`)
-      Logger.error(`Invalid Radar File: ${path}`, ...messages, '')
+    const { errors } = RadarSchema.validate(radar)
+    if (errors.length > 0) {
+      const lineNumbers = getYamlLineNumbers('radars', path)
+      errors.map(error => {
+        const label = pathToString(error.path)
+        const lineNumber = lineNumbers[label] || lineNumbers[pathToString(error.path.slice(0, -1))] || 1
+        Logger.error(`radars/${path}#L${lineNumber}: "${label}" ${error.message}`)
+      })
     }
     const key = path.replace(/\.yml/, '')
-    return { ...radar, key, valid }
+    return { ...radar, key, valid: errors.length === 0 }
   })
 }
 
