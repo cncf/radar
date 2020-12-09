@@ -82,11 +82,12 @@ const loadRadarData = _ => {
     const { errors } = RadarSchema.validate(radar)
     if (errors.length > 0) {
       const lineNumbers = getYamlLineNumbers('radars', path)
-      errors.map(error => {
+      const messages = errors.map(error => {
         const label = pathToString(error.path)
         const lineNumber = lineNumbers[label] || lineNumbers[pathToString(error.path.slice(0, -1))] || 1
-        Logger.error(`radars/${path}#L${lineNumber}: "${label}" ${error.message}`)
+        return `  * Line ${lineNumber}: "${label}" ${error.message}`
       })
+      Logger.error(`Invalid Radar File ${path}`, ...messages, '')
     }
     const key = path.replace(/\.yml/, '')
     return { ...radar, key, valid: errors.length === 0 }
