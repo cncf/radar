@@ -83,13 +83,8 @@ const schema = Joi.object({
 
 const validate = data => {
   const { error } = schema.validate(data, { abortEarly: false, errors: { label: false } })
-  const errors = error && error.details.map(({ path, message }) => {
-    const label = path.map(part => Number.isInteger(part) ? `[${part + 1}]` : part)
-      .join('.')
-      .replace('.[', '[')
-    return { label, message }
-  })
-  return { valid: !error, errors }
+  const errors = error ? error.details : []
+  return { errors }
 }
 
 export default { validate }

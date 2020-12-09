@@ -25,7 +25,7 @@
     "sass": "^1.26.10",
     "sharp": "^0.26.0",
     "showdown": "^1.9.1",
-    "yaml": "^1.10.0"
+    "yaml": "^2.0.0-1"
   },
   "resolutions": {
     "minimist": "^1.2.0"
