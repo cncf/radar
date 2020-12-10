@@ -1,103 +1,108 @@
-const Joi = require('joi')
+const yup = require('yup')
 const loadYaml = require('../helpers/loadYaml')
+const stringToPath = require('../helpers/stringToPath').default
 
 // TODO: use markdown to html in attributes that contain markdown.
 import markdownToHtml from '../helpers/markdownToHtml'
 
 const industries = loadYaml('industries.yml')
 
-const sectionSchema = Joi.object({
-  title: Joi.string()
+const sectionSchema = yup.object({
+  title: yup.string()
     .required(),
-  position: Joi.number()
+  position: yup.number()
     .integer()
     .min(1),
-  content: Joi.string()
+  content: yup.string()
     .required()
 })
 
-const themeSchema = Joi.object({
-  headline: Joi.string()
+const themeSchema = yup.object({
+  headline: yup.string()
     .required(),
-  content: Joi.string()
+  content: yup.string()
     .required()
 })
 
-const teamSchema = Joi.object({
-  name: Joi.string()
+const teamSchema = yup.object({
+  name: yup.string()
     .required(),
-  photo: Joi.string()
-    .uri()
+  photo: yup.string()
+    .url()
     .required(),
-  bio: Joi.string()
+  bio: yup.string()
     .required(),
-  title: Joi.string()
+  title: yup.string()
     .required(),
-  twitter: Joi.string(),
-  linkedin: Joi.string(),
+  twitter: yup.string(),
+  linkedin: yup.string(),
 })
 
-const votesSchema = Joi.object({
-  adopt: Joi.number()
+const votesSchema = yup.object({
+  adopt: yup.number()
     .integer()
     .min(1),
-  trial: Joi.number()
+  trial: yup.number()
     .integer()
     .min(1),
-  assess: Joi.number()
+  assess: yup.number()
     .integer()
     .min(1),
-  hold: Joi.number()
+  hold: yup.number()
     .integer()
     .min(1),
 })
 
-const pointSchema = Joi.object({
-  name: Joi.string()
+const pointSchema = yup.object({
+  name: yup.string()
     .required(),
-  homepage: Joi.string()
-    .uri(),
-  repo: Joi.string(),
-  level: Joi.string()
-    .valid('adopt', 'trial', 'assess', 'hold')
+  homepage: yup.string()
+    .url(),
+  repo: yup.string(),
+  level: yup.string()
+    .oneOf(['adopt', 'trial', 'assess', 'hold'])
     .required(),
   votes: votesSchema
     .required()
-}).or('homepage', 'repo')
+}).test('homepage-or-repo', `homepage or repo must be set`, value => value.homepage || value.repo)
 
-const companySchema = Joi.string()
-  .custom((value, helpers) => {
-    if (!industries[value]) {
-      return helpers.message(`${value} does not have required industry in industries.yml`);
-    }
+const companySchema = yup.string()
+  .test('industry-set', '${value} does not have required industry in industries.yml', value => industries[value])
 
-    return value
-  })
-
-const schema = Joi.object({
-  name: Joi.string()
+const schema = yup.object({
+  name: yup.string()
     .required(),
-  sections: Joi.array()
-    .items(sectionSchema),
-  themes: Joi.array()
-    .items(themeSchema)
+  sections: yup.array()
+    .of(sectionSchema),
+  themes: yup.array()
+    .of(themeSchema)
     .required(),
-  video: Joi.string()
-    .uri(),
-  team: Joi.array()
-    .items(teamSchema)
+  video: yup.string()
+    .url(),
+  team: yup.array()
+    .of(teamSchema)
     .required(),
-  points: Joi.array()
-    .items(pointSchema)
+  points: yup.array()
+    .of(pointSchema)
     .required(),
-  companies: Joi.array()
-    .items(companySchema)
+  companies: yup.array()
+    .of(companySchema)
+    .required()
 })
 
 const validate = data => {
-  const { error } = schema.validate(data, { abortEarly: false, prettyErrors: true, errors: { label: false } })
-  const errors = error ? error.details : []
-  return { errors }
+  return new Promise(resolve => {
+    schema.validate(data, { abortEarly: false })
+      .then(value => resolve({ data: value, errors: [] }))
+      .catch(error => {
+        const errors = error.inner.flatMap(err => {
+          const path = stringToPath(err.path)
+          const regexp = new RegExp(`^${err.path.replace('[', '\\[')}`)
+          return err.errors.map(message => ({ path, message: message.replace(regexp, '').trim() }))
+        })
+        resolve({ errors })
+      })
+  })
 }
 
 export default { validate }
