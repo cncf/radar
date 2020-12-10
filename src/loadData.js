@@ -75,11 +75,12 @@ const buildMember = async (attrs) => {
   return { ...attrs, photo }
 }
 
-const loadRadarData = _ => {
-  return readdirSync(path.join(process.cwd(), 'content', 'radars')).map(path => {
+const loadRadarData = async _ => {
+  const radars = readdirSync(path.join(process.cwd(), 'content', 'radars'))
+  return await Promise.all(radars.map(async path => {
     const radar = loadYaml('radars', path)
 
-    const { errors } = RadarSchema.validate(radar)
+    const { errors } = await RadarSchema.validate(radar)
     if (errors.length > 0) {
       const lineNumbers = getYamlLineNumbers('radars', path)
       const messages = errors.map(error => {
@@ -91,7 +92,7 @@ const loadRadarData = _ => {
     }
     const key = path.replace(/\.yml/, '')
     return { ...radar, key, valid: errors.length === 0 }
-  })
+  }))
 }
 
 const deleteUnusedFiles = (directoryName, usedFiles) => {
@@ -121,7 +122,7 @@ const deleteUnusedData = radars => {
 
 export default async (filterFn) => {
   const landscapeData = await fetchLandscapeData()
-  const data = loadRadarData()
+  const data = await loadRadarData()
 
   if (data.find(radar => !radar.valid)) {
     throw 'One or more radars are invalid. Processing stopped'
