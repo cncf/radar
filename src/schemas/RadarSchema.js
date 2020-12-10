@@ -1,6 +1,7 @@
 const yup = require('yup')
 const loadYaml = require('../helpers/loadYaml')
 const stringToPath = require('../helpers/stringToPath').default
+const fetchUrl = require('../helpers/fetchUrl').default
 
 // TODO: use markdown to html in attributes that contain markdown.
 import markdownToHtml from '../helpers/markdownToHtml'
@@ -24,12 +25,22 @@ const themeSchema = yup.object({
     .required()
 })
 
+const downloadPhoto = async value => {
+  try {
+    await fetchUrl(value)
+  } catch(e) {
+    return false
+  }
+  return true
+}
+
 const teamSchema = yup.object({
   name: yup.string()
     .required(),
   photo: yup.string()
     .url()
-    .required(),
+    .required()
+    .test('download-photo', 'cannot download photo from "${value}"', downloadPhoto),
   bio: yup.string()
     .required(),
   title: yup.string()
