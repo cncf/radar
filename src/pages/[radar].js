@@ -3,7 +3,6 @@ import css from 'styled-jsx/css'
 import Link from 'next/link'
 import loadData from '../loadData'
 import withTitle from '../components/withTitle'
-import MarkdownComponent from '../components/MarkdownComponent'
 import Section from '../components/Section'
 import RadarTeam from '../components/RadarTeam'
 import Radar from '../components/Radar'
@@ -12,7 +11,6 @@ import CompanySizeChart from '../components/CompanySizeChart'
 import VideoComponent from '../components/VideoComponent'
 import Companies from '../components/Companies'
 import IndustriesTable from '../components/IndustriesTable'
-import GlobalTextComponent from '../components/GlobalTextComponent'
 import OutboundLink from '../components/OutboundLink'
 import ThumbnailsList from '../components/ThumbnailsList'
 
@@ -127,7 +125,8 @@ const ThemesSection = ({ themes }) => {
     {themes.map((theme, idx) => {
       return <div className="theme" key={idx}>
         <h4>{idx + 1}. {theme.headline}</h4>
-        {!collapsed && <MarkdownComponent className={className} value={theme.content}/>}
+
+        {!collapsed && <div className={className} dangerouslySetInnerHTML={{ __html: theme.content }} />}
       </div>
     })}
 
@@ -154,19 +153,18 @@ const WebinarAndTeamSection = ({ video, team }) => {
 }
 
 const CompaniesSection = ({ companies }) => {
-  const { className, styles } = css.resolve`
-    div {
-      text-align: center;
-      color: #666;
-      font-size: 1rem;
-      font-style: italic;
-    }  
-  `
-
   return  <Section title="The End User companies">
-    {styles}
+    <style jsx>{`
+      div {
+        text-align: center;
+        color: #666;
+        font-size: 1rem;
+        font-style: italic;
+      }  
+    `}
+    </style>
     <Companies companies={companies} />
-    <GlobalTextComponent name="hidden_companies" className={className} />
+    <div>Not all companies are shown</div>
   </Section>
 }
 
@@ -192,7 +190,7 @@ const DataSection = ({ points, companies }) => {
 
 const renderSection = ({ title, content }) => {
   return <Section title={title} key={title}>
-    <MarkdownComponent value={content} />
+    <div dangerouslySetInnerHTML={{ __html: content }} />
   </Section>
 }
 

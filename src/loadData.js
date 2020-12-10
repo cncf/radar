@@ -78,9 +78,9 @@ const buildMember = async (attrs) => {
 const loadRadarData = async _ => {
   const radars = readdirSync(path.join(process.cwd(), 'content', 'radars'))
   return await Promise.all(radars.map(async path => {
-    const radar = loadYaml('radars', path)
+    const yaml = loadYaml('radars', path)
 
-    const { errors } = await RadarSchema.validate(radar)
+    const { data, errors } = await RadarSchema.validate(yaml)
     if (errors.length > 0) {
       const lineNumbers = getYamlLineNumbers('radars', path)
       const messages = errors.map(error => {
@@ -91,7 +91,7 @@ const loadRadarData = async _ => {
       Logger.error(`Invalid Radar File ${path}`, ...messages, '')
     }
     const key = path.replace(/\.yml/, '')
-    return { ...radar, key, valid: errors.length === 0 }
+    return { ...data, key, valid: errors.length === 0 }
   }))
 }
 

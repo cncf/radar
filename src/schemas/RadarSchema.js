@@ -3,7 +3,6 @@ const loadYaml = require('../helpers/loadYaml')
 const stringToPath = require('../helpers/stringToPath').default
 const fetchUrl = require('../helpers/fetchUrl').default
 
-// TODO: use markdown to html in attributes that contain markdown.
 import markdownToHtml from '../helpers/markdownToHtml'
 
 const industries = loadYaml('industries.yml')
@@ -16,6 +15,7 @@ const sectionSchema = yup.object({
     .min(1),
   content: yup.string()
     .required()
+    .transform(markdownToHtml)
 })
 
 const themeSchema = yup.object({
@@ -23,6 +23,7 @@ const themeSchema = yup.object({
     .required(),
   content: yup.string()
     .required()
+    .transform(markdownToHtml)
 })
 
 const downloadPhoto = async value => {
@@ -42,7 +43,9 @@ const teamSchema = yup.object({
     .required()
     .test('download-photo', 'cannot download photo from "${value}"', downloadPhoto),
   bio: yup.string()
-    .required(),
+    .required()
+    .transform(markdownToHtml)
+  ,
   title: yup.string()
     .required(),
   twitter: yup.string(),

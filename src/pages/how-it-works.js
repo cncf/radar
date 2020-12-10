@@ -1,6 +1,5 @@
 import Section from '../components/Section'
-import loadYaml from '../helpers/loadYaml'
-import MarkdownComponent from '../components/MarkdownComponent'
+import loadPage from '../helpers/loadPage'
 import withTitle from '../components/withTitle'
 
 const HowItWorks = ({ sections }) => {
@@ -15,14 +14,14 @@ const HowItWorks = ({ sections }) => {
 
     { sections.map(({ title, content }) => {
       return <Section title={title} key={title}>
-        <MarkdownComponent value={content} className="page-section" />
+        <div className="page-section" dangerouslySetInnerHTML={{ __html: content }} />
       </Section>
     })}
   </>
 }
 
 export async function getStaticProps() {
-  const sections = loadYaml('pages', 'how-it-works.yml')
+  const sections = await loadPage('pages', 'how-it-works.yml')
 
   return { props: { sections } }
 }
