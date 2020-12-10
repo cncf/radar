@@ -1,13 +1,7 @@
 import { readFileSync, writeFileSync } from 'fs'
 import { join } from 'path'
-import sharp from 'sharp'
 import loadData from '../src/loadData'
 import puppeteer from'puppeteer'
-
-// Ideally we would use Sharp to take screenshots, but there's a bug on one of Sharp's dependencies that
-// causes texts on SVGs to not be vertically aligned correctly.
-// See: https://github.com/lovell/sharp/issues/1996
-// And: https://gitlab.gnome.org/GNOME/librsvg/-/issues/414
 
 const injectSvg = svg => `
   <!DOCTYPE html>
@@ -40,10 +34,6 @@ const exportImages = async (target, destination) => {
   writeFileSync(outputPath, svg)
 
   await takeScreenshot(svg, outputPath.replace(/\..*/, '.png'))
-  // sharp(outputPath)
-  //   .png({ compressionLevel: 1 })
-  //   .flatten({ background: { r: 255, g: 255, b: 255 } })
-  //   .toFile(outputPath.replace(/\..*/, '.png'))
 }
 
 loadData().then(({ radars }) => {
