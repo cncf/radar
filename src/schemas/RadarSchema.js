@@ -1,7 +1,6 @@
-const yup = require('yup')
-const loadYaml = require('../helpers/loadYaml')
-const fetchUrl = require('../helpers/fetchUrl').default
-
+import * as yup from 'yup'
+import loadYaml from '../helpers/loadYaml'
+import fetchUrl from '../helpers/fetchUrl'
 import markdownToHtml from '../helpers/markdownToHtml'
 
 const industries = loadYaml('industries.yml').data

@@ -1,9 +1,9 @@
-const { join } = require('path')
-const { readFileSync } = require('fs')
-const YAML = require('yaml')
-const Logger = require('./logger')
-const stringToPath = require('./stringToPath').default
-const pathToString = require('./pathToString').default
+import { join } from 'path'
+import { readFileSync } from 'fs'
+import YAML from 'yaml'
+import Logger from './logger'
+import stringToPath from './stringToPath'
+import pathToString from './pathToString'
 
 const getLineNumbers = (items, parentPath = []) => {
   return items.reduce((acc, item, idx) => {
@@ -36,7 +36,7 @@ const validateYaml = (yaml, schema, filePath, file) => {
   })
 }
 
-module.exports = (path, options = {}) => {
+export default (path, options = {}) => {
   const { schema } = options
   const relativePath = join('content', path)
   const fullPath = join(process.cwd(), relativePath)
