@@ -1,6 +1,7 @@
 import Section from '../components/Section'
-import loadPage from '../helpers/loadPage'
 import withTitle from '../components/withTitle'
+import loadYaml from '../helpers/loadYaml'
+import PageSchema from '../schemas/PageSchema'
 
 const HowItWorks = ({ sections }) => {
   return <>
@@ -21,9 +22,14 @@ const HowItWorks = ({ sections }) => {
 }
 
 export async function getStaticProps() {
-  const sections = await loadPage('pages', 'how-it-works.yml')
+  // TODO: see if we can make generic page
+  const { data, valid } = await loadYaml('pages/how-it-works.yml', { schema: PageSchema })
 
-  return { props: { sections } }
+  if (!valid) {
+    throw 'Invalid page!!'
+  }
+
+  return { props: { sections: data } }
 }
 
 export default withTitle(HowItWorks, _ => 'How It Works')

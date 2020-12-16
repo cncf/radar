@@ -5,15 +5,12 @@ import stripUrl from './helpers/stripUrl'
 import loadYaml from './helpers/loadYaml'
 import fetchUrl from './helpers/fetchUrl'
 import RadarSchema from './schemas/RadarSchema'
-import Logger from './helpers/logger'
-import getYamlLineNumbers from './helpers/getYamlLineNumbers'
-import pathToString from './helpers/pathToString'
 
 const getExtension = buffer => {
   return imageSize(buffer).type
 }
 
-const industries = loadYaml('industries.yml')
+const industries = loadYaml('industries.yml').data
 
 const fetchLandscapeData = async _ => JSON.parse(await fetchUrl('https://landscape.cncf.io/data.json'))
 
@@ -78,20 +75,9 @@ const buildMember = async (attrs) => {
 const loadRadarData = async _ => {
   const radars = readdirSync(path.join(process.cwd(), 'content', 'radars'))
   return await Promise.all(radars.map(async path => {
-    const yaml = loadYaml('radars', path)
-
-    const { data, errors } = await RadarSchema.validate(yaml)
-    if (errors.length > 0) {
-      const lineNumbers = getYamlLineNumbers('radars', path)
-      const messages = errors.map(error => {
-        const label = pathToString(error.path)
-        const lineNumber = lineNumbers[label] || lineNumbers[pathToString(error.path.slice(0, -1))] || 1
-        return `  * Line ${lineNumber}: "${label}" ${error.message}`
-      })
-      Logger.error(`Invalid Radar File ${path}`, ...messages, '')
-    }
+    const { data, valid } = await loadYaml(`radars/${path}`, { schema: RadarSchema })
     const key = path.replace(/\.yml/, '')
-    return { ...data, key, valid: errors.length === 0 }
+    return { ...data, key, valid }
   }))
 }
 
