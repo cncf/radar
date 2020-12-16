@@ -1,12 +1,9 @@
-const yup = require('yup')
-const loadYaml = require('../helpers/loadYaml')
-const stringToPath = require('../helpers/stringToPath').default
-const fetchUrl = require('../helpers/fetchUrl').default
-
-// TODO: use markdown to html in attributes that contain markdown.
+import * as yup from 'yup'
+import loadYaml from '../helpers/loadYaml'
+import fetchUrl from '../helpers/fetchUrl'
 import markdownToHtml from '../helpers/markdownToHtml'
 
-const industries = loadYaml('industries.yml')
+const industries = loadYaml('industries.yml').data
 
 const sectionSchema = yup.object({
   title: yup.string()
@@ -16,6 +13,7 @@ const sectionSchema = yup.object({
     .min(1),
   content: yup.string()
     .required()
+    .transform(markdownToHtml)
 })
 
 const themeSchema = yup.object({
@@ -23,6 +21,7 @@ const themeSchema = yup.object({
     .required(),
   content: yup.string()
     .required()
+    .transform(markdownToHtml)
 })
 
 const downloadPhoto = async value => {
@@ -42,7 +41,9 @@ const teamSchema = yup.object({
     .required()
     .test('download-photo', 'cannot download photo from "${value}"', downloadPhoto),
   bio: yup.string()
-    .required(),
+    .required()
+    .transform(markdownToHtml)
+  ,
   title: yup.string()
     .required(),
   twitter: yup.string(),
@@ -80,7 +81,7 @@ const pointSchema = yup.object({
 const companySchema = yup.string()
   .test('industry-set', '${value} does not have required industry in industries.yml', value => industries[value])
 
-const schema = yup.object({
+const RadarSchema = yup.object({
   name: yup.string()
     .required(),
   sections: yup.array()
@@ -101,19 +102,4 @@ const schema = yup.object({
     .required()
 })
 
-const validate = data => {
-  return new Promise(resolve => {
-    schema.validate(data, { abortEarly: false })
-      .then(value => resolve({ data: value, errors: [] }))
-      .catch(error => {
-        const errors = error.inner.flatMap(err => {
-          const path = stringToPath(err.path)
-          const regexp = new RegExp(`^${err.path.replace('[', '\\[')}`)
-          return err.errors.map(message => ({ path, message: message.replace(regexp, '').trim() }))
-        })
-        resolve({ errors })
-      })
-  })
-}
-
-export default { validate }
+export default RadarSchema

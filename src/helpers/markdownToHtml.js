@@ -24,6 +24,9 @@ const transformTags = {
 }
 
 export default text => {
+  if (typeof text !== 'string') {
+    return text
+  }
   const html = new Converter({ simpleLineBreaks: false }).makeHtml(text)
   const sanitizedHtml = sanitizeHtml(html, { allowedTags, allowedAttributes, transformTags })
     .replace('<dt>Adopt</dt>', renderLevelTag('adopt'))

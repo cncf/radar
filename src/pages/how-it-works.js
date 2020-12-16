@@ -1,7 +1,7 @@
 import Section from '../components/Section'
-import loadYaml from '../helpers/loadYaml'
-import MarkdownComponent from '../components/MarkdownComponent'
 import withTitle from '../components/withTitle'
+import loadYaml from '../helpers/loadYaml'
+import PageSchema from '../schemas/PageSchema'
 
 const HowItWorks = ({ sections }) => {
   return <>
@@ -15,16 +15,21 @@ const HowItWorks = ({ sections }) => {
 
     { sections.map(({ title, content }) => {
       return <Section title={title} key={title}>
-        <MarkdownComponent value={content} className="page-section" />
+        <div className="page-section" dangerouslySetInnerHTML={{ __html: content }} />
       </Section>
     })}
   </>
 }
 
 export async function getStaticProps() {
-  const sections = loadYaml('pages', 'how-it-works.yml')
+  // TODO: see if we can make generic page
+  const { data, valid } = await loadYaml('pages/how-it-works.yml', { schema: PageSchema })
 
-  return { props: { sections } }
+  if (!valid) {
+    throw 'Invalid page!!'
+  }
+
+  return { props: { sections: data } }
 }
 
 export default withTitle(HowItWorks, _ => 'How It Works')

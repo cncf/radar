@@ -23,3 +23,9 @@ This step is not required for development or adding radar data, this is run on N
 To see the generated build run:
 
 `yarn prod`
+
+## Analyzing a build
+
+`ANALYZE=1 yarn build`
+
+Report will open in the browser

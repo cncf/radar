@@ -1,4 +1,3 @@
-import MarkdownComponent from './MarkdownComponent'
 import OutboundLink from './OutboundLink'
 import css from 'styled-jsx/css'
 
@@ -62,7 +61,7 @@ export default function RadarTeam({ team }) {
           </OutboundLink>}
 
           {member.bio && <div className="member-bio">
-            <MarkdownComponent value={member.bio}/>
+            <div dangerouslySetInnerHTML={{ __html: member.bio }} />
           </div>}
         </div>
       })
