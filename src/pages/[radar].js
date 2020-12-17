@@ -101,7 +101,8 @@ const Theme = ({ theme, idx }) => {
 
   const tag = '</p>'
   const content = collapsed ? theme.content.slice(0, theme.content.indexOf(tag) + tag.length) : theme.content
-  const toggle = `<a class="toggle">Show ${collapsed ? 'More' : 'Less'}</a>`
+  const multipleParagraphs = theme.content.match(new RegExp(tag, 'g')).length > 1
+  const toggle = multipleParagraphs ? `<a class="toggle">Show ${collapsed ? 'More' : 'Less'}</a>` : ''
   const contentWithToggle = content.replace(new RegExp(`${tag}$`), `&nbsp;${toggle}${tag}`)
 
   useEffect(() => {
