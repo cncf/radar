@@ -64,6 +64,11 @@ export default function LandscapeItemIframe() {
         position: fixed;
         z-index: 102;
       }
+      
+      .modal-content .not-found {
+        text-align: center;
+        margin: 15px;
+      }
     `}</style>
 
     <div className="modal-background" onClick={closeModal}></div>
@@ -72,7 +77,7 @@ export default function LandscapeItemIframe() {
       <span>Loading</span>
     </div>}
     {!selectedPoint && <div className="modal-content center">
-      <span>No associated data found</span>
+      <span className="not-found">No associated data found</span>
     </div>}
 
     { [...visitedPoints].map(point => {
