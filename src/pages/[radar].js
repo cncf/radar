@@ -112,7 +112,7 @@ const Theme = ({ theme, idx }) => {
   }, [collapsed])
 
   return <div className="theme" key={idx}>
-    <style>{`
+    <style jsx>{`
       .theme {
         margin: 0 10px 30px;
       }
