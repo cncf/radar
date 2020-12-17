@@ -1,5 +1,4 @@
-import { useState } from 'react'
-import css from 'styled-jsx/css'
+import { useState, useEffect, createRef } from 'react'
 import Link from 'next/link'
 import loadData from '../loadData'
 import withTitle from '../components/withTitle'
@@ -95,44 +94,55 @@ const RadarSection = ({ name, points, radarKey }) => {
   </Section>
 }
 
-const ThemesSection = ({ themes }) => {
+const Theme = ({ theme, idx }) => {
   const [collapsed, setCollapsed] = useState(true)
   const toggleCollapsed = _ => setCollapsed(!collapsed)
+  const parentRef = createRef()
 
-  const { className, styles } = css.resolve`
-    margin-top: 10px;
-  `
+  const tag = '</p>'
+  const content = collapsed ? theme.content.slice(0, theme.content.indexOf(tag) + tag.length) : theme.content
+  const multipleParagraphs = theme.content.match(new RegExp(tag, 'g')).length > 1
+  const toggle = multipleParagraphs ? `<a class="toggle">Show ${collapsed ? 'More' : 'Less'}</a>` : ''
+  const contentWithToggle = content.replace(new RegExp(`${tag}$`), `&nbsp;${toggle}${tag}`)
 
-  return <Section title="The Themes">
-    {styles}
+  useEffect(() => {
+    setCollapsed(true)
+  }, [theme.headline])
 
+  useEffect(() => {
+    if (multipleParagraphs) {
+      const toggle = parentRef.current.querySelector('.toggle')
+      toggle.addEventListener('click', toggleCollapsed)
+      return () => toggle.removeEventListener('click', toggleCollapsed)
+    }
+  })
+
+  return <div className="theme" key={idx}>
     <style jsx>{`
       .theme {
         margin: 0 10px 30px;
+      }
+      
+      .theme .content {
+        margin-top: 10px;
       }
       
       .theme h4 {
         text-align: center;
         color: #202020;
       }
+    `}
+    </style>
 
-      .toggle {
-        text-align: center;
-        font-size: 0.95rem;
-      }
-    `}</style>
+    <h4>{idx + 1}. {theme.headline}</h4>
 
-    {themes.map((theme, idx) => {
-      return <div className="theme" key={idx}>
-        <h4>{idx + 1}. {theme.headline}</h4>
+    <div className="content" dangerouslySetInnerHTML={{ __html: contentWithToggle }} ref={parentRef} />
+  </div>
+}
 
-        {!collapsed && <div className={className} dangerouslySetInnerHTML={{ __html: theme.content }} />}
-      </div>
-    })}
-
-    <div className="toggle">
-      <a onClick={toggleCollapsed}>Show {collapsed ? 'More' : 'Less'}</a>
-    </div>
+const ThemesSection = ({ themes }) => {
+  return <Section title="The Themes">
+    {themes.map((theme, idx) => <Theme theme={theme} idx={idx} key={idx} />)}
   </Section>
 }
 
