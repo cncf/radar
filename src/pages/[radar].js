@@ -106,10 +106,16 @@ const Theme = ({ theme, idx }) => {
   const contentWithToggle = content.replace(new RegExp(`${tag}$`), `&nbsp;${toggle}${tag}`)
 
   useEffect(() => {
-    const toggle = parentRef.current.querySelector('.toggle')
-    toggle.addEventListener('click', toggleCollapsed)
-    return () => toggle.removeEventListener('click', toggleCollapsed())
-  }, [collapsed])
+    setCollapsed(true)
+  }, [theme.headline])
+
+  useEffect(() => {
+    if (multipleParagraphs) {
+      const toggle = parentRef.current.querySelector('.toggle')
+      toggle.addEventListener('click', toggleCollapsed)
+      return () => toggle.removeEventListener('click', toggleCollapsed)
+    }
+  })
 
   return <div className="theme" key={idx}>
     <style jsx>{`
