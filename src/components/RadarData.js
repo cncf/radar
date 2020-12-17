@@ -2,11 +2,12 @@ import groupPoints from '../helpers/groupPoints'
 import LinkToPoint from './LinkToPoint'
 import { Fragment } from "react";
 
-export default function RadarData({ points }) {
+export default function RadarData({ points, companies }) {
   const groupedPoints = groupPoints(points)
 
   const votes = points.map(point => Object.values(point.votes).reduce((sum, vote) => sum + vote))
   const maxVotes = Math.max(...votes)
+  const totalVotes = votes.reduce((sum, votes) => sum + votes)
 
   return <>
     <style jsx>{`
@@ -42,6 +43,14 @@ export default function RadarData({ points }) {
         display: inline-block;
         height: 100%;
         text-align: center;
+      }
+      
+      .table-footer {
+        margin-top: 5px;
+        text-align: center;
+        color: #666;
+        font-style: italic;
+        font-size: 1rem;
       }
     `}
     </style>
@@ -81,6 +90,9 @@ export default function RadarData({ points }) {
           })
         })
       }
+    </div>
+    <div className="table-footer">
+      {companies.length} companies contributed {totalVotes} data points
     </div>
   </>
 }

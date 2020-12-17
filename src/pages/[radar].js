@@ -184,7 +184,7 @@ const DataSection = ({ points, companies }) => {
       The CNCF End User Community was asked to describe what their companies recommend for different solutions:
       Adopt, Trial, Assess or Hold. This table shows how the End User companies rated each technology.
     </p>
-    <RadarData points={points}/>
+    <RadarData points={points} companies={companies}/>
 
     {companies && <Columns>
       <Column title="The industries">
