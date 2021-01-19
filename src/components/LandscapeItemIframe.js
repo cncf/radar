@@ -82,7 +82,7 @@ export default function LandscapeItemIframe() {
 
     { [...visitedPoints].map(point => {
       // We only want to load each iframe once.
-      const src = `https://landscape.cncf.io/only-modal=yes&selected=${point}`
+      const src = `https://landscape.cncf.io?only-modal=yes&selected=${point}`
       const className = point === selectedPoint && !isLoading ? null : 'hidden'
       return <iframe className={`modal-content ${className}`} onLoad={_ => setIsLoading(false)} src={src} key={point} />
     }) }

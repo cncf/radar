@@ -12,7 +12,7 @@ const getExtension = buffer => {
 
 const industries = loadYaml('industries.yml').data
 
-const fetchLandscapeData = async _ => JSON.parse(await fetchUrl('https://landscape.cncf.io/data.json'))
+const fetchLandscapeData = async _ => JSON.parse(await fetchUrl('https://landscape.cncf.io/data/items.json'))
 
 const downloadLogo = async (sourcePath, name) => {
   const content = await fetchUrl(`https://landscape.cncf.io/${sourcePath}`)
