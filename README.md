@@ -27,3 +27,7 @@ To see the generated build run:
 
 `bin/run prod`
 
+## Draft radars
+
+Example: https://github.com/cncf/radar/commit/d49d3991f18854633d38fba7f3680366581e3d8a
+Url: https://radar.cncf.io/drafts
