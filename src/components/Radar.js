@@ -11,18 +11,29 @@ const Title = ({ text, y }) => {
   </text>
 }
 
+const PointText = ({ x, y, onClick, text }) => {
+  return <>
+    <text x={x} y={+y + 20} fill="#202020" fontSize={35} onClick={onClick}>{text}</text>
+  </>
+}
+
 const Point = ({ x, y, point }) => {
   const { setSelectedPoint } = useContext(SelectedPointContext)
   const onClick = _ => setSelectedPoint(point.landscapeId)
 
+  const { name } = point
+  const mid = name.length / 2
+  const splitAt = name.split(' ')
+    .reduce((arr, str) => [...arr, (arr[arr.length - 1] || 0) + arr.length + str.length], [])
+    .sort((a, b) => Math.abs(a - mid) - Math.abs(b - mid))[0]
+
+  if (name.length < 15 || splitAt === name.length) {
+    return <PointText x={x} y={+y} onClick={onClick} text={name} />
+  }
+
   return <>
-    <style jsx>{`
-      circle, text {
-        cursor: pointer;
-      }
-    `}
-    </style>
-    <text x={x} y={+y} fill="#202020" fontSize={35} onClick={onClick}>{point.name}</text>
+    <PointText x={x} y={+y - 30} onClick={onClick} text={name.slice(0, splitAt)} />
+    <PointText x={x} y={+y + 5} onClick={onClick} text={name.slice(splitAt + 1)} />
   </>
 }
 
