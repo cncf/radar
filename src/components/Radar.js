@@ -13,6 +13,11 @@ const Title = ({ text, y }) => {
 
 const PointText = ({ x, y, onClick, text }) => {
   return <>
+    <style jsx>{`
+      text {
+        cursor: pointer;
+      }
+    `}</style>
     <text x={x} y={+y + 20} fill="#202020" fontSize={35} onClick={onClick}>{text}</text>
   </>
 }
