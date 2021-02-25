@@ -15,7 +15,7 @@ const PointText = ({ x, y, onClick, text }) => {
   return <>
     <style jsx>{`
       text {
-        cursor: pointer;
+        cursor: ${onClick ? 'pointer' : 'default' };
       }
     `}</style>
     <text x={x} y={+y + 20} fill="#202020" fontSize={35} onClick={onClick}>{text}</text>
@@ -24,7 +24,7 @@ const PointText = ({ x, y, onClick, text }) => {
 
 const Point = ({ x, y, point }) => {
   const { setSelectedPoint } = useContext(SelectedPointContext)
-  const onClick = _ => setSelectedPoint(point.landscapeId)
+  const onClick = point.landscapeId ? _ => setSelectedPoint(point.landscapeId) : null
 
   const { name } = point
   const mid = name.length / 2
