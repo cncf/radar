@@ -5,6 +5,7 @@ import stripUrl from './helpers/stripUrl'
 import loadYaml from './helpers/loadYaml'
 import fetchUrl from './helpers/fetchUrl'
 import RadarSchema from './schemas/RadarSchema'
+import Logger from './helpers/logger'
 
 const getExtension = buffer => {
   return imageSize(buffer).type
@@ -75,6 +76,10 @@ const buildMember = async (attrs) => {
 const loadRadarData = async _ => {
   const radars = readdirSync(path.join(process.cwd(), 'content', 'radars'))
   return await Promise.all(radars.map(async path => {
+    if (!path.match(/^\d{4}\-\d{2}\-[\w|\-]+\.yml$/)) {
+      Logger.error(`${path} is not a valid radar name, it should look like YYYY-DD-\$\{radar-name\}.yml`)
+      return { valid: false }
+    }
     const { data, valid } = await loadYaml(`radars/${path}`, { schema: RadarSchema })
     const key = path.replace(/\.yml/, '')
     return { ...data, key, valid }
