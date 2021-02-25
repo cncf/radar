@@ -47,7 +47,7 @@ export default function RadarTeam({ team }) {
         return <div key={member.name} className="team-member">
           <img src={`/photos/${member.photo}`} alt={member.name} className="member-photo" />
           <h5>{member.name}</h5>
-          <div className="member-title">{member.title}</div>
+          {member.title && <div className="member-title">{member.title}</div>}
           {member.twitter && <OutboundLink href={`https://twitter.com/${member.twitter}`} className={className}>
             <i className="fab fa-twitter"></i>
           </OutboundLink>}

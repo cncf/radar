@@ -41,11 +41,9 @@ const teamSchema = yup.object({
     .required()
     .test('download-photo', 'cannot download photo from "${value}"', downloadPhoto),
   bio: yup.string()
-    .required()
     .transform(markdownToHtml)
   ,
-  title: yup.string()
-    .required(),
+  title: yup.string(),
   twitter: yup.string(),
   linkedin: yup.string(),
 })
