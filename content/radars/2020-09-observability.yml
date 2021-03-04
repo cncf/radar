@@ -46,7 +46,6 @@ team:
     twitter: J_Tarasovic
     linkedin: jtarasovic
     title: Principal Engineer at PayIt
-  
 points:
   - name: Prometheus
     repo: prometheus/prometheus
