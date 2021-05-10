@@ -21,7 +21,7 @@ themes:
 video: https://www.youtube.com/embed/I44EepyZGNo      
 team:
   - name: Jon Moter
-    photo: https://media-exp1.licdn.com/dms/image/C4E03AQFTKuqDY0pAgQ/profile-displayphoto-shrink_800_800/0/1516159058594?e=1618444800&v=beta&t=uAijNxkwNKQr_Ep5KnO-n8KEMB9hEYg8QguYUhw9WZc
+    photo: https://media-exp1.licdn.com/dms/image/C4E03AQFTKuqDY0pAgQ/profile-displayphoto-shrink_800_800/0/1516159058594?e=1626307200&v=beta&t=2BD3XJviK78z-w-3AhgaJODFdyHW_ZRn9kt8iNTd-Os
     bio: |
       Jon works in the Foundation Engineering organization, which provides compute, storage, and cloud infrastructure to the rest of Zendesk engineering.
     twitter: jonmoter
@@ -40,7 +40,7 @@ team:
     linkedin: marcinsuterski
     title: Lead Engineer at The New York Times
   - name: Jason Tarasovic
-    photo: https://media-exp1.licdn.com/dms/image/C5603AQHbfD1J8xwmJA/profile-displayphoto-shrink_800_800/0/1556575334336?e=1618444800&v=beta&t=l_8zU2tjt9tRaKq1ZV29YQO3g1EJCXNIX6-qo8xy2ig
+    photo: https://media-exp1.licdn.com/dms/image/C5603AQHbfD1J8xwmJA/profile-displayphoto-shrink_800_800/0/1556575334336?e=1626307200&v=beta&t=OyEzNVvrhg3nDaHImeyeCQiRhl9rjH9h0YPNuZvJR5o
     bio: |
       Jason was the founding engineer for the Platform Engineering team, where he was responsible for building and running their cloud native platform.
     twitter: J_Tarasovic
