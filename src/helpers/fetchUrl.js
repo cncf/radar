@@ -1,3 +1,4 @@
+import fetch from 'node-fetch'
 import cache from '../cache'
 
 export default async url => {
