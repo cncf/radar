@@ -43,9 +43,9 @@ export default function RadarTeam({ team }) {
     {styles}
 
     {
-      team.map(member => {
-        return <div key={member.name} className="team-member">
-          <img src={`/photos/${member.photo}`} alt={member.name} className="member-photo" />
+      team.map((member, idx) => {
+        return <div key={idx} className="team-member">
+          <img src={member.photo} alt={member.name} className="member-photo" />
           <h5>{member.name}</h5>
           {member.title && <div className="member-title">{member.title}</div>}
           {member.twitter && <OutboundLink href={`https://twitter.com/${member.twitter}`} className={className}>
