@@ -1,5 +1,5 @@
 import path from 'path'
-import { readdirSync, writeFileSync, unlinkSync } from 'fs'
+import { readdirSync, writeFileSync, mkdirSync } from 'fs'
 import imageSize from 'image-size'
 import stripUrl from '../src/helpers/stripUrl'
 import loadYaml from '../src/helpers/loadYaml'
@@ -64,14 +64,21 @@ const buildCompany = async attrs => {
   return { key: id, name: flatName, employeesRange, logo, industry, homepage }
 }
 
-const buildMember = async (attrs) => {
+const buildMember = async (attrs, radarKey) => {
   const url = attrs.photo
-  const content = await fetchUrl(url)
+  const dirPath = path.join(process.cwd(), 'public', 'photos', radarKey)
+  mkdirSync(dirPath, { recursive: true })
   const memberSlug = attrs.name.toLowerCase().replace(/\W/g, '-')
-  const photo = [memberSlug, getExtension(content)].join('.')
-  const destination = path.join(process.cwd(), 'public', 'photos', photo)
-  writeFileSync(destination, content)
-  return { ...attrs, photo }
+  let fileName = readdirSync(dirPath).find(f => f.split('.')[0] === memberSlug)
+
+  if (!fileName) {
+    const content = await fetchUrl(url)
+    fileName = [memberSlug, getExtension(content)].join('.')
+    const destination = path.join(dirPath, fileName)
+    writeFileSync(destination, content)
+  }
+
+  return { ...attrs, photo: `/photos/${radarKey}/${fileName}` }
 }
 
 const loadRadarData = async _ => {
@@ -85,31 +92,6 @@ const loadRadarData = async _ => {
     const key = path.replace(/\.yml/, '')
     return { ...data, key, valid }
   }))
-}
-
-const deleteUnusedFiles = (directoryName, usedFiles) => {
-  const directory = path.join(process.cwd(), 'public', directoryName)
-  const storedFiles = readdirSync(directory)
-
-  storedFiles.forEach(file => {
-    if (usedFiles.indexOf(file) === -1) {
-      unlinkSync(path.join(directory, file))
-    }
-  })
-}
-
-const deleteUnusedData = radars => {
-  const logos = radars.flatMap(radar => {
-    return radar.companies.map(company => company.logo)
-  })
-
-  deleteUnusedFiles('logos', logos)
-
-  const photos = radars.flatMap(radar => {
-    return radar.team.map(member => member.photo)
-  })
-
-  deleteUnusedFiles('photos', photos)
 }
 
 const fetchData = async _ => {
@@ -136,7 +118,7 @@ const fetchData = async _ => {
         return await buildCompany(landscapeAttrs)
       })
 
-      const teamPromises = radar.team.map(async attrs => await buildMember(attrs))
+      const teamPromises = radar.team.map(async attrs => await buildMember(attrs, radar.key))
 
       const companies = await Promise.all(companyPromises)
       const team = await Promise.all(teamPromises)
@@ -144,7 +126,6 @@ const fetchData = async _ => {
     })
 
   const radars = await Promise.all(radarPromises)
-  deleteUnusedData(radars)
 
   await cache.set('data', JSON.stringify(radars))
 }
