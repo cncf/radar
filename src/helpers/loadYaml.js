@@ -1,16 +1,18 @@
 import { join } from 'path'
 import { readFileSync } from 'fs'
-import YAML from 'yaml'
+import YAML, { LineCounter } from 'yaml'
 import Logger from './logger'
 import stringToPath from './stringToPath'
 import pathToString from './pathToString'
 
+const lineCounter = new LineCounter()
+
 const getLineNumbers = (items, parentPath = []) => {
+
   return items.reduce((acc, item, idx) => {
     const key = item.key ? item.key.value : idx
     const value = item.value || item
-    const cstNode = (item.key && item.key.cstNode) || item.cstNode
-    const { line } = cstNode.rangeAsLinePos.start
+    const { line } = lineCounter.linePos((item.key || item).range[0])
     const path = [...parentPath, key]
     return { ...acc, [pathToString(path)]: line, ...(value.items ? getLineNumbers(value.items, path) : {}) }
   }, {})
@@ -21,7 +23,7 @@ const validateYaml = (yaml, schema, filePath, file) => {
     schema.validate(yaml, { abortEarly: false })
       .then(value => resolve({ data: value, valid: true }))
       .catch(error => {
-        const document = YAML.parseDocument(file, { keepCstNodes: true })
+        const document = YAML.parseDocument(file, { lineCounter })
         const lineNumbers = getLineNumbers(document.contents.items)
         const messages = error.inner.flatMap(err => {
           const path = stringToPath(err.path)
