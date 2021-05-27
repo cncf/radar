@@ -66,12 +66,21 @@ const Banner = _ => {
   </div>
 }
 
-const RadarSection = ({ name, points, radarKey }) => {
+const RadarSection = ({ name, subradars }) => {
   return <Section title={name}>
     <style jsx>{`
+      .outer {
+        display: flex;
+      }
+    
       .radar-wrapper {  
         max-width: 800px;
         margin: 0 auto;
+        margin-right: 20px;
+      }
+      
+      .radar-wrapper:last-child {
+        margin-right: 0;
       }
       
       .download {
@@ -85,11 +94,15 @@ const RadarSection = ({ name, points, radarKey }) => {
       }
     `}</style>
 
-    <div className="radar-wrapper">
-      <Radar points={points} />
-      <div className="download">
-        Download as <OutboundLink href={`/${radarKey}.svg`} title="svg" /> or <OutboundLink href={`/${radarKey}.png`} title="png" />
-      </div>
+    <div className="outer">
+      { subradars.map(subradar => {
+        return <div key={subradar.key} className="radar-wrapper">
+          <Radar points={subradar.points} />
+          <div className="download">
+            Download as <OutboundLink href={`/${subradar.key}.svg`} title="svg" /> or <OutboundLink href={`/${subradar.key}.png`} title="png" />
+          </div>
+        </div>
+      })}
     </div>
   </Section>
 }
@@ -211,9 +224,10 @@ const OtherRadarsSection = ({ radars }) => {
 }
 
 const RadarPage = ({ radar, otherRadars = [] }) => {
-  const { name, points, team, video, companies, key, sections = [], themes } = radar
+  const { name, subradars, team, video, companies, key, sections = [], themes } = radar
+  const points = subradars.flatMap(radar => radar.points)
   const defaultSections = [
-    <RadarSection name={name} points={points} radarKey={key} key="radar" />,
+    <RadarSection name={name} subradars={subradars} radarKey={key} key="radar" />,
     <ThemesSection themes={themes} key="themes" />,
     <CompaniesSection companies={companies} key="companies" />,
     <WebinarAndTeamSection video={video} team={team} key="webinar-and-team" />,

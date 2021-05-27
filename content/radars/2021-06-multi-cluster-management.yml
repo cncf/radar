@@ -1,0 +1,36 @@
+name: Multi-cluster Management
+themes:
+  - headline: Cluster management is still an “unsolved” issue requiring a lot of tooling and processes
+    content: |
+      TODO
+  - headline: Cluster API seems to be the end goal for many, but it isn’t ready yet.
+    content: |
+      TODO
+  - headline: Wide adoption of Operator and Helm for core services.
+    content: |
+      TODO
+video: https://www.youtube.com/embed/dQw4w9WgXcQ
+team:
+  - name: Anonymous
+    photo: https://www.nacdnet.org/wp-content/uploads/2016/06/person-placeholder.jpg
+subradars:
+  - name: Deployment
+    points:
+      - name: Kubernetes
+        level: adopt
+        github: kubernetes/kubernetes
+        votes:
+          adopt: 3
+          trial: 2
+          assess: 1
+  - name: Services
+    points:
+      - name: Helm
+        level: assess
+        github: helm/helm
+        votes:
+          adopt: 1
+          trial: 2
+          assess: 3
+companies:
+  - apple-member
