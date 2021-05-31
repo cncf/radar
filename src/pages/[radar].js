@@ -12,6 +12,7 @@ import Companies from '../components/Companies'
 import IndustriesTable from '../components/IndustriesTable'
 import OutboundLink from '../components/OutboundLink'
 import ThumbnailsList from '../components/ThumbnailsList'
+import { sizes } from '../styles.config'
 
 const Columns = ({ children, className }) => {
   return <div className={`columns is-desktop is-4 ${className}`}>
@@ -69,22 +70,36 @@ const Banner = _ => {
 const RadarSection = ({ name, subradars }) => {
   return <Section title={name}>
     <style jsx>{`
-      .outer {
+      .outer {  
         display: flex;
+        gap 20px;
+        flex-direction: row;
       }
-    
+
+      @media only screen and (max-width: ${sizes.tablet}px) {
+        .outer {  
+          flex-direction: column;
+        }
+      }
+
       .radar-wrapper {  
         max-width: 800px;
         margin: 0 auto;
-        margin-right: 20px;
       }
       
-      .radar-wrapper:last-child {
-        margin-right: 0;
+      @media only screen and (max-width: ${sizes.tablet}px) {
+        .radar-wrapper {    
+          flex: 0;
+        }
       }
+      
+      h5 {
+        text-align: center;
+        margin-bottom: 10px;     
+      } 
       
       .download {
-        margin-top: 10px;
+        margin-top: 5px;
         text-align: center;
         font-size: 0.95rem;
       }
@@ -97,6 +112,7 @@ const RadarSection = ({ name, subradars }) => {
     <div className="outer">
       { subradars.map(subradar => {
         return <div key={subradar.key} className="radar-wrapper">
+          { subradars.length > 1 && <h5>{subradar.name}</h5>}
           <Radar points={subradar.points} />
           <div className="download">
             Download as <OutboundLink href={`/${subradar.key}.svg`} title="svg" /> or <OutboundLink href={`/${subradar.key}.png`} title="png" />
@@ -257,7 +273,10 @@ export async function getStaticProps ({ params }) {
   const { radars } = await loadData()
   const radar = radars.find(({ key, draft }) => params ? key === params.radar : !draft)
   const otherRadars = radars.filter(r => !r.draft && r.key !== radar.key)
-    .map(({ key, name }) => ({ key, name }))
+    .map(radar => {
+      const subradars = radar.subradars.map(({ key, longName }) => ({ key,longName }))
+      return { key: radar.key, subradars }
+    })
   return { props: { radar, otherRadars, home: !params } }
 }
 
