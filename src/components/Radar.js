@@ -89,7 +89,7 @@ export default function Radar({ points, name, showHeader = false }) {
 
   return <svg viewBox={`0 0 ${width} ${height}`} xmlns="http://www.w3.org/2000/svg" dominantBaseline="central" textAnchor="middle" fontFamily={fontFamily}>
     { showHeader && <Header textAnchor="start" x={padding} y={padding}>CNCF Technology Radar</Header> }
-    { showHeader && <Header textAnchor="end" x={width - padding} y={padding}>{name}</Header> }
+    { showHeader && <Header textAnchor="end" x={width - padding} y={padding}>{name.split(',')[0]}</Header> }
     <g transform={`translate(${width / 2} ${height - padding - 3})`}>
       <Ring radius={1000} minRadius={750} points={groupedPoints.assess} title="Assess" color={colors.assessBg} />
       <Ring radius={750} minRadius={500} points={groupedPoints.trial} title="Trial" color={colors.trialBg} />
