@@ -1,3 +1,4 @@
+draft: true
 name: Multi-cluster Management
 themes:
   - headline: Cluster management is still an “unsolved” issue requiring a lot of tooling and processes
