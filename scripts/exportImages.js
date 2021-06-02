@@ -26,20 +26,20 @@ const takeScreenshot = async (svg, destination) => {
   await browser.close();
 }
 
-const exportImages = async (target, destination) => {
-  const inputPath = join(process.cwd(), 'out', target)
-  const svg = readFileSync(inputPath, 'utf-8').match(/<svg.*<\/svg>/)[0]
-
+const exportImages = async (svg, destination) => {
   const outputPath = join(process.cwd(), 'out', destination)
-  writeFileSync(outputPath, svg)
-
-  await takeScreenshot(svg, outputPath.replace(/\..*/, '.png'))
+  writeFileSync(`${outputPath}.svg`, svg)
+  await takeScreenshot(svg, `${outputPath}.png`)
 }
 
 loadData().then(({ radars }) => {
   radars.forEach(radar => {
-    exportImages(`${radar.key}.html`, `${radar.key}-raw.svg`)
-    exportImages(`images/${radar.key}.html`, `${radar.key}.svg`)
+    radar.subradars.forEach(subradar => {
+      const inputPath = join(process.cwd(), 'out', 'images', `${subradar.key}.html`)
+      const svgs = readFileSync(inputPath, 'utf-8').match(/<svg.*?<\/svg>/g)
+      exportImages(svgs[0], subradar.key)
+      exportImages(svgs[1], `${subradar.key}-raw`)
+    })
   })
 }).catch(error => {
   console.log('ERROR EXPORTING SVG!!!')

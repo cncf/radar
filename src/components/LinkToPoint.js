@@ -5,6 +5,10 @@ import OutboundLink from './OutboundLink'
 export default function LinkToPoint({ point }) {
   const { setSelectedPoint } = useContext(SelectedPointContext)
 
+  if (!point.repo && !point.homepage) {
+    return point.name
+  }
+
   if (point.landscapeId) {
     return <a onClick={_ => setSelectedPoint(point.landscapeId)}>{point.name}</a>
   }

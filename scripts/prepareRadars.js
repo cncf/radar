@@ -23,6 +23,10 @@ const downloadLogo = async (sourcePath, name) => {
 }
 
 const projectMatches = ({ project, point }) => {
+  if (!point.repo && !point.homepage) {
+    return false
+  }
+
   if (point.repo) {
     return project.repo_url === `https://github.com/${point.repo}`
   }
@@ -107,10 +111,15 @@ const fetchData = async _ => {
     .map(async radarAttrs => {
       const radar = buildRadar(radarAttrs)
 
-      const points = radar.points.map(pointAttrs => {
-        const landscapeAttrs = landscapeData.find(project => projectMatches({ project, point: pointAttrs }))
-        const point = buildPoint(pointAttrs, landscapeAttrs)
-        return { ...point, fullKey: `${radar.key}/${point.key}`, radarKey: radar.key }
+      const subradars = (radar.subradars || [{ single: true, points: radar.points }]).map(subradar => {
+        const radarKey = subradar.single ? radar.key : [radar.key, subradar.name.toLowerCase().replace(/(\W+)/g, '-')].join('--')
+        const points = subradar.points.map(pointAttrs => {
+          const landscapeAttrs = landscapeData.find(project => projectMatches({ project, point: pointAttrs }))
+          const point = buildPoint(pointAttrs, landscapeAttrs)
+          return { ...point, fullKey: `${radar.key}/${point.key}`, radarKey: radar.key }
+        })
+
+        return { ...subradar, points, key: radarKey }
       })
 
       const companyPromises = (radar.companies || []).map(async landscapeId => {
@@ -122,7 +131,7 @@ const fetchData = async _ => {
 
       const companies = await Promise.all(companyPromises)
       const team = await Promise.all(teamPromises)
-      return { ...radar, points, companies, team }
+      return { ...radar, subradars, companies, team }
     })
 
   const radars = await Promise.all(radarPromises)
