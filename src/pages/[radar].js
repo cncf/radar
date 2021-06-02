@@ -274,8 +274,8 @@ export async function getStaticProps ({ params }) {
   const radar = radars.find(({ key, draft }) => params ? key === params.radar : !draft)
   const otherRadars = radars.filter(r => !r.draft && r.key !== radar.key)
     .map(radar => {
-      const subradars = radar.subradars.map(({ key, longName }) => ({ key,longName }))
-      return { key: radar.key, subradars }
+      const subradars = radar.subradars.map(({ key, name }) => ({ key, name: name || null }))
+      return { key: radar.key, name: radar.name, subradars }
     })
   return { props: { radar, otherRadars, home: !params } }
 }

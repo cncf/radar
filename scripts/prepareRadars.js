@@ -119,8 +119,7 @@ const fetchData = async _ => {
           return { ...point, fullKey: `${radar.key}/${point.key}`, radarKey: radar.key }
         })
 
-        const longName = subradar.single ? radar.name : radar.name.replace(',', ` (${subradar.name}),`)
-        return { ...subradar, points, longName, key: radarKey }
+        return { ...subradar, points, key: radarKey }
       })
 
       const companyPromises = (radar.companies || []).map(async landscapeId => {

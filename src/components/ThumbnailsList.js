@@ -39,12 +39,12 @@ export default function ThumbnailsList({ radars, embedThumbnails = false }) {
     </style>
 
     {radars.map(radar => {
-      return radar.subradars.map(({ key, longName, points }) => {
+      return radar.subradars.map(({ key, name, points }) => {
         return <div key={key} className="thumbnail">
           <Link href={`/${radar.key}`}>
             <a>
               <span className="preview">{embedThumbnails ? <Radar points={points}/> : <img src={`${key}-raw.svg`}/>}</span>
-              <h5>{longName}</h5>
+              <h5>{radar.name} {name ? `(${name})` : null }</h5>
             </a>
           </Link>
         </div>

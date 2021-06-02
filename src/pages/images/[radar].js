@@ -1,13 +1,13 @@
 import loadData from '../../loadData'
 import Radar from '../../components/Radar'
 
-const RadarImage = ({ radar }) => {
+const RadarImage = ({ radar, title }) => {
   return <>
     <div>
-      <Radar points={radar.points} name={radar.longName} showHeader={true} />
+      <Radar points={radar.points} title={title} subtitle={radar.name} showHeader={true} />
     </div>
     <div>
-      <Radar points={radar.points} name={radar.longName} />
+      <Radar points={radar.points} />
     </div>
   </>
 }
@@ -18,7 +18,7 @@ export async function getStaticProps ({ params }) {
   const { radars } = await loadData()
   const radar = radars.find(({ key }) => key === radarKey)
   const subradar = radar.subradars.find(({ key }) => key === subradarKey)
-  return { props: { radar: subradar } }
+  return { props: { radar: subradar, title: radar.name } }
 }
 
 export async function getStaticPaths() {
