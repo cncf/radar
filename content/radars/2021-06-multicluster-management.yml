@@ -1,0 +1,167 @@
+draft: true
+name: Multicluster Management
+themes:
+  - headline: There is no silver bullet for multicluster management.
+    content: |
+      Kubernetes multi-cluster management is a maturing space with much development and trialing taking place. At present, it tends to require a large amount of tooling and processes compared to other areas of the ecosystem. While there are many tools available, few if any stand out as comprehensive solutions. Many companies find it necessary to assemble a hodgepodge from the available selection to meet their unique needs. Specific requirements may vary widely across organizations, further contributing to the large variety of tools currently in use.
+      The Radar team found HashiCorp’s Terraform and custom-built in-house tools are both popular choices for deployment. We also observed that the number of clusters deployed is a factor in choosing cluster management tools. For example, kOPS was more popular with companies running fewer clusters. As the number of clusters passes a certain threshold, there is a shift to managed Kubernetes -- both in public and private cloud environments. This is likely due in part to management of the Kubernetes control plane, whose difficulty increases with the number of clusters, and which these managed services abstract away.
+  - headline: Cluster management often requires custom-built in-house solutions.
+    content: |
+      For both deploying and managing clusters, whether in managed or unmanaged Kubernetes, as well as for managing core services, one conclusion is clear: Custom tooling is usually a necessity. In fact, even managed Kubernetes tends to require external custom tooling.
+      This is due in part to the flexibility and complexity of Kubernetes, as well as the need for environmental compatibility. The Kubernetes platform features layers for networking, storage and security, each of which must be individually configured. All of these components need to be handled together within the constraints of the cloud. In fact, the clouds which Kubernetes may run on tend to have slightly different characteristics that must work with the platform and surrounding tooling. On top of that, company policies must also fit in. The result is that a particular Kubernetes instance in a particular environment often requires tools with highly specific options, which many engineers find they must customize in house. Again, the unique goals of different companies may cause them to seek specialized tools and to build in-house what they cannot find in the community.
+  - headline: |
+      Common tool combinations include: Helm with Operators & GitOps Argo/Flux.
+    content: |
+      Tools for management of core services -- like DNS, metrics, logs, RBAC, namespaces, etc. -- outnumbered tools for deployment on the Radar. They also received a higher total number of “Adopt” votes than did tools in the deployment category. Helm, Operators, GitOps, Kustomize and custom tools are the most widely used. Helm’s out-of-the-box charts for every product make it highly accessible, which helps explain its high number of "Adopts" in the Radar. We observed that Helm is often adopted together with GitOps, with users split between the latter’s Argo and Flux tools. We also see Operators added to Helm and GitOps in a large number of companies.
+  - headline: Operators are a favorite tool for management of clusters and core services.
+    content: |
+      Operators were the standout tool in the Radar with a total of 24 “Adopt” votes in the core services category. The consensus seems to be that Operators make managing clusters simpler and minimize management overhead. The community appears to value Operators for their concise, targeted method of completing a task. An Operator can be deployed to solve a single problem, potentially replacing previously used custom tooling. A team member likened operators to professional deployers and maintainers of a service or application working inside a Kubernetes cluster. Many companies and open-source projects, like Kassandra, ElasticSearch and others, continue to introduce new Operators. End users welcome this growing catalog of Operators tailored to particular products or projects. A team member recounted cases where operators worked together or used each other to accomplish a task. The team agreed claims that operators eliminate the need for operations teams is an exaggeration. They noted that operators shift the need for operational knowledge of, for example, Kafka, to the need for knowledge of the Kafka Operator. That said, once deployed, Operators run largely on “autopilot,” requiring only version updates.
+  - headline: The community eagerly awaits readiness of Cluster API.
+    content: |
+      Many end users are closely watching the development of Kubernetes sub-project Cluster API, hoping it will solve some key infrastructure management issues and reduce the need for custom tooling. Cluster API is attempting to reduce complexity in the space through flexible methods and declarative, Kubernetes-style APIs for cluster creation, configuration and management.
+      While some have already adopted Cluster API, a larger number of surveyed companies are still assessing it. The Radar team felt that there is probably more testing and trialing of the tool than use in production. They found the prospect of reducing cluster-deployment and core-services tooling into one solution attractive, but expressed the idea that Cluster API is not adequately mature yet. They acknowledged that development seems to be advancing rapidly.
+      Among developments that would push them to adopt it, include (1) it must accomplish all that kOps does and a few additional things, (2) breakout success stories in the news and social media make it hard to ignore or (3) pain points worsen, since current tooling, though messy, is working fairly well, and trialing and migrating require time, work and resources.
+team:
+  - name: Gabe Jackson
+    photo: https://avatars.githubusercontent.com/u/3694686?v=4
+    bio: |
+      Cloud Platform Tech Lead at Mattermost. I have worked on various distributed systems over the years and generally enjoy the challenges in this space.
+    title: Cloud Platform Tech Lead at Mattermost
+    linkedin: gabrieldjackson
+  - name: Federico Hernandez
+    photo: https://f.ederi.co/pictures/federico-headshot.png
+    bio: |
+      Principal Engineer at Meltwater. Working with the internal platform offering based on Kubernetes. Program committee member and track chair "Operations" for a couple of KubeCons.
+    title: Principal Engineer at Meltwater
+    twitter: recollir
+  - name: Simone Sciarrati
+    photo: https://avatars.githubusercontent.com/u/145877?v=4
+    bio: |
+      Engineering Team Lead at Meltwater where I have been focusing on building an internal Kubernetes based platform to make life easier for our development teams.
+    title: Engineering Team Lead at Meltwater
+    linkedin: dezmodue
+    twitter: dezmodue
+subradars:
+  - name: Cluster Deployment
+    points:
+      - name: kOps
+        level: assess
+        homepage: https://kops.sigs.k8s.io/
+        votes:
+          hold: 6
+          adopt: 4
+          assess: 1
+      - name: Cluster API
+        level: assess
+        homepage: https://cluster-api.sigs.k8s.io/
+        votes:
+          assess: 9
+          adopt: 3
+          trial: 1
+      - name: HashiCorp Terraform
+        level: adopt
+        homepage: https://www.terraform.io/
+        votes:
+          adopt: 14
+          trial: 3
+          hold: 3
+          assess: 1
+      - name: Public cloud managed k8s
+        level: adopt
+        votes:
+          adopt: 19
+          assess: 2
+          trial: 2
+      - name: Private cloud managed k8s
+        level: adopt
+        votes:
+          adopt: 6
+          trial: 1
+          hold: 1
+      - name: Custom inhouse tools
+        level: adopt
+        votes:
+          adopt: 18
+          hold: 2
+          trial: 1
+  - name: Core Services and Add-ons
+    points:
+      - name: Helm
+        level: adopt
+        homepage: https://helm.sh/
+        votes:
+          adopt: 18
+          hold: 2
+          trial: 1
+          assess: 1
+      - name: Kustomize
+        level: adopt
+        homepage: https://kustomize.io/
+        votes:
+          adopt: 8
+          hold: 2
+          trial: 1
+      - name: Jsonnet
+        level: trial
+        homepage: https://jsonnet.org/
+        votes:
+          adopt: 4
+          assess: 2
+          trial: 2
+          hold: 1
+      - name: Operators
+        level: adopt
+        homepage: https://kubernetes.io/docs/concepts/extend-kubernetes/operator/
+        votes:
+          adopt: 24
+          assess: 2
+          trial: 1
+      - name: Flux
+        level: adopt
+        homepage: https://fluxcd.io/
+        votes:
+          adopt: 5
+          trial: 3
+          assess: 2
+      - name: Argo
+        level: adopt
+        homepage: https://argoproj.github.io/
+        votes:
+          adopt: 6
+          assess: 5
+          trial: 4
+      - name: Custom inhouse tools
+        level: adopt
+        votes:
+          adopt: 17
+          assess: 1
+          hold: 1
+companies:
+  - meltwater-supporter
+  - box-supporter
+  - lunar-supporter
+  - king-supporter
+  - intuit-member
+  - db-systel-supporter
+  - equity-zen-supporter
+#  - nordstrom-?????
+  - hobsons-supporter
+#  - opentable-?????
+  - net-match-supporter
+  - anova-supporter
+  - uswitch-supporter
+  - zalando-supporter
+#  - thrivent-??????
+  - r-studio-supporter
+  - shopify-supporter
+#  - 1&1-mail-&-media-??????
+  - trivago-supporter
+  - adidas-supporter
+  - spotify-member
+  - the-new-york-times-supporter
+  - squarespace-member
+  - workday-supporter
+  - fidelity-investments-member
+  - mattermost-member
+  - sony-interactive-entertainment-supporter
+  - daimler-member
