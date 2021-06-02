@@ -7,16 +7,15 @@ let changedAt = null
 const prepareRadar = () => {
   return new Promise(resolve => {
     console.log('Preparing Radar')
-    const prepareProcess = exec('yarn prepare-radars')
-    prepareProcess.stdout.pipe(process.stdout);
-    prepareProcess.on('exit', code => {
-      if  (code === 0) {
-        console.log('Radars Prepared Successfully!')
-        resolve()
+    exec('yarn prepare-radars', (error, stdout, stderr) => {
+      if (error) {
+        console.log('FAILED to prepare radars!')
+        console.error(stdout);
+        console.error(stderr);
       } else {
-        console.log('FAILED To Prepare Radars!')
-        resolve()
+        console.log('Radars prepared successfully!')
       }
+      resolve()
     })
   })
 }

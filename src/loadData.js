@@ -5,7 +5,9 @@ export default async (filterFn) => {
 
   const radars = radarsData.filter(radar => filterFn ? filterFn(radar) : true)
   const points = radars.flatMap(radar => {
-    return radar.points.map(point => ({ ...point, radar }))
+    return radar.subradars.flatMap(subradar => {
+      return subradar.points.map(point => ({ ...point, radar }))
+    })
   })
 
   return { radars, points }

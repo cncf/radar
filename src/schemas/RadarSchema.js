@@ -79,6 +79,13 @@ const pointSchema = yup.object({
 const companySchema = yup.string()
   .test('industry-set', '${value} does not have required industry in industries.yml', value => industries[value])
 
+const subradarSchema = yup.object({
+  name: yup.string()
+    .required(),
+  votes: votesSchema
+    .required()
+})
+
 const RadarSchema = yup.object({
   name: yup.string()
     .required(),
@@ -93,11 +100,12 @@ const RadarSchema = yup.object({
     .of(teamSchema)
     .required(),
   points: yup.array()
-    .of(pointSchema)
-    .required(),
+    .of(pointSchema),
+  subradars: yup.array()
+    .of(subradarSchema),
   companies: yup.array()
     .of(companySchema)
     .required()
-})
+}).test('points-or-radars-set', 'points or radars must be set', value => value.points || value.subradars)
 
 export default RadarSchema
