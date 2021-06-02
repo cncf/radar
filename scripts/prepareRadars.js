@@ -23,6 +23,10 @@ const downloadLogo = async (sourcePath, name) => {
 }
 
 const projectMatches = ({ project, point }) => {
+  if (!point.repo && !point.homepage) {
+    return false
+  }
+
   if (point.repo) {
     return project.repo_url === `https://github.com/${point.repo}`
   }
