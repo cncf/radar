@@ -18,7 +18,7 @@ export async function getStaticProps ({ params }) {
   const { radars } = await loadData()
   const radar = radars.find(({ key }) => key === radarKey)
   const subradar = radar.subradars.find(({ key }) => key === subradarKey)
-  return { props: { radar: subradar, title: radar.name } }
+  return { props: { radar: subradar, title: radar.longName } }
 }
 
 export async function getStaticPaths() {
