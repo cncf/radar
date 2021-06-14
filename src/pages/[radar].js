@@ -240,10 +240,10 @@ const OtherRadarsSection = ({ radars }) => {
 }
 
 const RadarPage = ({ radar, otherRadars = [] }) => {
-  const { name, subradars, team, video, companies, key, sections = [], themes } = radar
+  const { longName, subradars, team, video, companies, key, sections = [], themes } = radar
   const points = subradars.flatMap(radar => radar.points)
   const defaultSections = [
-    <RadarSection name={name} subradars={subradars} radarKey={key} key="radar" />,
+    <RadarSection name={longName} subradars={subradars} radarKey={key} key="radar" />,
     <ThemesSection themes={themes} key="themes" />,
     <CompaniesSection companies={companies} key="companies" />,
     <WebinarAndTeamSection video={video} team={team} key="webinar-and-team" />,
@@ -275,7 +275,7 @@ export async function getStaticProps ({ params }) {
   const otherRadars = radars.filter(r => !r.draft && r.key !== radar.key)
     .map(radar => {
       const subradars = radar.subradars.map(({ key, name }) => ({ key, name: name || null }))
-      return { key: radar.key, name: radar.name, subradars }
+      return { key: radar.key, name: radar.longName, subradars }
     })
   return { props: { radar, otherRadars, home: !params } }
 }

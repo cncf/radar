@@ -95,7 +95,7 @@ export const getStaticProps = async _ => {
 
   const radars = data.radars.map(radar => {
     const subradars = radar.subradars.map(({ name, key }) => ({ name: name || null, key }))
-    return { key: radar.key, name: radar.name, subradars }
+    return { key: radar.key, name: radar.longName, subradars }
   })
 
   return { props: { groupedPoints: Object.values(groupedPoints), radars } }
