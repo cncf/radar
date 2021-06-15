@@ -1,5 +1,5 @@
 import path from 'path'
-import { readdirSync, writeFileSync, mkdirSync } from 'fs'
+import { mkdirSync, readdirSync, writeFileSync } from 'fs'
 import imageSize from 'image-size'
 import stripUrl from '../src/helpers/stripUrl'
 import loadYaml from '../src/helpers/loadYaml'
@@ -52,10 +52,10 @@ const buildPoint = (attrs, landscapeAttrs) => {
 }
 
 const buildRadar = attrs => {
-  const date = new Date(attrs.key.match(/\d{4}-\d{2}/)[0])
-  const name = `${attrs.name}, ${(formatDate(date, { month: 'long', year: 'numeric' }))}`
+  const date = formatDate(new Date(attrs.key.match(/\d{4}-\d{2}/)[0]), { month: 'long', year: 'numeric' })
+  const longName = `${attrs.name}, ${date}`
 
-  return { ...attrs, name }
+  return { ...attrs, date, longName }
 }
 
 const buildCompany = async attrs => {

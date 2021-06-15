@@ -74,22 +74,21 @@ const RadarSection = ({ name, subradars }) => {
         display: flex;
         gap 20px;
         flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+      }
+      
+      .radar-wrapper {  
+        max-width: 800px;
+        flex: 1;
       }
 
       @media only screen and (max-width: ${sizes.tablet}px) {
         .outer {  
           flex-direction: column;
-        }
-      }
-
-      .radar-wrapper {  
-        max-width: 800px;
-        margin: 0 auto;
-      }
-      
-      @media only screen and (max-width: ${sizes.tablet}px) {
-        .radar-wrapper {    
-          flex: 0;
+          align-items: stretch;
+          max-width: 800px;
+          margin: 0 auto;
         }
       }
       
@@ -240,10 +239,10 @@ const OtherRadarsSection = ({ radars }) => {
 }
 
 const RadarPage = ({ radar, otherRadars = [] }) => {
-  const { name, subradars, team, video, companies, key, sections = [], themes } = radar
+  const { longName, subradars, team, video, companies, key, sections = [], themes } = radar
   const points = subradars.flatMap(radar => radar.points)
   const defaultSections = [
-    <RadarSection name={name} subradars={subradars} radarKey={key} key="radar" />,
+    <RadarSection name={longName} subradars={subradars} radarKey={key} key="radar" />,
     <ThemesSection themes={themes} key="themes" />,
     <CompaniesSection companies={companies} key="companies" />,
     <WebinarAndTeamSection video={video} team={team} key="webinar-and-team" />,
@@ -275,7 +274,7 @@ export async function getStaticProps ({ params }) {
   const otherRadars = radars.filter(r => !r.draft && r.key !== radar.key)
     .map(radar => {
       const subradars = radar.subradars.map(({ key, name }) => ({ key, name: name || null }))
-      return { key: radar.key, name: radar.name, subradars }
+      return { key: radar.key, name: radar.longName, subradars }
     })
   return { props: { radar, otherRadars, home: !params } }
 }

@@ -3,10 +3,11 @@
   "version": "0.1.0",
   "scripts": {
     "dev": "babel-node scripts/clearCache.js && babel-node scripts/server.js",
-    "build": "yarn prepare-radars && next build && next export && babel-node scripts/exportImages.js",
+    "build": "yarn prepare-radars && next build && next export && yarn post-process",
     "start": "next start",
     "prod": "static out -p 3000 -a 0.0.0.0",
-    "prepare-radars": "babel-node scripts/prepareRadars.js"
+    "prepare-radars": "babel-node scripts/prepareRadars.js",
+    "post-process": "babel-node scripts/exportImages.js && babel-node scripts/generateFeed.js"
   },
   "dependencies": {
     "@babel/core": "^7.10.4",
