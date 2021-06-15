@@ -74,22 +74,21 @@ const RadarSection = ({ name, subradars }) => {
         display: flex;
         gap 20px;
         flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+      }
+      
+      .radar-wrapper {  
+        max-width: 800px;
+        flex: 1;
       }
 
       @media only screen and (max-width: ${sizes.tablet}px) {
         .outer {  
           flex-direction: column;
-        }
-      }
-
-      .radar-wrapper {  
-        max-width: 800px;
-        margin: 0 auto;
-      }
-      
-      @media only screen and (max-width: ${sizes.tablet}px) {
-        .radar-wrapper {    
-          flex: 0;
+          align-items: stretch;
+          max-width: 800px;
+          margin: 0 auto;
         }
       }
       
