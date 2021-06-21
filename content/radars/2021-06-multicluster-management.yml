@@ -51,10 +51,22 @@ team:
   - name: Simone Sciarrati
     photo: https://avatars.githubusercontent.com/u/145877?v=4
     bio: |
-      Engineering Team Lead at Meltwater where I have been focusing on building an internal Kubernetes based platform to make life easier for our development teams.
+      Engineering Team Lead at Meltwater, where I have been focusing on building an internal Kubernetes based platform to make life easier for our development teams.
     title: Engineering Team Lead at Meltwater
     linkedin: dezmodue
     twitter: dezmodue
+  - name: Rajarajan Pudupatti SJ 
+    photo: https://avatars.githubusercontent.com/u/2623273?v=4
+    bio: |
+      Vice President of Cloud Platform Delivery at Fidelity Investments, responsible for the architecture and delivery of the next-gen application platform. Committed to bringing all the benefits of various cloud native technology projects to Fidelity enterprise teams, sparing them the need for significant effort on their side, and, hopefully, open-sourcing most of our work for the larger community to benefit from as well. Also a proud AWS container hero.
+    title: Vice President of Cloud Platform Delivery at Fidelity Investments
+    linkedin: rajarajan-pudupatti-sundari-j
+  - name: Niraj Amin
+    photo: https://avatars.githubusercontent.com/u/145877?v=4
+    bio: |
+      Vice President of Cloud Platforms at Fidelity Investments, where I lead the engineering teams that work on Kubernetes-based platforms for all of Fidelity's R&D teams, focusing primarily on offerings on multiple CSPs.
+    title: Vice President of Cloud Platforms at Fidelity Investments
+    linkedin: niraj-amin
 subradars:
   - name: Cluster Deployment
     points:
