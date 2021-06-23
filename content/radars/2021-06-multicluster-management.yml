@@ -1,4 +1,3 @@
-draft: true
 name: Multicluster Management
 themes:
   - headline: There is no silver bullet for multicluster management.
@@ -170,17 +169,13 @@ companies:
   - intuit-member
   - db-systel-supporter
   - equity-zen-supporter
-#  - nordstrom-supporter
   - hobsons-supporter
-#  - opentable-supporter
   - net-match-supporter
   - anova-supporter
   - uswitch-supporter
   - zalando-supporter
-#  - thrivent-supporter
   - r-studio-supporter
   - shopify-supporter
-#  - 1&1-mail-&-media-supporter
   - trivago-supporter
   - adidas-supporter
   - spotify-member
