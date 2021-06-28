@@ -1,4 +1,4 @@
-FROM node:14.5-slim
+FROM node:14.16-slim
 
 # Most of the packages below are necessary for puppeteer/chromium.
 # These won't be necessary once we can use Sharp to take screenshots but that's blocked by: https://gitlab.gnome.org/GNOME/librsvg/-/issues/414
