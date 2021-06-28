@@ -1,4 +1,3 @@
-name: Continuous Delivery
 themes:
   - headline: Publicly available solutions are combined with in-house tools
     content: |
@@ -17,15 +16,6 @@ themes:
       However, several end users stated Jenkins is primarily used for existing deployments, while new
       applications have migrated to other solutions. Hence end users who are choosing a new CD solution
       should assess Jenkins alongside tools that support modern concepts such as GitOps (for example, Flux).
-video: https://www.youtube.com/embed/0792Q3l6tK8
-team:
-  - name: Cheryl Hung
-    photo: https://www.cncf.io/wp-content/uploads/2020/08/14233189_10101878603974740_6349536740498881867_n-1-1-500x500.jpg
-    bio: |
-      Cheryl's mission is to make end users successful and productive with cloud native technologies
-    twitter: oicheryl
-    linkedin: cheryljhung
-    title: Director of Ecosystem at CNCF
 points:
   - name: Helm
     repo: helm/helm
