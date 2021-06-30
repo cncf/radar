@@ -4,6 +4,9 @@ import { Fragment } from "react";
 
 export default function RadarData({ points, companies }) {
   const groupedPoints = groupPoints(points)
+  const repeatedPoints = points.reduce((acc, point) => {
+    return { ...acc, [point.key]: acc.hasOwnProperty(point.key) }
+  }, {})
 
   const votes = points.map(point => Object.values(point.votes).reduce((sum, vote) => sum + vote))
   const maxVotes = Math.max(...votes)
@@ -68,7 +71,7 @@ export default function RadarData({ points, companies }) {
                   {level}
                 </div>
               </div> }
-              <div className="item"><LinkToPoint point={point} /></div>
+              <div className="item"><LinkToPoint point={point} /> {repeatedPoints[point.key] ? `(${point.subradar.name})` : ''}</div>
               <div className="item">
                 {
                   ['adopt', 'trial', 'assess', 'hold'].map(voteKey => {

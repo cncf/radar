@@ -68,7 +68,10 @@ const Overview = ({ groupedPoints, radars }) => {
 
             <td className="has-text-right">
               {
-                points.map(({ level, radar }) => {
+                points.map(({ level, radar, fullKey }) => {
+                  if (firstPoint.fullKey !== fullKey && firstPoint.radar.key === radar.key) {
+                    return null
+                  }
                   return <div key={radar.key} className="radar">
                     <LinkToRadar radar={radar} />
                     <LevelTag level={level} style={{marginLeft: 10}} />

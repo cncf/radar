@@ -240,7 +240,7 @@ const OtherRadarsSection = ({ radars }) => {
 
 const RadarPage = ({ radar, otherRadars = [] }) => {
   const { longName, subradars, team, video, companies, key, sections = [], themes } = radar
-  const points = subradars.flatMap(radar => radar.points)
+  const points = subradars.flatMap(subradar => subradar.points.map(point => ({ ...point, subradar })))
   const defaultSections = [
     <RadarSection name={longName} subradars={subradars} radarKey={key} key="radar" />,
     <ThemesSection themes={themes} key="themes" />,
