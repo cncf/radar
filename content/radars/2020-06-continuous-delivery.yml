@@ -126,31 +126,59 @@ points:
       adopt: 1
       hold: 1
 companies:
-  - ant-financial-member
-  - spotify-member
-  - apple-member
-  - indeed-member
-  - thermo-fisher-scientific-supporter
-  - box-supporter
-  - ksat-supporter
-  - snow-software-supporter
-  - hobsons-supporter
-  - lunar-supporter
-  - gmx-supporter
-  - ricardo-ch-supporter
-  - the-new-york-times-supporter
-  - n26-supporter
-  - mhi-vestas-offshore-wind-supporter
-  - equity-zen-supporter
-  - under-armour-supporter
-  - intuit-member
-  - nielsen-supporter
-  - zendesk-supporter
-  - ever-quote-supporter
-  - jd-com-member
-  - pay-it-supporter
-  - state-farm-supporter
-  - dailymotion-supporter
-  - meltwater-supporter
-  - trivago-supporter
-  - zalando-supporter
+  - landscapeId: ant-financial-member
+    industry: Financial Services
+  - landscapeId: spotify-member
+    industry: Entertainment
+  - landscapeId: apple-member
+    industry: Consumer Electronics
+  - landscapeId: indeed-member
+    industry: Search Engine
+  - landscapeId: thermo-fisher-scientific-supporter
+    industry: Scientific Equipment
+  - landscapeId: box-supporter
+    industry: File Sharing
+  - landscapeId: ksat-supporter
+    industry: Defense & Space
+  - landscapeId: snow-software-supporter
+    industry: Software
+  - landscapeId: hobsons-supporter
+    industry: Education
+  - landscapeId: lunar-supporter
+    industry: Financial Services
+  - landscapeId: gmx-supporter
+    industry: Email
+  - landscapeId: ricardo-ch-supporter
+    industry: E-commerce
+  - landscapeId: the-new-york-times-supporter
+    industry: News Media
+  - landscapeId: n26-supporter
+    industry: Financial Services
+  - landscapeId: mhi-vestas-offshore-wind-supporter
+    industry: Energy
+  - landscapeId: equity-zen-supporter
+    industry: Financial Services
+  - landscapeId: under-armour-supporter
+    industry: E-commerce
+  - landscapeId: intuit-member
+    industry: Software
+  - landscapeId: nielsen-supporter
+    industry: Marketing Research
+  - landscapeId: zendesk-supporter
+    industry: Software
+  - landscapeId: ever-quote-supporter
+    industry: Insurance
+  - landscapeId: jd-com-member
+    industry: E-commerce
+  - landscapeId: pay-it-supporter
+    industry: Digital Platform
+  - landscapeId: state-farm-supporter
+    industry: Insurance
+  - landscapeId: dailymotion-supporter
+    industry: Video Hosting
+  - landscapeId: meltwater-supporter
+    industry: Software
+  - landscapeId: trivago-supporter
+    industry: Travel
+  - landscapeId: zalando-supporter
+    industry: E-commerce

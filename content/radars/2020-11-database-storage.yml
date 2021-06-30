@@ -154,30 +154,55 @@ points:
       assess: 3
       hold: 1
 companies:
-  - indeed-member
-  - ticket-master-supporter
-  - dailymotion-supporter
-  - equity-zen-supporter
-  - pay-it-supporter
-  - under-armour-supporter  
-  - meltwater-supporter
-  - zendesk-supporter
-  - ksat-supporter
-  - box-supporter
-  - intuit-member
-  - anova-supporter
-  - thermo-fisher-scientific-supporter
-  - shopify-supporter
-  - gmx-supporter
-  - spotify-member
-  - zalando-supporter  
-  - net-match-supporter
-  - apple-member
-  - trivago-supporter
-  - auth-keys-supporter 
-  - mastercard-member
-  - the-new-york-times-supporter
-  - lunar-supporter
-  - uswitch-supporter
-  - n26-supporter  
-  
+  - landscapeId: indeed-member
+    industry: Search Engine
+  - landscapeId: ticket-master-supporter
+    industry: Entertainment
+  - landscapeId: dailymotion-supporter
+    industry: Video Hosting
+  - landscapeId: equity-zen-supporter
+    industry: Financial Services
+  - landscapeId: pay-it-supporter
+    industry: Digital Platform
+  - landscapeId: under-armour-supporter
+    industry: E-commerce
+  - landscapeId: meltwater-supporter
+    industry: Software
+  - landscapeId: zendesk-supporter
+    industry: Software
+  - landscapeId: ksat-supporter
+    industry: Defense & Space
+  - landscapeId: box-supporter
+    industry: File Sharing
+  - landscapeId: intuit-member
+    industry: Software
+  - landscapeId: anova-supporter
+    industry: IIoT
+  - landscapeId: thermo-fisher-scientific-supporter
+    industry: Scientific Equipment
+  - landscapeId: shopify-supporter
+    industry: E-commerce
+  - landscapeId: gmx-supporter
+    industry: Email
+  - landscapeId: spotify-member
+    industry: Entertainment
+  - landscapeId: zalando-supporter
+    industry: E-commerce
+  - landscapeId: net-match-supporter
+    industry: Travel
+  - landscapeId: apple-member
+    industry: Consumer Electronics
+  - landscapeId: trivago-supporter
+    industry: Travel
+  - landscapeId: auth-keys-supporter
+    industry: Software
+  - landscapeId: mastercard-member
+    industry: Financial Services
+  - landscapeId: the-new-york-times-supporter
+    industry: News Media
+  - landscapeId: lunar-supporter
+    industry: Financial Services
+  - landscapeId: uswitch-supporter
+    industry: Consumer Website
+  - landscapeId: n26-supporter
+    industry: Financial Services

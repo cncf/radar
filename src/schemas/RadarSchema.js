@@ -1,9 +1,6 @@
 import * as yup from 'yup'
-import loadYaml from '../helpers/loadYaml'
 import fetchUrl from '../helpers/fetchUrl'
 import markdownToHtml from '../helpers/markdownToHtml'
-
-const industries = loadYaml('industries.yml').data
 
 const sectionSchema = yup.object({
   title: yup.string()
@@ -76,8 +73,12 @@ const pointSchema = yup.object({
     .required()
 }).test('homepage-or-repo', `homepage or repo must be set`, value => value.homepage || value.repo)
 
-const companySchema = yup.string()
-  .test('industry-set', '${value} does not have required industry in industries.yml', value => industries[value])
+const companySchema = yup.object({
+    landscapeId: yup.string()
+      .required(),
+    industry: yup.string()
+      .required()
+  })
 
 const subradarSchema = yup.object({
   name: yup.string()
