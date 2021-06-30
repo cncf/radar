@@ -150,31 +150,59 @@ points:
       trial: 2
       assess: 2
 companies:
-  - box-supporter
-  - pay-it-supporter
-  - zendesk-supporter
-  - the-new-york-times-supporter
-  - sky-betting-gaming-supporter
-  - zalando-supporter
-  - babylon-health-supporter
-  - snow-software-supporter
-  - one-cause-supporter
-  - gmx-supporter
-  - meltwater-supporter
-  - n26-supporter
-  - r-studio-supporter
-  - squarespace-member
-  - equity-zen-supporter
-  - under-armour-supporter
-  - intuit-member
-  - lunar-supporter
-  - mhi-vestas-offshore-wind-supporter
-  - ricardo-ch-supporter
-  - shopify-supporter
-  - dailymotion-supporter
-  - net-match-supporter
-  - spotify-member
-  - apple-member
-  - mastercard-member
-  - indeed-member
-  - ticket-master-supporter
+  - landscapeId: box-supporter
+    industry: File Sharing
+  - landscapeId: pay-it-supporter
+    industry: Digital Platform
+  - landscapeId: zendesk-supporter
+    industry: Software
+  - landscapeId: the-new-york-times-supporter
+    industry: News Media
+  - landscapeId: sky-betting-gaming-supporter
+    industry: Gaming
+  - landscapeId: zalando-supporter
+    industry: E-commerce
+  - landscapeId: babylon-health-supporter
+    industry: Healthcare
+  - landscapeId: snow-software-supporter
+    industry: Software
+  - landscapeId: one-cause-supporter
+    industry: Software
+  - landscapeId: gmx-supporter
+    industry: Email
+  - landscapeId: meltwater-supporter
+    industry: Software
+  - landscapeId: n26-supporter
+    industry: Financial Services
+  - landscapeId: r-studio-supporter
+    industry: Software
+  - landscapeId: squarespace-member
+    industry: Software
+  - landscapeId: equity-zen-supporter
+    industry: Financial Services
+  - landscapeId: under-armour-supporter
+    industry: E-commerce
+  - landscapeId: intuit-member
+    industry: Software
+  - landscapeId: lunar-supporter
+    industry: Financial Services
+  - landscapeId: mhi-vestas-offshore-wind-supporter
+    industry: Energy
+  - landscapeId: ricardo-ch-supporter
+    industry: E-commerce
+  - landscapeId: shopify-supporter
+    industry: E-commerce
+  - landscapeId: dailymotion-supporter
+    industry: Video Hosting
+  - landscapeId: net-match-supporter
+    industry: Travel
+  - landscapeId: spotify-member
+    industry: Entertainment
+  - landscapeId: apple-member
+    industry: Consumer Electronics
+  - landscapeId: mastercard-member
+    industry: Financial Services
+  - landscapeId: indeed-member
+    industry: Search Engine
+  - landscapeId: ticket-master-supporter
+    industry: Entertainment

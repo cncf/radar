@@ -163,27 +163,51 @@ subradars:
           assess: 1
           hold: 1
 companies:
-  - meltwater-supporter
-  - box-supporter
-  - lunar-supporter
-  - king-supporter
-  - intuit-member
-  - db-systel-supporter
-  - equity-zen-supporter
-  - hobsons-supporter
-  - net-match-supporter
-  - anova-supporter
-  - uswitch-supporter
-  - zalando-supporter
-  - r-studio-supporter
-  - shopify-supporter
-  - trivago-supporter
-  - adidas-supporter
-  - spotify-member
-  - the-new-york-times-supporter
-  - squarespace-member
-  - workday-supporter
-  - fidelity-investments-member
-  - mattermost-member
-  - sony-interactive-entertainment-supporter
-  - daimler-member
+  - landscapeId: meltwater-supporter
+    industry: Software
+  - landscapeId: box-supporter
+    industry: File Sharing
+  - landscapeId: lunar-supporter
+    industry: Financial Services
+  - landscapeId: king-supporter
+    industry: Entertainment
+  - landscapeId: intuit-member
+    industry: Software
+  - landscapeId: db-systel-supporter
+    industry: Software
+  - landscapeId: equity-zen-supporter
+    industry: Financial Services
+  - landscapeId: hobsons-supporter
+    industry: Education
+  - landscapeId: net-match-supporter
+    industry: Travel
+  - landscapeId: anova-supporter
+    industry: IIoT
+  - landscapeId: uswitch-supporter
+    industry: Consumer Website
+  - landscapeId: zalando-supporter
+    industry: E-commerce
+  - landscapeId: r-studio-supporter
+    industry: Software
+  - landscapeId: shopify-supporter
+    industry: E-commerce
+  - landscapeId: trivago-supporter
+    industry: Travel
+  - landscapeId: adidas-supporter
+    industry: Sporting Goods
+  - landscapeId: spotify-member
+    industry: Entertainment
+  - landscapeId: the-new-york-times-supporter
+    industry: News Media
+  - landscapeId: squarespace-member
+    industry: Software
+  - landscapeId: workday-supporter
+    industry: Software
+  - landscapeId: fidelity-investments-member
+    industry: Financial Services
+  - landscapeId: mattermost-member
+    industry: Software
+  - landscapeId: sony-interactive-entertainment-supporter
+    industry: Entertainment
+  - landscapeId: daimler-member
+    industry: Automotive

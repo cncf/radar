@@ -12,8 +12,6 @@ const getExtension = buffer => {
   return imageSize(buffer).type
 }
 
-const industries = loadYaml('industries.yml').data
-
 const fetchLandscapeData = async _ => JSON.parse(await fetchUrl('https://landscape.cncf.io/data/items.json'))
 
 const downloadLogo = async (sourcePath, name) => {
@@ -59,11 +57,10 @@ const buildRadar = attrs => {
 }
 
 const buildCompany = async attrs => {
-  const { id, flatName, href, crunchbaseData, homepage_url } = attrs
+  const { id, flatName, href, crunchbaseData, homepage_url, industry } = attrs
   const employeesRange = [crunchbaseData.numEmployeesMin, crunchbaseData.numEmployeesMax]
   const homepage = homepage_url
   const logo = `${id}.svg`
-  const industry = industries[id]
   await downloadLogo(href, logo)
   return { key: id, name: flatName, employeesRange, logo, industry, homepage }
 }
@@ -122,9 +119,9 @@ const fetchData = async _ => {
         return { ...subradar, points, key: radarKey }
       })
 
-      const companyPromises = (radar.companies || []).map(async landscapeId => {
-        const landscapeAttrs = landscapeData.find(({ id }) => id === landscapeId) || {}
-        return await buildCompany(landscapeAttrs)
+      const companyPromises = (radar.companies || []).map(async attrs => {
+        const landscapeAttrs = landscapeData.find(({ id }) => id === attrs.landscapeId) || {}
+        return await buildCompany({ ...landscapeAttrs, ...attrs })
       })
 
       const teamPromises = radar.team.map(async attrs => await buildMember(attrs, radar.key))
