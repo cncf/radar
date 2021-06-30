@@ -1,0 +1,46 @@
+name: Radar Template
+draft: true
+themes:
+  - headline: First Theme
+    content: |
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque quis fermentum nunc. Proin dignissim nunc non
+      lectus ullamcorper, a dignissim enim laoreet. Nunc velit erat, elementum in justo eu, bibendum vestibulum est.
+
+      Morbi tortor diam, fringilla vel ultrices ut, pulvinar et odio. Vivamus enim metus, tincidunt eget lectus nec,
+      feugiat gravida enim. In dictum ipsum nec nisi imperdiet, ut pellentesque lectus condimentum.
+  - headline: Second Theme
+    content: |
+      Maecenas in nunc quam. Pellentesque pretium leo venenatis, mollis lectus sit amet, pellentesque mauris.
+      Nunc in euismod quam. Proin non euismod erat. Maecenas id est lectus.
+
+      Nulla laoreet venenatis arcu, tristique viverra eros laoreet vel. Aenean quis libero dui.
+      Vestibulum rhoncus, elit in finibus faucibus, lacus tellus porttitor enim, non fermentum arcu mi nec elit.
+video: https://www.youtube.com/embed/dQw4w9WgXcQ
+team:
+  - name: Cheryl Hung
+    photo: https://www.cncf.io/wp-content/uploads/2020/08/14233189_10101878603974740_6349536740498881867_n-1-1-500x500.jpg
+    bio: |
+      Cheryl's mission is to make end users successful and productive with cloud native technologies
+    twitter: oicheryl
+    linkedin: cheryljhung
+    title: Director of Ecosystem at CNCF
+points:
+  - name: Helm
+    repo: helm/helm
+    level: adopt
+    votes:
+      adopt: 10
+      trial: 5
+      hold: 2
+  - name: Kubernetes
+    repo: kubernetes/kubernetes
+    level: trial
+    votes:
+      adopt: 5
+      trial: 10
+      assess: 3
+companies:
+  - landscapeId: amazon-web-services-member
+    industry: E-commerce
+  - landscapeId: apple-member
+    industry: Consumer Electronics

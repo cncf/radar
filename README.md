@@ -27,6 +27,10 @@ To see the generated build run:
 
 `bin/run prod`
 
+## Creating a new radar
+
+Create a YAML file under [content/radars](https://github.com/cncf/radar/tree/HEAD/content/radars), the file name must follow `YYYY-MM-${radarName}.yml`, `YYYY-MM` should be set to the radar's publish year/month and `radarName` should only contain lower case characters and dashes. Copy the content of the template radar [content/radars/1999-01-radar-template.yml](https://github.com/cncf/radar/blob/HEAD/content/radars/1990-01-radar-template.yml) into the new radar and modify as needed. Once the radar is ready to be published remove `draft: true`.
+
 ## Draft radars
 
 Example: https://github.com/cncf/radar/commit/d49d3991f18854633d38fba7f3680366581e3d8a
