@@ -113,7 +113,7 @@ const fetchData = async _ => {
         const points = subradar.points.map(pointAttrs => {
           const landscapeAttrs = landscapeData.find(project => projectMatches({ project, point: pointAttrs }))
           const point = buildPoint(pointAttrs, landscapeAttrs)
-          return { ...point, fullKey: `${radar.key}/${point.key}`, radarKey: radar.key }
+          return { ...point, fullKey: `${radarKey}/${point.key}`, radarKey: radar.key }
         })
 
         return { ...subradar, points, key: radarKey }

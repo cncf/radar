@@ -62,7 +62,7 @@ export default function RadarData({ points, companies }) {
       {
         ['adopt', 'trial', 'assess'].map(level => {
           return groupedPoints[level].map((point, i) => {
-            return <Fragment key={`point-${level}-${point.key}`}>
+            return <Fragment key={`point-${level}-${point.fullKey}`}>
               { i === 0 && <div style={{gridRowEnd: `span ${groupedPoints[level].length}`}} className={`item`}>
                 <div className={`item-level ${level}-background`}>
                   {level}
