@@ -64,7 +64,14 @@ export default function RadarData({ points, companies }) {
 
       {
         ['adopt', 'trial', 'assess'].map(level => {
-          return groupedPoints[level].map((point, i) => {
+          const sortedPoints = groupedPoints[level].sort((a, b) => {
+            return ((b.votes.adopt || 0) - (a.votes.adopt || 0)) ||
+              ((b.votes.trial || 0) - (a.votes.trial || 0)) ||
+              ((b.votes.assess || 0) - (a.votes.assess || 0)) ||
+              ((b.votes.hold || 0) - (a.votes.hold || 0))
+          })
+
+          return sortedPoints.map((point, i) => {
             return <Fragment key={`point-${level}-${point.fullKey}`}>
               { i === 0 && <div style={{gridRowEnd: `span ${groupedPoints[level].length}`}} className={`item`}>
                 <div className={`item-level ${level}-background`}>
