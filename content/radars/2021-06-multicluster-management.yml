@@ -72,7 +72,7 @@ subradars:
     points:
       - name: kOps
         level: assess
-        homepage: https://kops.sigs.k8s.io/
+        repo: kubernetes/kops
         votes:
           hold: 6
           adopt: 4
