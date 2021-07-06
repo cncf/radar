@@ -29,9 +29,73 @@ To see the generated build run:
 
 ## Creating a new radar
 
-Create a YAML file under [content/radars](content/radars), the file name must follow `YYYY-MM-${radarName}.yml`, `YYYY-MM` should be set to the radar's publish year/month and `radarName` should only contain lower case characters and dashes. Copy the content of the template radar [content/radars/1999-01-radar-template.yml](content/radars/1999-01-radar-template.yml) into the new radar and modify as needed. Once the radar is ready to be published remove `draft: true`.
+Create a YAML file under [content/radars](content/radars), the file name must be formatted `YYYY-MM-${radarName}.yml`, `YYYY-MM` should be set to the radar's publish year/month and `radarName` should only contain lower case characters and dashes. Copy the content of the template radar [content/radars/1999-01-radar-template.yml](content/radars/1999-01-radar-template.yml) into the new radar and modify as needed. Once the radar is ready to be published remove `draft: true`.
+
+## Radar Schema
+
+| Attribute | Type | Required | Notes | 
+| --- | --- | --- | --- | 
+| name  | String | Yes | |
+| draft  | Boolean | No | Default: false |
+| themes | Array of [Themes](#theme-schema) | Yes | |
+| video | URL | No | Youtube URL of the video |
+| team | Array of [Teams](#team-schema) | Yes | |
+| points | Array of [Points](#point-schema) | Yes (if subradars not set) | |
+| subradars | Array of [Subradars](#subradar-schema) | Yes (if points not set) | Use this instead of points if two subradars should be shown like [this](https://radar.cncf.io/2021-06-multicluster-management) |
+| companies | Array of [Companies](#company-schema) | Yes | |
+
+#### Theme schema
+
+| Attribute | Type | Required | 
+| --- | --- | --- |
+| headline  | String | Yes |
+| content | String | Yes |
+
+#### Team schema
+
+| Attribute | Type | Required | Notes |
+| --- | --- | --- | --- |
+| name  | String | Yes | | 
+| photo | URL | Yes | | 
+| bio | String | Yes | |
+| twitter | String | No | Twitter handle  |
+| linkedin | String | No | LinkedIn handle | 
+
+#### Point schema
+
+| Attribute | Type | Required | Notes |
+| --- | --- | --- | --- |
+| name  | String | Yes | | 
+| homepage | URL | Yes (if repo not set) | |
+| repo | String | Yes (if homepage not set) | github repo (eg kubernetes/kubernetes or facebook/react) |
+| level | String | Yes | One of adopt, trial, assess or hold |
+| votes | [Votes](#votes-schema) | Yes | |
+
+#### Votes schema
+
+| Attribute | Type | Required | 
+| --- | --- | --- |
+| adopt  | integer | No |
+| trial  | integer | No |
+| assess  | integer | No |
+| hold  | integer | No |
+
+_These are not required, leave out those that are 0_
+
+#### Subradar schema
+
+| Attribute | Type | Required |
+| --- | --- | --- |
+| name  | String | Yes |
+| votes | [Votes](#votes) | Yes |
+
+#### Company schema
+
+| Attribute | Type | Required | Notes | 
+| --- | --- | --- | --- |
+| landscapeId  | String | Yes | ID of the company on the CNCF Landscape, eg [v-vmware-member](https://landscape.cncf.io/members?selected=v-mware-member) | 
+| industry  | String | Yes | | 
 
 ## Draft radars
 
-Example: https://github.com/cncf/radar/commit/d49d3991f18854633d38fba7f3680366581e3d8a
-Url: https://radar.cncf.io/drafts
+Setting `draft: true` to a radar will make it a draft and therefore it won't be visible on the homepage. Drafts will be viewable from `/drafts`, eg [radar.cncf.io/drafts](https://radar.cncf.io/drafts) or [localhost:3000/drafts](http://localhost:3000/drafts)
