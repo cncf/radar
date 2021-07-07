@@ -30,7 +30,7 @@ const downloadPhoto = async value => {
   return true
 }
 
-const teamSchema = yup.object({
+const memberSchema = yup.object({
   name: yup.string()
     .required(),
   photo: yup.string()
@@ -98,7 +98,7 @@ const RadarSchema = yup.object({
   video: yup.string()
     .url(),
   team: yup.array()
-    .of(teamSchema)
+    .of(memberSchema)
     .required(),
   points: yup.array()
     .of(pointSchema),

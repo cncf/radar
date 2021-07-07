@@ -39,7 +39,7 @@ Create a YAML file under [content/radars](content/radars), the file name must be
 | draft  | Boolean | No | Default: false |
 | themes | Array of [Themes](#theme-schema) | Yes | |
 | video | URL | No | Youtube URL of the video |
-| team | Array of [Teams](#team-schema) | Yes | |
+| team | Array of [Members](#member-schema) | Yes | |
 | points | Array of [Points](#point-schema) | Yes (if subradars not set) | |
 | subradars | Array of [Subradars](#subradar-schema) | Yes (if points not set) | Use this instead of points if two subradars should be shown like [this](https://radar.cncf.io/2021-06-multicluster-management) |
 | companies | Array of [Companies](#company-schema) | Yes | |
@@ -51,7 +51,7 @@ Create a YAML file under [content/radars](content/radars), the file name must be
 | headline  | String | Yes |
 | content | String | Yes |
 
-#### Team schema
+#### Member schema
 
 | Attribute | Type | Required | Notes |
 | --- | --- | --- | --- |
