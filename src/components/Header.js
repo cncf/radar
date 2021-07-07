@@ -16,14 +16,14 @@ export default function Header() {
       }
     
       nav {
-        background: ${colors.blueBg};
+        background: ${colors.darkPurple};
         padding-top: 10px;
         padding-bottom: 10px;
         flex-direction: column;
       }
       
       .navbar-menu {
-        background: ${colors.blueBg};
+        background: ${colors.darkPurple};
       }
       
       .navbar-end {
@@ -44,13 +44,13 @@ export default function Header() {
         flex-shrink: 1;
       }
       
-      h1 {
+      h2 {
         margin: 0;
       }
       
       @media only screen and (max-width: ${sizes.mobile}px) {
-        h1 {
-          font-size: 1.5rem;
+        h2 {
+          font-size: 24px;
         }
       }
       
@@ -68,7 +68,7 @@ export default function Header() {
           </OutboundLink>
 
           <Link href="/">
-            <h1><NavLink className="no-margin">CNCF End User Technology Radar</NavLink></h1>
+            <h2><NavLink className="no-margin">CNCF End User Technology Radar</NavLink></h2>
           </Link>
         </div>
 

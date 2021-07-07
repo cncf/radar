@@ -1,6 +1,7 @@
+import { Fragment } from 'react'
 import groupPoints from '../helpers/groupPoints'
 import LinkToPoint from './LinkToPoint'
-import { Fragment } from "react";
+import { colors } from '../styles.config'
 
 export default function RadarData({ points, companies }) {
   const groupedPoints = groupPoints(points)
@@ -36,6 +37,7 @@ export default function RadarData({ points, companies }) {
         align-items: center;
         justify-content: center;
         height: 100%;
+        color: ${colors.black};
       }
       
       .header {

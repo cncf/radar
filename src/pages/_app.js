@@ -7,12 +7,13 @@ import Footer from '../components/Footer'
 import '../styles/style.scss'
 import LandscapeItemIframe from '../components/LandscapeItemIframe'
 import OutboundLink from '../components/OutboundLink'
+import { colors } from '../styles.config'
 
 const Banner = _ => {
   return <div className="banner">
     <style jsx>{`
       .banner {
-        background-color: #416fd9;
+        background-color: ${colors.brightBlue};
         padding: 10px;
         text-align: center;
       }

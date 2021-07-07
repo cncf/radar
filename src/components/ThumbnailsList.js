@@ -44,7 +44,7 @@ export default function ThumbnailsList({ radars, embedThumbnails = false }) {
           <Link href={`/${radar.key}`}>
             <a>
               <span className="preview">{embedThumbnails ? <Radar points={points}/> : <img src={`${key}-raw.svg`}/>}</span>
-              <h5>{radar.name} {name ? `(${name})` : null }</h5>
+              <h4>{radar.name} {name ? `(${name})` : null }</h4>
             </a>
           </Link>
         </div>

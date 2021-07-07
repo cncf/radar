@@ -1,3 +1,5 @@
+import { colors } from '../styles.config'
+
 const levelMap = {
   adopt: 'Adopt',
   assess: 'Assess',
@@ -9,7 +11,7 @@ export default function LevelTag({ level, style, text, className }) {
     <style jsx>{`
       .tag {
         min-width: ${className === 'is-medium' ? '90px' : '70px'};
-        color: #202020 !important;
+        color: ${colors.black} !important;
       }
     `}</style>
     {levelMap[level] || text}

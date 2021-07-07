@@ -1,8 +1,12 @@
 module.exports = {
   colors: {
-    blueBg: '#1c214a',
-    blueTitle: '#2c2960',
-    pink: '#de176c',
+    darkPurple: '#2A0054',
+    brightBlue: '#0088FF',
+    mediumBlue: '#446CA9',
+    lightBlue: '#76C4D5',
+    black: '#231F20',
+    pink: '#FF00AA',
+    lightGray: '#f4f4f4',
     adopt: '#0554C6',
     adoptBg: '#83AF83',
     trial: '#032291',

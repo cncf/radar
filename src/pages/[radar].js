@@ -12,7 +12,7 @@ import Companies from '../components/Companies'
 import IndustriesTable from '../components/IndustriesTable'
 import OutboundLink from '../components/OutboundLink'
 import ThumbnailsList from '../components/ThumbnailsList'
-import { sizes } from '../styles.config'
+import { sizes, colors } from '../styles.config'
 
 const Columns = ({ children, className }) => {
   return <div className={`columns is-desktop is-4 ${className}`}>
@@ -49,7 +49,7 @@ const Banner = _ => {
   return <div>
     <style jsx>{`
       div {
-        background-color: #EEE;
+        background-color: ${colors.lightBlue};
       }
       
       .inner {
@@ -92,7 +92,7 @@ const RadarSection = ({ name, subradars }) => {
         }
       }
       
-      h5 {
+      h4 {
         text-align: center;
         margin-bottom: 10px;     
       } 
@@ -102,16 +102,12 @@ const RadarSection = ({ name, subradars }) => {
         text-align: center;
         font-size: 0.95rem;
       }
-      
-      h4 {
-        color: #202020;
-      }
     `}</style>
 
     <div className="outer">
       { subradars.map(subradar => {
         return <div key={subradar.key} className="radar-wrapper">
-          { subradars.length > 1 && <h5>{subradar.name}</h5>}
+          { subradars.length > 1 && <h4>{subradar.name}</h4>}
           <Radar points={subradar.points} />
           <div className="download">
             Download as <OutboundLink href={`/${subradar.key}.svg`} title="svg" /> or <OutboundLink href={`/${subradar.key}.png`} title="png" />
@@ -157,7 +153,6 @@ const Theme = ({ theme, idx }) => {
       
       .theme h4 {
         text-align: center;
-        color: #202020;
       }
     `}
     </style>
