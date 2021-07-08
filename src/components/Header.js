@@ -26,6 +26,12 @@ export default function Header() {
         background: ${colors.darkPurple};
       }
       
+      .fas {
+        float: right;
+        padding: 10px 16px;
+        font-size: 24px;
+      }
+      
       .navbar-end {
         align-items: flex-start;
       }
@@ -70,9 +76,7 @@ export default function Header() {
         </div>
 
         <NavLink role="button" onClick={_ => setShowMenu(!showMenu)} className={`navbar-burger ${showMenu && 'is-active'}`} aria-label="menu" aria-expanded="false">
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
+          <i className={`fas ${showMenu ? 'fa-times' : 'fa-bars'}`}></i>
         </NavLink>
       </div>
 
