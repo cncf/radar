@@ -14,7 +14,8 @@ const Banner = _ => {
     <style jsx>{`
       .banner {
         background-color: ${colors.brightBlue};
-        padding: 10px;
+        padding: 6px;
+        font-size: 13px;
         text-align: center;
       }
       

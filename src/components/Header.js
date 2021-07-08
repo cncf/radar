@@ -46,12 +46,9 @@ export default function Header() {
       
       h2 {
         margin: 0;
-      }
-      
-      @media only screen and (max-width: ${sizes.mobile}px) {
-        h2 {
-          font-size: 24px;
-        }
+        font-size: 24px;
+        line-height: 24px;
+        margin-left: 2px;
       }
       
       nav img {
