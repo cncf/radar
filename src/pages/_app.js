@@ -15,7 +15,7 @@ const Banner = _ => {
       .banner {
         background-color: ${colors.brightBlue};
         padding: 6px;
-        font-size: 13px;
+        font-size: 14px;
         text-align: center;
       }
       
