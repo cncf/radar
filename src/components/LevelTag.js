@@ -1,3 +1,5 @@
+import { colors } from '../styles.config'
+
 const levelMap = {
   adopt: 'Adopt',
   assess: 'Assess',

@@ -16,14 +16,20 @@ export default function Header() {
       }
     
       nav {
-        background: ${colors.blueBg};
+        background: ${colors.darkPurple};
         padding-top: 10px;
         padding-bottom: 10px;
         flex-direction: column;
       }
       
       .navbar-menu {
-        background: ${colors.blueBg};
+        background: ${colors.darkPurple};
+      }
+      
+      .fas {
+        float: right;
+        padding: 10px 16px;
+        font-size: 24px;
       }
       
       .navbar-end {
@@ -44,14 +50,11 @@ export default function Header() {
         flex-shrink: 1;
       }
       
-      h1 {
+      h2 {
         margin: 0;
-      }
-      
-      @media only screen and (max-width: ${sizes.mobile}px) {
-        h1 {
-          font-size: 1.5rem;
-        }
+        font-size: 24px;
+        line-height: 24px;
+        margin-left: 2px;
       }
       
       nav img {
@@ -60,7 +63,7 @@ export default function Header() {
       }
     `}</style>
 
-    <div className="container">
+    <div className="container is-max-widescreen">
       <div className="navbar-brand">
         <div className="navbar-item logo">
           <OutboundLink href="https://cncf.io">
@@ -68,14 +71,12 @@ export default function Header() {
           </OutboundLink>
 
           <Link href="/">
-            <h1><NavLink className="no-margin">CNCF End User Technology Radar</NavLink></h1>
+            <h2><NavLink className="no-margin">CNCF End User Technology Radar</NavLink></h2>
           </Link>
         </div>
 
         <NavLink role="button" onClick={_ => setShowMenu(!showMenu)} className={`navbar-burger ${showMenu && 'is-active'}`} aria-label="menu" aria-expanded="false">
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
+          <i className={`fas ${showMenu ? 'fa-times' : 'fa-bars'}`}></i>
         </NavLink>
       </div>
 

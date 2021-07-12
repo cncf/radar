@@ -12,7 +12,7 @@ import Companies from '../components/Companies'
 import IndustriesTable from '../components/IndustriesTable'
 import OutboundLink from '../components/OutboundLink'
 import ThumbnailsList from '../components/ThumbnailsList'
-import { sizes } from '../styles.config'
+import { sizes, colors } from '../styles.config'
 
 const Columns = ({ children, className }) => {
   return <div className={`columns is-desktop is-4 ${className}`}>
@@ -48,21 +48,18 @@ const Column = ({ children, title }) => {
 const Banner = _ => {
   return <div>
     <style jsx>{`
-      div {
-        background-color: #EEE;
-      }
-      
       .inner {
         margin: 0 auto;
-        max-width: 1050px;
-        text-align: center;
-        padding: 10px 15px;
+        max-width: 1000px;
+        text-align: left;
+        padding: 27px 15px 0;
+        font-size: 22px;
       }
     `}</style>
 
     <div className="inner">
       The CNCF End User Technology Radar is a guide for evaluating  cloud native technologies, on behalf of the CNCF
-      End User Community. <Link href="/how-it-works"><a>Read more</a></Link>
+      End User Community. <Link href="/how-it-works"><a>Read more...</a></Link>
     </div>
   </div>
 }
@@ -92,7 +89,7 @@ const RadarSection = ({ name, subradars }) => {
         }
       }
       
-      h5 {
+      h4 {
         text-align: center;
         margin-bottom: 10px;     
       } 
@@ -102,16 +99,12 @@ const RadarSection = ({ name, subradars }) => {
         text-align: center;
         font-size: 0.95rem;
       }
-      
-      h4 {
-        color: #202020;
-      }
     `}</style>
 
     <div className="outer">
       { subradars.map(subradar => {
         return <div key={subradar.key} className="radar-wrapper">
-          { subradars.length > 1 && <h5>{subradar.name}</h5>}
+          { subradars.length > 1 && <h4>{subradar.name}</h4>}
           <Radar points={subradar.points} />
           <div className="download">
             Download as <OutboundLink href={`/${subradar.key}.svg`} title="svg" /> or <OutboundLink href={`/${subradar.key}.png`} title="png" />
@@ -151,13 +144,16 @@ const Theme = ({ theme, idx }) => {
         margin: 0 10px 30px;
       }
       
+      .theme:last-child {
+        margin-bottom: 0;
+      }
+      
       .theme .content {
         margin-top: 10px;
       }
       
       .theme h4 {
         text-align: center;
-        color: #202020;
       }
     `}
     </style>

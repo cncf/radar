@@ -63,13 +63,13 @@ export default function CompanySizeChart({ companies }) {
   return <div className="chart">
     <style jsx>{`
       .industries-chart :global(.ct-series-a .ct-bar) {
-        stroke: ${colors.blueTitle};
+        stroke: ${colors.darkPurple};
         stroke-width: 30px;
       }
       
       .industries-chart :global(.ct-label) {
-        color: #202020;
-        fill: #202020;
+        color: ${colors.darkPurple};
+        fill: ${colors.darkPurple};
       }
       
       .industries-chart :global(.ct-grid) {
