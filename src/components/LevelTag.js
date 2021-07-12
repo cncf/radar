@@ -11,7 +11,7 @@ export default function LevelTag({ level, style, text, className }) {
     <style jsx>{`
       .tag {
         min-width: ${className === 'is-medium' ? '90px' : '70px'};
-        color: ${colors.black} !important;
+        color: #202020 !important;
       }
     `}</style>
     {levelMap[level] || text}
