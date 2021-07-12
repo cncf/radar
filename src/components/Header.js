@@ -63,7 +63,7 @@ export default function Header() {
       }
     `}</style>
 
-    <div className="container">
+    <div className="container is-max-widescreen">
       <div className="navbar-brand">
         <div className="navbar-item logo">
           <OutboundLink href="https://cncf.io">

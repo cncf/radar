@@ -19,7 +19,7 @@ export default function Section({ title, children, background }) {
         }
       }
     `}</style>
-    <div className="container">
+    <div className="container is-max-widescreen">
       {title && <h2>{title}</h2>}
       {children}
     </div>
