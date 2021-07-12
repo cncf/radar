@@ -48,21 +48,18 @@ const Column = ({ children, title }) => {
 const Banner = _ => {
   return <div>
     <style jsx>{`
-      div {
-        background-color: ${colors.lightBlue};
-      }
-      
       .inner {
         margin: 0 auto;
-        max-width: 1050px;
-        text-align: center;
-        padding: 10px 15px;
+        max-width: 1000px;
+        text-align: left;
+        padding: 27px 15px 0;
+        font-size: 22px;
       }
     `}</style>
 
     <div className="inner">
       The CNCF End User Technology Radar is a guide for evaluating  cloud native technologies, on behalf of the CNCF
-      End User Community. <Link href="/how-it-works"><a>Read more</a></Link>
+      End User Community. <Link href="/how-it-works"><a>Read more...</a></Link>
     </div>
   </div>
 }
