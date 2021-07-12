@@ -9,13 +9,13 @@ export default function Section({ title, children, background }) {
         margin-bottom: 1.5rem;
       }
       
+      .section {
+        padding: 1.75rem 1.25rem;
+      }
+      
       @media only screen and (max-width: ${sizes.mobile}px) {
         h2 {
           margin-bottom: 1rem;
-        }
-
-        .section {
-          padding: 1.5rem 1rem;
         }
       }
     `}</style>

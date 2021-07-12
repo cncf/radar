@@ -144,6 +144,10 @@ const Theme = ({ theme, idx }) => {
         margin: 0 10px 30px;
       }
       
+      .theme:last-child {
+        margin-bottom: 0;
+      }
+      
       .theme .content {
         margin-top: 10px;
       }
