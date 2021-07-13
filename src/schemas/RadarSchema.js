@@ -2,17 +2,6 @@ import * as yup from 'yup'
 import fetchUrl from '../helpers/fetchUrl'
 import markdownToHtml from '../helpers/markdownToHtml'
 
-const sectionSchema = yup.object({
-  title: yup.string()
-    .required(),
-  position: yup.number()
-    .integer()
-    .min(1),
-  content: yup.string()
-    .required()
-    .transform(markdownToHtml)
-})
-
 const themeSchema = yup.object({
   headline: yup.string()
     .required(),
@@ -90,8 +79,6 @@ const subradarSchema = yup.object({
 const RadarSchema = yup.object({
   name: yup.string()
     .required(),
-  sections: yup.array()
-    .of(sectionSchema),
   themes: yup.array()
     .of(themeSchema)
     .required(),
