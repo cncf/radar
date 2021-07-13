@@ -12,7 +12,7 @@ import Companies from '../components/Companies'
 import IndustriesTable from '../components/IndustriesTable'
 import OutboundLink from '../components/OutboundLink'
 import ThumbnailsList from '../components/ThumbnailsList'
-import { sizes, colors } from '../styles.config'
+import { sizes } from '../styles.config'
 
 const Columns = ({ children, className }) => {
   return <div className={`columns is-desktop is-4 ${className}`}>
@@ -222,12 +222,6 @@ const DataSection = ({ points, companies }) => {
   </Section>
 }
 
-const renderSection = ({ title, content }) => {
-  return <Section title={title} key={title}>
-    <div dangerouslySetInnerHTML={{ __html: content }} />
-  </Section>
-}
-
 const OtherRadarsSection = ({ radars }) => {
   return <Section title="Other Radars">
     <ThumbnailsList radars={radars} />
@@ -235,31 +229,19 @@ const OtherRadarsSection = ({ radars }) => {
 }
 
 const RadarPage = ({ radar, otherRadars = [] }) => {
-  const { longName, subradars, team, video, companies, key, sections = [], themes } = radar
+  const { longName, subradars, team, video, companies, key, themes } = radar
   const points = subradars.flatMap(subradar => subradar.points.map(point => ({ ...point, subradar })))
-  const defaultSections = [
+  const sections = [
     <RadarSection name={longName} subradars={subradars} radarKey={key} key="radar" />,
     <ThemesSection themes={themes} key="themes" />,
     <CompaniesSection companies={companies} key="companies" />,
     <WebinarAndTeamSection video={video} team={team} key="webinar-and-team" />,
     <DataSection points={points} companies={companies} key="data" />
-  ].filter(_ => _).map((section, i) => [i + 1, section])
-
-  const positionedSections = sections.filter(section => section.position)
-    .sort((a, b) => a.position - b.position)
-    .map(section => [section.position, renderSection(section)])
-
-  const additionalSections = sections.filter(section => !section.position)
-    .map(section => renderSection(section))
-
-  const sortedSections = [...positionedSections, ...defaultSections]
-    .sort((a, b) => a[0] - b[0])
-    .map(([_, section]) => section)
+  ].filter(_ => _)
 
   return <>
     <Banner />
-    {sortedSections}
-    {additionalSections}
+    {sections}
     {otherRadars.length > 0 && <OtherRadarsSection radars={otherRadars} />}
   </>
 }
