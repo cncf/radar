@@ -39,16 +39,16 @@ export default function ThumbnailsList({ radars, embedThumbnails = false }) {
     </style>
 
     {radars.map(radar => {
-      return radar.subradars.map(({ key, name, points }) => {
-        return <div key={key} className="thumbnail">
-          <Link href={`/${radar.key}`}>
-            <a>
-              <span className="preview">{embedThumbnails ? <Radar points={points}/> : <img src={`${key}-raw.svg`}/>}</span>
-              <h4>{radar.name} {name ? `(${name})` : null }</h4>
-            </a>
-          </Link>
-        </div>
-      })
+      const { key, points } = radar.subradars[0]
+
+      return <div key={key} className="thumbnail">
+        <Link href={`/${radar.key}`}>
+          <a>
+            <span className="preview">{embedThumbnails ? <Radar points={points}/> : <img src={`${key}-raw.svg`}/>}</span>
+            <h4>{radar.name}</h4>
+          </a>
+        </Link>
+      </div>
     })}
   </div>
 }
