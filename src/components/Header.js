@@ -28,14 +28,21 @@ export default function Header() {
         }
       }
       
-      .logo-link {
+      .logo a {
         display: flex;
-      } 
-      
-      nav img {
-        max-height: initial;
       }
       
+      .logo img {
+        width: 230px;
+        max-height: initial;
+      }
+
+      @media only screen and (max-width: ${sizes.tablet}px) {
+        .logo img {
+          width: 200px;
+        }
+      }
+
       .burger-wrapper {
         display: flex;
         justify-content: center;
@@ -44,7 +51,7 @@ export default function Header() {
         width: 100%;
       }
       
-      .fas {
+      .burger-wrapper .fas {
         font-size: 24px;
       }
     `}</style>
@@ -54,7 +61,7 @@ export default function Header() {
         <div className="navbar-item logo">
           <Link href="/">
             <a className="logo-link">
-              <img src="/radar-logo.svg" alt="CNCF End User Radar" width="190" />
+              <img src="/radar-logo.svg" alt="CNCF End User Radar" />
             </a>
           </Link>
         </div>
