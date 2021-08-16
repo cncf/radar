@@ -56,6 +56,14 @@ const buildRadar = attrs => {
   return { ...attrs, date, longName }
 }
 
+const fetchPhoto = async url => {
+  try {
+    return await fetchUrl(url)
+  } catch(e) {
+    return false
+  }
+}
+
 const buildCompany = async attrs => {
   const { id, flatName, href, crunchbaseData, homepage_url, industry } = attrs
   const employeesRange = [crunchbaseData.numEmployeesMin, crunchbaseData.numEmployeesMax]
@@ -73,7 +81,10 @@ const buildMember = async (attrs, radarKey) => {
   let fileName = readdirSync(dirPath).find(f => f.split('.')[0] === memberSlug)
 
   if (!fileName) {
-    const content = await fetchUrl(url)
+    const content = await fetchPhoto(url)
+    if (!content) {
+      throw `Member ${attrs.name} has invalid photo URL: ${url}`
+    }
     fileName = [memberSlug, getExtension(content)].join('.')
     const destination = path.join(dirPath, fileName)
     writeFileSync(destination, content)
