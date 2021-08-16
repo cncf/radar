@@ -1,5 +1,4 @@
 import * as yup from 'yup'
-import fetchUrl from '../helpers/fetchUrl'
 import markdownToHtml from '../helpers/markdownToHtml'
 
 const themeSchema = yup.object({
@@ -10,22 +9,12 @@ const themeSchema = yup.object({
     .transform(markdownToHtml)
 })
 
-const downloadPhoto = async value => {
-  try {
-    await fetchUrl(value)
-  } catch(e) {
-    return false
-  }
-  return true
-}
-
 const memberSchema = yup.object({
   name: yup.string()
     .required(),
   photo: yup.string()
     .url()
-    .required()
-    .test('download-photo', 'cannot download photo from "${value}"', downloadPhoto),
+    .required(),
   bio: yup.string()
     .transform(markdownToHtml)
   ,
