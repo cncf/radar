@@ -1,10 +1,11 @@
 import { colors } from '../styles.config'
+import OutboundLink from './OutboundLink'
 
 export default function Footer() {
   return <nav className="navbar footer">
     <style jsx>{`
         nav {
-          background: ${colors.darkPurple};
+          background: ${colors.black};
           padding-top: 10px;
           padding-bottom: 10px;
         }
@@ -22,7 +23,9 @@ export default function Footer() {
     `}</style>
     <div className="container is-max-widescreen">
       <div className="navbar-brand">
-        <a href="https://www.cncf.io" className="navbar-item"><img src="/cncf-logo.svg" alt="CNCF" width="186" height="34"/></a>
+        <OutboundLink href="https://www.cncf.io" className="navbar-item">
+          <img src="/cncf-logo.svg" alt="CNCF" width="186" height="34"/>
+        </OutboundLink>
       </div>
 
       <p>

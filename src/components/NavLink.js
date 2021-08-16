@@ -6,7 +6,7 @@ export default forwardRef((props, ref) => {
     <style jsx>{`
         a, a:hover, a:focus, a:visited, a:active {
           color: white;
-          background: ${colors.darkPurple};
+          background: ${colors.black};
         }
         
         a:hover {
