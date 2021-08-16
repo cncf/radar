@@ -1,29 +1,48 @@
-import { colors } from '../styles.config'
+import { colors, sizes } from '../styles.config'
+import OutboundLink from './OutboundLink'
 
 export default function Footer() {
-  return <nav className="navbar footer">
+  return <div className="footer">
     <style jsx>{`
-        nav {
-          background: ${colors.darkPurple};
-          padding-top: 10px;
-          padding-bottom: 10px;
+        .footer {
+          background: ${colors.black};
+          padding: 15px;
         }
         
-        img {
-          max-height: initial;
+        .container {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+        }
+        
+        @media only screen and (max-width: ${sizes.mobile}px) {
+          .container {
+            flex-direction: column;
+            align-items: flex-start;
+          }
+        }
+        
+        .logo {
+          width: 190px;
+          height: 35px;
+          margin-right: 15px;
+        }
+        
+        .footer :global(.cncf-link) {
+          flex-shrink: 0;
         }
         
         p {
           color: white;
           font-size: 0.8rem;
-          padding: 10px;
+          padding: 0;
           margin: 0;
         }
     `}</style>
     <div className="container is-max-widescreen">
-      <div className="navbar-brand">
-        <a href="https://www.cncf.io" className="navbar-item"><img src="/cncf-logo.svg" alt="CNCF" width="186" height="34"/></a>
-      </div>
+      <OutboundLink href="https://www.cncf.io" className="cncf-link">
+        <img src="/cncf-logo.svg" alt="CNCF" className="logo"/>
+      </OutboundLink>
 
       <p>
         CNCF is a leading global provider of services for digital transformation and digital business models.
@@ -32,5 +51,5 @@ export default function Footer() {
         partnerships with our customers.
       </p>
     </div>
-  </nav>
+  </div>
 }

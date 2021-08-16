@@ -3,7 +3,6 @@ import Link from 'next/link'
 import { colors } from '../styles.config'
 import Search from './Search'
 import NavLink from './NavLink'
-import OutboundLink from './OutboundLink'
 import { sizes } from '../styles.config'
 
 export default function Header() {
@@ -11,29 +10,14 @@ export default function Header() {
 
   return <nav className="navbar" role="navigation" aria-label="main navigation">
     <style jsx>{`
-      .container {
-        align-items: flex-start;
-      }
-    
       nav {
-        background: ${colors.darkPurple};
+        background: ${colors.black};
         padding-top: 10px;
         padding-bottom: 10px;
-        flex-direction: column;
       }
       
       .navbar-menu {
-        background: ${colors.darkPurple};
-      }
-      
-      .fas {
-        float: right;
-        padding: 10px 16px;
-        font-size: 24px;
-      }
-      
-      .navbar-end {
-        align-items: flex-start;
+        background: ${colors.black};
       }
       
       @media only screen and (max-width: ${sizes.tablet}px) {
@@ -44,39 +28,48 @@ export default function Header() {
         }
       }
       
-      .logo {
-        flex-direction: column;
-        align-items: flex-start;
-        flex-shrink: 1;
+      .logo a {
+        display: flex;
       }
       
-      h2 {
-        margin: 0;
-        font-size: 24px;
-        line-height: 24px;
-        margin-left: 2px;
-      }
-      
-      nav img {
+      .logo img {
+        width: 230px;
         max-height: initial;
-        padding: 0 -3px;
+      }
+
+      @media only screen and (max-width: ${sizes.tablet}px) {
+        .logo img {
+          width: 200px;
+        }
+      }
+
+      .burger-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+      }
+      
+      .burger-wrapper .fas {
+        font-size: 24px;
       }
     `}</style>
 
     <div className="container is-max-widescreen">
       <div className="navbar-brand">
         <div className="navbar-item logo">
-          <OutboundLink href="https://cncf.io">
-            <img src="/cncf-logo.svg" alt="CNCF End User Radar" width="190" />
-          </OutboundLink>
-
           <Link href="/">
-            <h2><NavLink className="no-margin">CNCF End User Technology Radar</NavLink></h2>
+            <a className="logo-link">
+              <img src="/radar-logo.svg" alt="CNCF End User Radar" />
+            </a>
           </Link>
         </div>
 
         <NavLink role="button" onClick={_ => setShowMenu(!showMenu)} className={`navbar-burger ${showMenu && 'is-active'}`} aria-label="menu" aria-expanded="false">
-          <i className={`fas ${showMenu ? 'fa-times' : 'fa-bars'}`}></i>
+          <div className="burger-wrapper">
+            <i className={`fas ${showMenu ? 'fa-times' : 'fa-bars'}`}></i>
+          </div>
         </NavLink>
       </div>
 
