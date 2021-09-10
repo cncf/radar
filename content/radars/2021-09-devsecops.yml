@@ -26,13 +26,6 @@ themes:
 
 video: https://www.youtube.com/embed/dQw4w9WgXcQ
 team:
-  - name: Katie Gamanji
-    photo: https://www.cncf.io/wp-content/uploads/2020/11/ELxkBsqUUAEmp0h.jpeg
-    bio: |
-      Katie's mission is to make end users successful and productive with cloud native technologies such as Kubernetes and Prometheus.
-    twitter: k_gamanji
-    linkedin: katie-gamanji
-    title: Ecosystem Advocate at CNCF
   - name: Sergiu Petean
     photo: https://www.cncf.io/wp-content/uploads/2021/09/Sergio-Patean.jpeg
     twitter: PeteanuSergiu
