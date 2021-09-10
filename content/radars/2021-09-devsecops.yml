@@ -45,7 +45,7 @@ points:
   - name: Artifactory 
   - homepage: https://jfrog.com/artifactory/
     level: adopt
-     votes: 16
+    votes: 16
       adopt: 14
       trial: 1
       hold: 1
@@ -166,7 +166,7 @@ companies:
   - landscapeId: thrivent-member
     industry: Financial Services
   - landscapeId: cern-member
-    industry: Media  
+    industry: Scientific Research
   - landscapeId: upchieve-member
     industry: Education
   - landscapeId: zalando-supporter
