@@ -45,112 +45,112 @@ points:
   - name: Artifactory 
     homepage: https://jfrog.com/artifactory/
     level: adopt
-    votes: 16
+    votes: 
       adopt: 14
       trial: 1
-      hold: 1
+      assess: 1
   - name: Sonarqube
   - homepage: https://www.sonarqube.org/
     level: adopt
-    votes: 15
+    votes:
       adopt: 13
       trial: 2
       assess: 0
   - name: XRay
   - homepage: https://www.getxray.app/
     level: trial
-    votes: 10
+    votes:
       adopt: 1
       trial: 3
       assess: 6
    - name: GitHub Actions
    - homepage: https://github.com/actions
     level: assess
-    votes: 12
+    votes:
       adopt: 4
       trial: 3
       assess: 5
    - name: Calico/Tigera
    - homepage: https://www.tigera.io/tigera-products/calico/
     level: adopt
-    votes: 10
+    votes:
       adopt: 9
       trial: 0
       assess: 1
    - name: OPA
    - homepage: https://www.openpolicyagent.org/
     level: adopt
-    votes: 12
+    votes:
       adopt: 6
       trial: 4
       assess: 2
    - name: Hashicorp Sentinel
    - homepage: https://www.hashicorp.com/sentinel
     level: assess
-    votes: 4
+    votes:
       adopt: 1
       trial: 1
       assess: 2
     - name: Terraform
     - homepage: https://www.terraform.io/
     level: adopt
-    votes: 20
+    votes:
       adopt: 18
       trial: 0
       assess: 1
     - name: Hashicorp Vault
     - homepage: https://www.vaultproject.io/
     level: adopt
-    votes: 18
+    votes:
       adopt: 14
       trial: 3
       assess: 0
     - name: Istio
     - homepage: https://istio.io/
     level: adopt
-    votes: 16
+    votes:
       adopt: 6
       trial: 1
       assess: 7
     - name: Linkerd
     - homepage: https://linkerd.io/
     level: assess
-    votes: 5
+    votes:
       adopt: 2
       trial: 0
       assess: 3
     - name: ArgoCD
     - homepage: https://argoproj.github.io/argo-cd/
     level: adopt
-    votes: 11
+    votes:
       adopt: 8
       trial: 1
       assess: 1
     - name: Harness
     - homepage: https://harness.io/
     level: assess
-    votes: 6
+    votes:
       adopt: 2
       trial: 2
       assess: 2
     - name: Cilium
     - homepage: https://cilium.io/
     level: assess
-    votes: 7
+    votes:
       adopt: 2
       trial: 2
       assess: 3
    - name: Trivy
    - homepage: https://aquasecurity.github.io/trivy/v0.17.0/
     level: assess
-    votes: 7
+    votes:
       adopt: 0
       trial: 4
       assess: 3
     - name: Sonatype Nexus
     - homepage: https://www.sonatype.com/products/repository-pro
       level: assess
-    votes: 10
+    votes:
       adopt: 6
       trial: 1
       assess: 0
@@ -201,3 +201,6 @@ companies:
     industry: Software
   - landscapeId: intuit-member
     industry: Software
+  - landscapeId: squarespace-member
+    industry: Software  
+   
