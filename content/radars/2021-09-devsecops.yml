@@ -43,7 +43,7 @@ team:
     title: Director Cloud Architecture at Discover Financial Services
 points:
   - name: Artifactory 
-  - homepage: https://jfrog.com/artifactory/
+    homepage: https://jfrog.com/artifactory/
     level: adopt
     votes: 16
       adopt: 14
