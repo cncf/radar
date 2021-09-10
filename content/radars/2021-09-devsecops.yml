@@ -27,31 +27,20 @@ themes:
 video: https://www.youtube.com/embed/dQw4w9WgXcQ
 team:
   - name: Katie Gamanji
-    photo: xxxhttps://www.cncf.io/wp-content/uploads/2020/08/14233189_10101878603974740_6349536740498881867_n-1-1-500x500.jpg
+    photo: https://www.cncf.io/wp-content/uploads/2020/11/ELxkBsqUUAEmp0h.jpeg
     bio: |
       Katie's mission is to make end users successful and productive with cloud native technologies such as Kubernetes and Prometheus.
     twitter: k_gamanji
     linkedin: katie-gamanji
     title: Ecosystem Advocate at CNCF
-  - name: 
-    photo: 
-    bio: |
-      
-    twitter: 
-    linkedin: 
-  - name: 
-    photo: 
-    bio: |
-      
-    twitter: 
-    linkedin: 
-  - name: 
-    photo: 
-    bio: |
-      
-    twitter: 
-    linkedin: 
-  
+  - name: Sergiu Petean
+    photo: https://www.cncf.io/wp-content/uploads/2021/09/Sergio-Patean.jpeg
+    twitter: PeteanuSergiu
+    linkedin: peteanusergiu
+    title: Head of DevOps at Allianz Direct
+  - name: Keith Nielsen
+    photo: https://www.cncf.io/wp-content/uploads/2021/09/Keith-Nielsen.jpeg
+    title: Director Cloud Architecture at Discover Financial Services
 points:
   - name: Artifactory 
   - homepage: https://jfrog.com/artifactory/
