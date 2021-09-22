@@ -186,14 +186,10 @@ companies:
     industry: Software
   - landscapeId: lunar-supporter
     industry: Financial Services
-  - landscapeId: mhi-vestas-offshore-wind-supporter
-    industry: Energy
   - landscapeId: ricardo-ch-supporter
     industry: E-commerce
   - landscapeId: shopify-supporter
     industry: E-commerce
-  - landscapeId: dailymotion-supporter
-    industry: Video Hosting
   - landscapeId: net-match-supporter
     industry: Travel
   - landscapeId: spotify-member

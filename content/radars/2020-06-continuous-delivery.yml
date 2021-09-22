@@ -154,8 +154,6 @@ companies:
     industry: News Media
   - landscapeId: n26-supporter
     industry: Financial Services
-  - landscapeId: mhi-vestas-offshore-wind-supporter
-    industry: Energy
   - landscapeId: equity-zen-supporter
     industry: Financial Services
   - landscapeId: under-armour-supporter
@@ -174,8 +172,6 @@ companies:
     industry: Digital Platform
   - landscapeId: state-farm-supporter
     industry: Insurance
-  - landscapeId: dailymotion-supporter
-    industry: Video Hosting
   - landscapeId: meltwater-supporter
     industry: Software
   - landscapeId: trivago-supporter
