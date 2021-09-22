@@ -1,5 +1,4 @@
 name: DevSecOps
-draft: true
 themes:
   - headline: Security is the main focus of DevSecOps, at the expense of developer experience
     content: |
