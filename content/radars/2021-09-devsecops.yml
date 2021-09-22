@@ -1,0 +1,189 @@
+name: DevSecOps
+themes:
+  - headline: Security is the main focus of DevSecOps, at the expense of developer experience
+    content: |
+      Available tools are serving security teams better than developers. The Radar team felt that the DevSecOps developer experience is cumbersome - there are too many tools that are hard to consume, creating a messy development environment. 
+
+      Although the security portion of DevSecOps is pervasive, with many tools targeting security, the Radar team felt that many of these have to be stitched together within end user’s tech stacks. There is no tool, yet, that creates a smooth developer experience.
+
+      However, the growing noise in this space could prove beneficial for developers, with newcomer tools showing promising features.
+
+  - headline: The pace of change in the security space is rapid
+    content: |
+      More and more new tools are coming to the market to support DevSecOps, but practitioners are struggling to keep up with the ever-changing landscape and evaluate what tools are best for their needs.
+
+      Despite many years’ experience, the Radar team hadn’t heard of all of the listed tools, underscoring the rapid speed of change in this space.
+
+
+  - headline: Microsegmentation capability is very important, but presents a significant challenge
+    content: |
+      Many organizations are unable to successfully operationalize segmentation within cloud native environments. While many organizations have introduced robust DevOps processes, traditional network security practices have not kept pace with the shift to cloud native. 
+
+      The Radar team felt that tools like Calico and Cilium, which offer micro-segmentation capabilities at Layer 3-4, are becoming increasingly important in the DevSecOps space, alongside Layer 7 segmentation, with mesh technologies like Istio and Linkerd.
+
+      With the core focus on security, tools like Artifactory, SonarCube, Xray, and even GitHub, bring a mutual Transport Security Layer to users’ tech stacks. The Radar team also felt that DevSecOps practitioners are looking at a hardening of assets, rather than introducing more new tools, to meet security requirements.
+
+video: https://www.youtube.com/embed/UxooaG1WWRg
+team:
+  - name: Sergiu Petean
+    photo: https://www.cncf.io/wp-content/uploads/2021/09/Sergio-Patean.jpeg
+    bio: |
+      Sergiu is an Entrepreneur, Senior Technology and Strategy leader, with more than 15 years spent working with digital technology.
+    title: Head of DevOps at Allianz Direct
+    twitter: PeteanuSergiu
+    linkedin: peteanusergiu
+  - name: Keith Nielsen
+    photo: https://www.cncf.io/wp-content/uploads/2021/09/Keith-Nielsen.jpeg
+    bio: |
+      Keith Nielsen got his start with IBM working on application runtimes and now works at Discover Financial Services where he is responsible for Discover’s Cloud Business Office. Keith’s current focus is on solving the challenges of Hybrid Cloud with a focus on Kubernetes ecosystem and all the capabilities needed to support it.
+    title: Director Cloud Architecture at Discover Financial Services
+points:
+  - name: Artifactory 
+    homepage: https://jfrog.com/artifactory/
+    level: adopt
+    votes:
+      adopt: 14
+      trial: 1
+      assess: 1
+  - name: Sonarqube
+    homepage: https://www.sonarqube.org/
+    level: adopt
+    votes:
+      adopt: 13
+      trial: 2
+  - name: XRay
+    homepage: https://www.getxray.app/
+    level: trial
+    votes:
+      adopt: 1
+      trial: 3
+      assess: 6
+  - name: GitHub Actions
+    homepage: https://github.com/actions
+    level: assess
+    votes:
+      adopt: 4
+      trial: 3
+      assess: 5
+  - name: Calico/Tigera
+    homepage: https://www.tigera.io/tigera-products/calico/
+    level: adopt
+    votes:
+      adopt: 9
+      assess: 1
+  - name: OPA
+    homepage: https://www.openpolicyagent.org/
+    level: adopt
+    votes:
+      adopt: 6
+      trial: 4
+      assess: 2
+  - name: Hashicorp Sentinel
+    homepage: https://www.hashicorp.com/sentinel
+    level: assess
+    votes:
+      adopt: 1
+      trial: 1
+      assess: 2
+  - name: Terraform
+    homepage: https://www.terraform.io/
+    level: adopt
+    votes:
+      adopt: 18
+      assess: 1
+  - name: Hashicorp Vault
+    homepage: https://www.vaultproject.io/
+    level: adopt
+    votes:
+      adopt: 14
+      trial: 3
+  - name: Istio
+    homepage: https://istio.io/
+    level: adopt
+    votes:
+      adopt: 6
+      trial: 1
+      assess: 7
+  - name: Linkerd
+    homepage: https://linkerd.io/
+    level: assess
+    votes:
+      adopt: 2
+      assess: 3
+  - name: ArgoCD
+    homepage: https://argoproj.github.io/argo-cd/
+    level: adopt
+    votes:
+      adopt: 8
+      trial: 1
+      assess: 1
+  - name: Harness
+    homepage: https://harness.io/
+    level: assess
+    votes:
+      adopt: 2
+      trial: 2
+      assess: 2
+  - name: Cilium
+    homepage: https://cilium.io/
+    level: assess
+    votes:
+      adopt: 2
+      trial: 2
+      assess: 3
+  - name: Trivy
+    homepage: https://aquasecurity.github.io/trivy/v0.17.0/
+    level: assess
+    votes:
+      trial: 4
+      assess: 3
+  - name: Sonatype Nexus
+    homepage: https://www.sonatype.com/products/repository-pro
+    level: assess
+    votes:
+      adopt: 6
+      trial: 1
+companies:
+  - landscapeId: allianz-direct-member
+    industry: Insurance
+  - landscapeId: meltwater-supporter
+    industry: Software
+  - landscapeId: post-finance-supporter
+    industry: Financial Services
+  - landscapeId: discover-financial-services-supporter
+    industry: Financial Services
+  - landscapeId: u-pchieve-member
+    industry: Education
+  - landscapeId: zalando-supporter
+    industry: E-commerce
+  - landscapeId: shopify-supporter
+    industry: E-commerce    
+  - landscapeId: net-match-supporter
+    industry: E-commerce
+  - landscapeId: box-supporter
+    industry: Software
+  - landscapeId: nipr-member
+    industry: Insurance
+  - landscapeId: rewe-international-dienstleistungsges-m-b-h-supporter
+    industry: Food and Beverage
+  - landscapeId: westwing-supporter
+    industry: E-commerce
+  - landscapeId: spotify-member
+    industry: Media 
+  - landscapeId: gmx-supporter
+    industry: Email  
+  - landscapeId: thermo-fisher-scientific-supporter
+    industry: Scientific Equipment
+  - landscapeId: equity-zen-supporter
+    industry: Financial Services
+  - landscapeId: snow-software-supporter
+    industry: Software
+  - landscapeId: db-systel-supporter
+    industry: Software
+  - landscapeId: zendesk-supporter
+    industry: Software
+  - landscapeId: intuit-member
+    industry: Software
+  - landscapeId: squarespace-member
+    industry: Software  
+   
