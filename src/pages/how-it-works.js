@@ -23,13 +23,13 @@ const HowItWorks = ({ sections }) => {
 
 export async function getStaticProps() {
   // TODO: see if we can make generic page
-  const { data, valid } = await loadYaml('pages/how-it-works.yml', { schema: PageSchema })
+  const page = await loadYaml('pages/how-it-works.yml', { schema: PageSchema })
 
-  if (!valid) {
+  if (!page.isValid()) {
     throw 'Invalid page!!'
   }
 
-  return { props: { sections: data } }
+  return { props: { sections: page.data } }
 }
 
 export default withTitle(HowItWorks, _ => 'How It Works')

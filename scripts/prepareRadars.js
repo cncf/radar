@@ -100,24 +100,44 @@ const loadRadarData = async _ => {
       Logger.error(`${path} is not a valid radar name, it should look like YYYY-DD-\$\{radar-name\}.yml`)
       return { valid: false }
     }
-    const { data, valid } = await loadYaml(`radars/${path}`, { schema: RadarSchema })
-    const key = path.replace(/\.yml/, '')
-    return { ...data, key, valid }
+    return await loadYaml(`radars/${path}`, { schema: RadarSchema })
   }))
+}
+
+const enhanceCompanyInfo = (radars, landscapeData) => {
+  radars.filter(radar => radar.isValid()).forEach(radar => {
+    radar.data.companies = (radar.data.companies || []).map((company, idx) => {
+      const { landscapeId } = company
+      const landscapeAttrs = landscapeData.find(({ id }) => id === landscapeId)
+
+      if (!landscapeAttrs) {
+        const path = ['companies', idx, 'landscapeId']
+        const message = `${landscapeId} does not appear on the landscape`
+        radar.addError({ path, message })
+      }
+
+      return { ...landscapeAttrs, ...company }
+    })
+  })
 }
 
 const fetchData = async _ => {
   const landscapeData = await fetchLandscapeData()
   const data = await loadRadarData()
 
-  if (data.find(radar => !radar.valid)) {
+  enhanceCompanyInfo(data, landscapeData)
+
+  const invalidRadars = data.filter(radar => !radar.isValid())
+
+  if (invalidRadars.length > 0) {
+    invalidRadars.forEach(radar => radar.printErrors())
     throw 'One or more radars are invalid. Processing stopped'
   }
 
   const radarPromises = data
     .sort((a, b) => -a.key.localeCompare(b.key))
-    .map(async radarAttrs => {
-      const radar = buildRadar(radarAttrs)
+    .map(async ({ data:radarAttrs, key }) => {
+      const radar = buildRadar({ ...radarAttrs, key })
 
       const subradars = (radar.subradars || [{ single: true, points: radar.points }]).map(subradar => {
         const radarKey = subradar.single ? radar.key : [radar.key, subradar.name.toLowerCase().replace(/(\W+)/g, '-')].join('--')
@@ -130,11 +150,7 @@ const fetchData = async _ => {
         return { ...subradar, points, key: radarKey }
       })
 
-      const companyPromises = (radar.companies || []).map(async attrs => {
-        const landscapeAttrs = landscapeData.find(({ id }) => id === attrs.landscapeId) || {}
-        return await buildCompany({ ...landscapeAttrs, ...attrs })
-      })
-
+      const companyPromises = (radar.companies || []).map(async attrs => await buildCompany(attrs))
       const teamPromises = radar.team.map(async attrs => await buildMember(attrs, radar.key))
 
       const companies = await Promise.all(companyPromises)
