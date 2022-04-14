@@ -19,7 +19,7 @@
     "chartist": "^0.11.4",
     "image-size": "^0.8.3",
     "next": "^10.0.3",
-    "node-fetch": "^2.6.1",
+    "node-fetch": "^2.6.7",
     "node-static": "^0.7.11",
     "puppeteer": "^5.2.1",
     "react": "16.13.1",
