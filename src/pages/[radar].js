@@ -13,6 +13,7 @@ import IndustriesTable from '../components/IndustriesTable'
 import OutboundLink from '../components/OutboundLink'
 import ThumbnailsList from '../components/ThumbnailsList'
 import { sizes } from '../styles.config'
+import { radar_page } from '../settings'
 
 const Columns = ({ children, className }) => {
   return <div className={`columns is-desktop is-4 ${className}`}>
@@ -58,8 +59,7 @@ const Banner = _ => {
     `}</style>
 
     <div className="inner">
-      The CNCF End User Technology Radar is a guide for evaluating  cloud native technologies, on behalf of the CNCF
-      End User Community. <Link href="/how-it-works"><a>Read more...</a></Link>
+      {radar_page.banner} <Link href="/how-it-works"><a>Read more...</a></Link>
     </div>
   </div>
 }
@@ -205,8 +205,7 @@ const CompaniesSection = ({ companies }) => {
 const DataSection = ({ points, companies }) => {
   return <Section title="The data">
     <p>
-      The CNCF End User Community was asked to describe what their companies recommend for different solutions:
-      Adopt, Trial, Assess or Hold. This table shows how the End User companies rated each technology.
+      {radar_page.data_text}
     </p>
     <RadarData points={points} companies={companies}/>
 

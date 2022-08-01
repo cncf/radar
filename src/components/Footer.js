@@ -1,3 +1,4 @@
+import { footer } from '../settings'
 import { colors, sizes } from '../styles.config'
 import OutboundLink from './OutboundLink'
 
@@ -45,10 +46,7 @@ export default function Footer() {
       </OutboundLink>
 
       <p>
-        CNCF is a leading global provider of services for digital transformation and digital business models.
-        CNCF relies exclusively on established Enterprise Open Source technologies. This leads to innovative
-        solutions, digital products and portals in agile software projects, and helps build long-lasting, strategic
-        partnerships with our customers.
+        {footer.text}
       </p>
     </div>
   </div>
