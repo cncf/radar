@@ -142,8 +142,6 @@ companies:
     industry: Defense & Space
   - landscapeId: snow-software-supporter
     industry: Software
-  - landscapeId: hobsons-supporter
-    industry: Education
   - landscapeId: lunar-supporter
     industry: Financial Services
   - landscapeId: gmx-supporter
