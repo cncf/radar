@@ -7,15 +7,16 @@ import fetchUrl from '../src/helpers/fetchUrl'
 import RadarSchema from '../src/schemas/RadarSchema'
 import Logger from '../src/helpers/logger'
 import cache from '../src/cache'
+import settings from '../content/settings'
 
 const getExtension = buffer => {
   return imageSize(buffer).type
 }
 
-const fetchLandscapeData = async _ => JSON.parse(await fetchUrl('https://landscape.cncf.io/data/items.json'))
+const fetchLandscapeData = async _ => JSON.parse(await fetchUrl(settings.landscape_base + '/data/items.json'))
 
 const downloadLogo = async (sourcePath, name) => {
-  const content = await fetchUrl(`https://landscape.cncf.io/${sourcePath}`)
+  const content = await fetchUrl(`${settings.landscape_base}${sourcePath}`)
   const destination = path.join(process.cwd(), 'public', 'logos', name)
   writeFileSync(destination, content)
 }
@@ -26,7 +27,7 @@ const projectMatches = ({ project, point }) => {
   }
 
   if (point.repo) {
-    return project.repo_url === `https://github.com/${point.repo}`
+    return project.repo_url === `${settings.points.link_prefix}${point.repo}`
   }
 
   return stripUrl(project.homepage_url) === stripUrl(point.homepage)

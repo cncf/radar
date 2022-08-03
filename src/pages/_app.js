@@ -8,6 +8,7 @@ import '../styles/style.scss'
 import LandscapeItemIframe from '../components/LandscapeItemIframe'
 import OutboundLink from '../components/OutboundLink'
 import { colors } from '../styles.config'
+import { banner } from '../settings'
 
 const Banner = _ => {
   return <div className="banner">
@@ -24,8 +25,8 @@ const Banner = _ => {
         text-decoration: underline;
       }
     `}</style>
-    <OutboundLink href="https://www.cncf.io/people/end-user-community/">
-      Join the CNCF End User Community to vote on the next Tech Radar
+    <OutboundLink href={banner.url}>
+      {banner.text}
     </OutboundLink>
   </div>
 }

@@ -177,14 +177,10 @@ companies:
     industry: Software
   - landscapeId: equity-zen-supporter
     industry: Financial Services
-  - landscapeId: hobsons-supporter
-    industry: Education
   - landscapeId: net-match-supporter
     industry: Travel
   - landscapeId: anova-supporter
     industry: IIoT
-  - landscapeId: uswitch-supporter
-    industry: Consumer Website
   - landscapeId: zalando-supporter
     industry: E-commerce
   - landscapeId: r-studio-supporter
@@ -209,5 +205,3 @@ companies:
     industry: Software
   - landscapeId: sony-interactive-entertainment-supporter
     industry: Entertainment
-  - landscapeId: daimler-member
-    industry: Automotive

@@ -1,6 +1,7 @@
 import { useContext } from 'react'
 import SelectedPointContext from '../contexts/SelectedPointContext'
 import OutboundLink from './OutboundLink'
+import { points } from '../settings'
 
 export default function LinkToPoint({ point }) {
   const { setSelectedPoint } = useContext(SelectedPointContext)
@@ -13,6 +14,6 @@ export default function LinkToPoint({ point }) {
     return <a onClick={_ => setSelectedPoint(point.landscapeId)}>{point.name}</a>
   }
 
-  const href = point.homepage || `https://github.com/${point.repo}`
+  const href = point.homepage || `${points.link_prefix}${point.repo}`
   return <OutboundLink href={href}>{point.name}</OutboundLink>
 }
