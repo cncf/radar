@@ -18,5 +18,22 @@ module.exports = {
         CNCF relies exclusively on established Enterprise Open Source technologies. This leads to innovative
         solutions, digital products and portals in agile software projects, and helps build long-lasting, strategic
         partnerships with our customers.`
+    },
+    levels: [
+        "adopt",
+        "trial",
+        "assess",
+        "hold",
+    ],
+    radar_levels: [
+        "adopt",
+        "trial",
+        "assess",
+    ],
+    level_names: {
+        "adopt": "Adopt",
+        "trial": "Trial",
+        "assess": "Assess",
+        "hold": "Hold",
     }
 }
