@@ -2,6 +2,7 @@ import ReactDOMServer from 'react-dom/server'
 import { Converter } from 'showdown'
 import sanitizeHtml from 'sanitize-html'
 import LevelTag from '../components/LevelTag'
+import { level_names } from '../settings'
 
 const renderLevelTag = level => ReactDOMServer.renderToString(<dt><LevelTag level={level} className="is-medium" /></dt>)
 
@@ -28,10 +29,10 @@ export default text => {
     return text
   }
   const html = new Converter({ simpleLineBreaks: false }).makeHtml(text)
-  const sanitizedHtml = sanitizeHtml(html, { allowedTags, allowedAttributes, transformTags })
-    .replace('<dt>Adopt</dt>', renderLevelTag('adopt'))
-    .replace('<dt>Trial</dt>', renderLevelTag('trial'))
-    .replace('<dt>Assess</dt>', renderLevelTag('assess'))
-
+  var sanitizedHtml = sanitizeHtml(html, { allowedTags, allowedAttributes, transformTags })
+  for (var label in level_names) {
+    const repl = `<dt>${level_names[label]}</dt>`
+    sanitizedHtml = sanitizedHtml.replace(repl, renderLevelTag(label))
+  }
   return sanitizedHtml
 }

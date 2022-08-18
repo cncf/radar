@@ -1,10 +1,4 @@
-import { colors } from '../styles.config'
-
-const levelMap = {
-  adopt: 'Adopt',
-  assess: 'Assess',
-  trial: 'Trial'
-}
+import { level_names } from "../settings"
 
 export default function LevelTag({ level, style, text, className }) {
   return <span className={`tag ${className} ${level}-background`} style={{ ...style }}>
@@ -14,6 +8,6 @@ export default function LevelTag({ level, style, text, className }) {
         color: #202020 !important;
       }
     `}</style>
-    {levelMap[level] || text}
+    {level_names[level] || text}
   </span>
 }

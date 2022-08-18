@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import { colors, typography } from '../styles.config'
 import groupPoints from '../helpers/groupPoints'
 import SelectedPointContext from '../contexts/SelectedPointContext'
-import { short_ident } from '../settings'
+import { level_names, radar_levels, short_ident } from '../settings'
 
 const { fontFamily } = typography
 
@@ -84,18 +84,25 @@ const Header = props => {
 export default function Radar({ points, title, subtitle, showHeader = false }) {
   const groupedPoints = groupPoints(points)
 
+  const radarHeight = 250 * (radar_levels.length + 1)
+  const radarWidth = radarHeight * Math.cos(Math.PI / 6) * 2
+
   const padding = showHeader ? 30 : 0
-  const width = 1740 + padding * 2
-  const height = 1006 + (showHeader ? 90 : 0) + (showHeader && subtitle ? 20 : 0) + padding * 2
+  const width = radarWidth + padding * 2
+  const height = radarHeight + 6 + (showHeader ? 90 : 0) + (showHeader && subtitle ? 20 : 0) + padding * 2
+
+  const rings = [...radar_levels].reverse().map((level, idx) => {
+    const radius = 500 + (idx * 250)
+    const inner = radius == 500 ? 0 : (radius - 250)
+    return <Ring radius={radius} minRadius={inner} points={groupedPoints[level]} title={level_names[level]} color={colors[level + 'Bg']} />
+  }).reverse()
 
   return <svg viewBox={`0 0 ${width} ${height}`} xmlns="http://www.w3.org/2000/svg" dominantBaseline="central" textAnchor="middle" fontFamily={fontFamily}>
     { showHeader && <Header textAnchor="start" x={padding} y={padding}>{ short_ident } Technology Radar</Header> }
     { showHeader && <Header textAnchor="end" x={width - padding} y={padding}>{title}</Header> }
     { showHeader && subtitle && <Header textAnchor="end" x={width - padding} y={padding + 60}>{subtitle}</Header> }
     <g transform={`translate(${width / 2} ${height - padding - 3})`}>
-      <Ring radius={1000} minRadius={750} points={groupedPoints.assess} title="Assess" color={colors.assessBg} />
-      <Ring radius={750} minRadius={500} points={groupedPoints.trial} title="Trial" color={colors.trialBg} />
-      <Ring radius={500} minRadius={0} points={groupedPoints.adopt} title="Adopt" color={colors.adoptBg} />
+      {rings}
     </g>
   </svg>
 }
