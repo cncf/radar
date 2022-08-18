@@ -95,20 +95,10 @@ ol {
   margin-left: 1.5rem;
 }
 
-body .adopt-background {
-  background-color: map.get($colors, 'adoptBg');
-}
-
-body .trial-background {
-  background-color: map.get($colors, 'trialBg');
-}
-
-body .assess-background {
-  background-color: map.get($colors, 'assessBg');
-}
-
-body .hold-background {
-  background-color: map.get($colors, 'holdBg');
+@each $background, $color in $backgrounds {
+  body .#{$background}-background {
+    background-color: map.get($colors, $color);
+  }
 }
 
 .table {

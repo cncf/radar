@@ -24,5 +24,11 @@ module.exports = {
   sizes: {
     mobile: 768,
     tablet: 1024
+  },
+  backgrounds: {
+    "adopt": "adoptBg",
+    "trial": "trialBg",
+    "assess": "assessBg",
+    "hold": "holdBg",
   }
 }
