@@ -1,9 +1,11 @@
+import { radar_levels } from "../settings"
+
 const groupPoints = points => {
-  return {
-    adopt: points.filter(point => point.level === 'adopt'),
-    trial: points.filter(point => point.level === 'trial'),
-    assess: points.filter(point => point.level === 'assess')
-  }
+  return Object.assign({},
+    ...radar_levels.map(
+      level => ({[level]: points.filter(point => point.level === level)})
+    )
+  )
 }
 
 export default groupPoints

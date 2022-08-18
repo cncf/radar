@@ -1,5 +1,6 @@
 import * as yup from 'yup'
 import markdownToHtml from '../helpers/markdownToHtml'
+import { levels } from '../settings'
 
 const themeSchema = yup.object({
   headline: yup.string()
@@ -23,20 +24,9 @@ const memberSchema = yup.object({
   linkedin: yup.string(),
 })
 
-const votesSchema = yup.object({
-  adopt: yup.number()
-    .integer()
-    .min(1),
-  trial: yup.number()
-    .integer()
-    .min(1),
-  assess: yup.number()
-    .integer()
-    .min(1),
-  hold: yup.number()
-    .integer()
-    .min(1),
-})
+const votesSchema = yup.object(
+  Object.assign({}, ...levels.map(level => ({[level]: yup.number().integer().min(1)})))
+)
 
 const pointSchema = yup.object({
   name: yup.string()
@@ -45,7 +35,7 @@ const pointSchema = yup.object({
     .url(),
   repo: yup.string(),
   level: yup.string()
-    .oneOf(['adopt', 'trial', 'assess', 'hold'])
+    .oneOf(levels)
     .required(),
   votes: votesSchema
     .required()

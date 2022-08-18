@@ -2,6 +2,13 @@ import { Fragment } from 'react'
 import groupPoints from '../helpers/groupPoints'
 import LinkToPoint from './LinkToPoint'
 import { colors } from '../styles.config'
+import { levels, radar_levels, level_names } from '../settings'
+
+function comparePoints(a,b) {
+  return levels
+    .map(level => (b.votes[level] || 0) - (a.votes[level] || 0))
+    .reduce((prev,next) => prev || next)
+}
 
 export default function RadarData({ points, companies }) {
   const groupedPoints = groupPoints(points)
@@ -65,13 +72,8 @@ export default function RadarData({ points, companies }) {
       <div className="header item-level">Votes</div>
 
       {
-        ['adopt', 'trial', 'assess'].map(level => {
-          const sortedPoints = groupedPoints[level].sort((a, b) => {
-            return ((b.votes.adopt || 0) - (a.votes.adopt || 0)) ||
-              ((b.votes.trial || 0) - (a.votes.trial || 0)) ||
-              ((b.votes.assess || 0) - (a.votes.assess || 0)) ||
-              ((b.votes.hold || 0) - (a.votes.hold || 0))
-          })
+        radar_levels.map(level => {
+          const sortedPoints = groupedPoints[level].sort(comparePoints)
 
           return sortedPoints.map((point, i) => {
             return <Fragment key={`point-${level}-${point.fullKey}`}>
@@ -83,7 +85,7 @@ export default function RadarData({ points, companies }) {
               <div className="item"><LinkToPoint point={point} /> {repeatedPoints[point.key] ? `(${point.subradar.name})` : ''}</div>
               <div className="item">
                 {
-                  ['adopt', 'trial', 'assess', 'hold'].map(voteKey => {
+                  levels.map(voteKey => {
                     const votes = point.votes[voteKey]
 
                     if (!votes) {
