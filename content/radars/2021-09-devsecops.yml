@@ -51,8 +51,8 @@ points:
     votes:
       adopt: 13
       trial: 2
-  - name: XRay
-    homepage: https://www.getxray.app/
+  - name: Xray
+    homepage: https://www.jfrog.com/confluence/display/JFROG/JFrog+Xray
     level: trial
     votes:
       adopt: 1
