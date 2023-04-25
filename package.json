@@ -27,7 +27,7 @@
     "sanitize-html": "^1.27.0",
     "sass": "^1.26.10",
     "showdown": "^1.9.1",
-    "yaml": "^2.0.0-1",
+    "yaml": "^2.2.2",
     "yup": "^0.32.6"
   },
   "resolutions": {
